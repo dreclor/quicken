@@ -1,0 +1,339 @@
+{
+  "createdAt": "2026-11-03T00:54:56.338Z",
+  "hardware": {
+    "cpu": "Apple M3 Pro",
+    "ramGB": 19.327352832
+  },
+  "scope": "Actual models on synthetic meeting fixtures. Four configurations x 84 checks plus nine browser/audio trials. Production app/model unchanged.",
+  "models": [
+    {
+      "model": "Qwen3-4B-Instruct-2507",
+      "variant": "production prompts",
+      "source": "verification/model-comparison-Qwen3-4B-Instruct-2507.json",
+      "configuration": {
+        "quantization": "Q4_K_M",
+        "context": 8192,
+        "gpuLayers": 99,
+        "cpuThreads": 4,
+        "parallelSlots": 1,
+        "temperature": 0.1,
+        "thinking": false,
+        "thinkingBudget": 0,
+        "repetitions": 2,
+        "seeds": [
+          17,
+          29
+        ],
+        "promptPolicy": "Unchanged production prompts for every model",
+        "latency": "Final transcript to moderator assessment; notes measured separately. Includes 120ms moderation debounce, excludes ASR and voice."
+      },
+      "passed": 73,
+      "total": 84,
+      "moderation": {
+        "passed": 42,
+        "total": 52,
+        "medianMs": 1678,
+        "p95Ms": 2096
+      },
+      "direct": {
+        "passed": 16,
+        "total": 16,
+        "medianMs": 710,
+        "p95Ms": 975
+      },
+      "notes": {
+        "passed": 15,
+        "total": 16,
+        "medianMs": 3186,
+        "p95Ms": 6677
+      },
+      "overall": 0.8690476190476191,
+      "unnecessaryInterjections": 6,
+      "unexpectedFactSections": 1,
+      "firstTokenMedianMs": null
+    },
+    {
+      "model": "Apple-Foundation-Models",
+      "variant": "production prompts",
+      "source": "verification/model-comparison-Apple-Foundation-Models.json",
+      "configuration": {
+        "runtime": "Apple FoundationModels / SystemLanguageModel.default (on-device)",
+        "context": "System-reported below",
+        "temperature": 0.1,
+        "sampling": "random top-k 40",
+        "repetitions": 2,
+        "seeds": [
+          17,
+          29
+        ],
+        "promptPolicy": "Unchanged production text prompts; JSON schema mapped to Apple guided generation with property order preserved. Native schema prompt inclusion enabled.",
+        "sessionPolicy": "Fresh session per request; one unscored warm-up; no history shared between cases.",
+        "comparisonLimits": "Different model tokenizers, schema implementations, and runtime caching; equal token caps are not equal text lengths. No assumed parity in hidden sampling defaults.",
+        "latency": "Final transcript to moderator assessment; notes measured separately. Includes 120ms moderation debounce, excludes ASR and voice."
+      },
+      "availability": {
+        "availability": "available",
+        "available": true,
+        "contextSize": 4096,
+        "id": 1,
+        "model": "SystemLanguageModel.default (on-device)",
+        "ok": true,
+        "os": "Version 26.6.2 (Build 25G83)"
+      },
+      "passed": 64,
+      "total": 84,
+      "moderation": {
+        "passed": 38,
+        "total": 52,
+        "medianMs": 1662,
+        "p95Ms": 1863
+      },
+      "direct": {
+        "passed": 14,
+        "total": 16,
+        "medianMs": 614,
+        "p95Ms": 968
+      },
+      "notes": {
+        "passed": 12,
+        "total": 16,
+        "medianMs": 1828,
+        "p95Ms": 2782
+      },
+      "overall": 0.7619047619047619,
+      "unnecessaryInterjections": 0,
+      "unexpectedFactSections": 0,
+      "firstTokenMedianMs": null
+    },
+    {
+      "model": "Apple-Foundation-Models",
+      "variant": "compact prompts (exploratory)",
+      "source": "verification/model-comparison-Apple-Foundation-Models-compact.json",
+      "configuration": {
+        "runtime": "Apple FoundationModels / SystemLanguageModel.default (on-device)",
+        "context": "System-reported below",
+        "temperature": 0.1,
+        "sampling": "random top-k 40",
+        "repetitions": 2,
+        "seeds": [
+          17,
+          29
+        ],
+        "promptPolicy": "Exploratory shorter Apple-specific moderation, notes and deferred-question prompts after baseline inspection. Same fixtures, controller, schema, caps and scoring; not a held-out result. See compactInstructions in apple-benchmark-engine.mjs.",
+        "sessionPolicy": "Fresh session per request; one unscored warm-up; no history shared between cases.",
+        "comparisonLimits": "Different model tokenizers, schema implementations, and runtime caching; equal token caps are not equal text lengths. No assumed parity in hidden sampling defaults.",
+        "latency": "Final transcript to moderator assessment; notes measured separately. Includes 120ms moderation debounce, excludes ASR and voice."
+      },
+      "availability": {
+        "availability": "available",
+        "available": true,
+        "contextSize": 4096,
+        "id": 1,
+        "model": "SystemLanguageModel.default (on-device)",
+        "ok": true,
+        "os": "Version 26.6.2 (Build 25G83)"
+      },
+      "passed": 64,
+      "total": 84,
+      "moderation": {
+        "passed": 36,
+        "total": 52,
+        "medianMs": 1722,
+        "p95Ms": 2130
+      },
+      "direct": {
+        "passed": 14,
+        "total": 16,
+        "medianMs": 636,
+        "p95Ms": 989
+      },
+      "notes": {
+        "passed": 14,
+        "total": 16,
+        "medianMs": 1941,
+        "p95Ms": 3242
+      },
+      "overall": 0.7619047619047619,
+      "unnecessaryInterjections": 0,
+      "unexpectedFactSections": 0,
+      "firstTokenMedianMs": null
+    },
+    {
+      "model": "Cloud-gpt-6-luna",
+      "variant": "production prompts",
+      "source": "verification/model-comparison-Cloud-gpt-6-luna.json",
+      "configuration": {
+        "runtime": "OpenAI Responses API",
+        "model": "gpt-6-luna",
+        "reasoning": "none",
+        "serviceTier": "default",
+        "temperature": 0.1,
+        "repetitions": 2,
+        "seeds": null,
+        "promptPolicy": "Unchanged production text prompts and output caps; native strict JSON schema.",
+        "sessionPolicy": "Independent requests, store=false; one unscored warm-up; no retries; API prompt caching may occur.",
+        "comparisonLimits": "No seed control in Responses. Full response latency includes network, server, and download. Streaming first-token latency also recorded but not used as decision latency.",
+        "latency": "Final transcript to moderator assessment; notes measured separately. Includes 120ms moderation debounce, excludes ASR and voice."
+      },
+      "passed": 84,
+      "total": 84,
+      "moderation": {
+        "passed": 52,
+        "total": 52,
+        "medianMs": 1173,
+        "p95Ms": 1474
+      },
+      "direct": {
+        "passed": 16,
+        "total": 16,
+        "medianMs": 902,
+        "p95Ms": 1122
+      },
+      "notes": {
+        "passed": 16,
+        "total": 16,
+        "medianMs": 1247,
+        "p95Ms": 1534
+      },
+      "overall": 1,
+      "unnecessaryInterjections": 0,
+      "unexpectedFactSections": 0,
+      "firstTokenMedianMs": 634
+    }
+  ],
+  "audio": [
+    {
+      "model": "Qwen3-4B-Instruct-2507",
+      "passed": 3,
+      "total": 3,
+      "speechEndToFirstPlaybackMs": [
+        1979,
+        2083,
+        2196
+      ],
+      "medianMs": 2083
+    },
+    {
+      "model": "Apple-Foundation-Models",
+      "passed": 3,
+      "total": 3,
+      "speechEndToFirstPlaybackMs": [
+        1924,
+        1898,
+        2513
+      ],
+      "medianMs": 1924
+    },
+    {
+      "model": "Cloud-gpt-6-luna",
+      "passed": 3,
+      "total": 3,
+      "speechEndToFirstPlaybackMs": [
+        2149,
+        2112,
+        2357
+      ],
+      "medianMs": 2149
+    }
+  ],
+  "cloudUsage": {
+    "inputTokens": 45872,
+    "cachedTokens": 0,
+    "cacheWriteTokens": 0,
+    "outputTokens": 4714,
+    "scope": "84 scored text cases only; excludes warm-ups, access probes, and audio trials",
+    "estimatedUSD": 0.0069442,
+    "pricingSource": "https://developers.openai.com/api/docs/models/gpt-6-luna"
+  },
+  "retainedAppModel": "Qwen3-4B-Instruct-2507 Q4_K_M",
+  "manualReview": [
+    {
+      "model": "Apple / production prompts",
+      "case": "sustained-drift and other tracking cases",
+      "finding": "Frequently copied the testing-plan example from instructions, including a quote absent from the actual transcript. Existing grounding rejected it, which also explains many silent passes."
+    },
+    {
+      "model": "Apple / both variants",
+      "case": "explicitly-deferred, deferred-room, deferred-capacity",
+      "finding": "Named Maya or Alex as a follow-up owner without an assignment in the transcript, despite passing the automated topic-word checks."
+    },
+    {
+      "model": "Apple / production prompts",
+      "case": "notes-resolved-question",
+      "finding": "Summary said venue cost was agreed upon; the transcript only states a price."
+    },
+    {
+      "model": "Apple / both variants",
+      "case": "suggestion",
+      "finding": "Suggested using the agenda item to choose a launch date; this passed the keyword check but did not give a useful method for choosing between dates."
+    },
+    {
+      "model": "Qwen / production prompts",
+      "case": "notes-corrected-facts",
+      "finding": "Summary overstated a date merely considered as a date previously set; automated section checks did not catch this."
+    },
+    {
+      "model": "Cloud / production prompts",
+      "case": "notes-corrected-facts and other notes",
+      "finding": "Key decisions, assignments and date distinctions were correct. Some supporting quotes cover only part of a note that combines facts across rows; passing this suite does not establish strict single-quote entailment."
+    },
+    {
+      "model": "Cloud / production prompts",
+      "case": "notes-commitment",
+      "finding": "Added a gendered pronoun not specified by the fixture; no owner or deadline was changed."
+    }
+  ],
+  "limitations": [
+    "Checks include existing rules, grounding and controller behavior; they are not raw model accuracy or a real-meeting reliability score.",
+    "Some silent cases pass because unsupported model output is rejected by grounding. Apple baseline repeatedly copied a prompt example that was not in the transcript.",
+    "Apple compact prompts were written after baseline inspection; their scores are exploratory, not held-out.",
+    "Cloud timing is from this Mac/network on the standard service tier, not a universal cloud speed or SLA. No cloud model tournament was run.",
+    "Different tokenizers, native schema generation and cache behavior; equal output caps do not imply equal output lengths.",
+    "Apple system-model version follows macOS; the API did not provide a reproducible weight hash.",
+    "Audio trials use one easy prerecorded question repeated three times. No physical microphone, speaker routing, or real meeting was tested.",
+    "Apple requests use SystemLanguageModel.default on-device. Node/browser HTTP interception does not inspect Apple system-service traffic.",
+    "Cold launches, lengthy meetings, background contention and sustained battery/thermal behavior are not characterized."
+  ],
+  "evidence": [
+    {
+      "path": "verification/model-comparison-Qwen3-4B-Instruct-2507.json",
+      "sha256": "ffa25c37fbe2f94216daff34d991bc88633d006c24ce15f7c4caf2deffa99882"
+    },
+    {
+      "path": "verification/model-comparison-Apple-Foundation-Models.json",
+      "sha256": "f87b98160dd198f0e467a7568ec03e9525b472e25efb3ce2acd2f754b8d16c00"
+    },
+    {
+      "path": "verification/model-comparison-Apple-Foundation-Models-compact.json",
+      "sha256": "65154c6193dd03bd69d44a413b4764a49f644009d17842819e227df4abceaf69"
+    },
+    {
+      "path": "verification/model-comparison-Cloud-gpt-6-luna.json",
+      "sha256": "45f5bd8bce48ab6a30167b12fdf4feb5131becf731095a69ad5217b753a1110a"
+    },
+    {
+      "path": "verification/apple-audio-comparison.json",
+      "sha256": "66f63d93af7743a3b90069c9f6f4075a0d7e32c5143adef6b330bc1751d12891"
+    },
+    {
+      "path": "scripts/model-comparison-cases.mjs",
+      "sha256": "a466c07dc8ceef35d867a30655baeabd960297c2d1f0d6b952db48b1f9a6d66a"
+    },
+    {
+      "path": "scripts/compare-local-models.mjs",
+      "sha256": "e3f7d687d296b1b3abd1ad070a83af32d9dd536a122e8c8d35f3b778d48e881d"
+    },
+    {
+      "path": "scripts/apple-model-benchmark.swift",
+      "sha256": "d66f2bddd6873001a7f28c6780d21245e7218b640c0c66a831ddf91417e5b9ae"
+    },
+    {
+      "path": "scripts/apple-benchmark-engine.mjs",
+      "sha256": "1fa43d4b1a3572e5b0c17785c957d899c27250d61189dc726692b19227ca3150"
+    },
+    {
+      "path": "scripts/cloud-benchmark-engine.mjs",
+      "sha256": "8a24cccb5b539c5938ab8936fb3447836b527dabe2419e1e12b5b7309bdfd84c"
+    }
+  ]
+}

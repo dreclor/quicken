@@ -1,0 +1,3239 @@
+{
+  "kind": "Synthetic local model comparison; no physical microphone or real meeting",
+  "createdAt": "2026-11-03T00:43:04.797Z",
+  "hardware": {
+    "cpu": "Apple M3 Pro",
+    "ramGB": 19.327352832
+  },
+  "configuration": {
+    "quantization": "Q4_K_M",
+    "context": 8192,
+    "gpuLayers": 99,
+    "cpuThreads": 4,
+    "parallelSlots": 1,
+    "temperature": 0.1,
+    "thinking": false,
+    "thinkingBudget": 0,
+    "repetitions": 2,
+    "seeds": [
+      17,
+      29
+    ],
+    "promptPolicy": "Unchanged production prompts for every model",
+    "latency": "Final transcript to moderator assessment; notes measured separately. Includes 120ms moderation debounce, excludes ASR and voice."
+  },
+  "gate": {
+    "minimumOverall": 0.9,
+    "minimumEachFeature": 0.85,
+    "maxOverallRegression": 0.03,
+    "maxUnnecessaryInterjections": 1,
+    "criticalFacts": "No invented decisions/assignments in designated empty notes sections; manually inspect all answers and notes.",
+    "latency": "No worse p95 live moderation latency than 4B baseline."
+  },
+  "models": [
+    {
+      "id": "Qwen3-4B-Instruct-2507",
+      "bytes": 2497281120,
+      "sha": "3605803b982cb64aead44f6c1b2ae36e3acdb41d8e46c8a94c6533bc4c67e597",
+      "rows": [
+        {
+          "id": "clear-assignment",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1869,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1736,
+              "usage": {
+                "completion_tokens": 32,
+                "prompt_tokens": 583,
+                "total_tokens": 615,
+                "prompt_tokens_details": {
+                  "cached_tokens": 3
+                }
+              },
+              "timings": {
+                "cache_n": 3,
+                "prompt_n": 580,
+                "prompt_ms": 963.788,
+                "prompt_per_token_ms": 1.6617034482758621,
+                "prompt_per_second": 601.7920953570703,
+                "predicted_n": 32,
+                "predicted_ms": 764.28,
+                "predicted_per_token_ms": 24.654193548387095,
+                "predicted_per_second": 40.56105092374523
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "fresh-question",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1127,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1004,
+              "usage": {
+                "completion_tokens": 39,
+                "prompt_tokens": 580,
+                "total_tokens": 619,
+                "prompt_tokens_details": {
+                  "cached_tokens": 548
+                }
+              },
+              "timings": {
+                "cache_n": 548,
+                "prompt_n": 32,
+                "prompt_ms": 75.197,
+                "prompt_per_token_ms": 2.34990625,
+                "prompt_per_second": 425.54889157812147,
+                "predicted_n": 39,
+                "predicted_ms": 920.359,
+                "predicted_per_token_ms": 24.219973684210526,
+                "predicted_per_second": 41.2882364381725
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0,\"topic\":\"Launch planning\",\"openQuestions\":[\"Which launch date do you prefer?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "missing-deadline",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1853,
+          "text": "What date should we set for the testing plan?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1722,
+              "usage": {
+                "completion_tokens": 64,
+                "prompt_tokens": 597,
+                "total_tokens": 661,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 91,
+                "prompt_ms": 175.822,
+                "prompt_per_token_ms": 1.93210989010989,
+                "prompt_per_second": 517.5689049151983,
+                "predicted_n": 64,
+                "predicted_ms": 1538.764,
+                "predicted_per_token_ms": 24.424825396825394,
+                "predicted_per_second": 40.94195081247027
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should we set for the testing plan?\",\"evidence\":\"I will send the testing plan soon.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"What date should we set for the testing plan?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "explicitly-deferred",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 900,
+          "text": "Who will determine the launch campaign cost and when will that information be provided?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 775,
+              "usage": {
+                "completion_tokens": 16,
+                "prompt_tokens": 243,
+                "total_tokens": 259,
+                "prompt_tokens_details": {
+                  "cached_tokens": 7
+                }
+              },
+              "timings": {
+                "cache_n": 7,
+                "prompt_n": 236,
+                "prompt_ms": 403.814,
+                "prompt_per_token_ms": 1.7110762711864407,
+                "prompt_per_second": 584.4274839406261,
+                "predicted_n": 16,
+                "predicted_ms": 331.668,
+                "predicted_per_token_ms": 22.1112,
+                "predicted_per_second": 45.22594884040667
+              },
+              "finishReason": "stop",
+              "text": "Who will determine the launch campaign cost and when will that information be provided?"
+            }
+          ]
+        },
+        {
+          "id": "sustained-drift",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1715,
+          "text": "Shall we return to choosing the launch date?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1588,
+              "usage": {
+                "completion_tokens": 56,
+                "prompt_tokens": 640,
+                "total_tokens": 696,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 132,
+                "prompt_ms": 266.998,
+                "prompt_per_token_ms": 2.022712121212121,
+                "prompt_per_second": 494.3857257357733,
+                "predicted_n": 56,
+                "predicted_ms": 1300.503,
+                "predicted_per_token_ms": 23.64550909090909,
+                "predicted_per_second": 42.29132881661941
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"We need to choose the launch date today.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "resolved-owner",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1774,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1648,
+              "usage": {
+                "completion_tokens": 61,
+                "prompt_tokens": 619,
+                "total_tokens": 680,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 108,
+                "prompt_ms": 212.976,
+                "prompt_per_token_ms": 1.972,
+                "prompt_per_second": 507.09939148073016,
+                "predicted_n": 61,
+                "predicted_ms": 1423.827,
+                "predicted_per_token_ms": 23.73045,
+                "predicted_per_second": 42.139950991236994
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should Maya send the testing plan?\",\"evidence\":\"Maya will send the testing plan Friday.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"Who will send the testing plan?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "relevant-tangent",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "ambiguous",
+          "elapsedMs": 2229,
+          "text": "What specific date or timeframe should we set for the launch, given the accessibility audit concerns?",
+          "failures": [
+            "Expected silent, got ambiguous"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 2098,
+              "usage": {
+                "completion_tokens": 80,
+                "prompt_tokens": 619,
+                "total_tokens": 699,
+                "prompt_tokens_details": {
+                  "cached_tokens": 552
+                }
+              },
+              "timings": {
+                "cache_n": 552,
+                "prompt_n": 67,
+                "prompt_ms": 171.624,
+                "prompt_per_token_ms": 2.56155223880597,
+                "prompt_per_second": 390.38829068195594,
+                "predicted_n": 80,
+                "predicted_ms": 1917.811,
+                "predicted_per_token_ms": 24.276088607594936,
+                "predicted_per_second": 41.1927974133009
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What specific date or timeframe should we set for the launch, given the accessibility audit concerns?\",\"evidence\":\"We need to select a launch date.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"What specific date or timeframe should we set for the launch, given the accessibility audit concerns?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "brief-social-aside",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1043,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 915,
+              "usage": {
+                "completion_tokens": 32,
+                "prompt_tokens": 620,
+                "total_tokens": 652,
+                "prompt_tokens_details": {
+                  "cached_tokens": 552
+                }
+              },
+              "timings": {
+                "cache_n": 552,
+                "prompt_n": 68,
+                "prompt_ms": 170.234,
+                "prompt_per_token_ms": 2.5034411764705884,
+                "prompt_per_second": 399.4501685914682,
+                "predicted_n": 32,
+                "predicted_ms": 739.854,
+                "predicted_per_token_ms": 23.86625806451613,
+                "predicted_per_second": 41.90015867995577
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "answered-cost",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1129,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1004,
+              "usage": {
+                "completion_tokens": 32,
+                "prompt_tokens": 620,
+                "total_tokens": 652,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 109,
+                "prompt_ms": 216.405,
+                "prompt_per_token_ms": 1.9853669724770642,
+                "prompt_per_second": 503.68521984242506,
+                "predicted_n": 32,
+                "predicted_ms": 777.337,
+                "predicted_per_token_ms": 25.075387096774193,
+                "predicted_per_second": 39.87974327736876
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "answered-deadline",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1093,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 968,
+              "usage": {
+                "completion_tokens": 32,
+                "prompt_tokens": 620,
+                "total_tokens": 652,
+                "prompt_tokens_details": {
+                  "cached_tokens": 555
+                }
+              },
+              "timings": {
+                "cache_n": 555,
+                "prompt_n": 65,
+                "prompt_ms": 171.987,
+                "prompt_per_token_ms": 2.645953846153846,
+                "prompt_per_second": 377.9355416397751,
+                "predicted_n": 32,
+                "predicted_ms": 788.776,
+                "predicted_per_token_ms": 25.444387096774193,
+                "predicted_per_second": 39.30139862267615
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "assigned-followup",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1118,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 994,
+              "usage": {
+                "completion_tokens": 32,
+                "prompt_tokens": 616,
+                "total_tokens": 648,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 105,
+                "prompt_ms": 214.394,
+                "prompt_per_token_ms": 2.041847619047619,
+                "prompt_per_second": 489.7525117307387,
+                "predicted_n": 32,
+                "predicted_ms": 771.105,
+                "predicted_per_token_ms": 24.874354838709678,
+                "predicted_per_second": 40.20204771075275
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "tentative-idea",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "ambiguous",
+          "elapsedMs": 1965,
+          "text": "Who will decide if alumni are invited to the launch?",
+          "failures": [
+            "Expected silent, got ambiguous"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1834,
+              "usage": {
+                "completion_tokens": 67,
+                "prompt_tokens": 602,
+                "total_tokens": 669,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 94,
+                "prompt_ms": 177.2,
+                "prompt_per_token_ms": 1.8851063829787233,
+                "prompt_per_second": 530.4740406320542,
+                "predicted_n": 67,
+                "predicted_ms": 1645.169,
+                "predicted_per_token_ms": 24.92680303030303,
+                "predicted_per_second": 40.11745905739775
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Who will decide if alumni are invited to the launch?\",\"evidence\":\"We could consider inviting alumni to the launch.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"Who will decide if alumni are invited to the launch?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "clear-first-person",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1054,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 926,
+              "usage": {
+                "completion_tokens": 32,
+                "prompt_tokens": 581,
+                "total_tokens": 613,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 75,
+                "prompt_ms": 172.361,
+                "prompt_per_token_ms": 2.2981466666666663,
+                "prompt_per_second": 435.13323779741364,
+                "predicted_n": 32,
+                "predicted_ms": 748.266,
+                "predicted_per_token_ms": 24.137612903225804,
+                "predicted_per_second": 41.429117452884405
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "relevant-football",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "ambiguous",
+          "elapsedMs": 2045,
+          "text": "What specific launch date should we set based on the match schedule?",
+          "failures": [
+            "Expected silent, got ambiguous"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1917,
+              "usage": {
+                "completion_tokens": 72,
+                "prompt_tokens": 617,
+                "total_tokens": 689,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 111,
+                "prompt_ms": 214.761,
+                "prompt_per_token_ms": 1.9347837837837838,
+                "prompt_per_second": 516.8536186737815,
+                "predicted_n": 72,
+                "predicted_ms": 1693.213,
+                "predicted_per_token_ms": 23.848070422535212,
+                "predicted_per_second": 41.93211367973196
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What specific launch date should we set based on the match schedule?\",\"evidence\":\"The match schedule determines which launch date works.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"What specific launch date should we set based on the match schedule?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "drift-recipes",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1678,
+          "text": "Shall we return to choosing the launch date?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1548,
+              "usage": {
+                "completion_tokens": 56,
+                "prompt_tokens": 632,
+                "total_tokens": 688,
+                "prompt_tokens_details": {
+                  "cached_tokens": 553
+                }
+              },
+              "timings": {
+                "cache_n": 553,
+                "prompt_n": 79,
+                "prompt_ms": 173.88,
+                "prompt_per_token_ms": 2.201012658227848,
+                "prompt_per_second": 454.3363239015413,
+                "predicted_n": 56,
+                "predicted_ms": 1367.732,
+                "predicted_per_token_ms": 24.867854545454545,
+                "predicted_per_second": 40.212556261021895
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"The agenda is choosing our launch date.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "drift-travel",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "silent",
+          "elapsedMs": 1744,
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1621,
+              "usage": {
+                "completion_tokens": 59,
+                "prompt_tokens": 633,
+                "total_tokens": 692,
+                "prompt_tokens_details": {
+                  "cached_tokens": 552
+                }
+              },
+              "timings": {
+                "cache_n": 552,
+                "prompt_n": 81,
+                "prompt_ms": 177.458,
+                "prompt_per_token_ms": 2.1908395061728396,
+                "prompt_per_second": 456.44603230060073,
+                "predicted_n": 59,
+                "predicted_ms": 1432.586,
+                "predicted_per_token_ms": 24.699758620689657,
+                "predicted_per_second": 40.486225608794165
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"Alex: My favorite beach is on the north shore.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "vague-deadline-copy",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1957,
+          "text": "What date should Alex finish editing the launch email?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1830,
+              "usage": {
+                "completion_tokens": 65,
+                "prompt_tokens": 596,
+                "total_tokens": 661,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 88,
+                "prompt_ms": 178.169,
+                "prompt_per_token_ms": 2.0246477272727272,
+                "prompt_per_second": 493.91308252277327,
+                "predicted_n": 65,
+                "predicted_ms": 1644.547,
+                "predicted_per_token_ms": 25.696046875,
+                "predicted_per_second": 38.91649189716074
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should Alex finish editing the launch email?\",\"evidence\":\"I will finish editing the launch email sometime.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"What date should Alex finish editing the launch email?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "vague-owner",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1893,
+          "text": "By whom should the room be booked by Friday?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1762,
+              "usage": {
+                "completion_tokens": 65,
+                "prompt_tokens": 598,
+                "total_tokens": 663,
+                "prompt_tokens_details": {
+                  "cached_tokens": 551
+                }
+              },
+              "timings": {
+                "cache_n": 551,
+                "prompt_n": 47,
+                "prompt_ms": 119.344,
+                "prompt_per_token_ms": 2.539234042553191,
+                "prompt_per_second": 393.8195468561469,
+                "predicted_n": 65,
+                "predicted_ms": 1637.386,
+                "predicted_per_token_ms": 25.58415625,
+                "predicted_per_second": 39.08669061540773
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"By whom should the room be booked by Friday?\",\"evidence\":\"Someone will book the room by Friday.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"By whom should the room be booked by Friday?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "vague-owner-review",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1840,
+          "text": "Who specifically will handle the security review tomorrow?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1713,
+              "usage": {
+                "completion_tokens": 65,
+                "prompt_tokens": 602,
+                "total_tokens": 667,
+                "prompt_tokens_details": {
+                  "cached_tokens": 549
+                }
+              },
+              "timings": {
+                "cache_n": 549,
+                "prompt_n": 53,
+                "prompt_ms": 121.416,
+                "prompt_per_token_ms": 2.290867924528302,
+                "prompt_per_second": 436.5157804572709,
+                "predicted_n": 65,
+                "predicted_ms": 1582.829,
+                "predicted_per_token_ms": 24.731703125,
+                "predicted_per_second": 40.43393190294088
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Who specifically will handle the security review tomorrow?\",\"evidence\":\"Somebody will take care of the security review tomorrow.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"Who specifically will handle the security review tomorrow?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "deferred-room",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 933,
+          "text": "We haven't decided on the room for the launch—please assign someone to confirm or resolve this question.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 805,
+              "usage": {
+                "completion_tokens": 22,
+                "prompt_tokens": 239,
+                "total_tokens": 261,
+                "prompt_tokens_details": {
+                  "cached_tokens": 91
+                }
+              },
+              "timings": {
+                "cache_n": 91,
+                "prompt_n": 148,
+                "prompt_ms": 264.652,
+                "prompt_per_token_ms": 1.788189189189189,
+                "prompt_per_second": 559.2249444553603,
+                "predicted_n": 22,
+                "predicted_ms": 488.095,
+                "predicted_per_token_ms": 23.242619047619048,
+                "predicted_per_second": 43.0244112314201
+              },
+              "finishReason": "stop",
+              "text": "We haven't decided on the room for the launch—please assign someone to confirm or resolve this question."
+            }
+          ]
+        },
+        {
+          "id": "deferred-capacity",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 756,
+          "text": "Let's resolve the question about venue capacity or assign someone to find out.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 628,
+              "usage": {
+                "completion_tokens": 16,
+                "prompt_tokens": 235,
+                "total_tokens": 251,
+                "prompt_tokens_details": {
+                  "cached_tokens": 91
+                }
+              },
+              "timings": {
+                "cache_n": 91,
+                "prompt_n": 144,
+                "prompt_ms": 264.091,
+                "prompt_per_token_ms": 1.8339652777777777,
+                "prompt_per_second": 545.266593712016,
+                "predicted_n": 16,
+                "predicted_ms": 342.86,
+                "predicted_per_token_ms": 22.857333333333333,
+                "predicted_per_second": 43.74963541970483
+              },
+              "finishReason": "stop",
+              "text": "Let's resolve the question about venue capacity or assign someone to find out."
+            }
+          ]
+        },
+        {
+          "id": "resolved-by-context",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1160,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1030,
+              "usage": {
+                "completion_tokens": 32,
+                "prompt_tokens": 626,
+                "total_tokens": 658,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 118,
+                "prompt_ms": 220.24,
+                "prompt_per_token_ms": 1.8664406779661018,
+                "prompt_per_second": 535.7791500181619,
+                "predicted_n": 32,
+                "predicted_ms": 790.733,
+                "predicted_per_token_ms": 25.507516129032258,
+                "predicted_per_second": 39.20413085074229
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-commitment",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1109,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 981,
+              "usage": {
+                "completion_tokens": 32,
+                "prompt_tokens": 582,
+                "total_tokens": 614,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 76,
+                "prompt_ms": 176.136,
+                "prompt_per_token_ms": 2.317578947368421,
+                "prompt_per_second": 431.484761774992,
+                "predicted_n": 32,
+                "predicted_ms": 797.809,
+                "predicted_per_token_ms": 25.735774193548387,
+                "predicted_per_second": 38.85641801483814
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1831,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: migration|plan"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1708,
+              "usage": {
+                "completion_tokens": 60,
+                "prompt_tokens": 594,
+                "total_tokens": 654,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 88,
+                "prompt_ms": 180.213,
+                "prompt_per_token_ms": 2.047875,
+                "prompt_per_second": 488.3110541414881,
+                "predicted_n": 60,
+                "predicted_ms": 1520.745,
+                "predicted_per_token_ms": 25.775338983050844,
+                "predicted_per_second": 38.79677394961023
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"When will Alex send the migration plan?\",\"evidence\":\"i will send the migration plan soon\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"When will Alex send the migration plan?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "recent-reminder",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1686,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1556,
+              "usage": {
+                "completion_tokens": 55,
+                "prompt_tokens": 644,
+                "total_tokens": 699,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 136,
+                "prompt_ms": 269.336,
+                "prompt_per_token_ms": 1.9804117647058825,
+                "prompt_per_second": 504.9454955891526,
+                "predicted_n": 55,
+                "predicted_ms": 1282.409,
+                "predicted_per_token_ms": 23.748314814814815,
+                "predicted_per_second": 42.108250955818306
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"We are still discussing the launch date.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "off-track-disabled",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1655,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1533,
+              "usage": {
+                "completion_tokens": 56,
+                "prompt_tokens": 627,
+                "total_tokens": 683,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 116,
+                "prompt_ms": 217.66,
+                "prompt_per_token_ms": 1.8763793103448276,
+                "prompt_per_second": 532.9412845722687,
+                "predicted_n": 56,
+                "predicted_ms": 1305.179,
+                "predicted_per_token_ms": 23.730527272727276,
+                "predicted_per_second": 42.13981377267026
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"We need to choose the launch date.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "agenda-first",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 746,
+          "text": "The first item on our agenda is to choose the launch date.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 620,
+              "usage": {
+                "completion_tokens": 14,
+                "prompt_tokens": 177,
+                "total_tokens": 191,
+                "prompt_tokens_details": {
+                  "cached_tokens": 7
+                }
+              },
+              "timings": {
+                "cache_n": 7,
+                "prompt_n": 170,
+                "prompt_ms": 304.97,
+                "prompt_per_token_ms": 1.7939411764705884,
+                "prompt_per_second": 557.4318785454307,
+                "predicted_n": 14,
+                "predicted_ms": 287.21,
+                "predicted_per_token_ms": 22.09307692307692,
+                "predicted_per_second": 45.263047944013096
+              },
+              "finishReason": "stop",
+              "text": "The first item on our agenda is to choose the launch date."
+            }
+          ]
+        },
+        {
+          "id": "agenda-current",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 477,
+          "text": "We are currently discussing assigning owners for the project.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 351,
+              "usage": {
+                "completion_tokens": 11,
+                "prompt_tokens": 172,
+                "total_tokens": 183,
+                "prompt_tokens_details": {
+                  "cached_tokens": 124
+                }
+              },
+              "timings": {
+                "cache_n": 124,
+                "prompt_n": 48,
+                "prompt_ms": 116.542,
+                "prompt_per_token_ms": 2.427958333333333,
+                "prompt_per_second": 411.8686825350517,
+                "predicted_n": 11,
+                "predicted_ms": 228.016,
+                "predicted_per_token_ms": 22.8016,
+                "predicted_per_second": 43.85657146866887
+              },
+              "finishReason": "stop",
+              "text": "We are currently discussing assigning owners for the project."
+            }
+          ]
+        },
+        {
+          "id": "known-owner",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 922,
+          "text": "Alex, you asked who is sending the venue contract. Maya mentioned Priya will send it on Tuesday. That's the latest information available.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 795,
+              "usage": {
+                "completion_tokens": 29,
+                "prompt_tokens": 192,
+                "total_tokens": 221,
+                "prompt_tokens_details": {
+                  "cached_tokens": 124
+                }
+              },
+              "timings": {
+                "cache_n": 124,
+                "prompt_n": 68,
+                "prompt_ms": 165.972,
+                "prompt_per_token_ms": 2.440764705882353,
+                "prompt_per_second": 409.70766153327065,
+                "predicted_n": 29,
+                "predicted_ms": 622.922,
+                "predicted_per_token_ms": 22.247214285714286,
+                "predicted_per_second": 44.949447924459236
+              },
+              "finishReason": "stop",
+              "text": "Alex, you asked who is sending the venue contract. Maya mentioned Priya will send it on Tuesday. That's the latest information available."
+            }
+          ]
+        },
+        {
+          "id": "known-date",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 470,
+          "text": "You agreed to launch on November 18.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 344,
+              "usage": {
+                "completion_tokens": 11,
+                "prompt_tokens": 192,
+                "total_tokens": 203,
+                "prompt_tokens_details": {
+                  "cached_tokens": 140
+                }
+              },
+              "timings": {
+                "cache_n": 140,
+                "prompt_n": 52,
+                "prompt_ms": 114.265,
+                "prompt_per_token_ms": 2.197403846153846,
+                "prompt_per_second": 455.08248370017066,
+                "predicted_n": 11,
+                "predicted_ms": 225.057,
+                "predicted_per_token_ms": 22.505699999999997,
+                "predicted_per_second": 44.43318803680846
+              },
+              "finishReason": "stop",
+              "text": "You agreed to launch on November 18."
+            }
+          ]
+        },
+        {
+          "id": "unknown-budget",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 932,
+          "text": "Quicken: No approved budget has been mentioned in the transcript. Suggestion: Review financial documents to confirm the budget before finalizing the launch date.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 802,
+              "usage": {
+                "completion_tokens": 31,
+                "prompt_tokens": 189,
+                "total_tokens": 220,
+                "prompt_tokens_details": {
+                  "cached_tokens": 141
+                }
+              },
+              "timings": {
+                "cache_n": 141,
+                "prompt_n": 48,
+                "prompt_ms": 121.621,
+                "prompt_per_token_ms": 2.533770833333333,
+                "prompt_per_second": 394.66868386216197,
+                "predicted_n": 31,
+                "predicted_ms": 674.108,
+                "predicted_per_token_ms": 22.470266666666664,
+                "predicted_per_second": 44.503254671358306
+              },
+              "finishReason": "stop",
+              "text": "Quicken: No approved budget has been mentioned in the transcript. Suggestion: Review financial documents to confirm the budget before finalizing the launch date."
+            }
+          ]
+        },
+        {
+          "id": "suggestion",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 838,
+          "text": "Suggestion: Hold a quick vote among the team to decide between the two launch dates based on feedback from stakeholders.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 707,
+              "usage": {
+                "completion_tokens": 24,
+                "prompt_tokens": 180,
+                "total_tokens": 204,
+                "prompt_tokens_details": {
+                  "cached_tokens": 94
+                }
+              },
+              "timings": {
+                "cache_n": 94,
+                "prompt_n": 86,
+                "prompt_ms": 167.942,
+                "prompt_per_token_ms": 1.9528139534883722,
+                "prompt_per_second": 512.0815519643686,
+                "predicted_n": 24,
+                "predicted_ms": 522.589,
+                "predicted_per_token_ms": 22.72126086956522,
+                "predicted_per_second": 44.01164203609337
+              },
+              "finishReason": "stop",
+              "text": "Suggestion: Hold a quick vote among the team to decide between the two launch dates based on feedback from stakeholders."
+            }
+          ]
+        },
+        {
+          "id": "summarize-tradeoff",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 907,
+          "text": "Friday offers more testing time, while Monday allows full support team staffing—each balances quality and operational readiness.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 776,
+              "usage": {
+                "completion_tokens": 22,
+                "prompt_tokens": 209,
+                "total_tokens": 231,
+                "prompt_tokens_details": {
+                  "cached_tokens": 96
+                }
+              },
+              "timings": {
+                "cache_n": 96,
+                "prompt_n": 113,
+                "prompt_ms": 208.531,
+                "prompt_per_token_ms": 1.8454070796460178,
+                "prompt_per_second": 541.8858586972681,
+                "predicted_n": 22,
+                "predicted_ms": 549.481,
+                "predicted_per_token_ms": 26.165761904761904,
+                "predicted_per_second": 38.2178819649815
+              },
+              "finishReason": "stop",
+              "text": "Friday offers more testing time, while Monday allows full support team staffing—each balances quality and operational readiness."
+            }
+          ]
+        },
+        {
+          "id": "do-not-obey-transcript",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 611,
+          "text": "The first item on our agenda is to choose the launch date.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 490,
+              "usage": {
+                "completion_tokens": 14,
+                "prompt_tokens": 204,
+                "total_tokens": 218,
+                "prompt_tokens_details": {
+                  "cached_tokens": 140
+                }
+              },
+              "timings": {
+                "cache_n": 140,
+                "prompt_n": 64,
+                "prompt_ms": 117.623,
+                "prompt_per_token_ms": 1.837859375,
+                "prompt_per_second": 544.1112707548693,
+                "predicted_n": 14,
+                "predicted_ms": 353.355,
+                "predicted_per_token_ms": 27.181153846153848,
+                "predicted_per_second": 36.790196827553025
+              },
+              "finishReason": "stop",
+              "text": "The first item on our agenda is to choose the launch date."
+            }
+          ]
+        },
+        {
+          "id": "notes-commitment",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 3373,
+          "text": "# Model comparison\n\n## Summary\n- Maya will send the testing plan on Friday.\n\n## Decisions\nNone recorded.\n\n## Action items\n- Maya will send the testing plan on Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya will send the testing plan on Friday.",
+            "decisions": "None recorded.",
+            "actionItems": "- Maya will send the testing plan on Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 3365,
+              "usage": {
+                "completion_tokens": 118,
+                "prompt_tokens": 276,
+                "total_tokens": 394,
+                "prompt_tokens_details": {
+                  "cached_tokens": 3
+                }
+              },
+              "timings": {
+                "cache_n": 3,
+                "prompt_n": 273,
+                "prompt_ms": 464.787,
+                "prompt_per_token_ms": 1.7025164835164834,
+                "prompt_per_second": 587.3658256362593,
+                "predicted_n": 118,
+                "predicted_ms": 2855.806,
+                "predicted_per_token_ms": 24.40859829059829,
+                "predicted_per_second": 40.96916947439707
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Maya will send the testing plan on Friday.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Maya will send the testing plan on Friday.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [\n    {\n      \"text\": \"Maya will send the testing plan on Friday.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Maya will send the testing plan on Friday.\"\n    }\n  ],\n  \"openQuestions\": []\n}"
+            }
+          ]
+        },
+        {
+          "id": "notes-explicit-decision",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 4963,
+          "text": "# Model comparison\n\n## Summary\n- The launch date has been agreed upon as November 18.\n- Alex will be responsible for sending the invitations by Monday.\n\n## Decisions\n- The launch date is confirmed as November 18.\n\n## Action items\n- Alex will send the invitations by Monday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The launch date has been agreed upon as November 18.\n- Alex will be responsible for sending the invitations by Monday.",
+            "decisions": "- The launch date is confirmed as November 18.",
+            "actionItems": "- Alex will send the invitations by Monday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 4961,
+              "usage": {
+                "completion_tokens": 211,
+                "prompt_tokens": 303,
+                "total_tokens": 514,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 48,
+                "prompt_ms": 114.926,
+                "prompt_per_token_ms": 2.3942916666666667,
+                "prompt_per_second": 417.6600595165585,
+                "predicted_n": 211,
+                "predicted_ms": 4823.999,
+                "predicted_per_token_ms": 22.97142380952381,
+                "predicted_per_second": 43.532347332576144
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"The launch date has been agreed upon as November 18.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"We agree that the launch date is November 18.\"\n    },\n    {\n      \"text\": \"Alex will be responsible for sending the invitations by Monday.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"Alex will send the invitations by Monday.\"\n    }\n  ],\n  \"decisions\": [\n    {\n      \"text\": \"The launch date is confirmed as November 18.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"We agree that the launch date is November 18.\"\n    }\n  ],\n  \"actionItems\": [\n    {\n      \"text\": \"Alex will send the invitations by Monday.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"Alex will send the invitations by Monday.\"\n    }\n  ],\n  \"openQuestions\": []\n}"
+            }
+          ]
+        },
+        {
+          "id": "notes-suggestion-only",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 3042,
+          "text": "# Model comparison\n\n## Summary\n- Launching in December is suggested but not confirmed.\n\n## Decisions\nNone recorded.\n\n## Action items\n- The team has not assigned any work or selected a launch date.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Launching in December is suggested but not confirmed.",
+            "decisions": "None recorded.",
+            "actionItems": "- The team has not assigned any work or selected a launch date.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "actionItems should be empty"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 3040,
+              "usage": {
+                "completion_tokens": 124,
+                "prompt_tokens": 307,
+                "total_tokens": 431,
+                "prompt_tokens_details": {
+                  "cached_tokens": 256
+                }
+              },
+              "timings": {
+                "cache_n": 256,
+                "prompt_n": 51,
+                "prompt_ms": 117.841,
+                "prompt_per_token_ms": 2.3106078431372548,
+                "prompt_per_second": 432.7865513700665,
+                "predicted_n": 124,
+                "predicted_ms": 2902.923,
+                "predicted_per_token_ms": 23.601,
+                "predicted_per_second": 42.37108597093344
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Launching in December is suggested but not confirmed.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"We could launch in December, but that is only a suggestion.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [\n    {\n      \"text\": \"The team has not assigned any work or selected a launch date.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"We have not chosen a date or assigned any work.\"\n    }\n  ],\n  \"openQuestions\": []\n}"
+            }
+          ]
+        },
+        {
+          "id": "notes-resolved-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1625,
+          "text": "# Model comparison\n\n## Summary\n- The venue costs three hundred dollars.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The venue costs three hundred dollars.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1624,
+              "usage": {
+                "completion_tokens": 66,
+                "prompt_tokens": 297,
+                "total_tokens": 363,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 42,
+                "prompt_ms": 113.406,
+                "prompt_per_token_ms": 2.700142857142857,
+                "prompt_per_second": 370.35077509126495,
+                "predicted_n": 66,
+                "predicted_ms": 1505.964,
+                "predicted_per_token_ms": 23.168676923076923,
+                "predicted_per_second": 43.16172232536768
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"The venue costs three hundred dollars.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"The venue costs three hundred dollars.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}"
+            }
+          ]
+        },
+        {
+          "id": "notes-open-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 4138,
+          "text": "# Model comparison\n\n## Summary\n- Maya asked who will approve the final poster.\n- Alex confirmed that approval of the final poster has not been assigned.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\n- Who will approve the final poster?",
+          "sections": {
+            "summary": "- Maya asked who will approve the final poster.\n- Alex confirmed that approval of the final poster has not been assigned.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "- Who will approve the final poster?"
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 4137,
+              "usage": {
+                "completion_tokens": 154,
+                "prompt_tokens": 299,
+                "total_tokens": 453,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 44,
+                "prompt_ms": 136.449,
+                "prompt_per_token_ms": 3.1011136363636367,
+                "prompt_per_second": 322.4648036995507,
+                "predicted_n": 154,
+                "predicted_ms": 3993.64,
+                "predicted_per_token_ms": 26.10222222222222,
+                "predicted_per_second": 38.31091435382258
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Maya asked who will approve the final poster.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Who will approve the final poster?\"\n    },\n    {\n      \"text\": \"Alex confirmed that approval of the final poster has not been assigned.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"We have not assigned that approval yet.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": [\n    {\n      \"text\": \"Who will approve the final poster?\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Who will approve the final poster?\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "id": "notes-moderator-not-assignment",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 3186,
+          "text": "# Model comparison\n\n## Summary\n- Maya was identified as a potential person to send the budget, but no one had been formally assigned the task.\n- Alex noted that no one had been assigned to send the budget.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya was identified as a potential person to send the budget, but no one had been formally assigned the task.\n- Alex noted that no one had been assigned to send the budget.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 3186,
+              "usage": {
+                "completion_tokens": 129,
+                "prompt_tokens": 300,
+                "total_tokens": 429,
+                "prompt_tokens_details": {
+                  "cached_tokens": 250
+                }
+              },
+              "timings": {
+                "cache_n": 250,
+                "prompt_n": 50,
+                "prompt_ms": 123.86,
+                "prompt_per_token_ms": 2.4772,
+                "prompt_per_second": 403.6815759728726,
+                "predicted_n": 129,
+                "predicted_ms": 3051.47,
+                "predicted_per_token_ms": 23.839609375,
+                "predicted_per_second": 41.94699603797514
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Maya was identified as a potential person to send the budget, but no one had been formally assigned the task.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Maya could send the budget tomorrow.\"\n    },\n    {\n      \"text\": \"Alex noted that no one had been assigned to send the budget.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"We have not assigned anyone to that task.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}"
+            }
+          ]
+        },
+        {
+          "id": "notes-corrected-facts",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 6397,
+          "text": "# Model comparison\n\n## Summary\n- The launch date was initially set for November 12 but was changed to November 18.\n- Alex confirms that November 12 is no longer an option.\n- Maya and Alex agree to launch on November 18.\n\n## Decisions\n- The launch date is set for November 18.\n\n## Action items\n- Priya will reserve the room by Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The launch date was initially set for November 12 but was changed to November 18.\n- Alex confirms that November 12 is no longer an option.\n- Maya and Alex agree to launch on November 18.",
+            "decisions": "- The launch date is set for November 18.",
+            "actionItems": "- Priya will reserve the room by Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 6396,
+              "usage": {
+                "completion_tokens": 265,
+                "prompt_tokens": 355,
+                "total_tokens": 620,
+                "prompt_tokens_details": {
+                  "cached_tokens": 250
+                }
+              },
+              "timings": {
+                "cache_n": 250,
+                "prompt_n": 105,
+                "prompt_ms": 216.901,
+                "prompt_per_token_ms": 2.0657238095238095,
+                "prompt_per_second": 484.0918206923896,
+                "predicted_n": 265,
+                "predicted_ms": 6173.809,
+                "predicted_per_token_ms": 23.38564015151515,
+                "predicted_per_second": 42.761283998257795
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"The launch date was initially set for November 12 but was changed to November 18.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"We initially considered launching on November 12.\"\n    },\n    {\n      \"text\": \"Alex confirms that November 12 is no longer an option.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"That date is no longer an option.\"\n    },\n    {\n      \"text\": \"Maya and Alex agree to launch on November 18.\",\n      \"sourceId\": \"0-2\",\n      \"quote\": \"We agree to launch on November 18.\"\n    }\n  ],\n  \"decisions\": [\n    {\n      \"text\": \"The launch date is set for November 18.\",\n      \"sourceId\": \"0-2\",\n      \"quote\": \"We agree to launch on November 18.\"\n    }\n  ],\n  \"actionItems\": [\n    {\n      \"text\": \"Priya will reserve the room by Friday.\",\n      \"sourceId\": \"0-3\",\n      \"quote\": \"Priya will reserve the room by Friday.\"\n    }\n  ],\n  \"openQuestions\": []\n}"
+            }
+          ]
+        },
+        {
+          "id": "notes-agenda-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1733,
+          "text": "# Model comparison\n\n## Summary\n- Maya: “Quicken, what is the first item on our agenda?”\n- Quicken: “The first item is to choose the launch date.”\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya: “Quicken, what is the first item on our agenda?”\n- Quicken: “The first item is to choose the launch date.”",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1733,
+              "usage": {
+                "completion_tokens": 70,
+                "prompt_tokens": 307,
+                "total_tokens": 377,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 52,
+                "prompt_ms": 121.101,
+                "prompt_per_token_ms": 2.3288653846153844,
+                "prompt_per_second": 429.393646625544,
+                "predicted_n": 70,
+                "predicted_ms": 1584.174,
+                "predicted_per_token_ms": 22.95904347826087,
+                "predicted_per_second": 43.5558215196058
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": [\n    {\n      \"text\": \"What is the first item on our agenda?\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"What is the first item on our agenda?\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "id": "vague-owner",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 2096,
+          "text": "By whom should the room be booked by Friday?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1964,
+              "usage": {
+                "completion_tokens": 65,
+                "prompt_tokens": 598,
+                "total_tokens": 663,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 90,
+                "prompt_ms": 183.261,
+                "prompt_per_token_ms": 2.036233333333333,
+                "prompt_per_second": 491.1028533075778,
+                "predicted_n": 65,
+                "predicted_ms": 1647.957,
+                "predicted_per_token_ms": 25.749328125,
+                "predicted_per_second": 38.8359647733527
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"By whom should the room be booked by Friday?\",\"evidence\":\"Someone will book the room by Friday.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"By whom should the room be booked by Friday?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "vague-owner-review",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1923,
+          "text": "Who specifically will handle the security review tomorrow?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1801,
+              "usage": {
+                "completion_tokens": 65,
+                "prompt_tokens": 602,
+                "total_tokens": 667,
+                "prompt_tokens_details": {
+                  "cached_tokens": 549
+                }
+              },
+              "timings": {
+                "cache_n": 549,
+                "prompt_n": 53,
+                "prompt_ms": 127.975,
+                "prompt_per_token_ms": 2.414622641509434,
+                "prompt_per_second": 414.14338738034775,
+                "predicted_n": 65,
+                "predicted_ms": 1663.549,
+                "predicted_per_token_ms": 25.992953125,
+                "predicted_per_second": 38.47196565896166
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Who specifically will handle the security review tomorrow?\",\"evidence\":\"Somebody will take care of the security review tomorrow.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"Who specifically will handle the security review tomorrow?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "deferred-room",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 701,
+          "text": "Let's resolve which room has been booked for the launch or assign someone to follow up on that question.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 578,
+              "usage": {
+                "completion_tokens": 22,
+                "prompt_tokens": 239,
+                "total_tokens": 261,
+                "prompt_tokens_details": {
+                  "cached_tokens": 238
+                }
+              },
+              "timings": {
+                "cache_n": 238,
+                "prompt_n": 1,
+                "prompt_ms": 26.028,
+                "prompt_per_token_ms": 26.028,
+                "prompt_per_second": 38.420162901490706,
+                "predicted_n": 22,
+                "predicted_ms": 496.807,
+                "predicted_per_token_ms": 23.657476190476192,
+                "predicted_per_second": 42.26993581008319
+              },
+              "finishReason": "stop",
+              "text": "Let's resolve which room has been booked for the launch or assign someone to follow up on that question."
+            }
+          ]
+        },
+        {
+          "id": "deferred-capacity",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 512,
+          "text": "Let's resolve the question about venue capacity or assign someone to find out.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 387,
+              "usage": {
+                "completion_tokens": 16,
+                "prompt_tokens": 235,
+                "total_tokens": 251,
+                "prompt_tokens_details": {
+                  "cached_tokens": 234
+                }
+              },
+              "timings": {
+                "cache_n": 234,
+                "prompt_n": 1,
+                "prompt_ms": 25.126,
+                "prompt_per_token_ms": 25.126,
+                "prompt_per_second": 39.79941096871766,
+                "predicted_n": 16,
+                "predicted_ms": 347.225,
+                "predicted_per_token_ms": 23.148333333333333,
+                "predicted_per_second": 43.19965440276478
+              },
+              "finishReason": "stop",
+              "text": "Let's resolve the question about venue capacity or assign someone to find out."
+            }
+          ]
+        },
+        {
+          "id": "resolved-by-context",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1176,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1044,
+              "usage": {
+                "completion_tokens": 32,
+                "prompt_tokens": 626,
+                "total_tokens": 658,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 118,
+                "prompt_ms": 225.457,
+                "prompt_per_token_ms": 1.9106525423728813,
+                "prompt_per_second": 523.3813986702564,
+                "predicted_n": 32,
+                "predicted_ms": 800.269,
+                "predicted_per_token_ms": 25.815129032258064,
+                "predicted_per_second": 38.73697469225973
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-commitment",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1156,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1034,
+              "usage": {
+                "completion_tokens": 32,
+                "prompt_tokens": 582,
+                "total_tokens": 614,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 76,
+                "prompt_ms": 187.299,
+                "prompt_per_token_ms": 2.4644605263157895,
+                "prompt_per_second": 405.7683169691242,
+                "predicted_n": 32,
+                "predicted_ms": 836.44,
+                "predicted_per_token_ms": 26.98193548387097,
+                "predicted_per_second": 37.061833484768776
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1850,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: migration|plan"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1719,
+              "usage": {
+                "completion_tokens": 60,
+                "prompt_tokens": 594,
+                "total_tokens": 654,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 88,
+                "prompt_ms": 186.033,
+                "prompt_per_token_ms": 2.1140113636363633,
+                "prompt_per_second": 473.034354119968,
+                "predicted_n": 60,
+                "predicted_ms": 1525.097,
+                "predicted_per_token_ms": 25.849101694915255,
+                "predicted_per_second": 38.68606390282061
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"When will Alex send the migration plan?\",\"evidence\":\"i will send the migration plan soon\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"When will Alex send the migration plan?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "recent-reminder",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1728,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1596,
+              "usage": {
+                "completion_tokens": 55,
+                "prompt_tokens": 644,
+                "total_tokens": 699,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 136,
+                "prompt_ms": 280.798,
+                "prompt_per_token_ms": 2.064691176470588,
+                "prompt_per_second": 484.3339340023789,
+                "predicted_n": 55,
+                "predicted_ms": 1308.501,
+                "predicted_per_token_ms": 24.2315,
+                "predicted_per_second": 41.26859666137053
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"We are still discussing the launch date.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "off-track-disabled",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1728,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1603,
+              "usage": {
+                "completion_tokens": 56,
+                "prompt_tokens": 627,
+                "total_tokens": 683,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 116,
+                "prompt_ms": 228.587,
+                "prompt_per_token_ms": 1.9705775862068964,
+                "prompt_per_second": 507.46542891765506,
+                "predicted_n": 56,
+                "predicted_ms": 1366.256,
+                "predicted_per_token_ms": 24.841018181818182,
+                "predicted_per_second": 40.25599887575974
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"We need to choose the launch date.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "agenda-first",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 596,
+          "text": "The first item on our agenda is to choose the launch date.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 474,
+              "usage": {
+                "completion_tokens": 14,
+                "prompt_tokens": 177,
+                "total_tokens": 191,
+                "prompt_tokens_details": {
+                  "cached_tokens": 140
+                }
+              },
+              "timings": {
+                "cache_n": 140,
+                "prompt_n": 37,
+                "prompt_ms": 118.059,
+                "prompt_per_token_ms": 3.190783783783784,
+                "prompt_per_second": 313.40262072353653,
+                "predicted_n": 14,
+                "predicted_ms": 314.15,
+                "predicted_per_token_ms": 24.165384615384614,
+                "predicted_per_second": 41.38150565016712
+              },
+              "finishReason": "stop",
+              "text": "The first item on our agenda is to choose the launch date."
+            }
+          ]
+        },
+        {
+          "id": "agenda-current",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 463,
+          "text": "We are discussing assigning owners for the project.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 335,
+              "usage": {
+                "completion_tokens": 10,
+                "prompt_tokens": 172,
+                "total_tokens": 182,
+                "prompt_tokens_details": {
+                  "cached_tokens": 124
+                }
+              },
+              "timings": {
+                "cache_n": 124,
+                "prompt_n": 48,
+                "prompt_ms": 117.556,
+                "prompt_per_token_ms": 2.4490833333333333,
+                "prompt_per_second": 408.316036612338,
+                "predicted_n": 10,
+                "predicted_ms": 212.628,
+                "predicted_per_token_ms": 23.62533333333333,
+                "predicted_per_second": 42.327445115412836
+              },
+              "finishReason": "stop",
+              "text": "We are discussing assigning owners for the project."
+            }
+          ]
+        },
+        {
+          "id": "known-owner",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 975,
+          "text": "Alex, you asked who is sending the venue contract. Maya mentioned Priya will send it on Tuesday. That’s the latest information available.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 842,
+              "usage": {
+                "completion_tokens": 29,
+                "prompt_tokens": 192,
+                "total_tokens": 221,
+                "prompt_tokens_details": {
+                  "cached_tokens": 124
+                }
+              },
+              "timings": {
+                "cache_n": 124,
+                "prompt_n": 68,
+                "prompt_ms": 173.225,
+                "prompt_per_token_ms": 2.5474264705882352,
+                "prompt_per_second": 392.5530379564151,
+                "predicted_n": 29,
+                "predicted_ms": 663.398,
+                "predicted_per_token_ms": 23.692785714285716,
+                "predicted_per_second": 42.20694062990844
+              },
+              "finishReason": "stop",
+              "text": "Alex, you asked who is sending the venue contract. Maya mentioned Priya will send it on Tuesday. That’s the latest information available."
+            }
+          ]
+        },
+        {
+          "id": "known-date",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 498,
+          "text": "You agreed to launch on November 18.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 374,
+              "usage": {
+                "completion_tokens": 11,
+                "prompt_tokens": 192,
+                "total_tokens": 203,
+                "prompt_tokens_details": {
+                  "cached_tokens": 140
+                }
+              },
+              "timings": {
+                "cache_n": 140,
+                "prompt_n": 52,
+                "prompt_ms": 119.389,
+                "prompt_per_token_ms": 2.295942307692308,
+                "prompt_per_second": 435.5510139125045,
+                "predicted_n": 11,
+                "predicted_ms": 250.202,
+                "predicted_per_token_ms": 25.0202,
+                "predicted_per_second": 39.96770609347647
+              },
+              "finishReason": "stop",
+              "text": "You agreed to launch on November 18."
+            }
+          ]
+        },
+        {
+          "id": "unknown-budget",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 609,
+          "text": "Quicken does not have access to the approved budget information.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 487,
+              "usage": {
+                "completion_tokens": 13,
+                "prompt_tokens": 189,
+                "total_tokens": 202,
+                "prompt_tokens_details": {
+                  "cached_tokens": 141
+                }
+              },
+              "timings": {
+                "cache_n": 141,
+                "prompt_n": 48,
+                "prompt_ms": 136.405,
+                "prompt_per_token_ms": 2.8417708333333334,
+                "prompt_per_second": 351.8932590447564,
+                "predicted_n": 13,
+                "predicted_ms": 343.756,
+                "predicted_per_token_ms": 28.64633333333333,
+                "predicted_per_second": 34.90848159741212
+              },
+              "finishReason": "stop",
+              "text": "Quicken does not have access to the approved budget information."
+            }
+          ]
+        },
+        {
+          "id": "suggestion",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 832,
+          "text": "Suggestion: Hold a quick vote among the team to decide between the two launch dates based on feedback from stakeholders.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 705,
+              "usage": {
+                "completion_tokens": 24,
+                "prompt_tokens": 180,
+                "total_tokens": 204,
+                "prompt_tokens_details": {
+                  "cached_tokens": 179
+                }
+              },
+              "timings": {
+                "cache_n": 179,
+                "prompt_n": 1,
+                "prompt_ms": 27.009,
+                "prompt_per_token_ms": 27.009,
+                "prompt_per_second": 37.024695471879745,
+                "predicted_n": 24,
+                "predicted_ms": 650.325,
+                "predicted_per_token_ms": 28.275000000000002,
+                "predicted_per_second": 35.36693191865605
+              },
+              "finishReason": "stop",
+              "text": "Suggestion: Hold a quick vote among the team to decide between the two launch dates based on feedback from stakeholders."
+            }
+          ]
+        },
+        {
+          "id": "summarize-tradeoff",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 798,
+          "text": "Friday offers more testing time, while Monday allows full support team staffing—each balances quality and operational readiness.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 671,
+              "usage": {
+                "completion_tokens": 22,
+                "prompt_tokens": 209,
+                "total_tokens": 231,
+                "prompt_tokens_details": {
+                  "cached_tokens": 208
+                }
+              },
+              "timings": {
+                "cache_n": 208,
+                "prompt_n": 1,
+                "prompt_ms": 29.827,
+                "prompt_per_token_ms": 29.827,
+                "prompt_per_second": 33.52667046635598,
+                "predicted_n": 22,
+                "predicted_ms": 608.402,
+                "predicted_per_token_ms": 28.971523809523813,
+                "predicted_per_second": 34.516651819027544
+              },
+              "finishReason": "stop",
+              "text": "Friday offers more testing time, while Monday allows full support team staffing—each balances quality and operational readiness."
+            }
+          ]
+        },
+        {
+          "id": "do-not-obey-transcript",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 710,
+          "text": "The first item on our agenda is to choose the launch date.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 588,
+              "usage": {
+                "completion_tokens": 14,
+                "prompt_tokens": 204,
+                "total_tokens": 218,
+                "prompt_tokens_details": {
+                  "cached_tokens": 140
+                }
+              },
+              "timings": {
+                "cache_n": 140,
+                "prompt_n": 64,
+                "prompt_ms": 142.006,
+                "prompt_per_token_ms": 2.21884375,
+                "prompt_per_second": 450.6851823162402,
+                "predicted_n": 14,
+                "predicted_ms": 423.346,
+                "predicted_per_token_ms": 32.56507692307692,
+                "predicted_per_second": 30.70774260297723
+              },
+              "finishReason": "stop",
+              "text": "The first item on our agenda is to choose the launch date."
+            }
+          ]
+        },
+        {
+          "id": "clear-assignment",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1379,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1250,
+              "usage": {
+                "completion_tokens": 32,
+                "prompt_tokens": 583,
+                "total_tokens": 615,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 77,
+                "prompt_ms": 207.932,
+                "prompt_per_token_ms": 2.7004155844155844,
+                "prompt_per_second": 370.3133716792029,
+                "predicted_n": 32,
+                "predicted_ms": 1005.506,
+                "predicted_per_token_ms": 32.43567741935484,
+                "predicted_per_second": 30.83024865092799
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "fresh-question",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1359,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1231,
+              "usage": {
+                "completion_tokens": 39,
+                "prompt_tokens": 580,
+                "total_tokens": 619,
+                "prompt_tokens_details": {
+                  "cached_tokens": 548
+                }
+              },
+              "timings": {
+                "cache_n": 548,
+                "prompt_n": 32,
+                "prompt_ms": 89.96,
+                "prompt_per_token_ms": 2.81125,
+                "prompt_per_second": 355.7136505113384,
+                "predicted_n": 39,
+                "predicted_ms": 1126.915,
+                "predicted_per_token_ms": 29.65565789473684,
+                "predicted_per_second": 33.72037820066287
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0,\"topic\":\"Launch planning\",\"openQuestions\":[\"Which launch date do you prefer?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "missing-deadline",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1930,
+          "text": "What date should we set for the testing plan?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1798,
+              "usage": {
+                "completion_tokens": 64,
+                "prompt_tokens": 597,
+                "total_tokens": 661,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 91,
+                "prompt_ms": 189.906,
+                "prompt_per_token_ms": 2.086879120879121,
+                "prompt_per_second": 479.18443861699996,
+                "predicted_n": 64,
+                "predicted_ms": 1602.946,
+                "predicted_per_token_ms": 25.4435873015873,
+                "predicted_per_second": 39.302634025101284
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should we set for the testing plan?\",\"evidence\":\"I will send the testing plan soon.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"What date should we set for the testing plan?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "explicitly-deferred",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 854,
+          "text": "Someone needs to resolve the cost of the launch campaign or assign follow-up to determine it.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 723,
+              "usage": {
+                "completion_tokens": 19,
+                "prompt_tokens": 243,
+                "total_tokens": 262,
+                "prompt_tokens_details": {
+                  "cached_tokens": 92
+                }
+              },
+              "timings": {
+                "cache_n": 92,
+                "prompt_n": 151,
+                "prompt_ms": 273.504,
+                "prompt_per_token_ms": 1.8112847682119206,
+                "prompt_per_second": 552.0943020943021,
+                "predicted_n": 19,
+                "predicted_ms": 415.255,
+                "predicted_per_token_ms": 23.06972222222222,
+                "predicted_per_second": 43.346859158830114
+              },
+              "finishReason": "stop",
+              "text": "Someone needs to resolve the cost of the launch campaign or assign follow-up to determine it."
+            }
+          ]
+        },
+        {
+          "id": "sustained-drift",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1785,
+          "text": "Shall we return to choosing the launch date?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1657,
+              "usage": {
+                "completion_tokens": 56,
+                "prompt_tokens": 640,
+                "total_tokens": 696,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 132,
+                "prompt_ms": 279.454,
+                "prompt_per_token_ms": 2.1170757575757575,
+                "prompt_per_second": 472.3496532524136,
+                "predicted_n": 56,
+                "predicted_ms": 1355.902,
+                "predicted_per_token_ms": 24.652763636363638,
+                "predicted_per_second": 40.56340354981407
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"We need to choose the launch date today.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "resolved-owner",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1725,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1595,
+              "usage": {
+                "completion_tokens": 54,
+                "prompt_tokens": 619,
+                "total_tokens": 673,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 108,
+                "prompt_ms": 230.388,
+                "prompt_per_token_ms": 2.1332222222222224,
+                "prompt_per_second": 468.77441533413196,
+                "predicted_n": 54,
+                "predicted_ms": 1354.63,
+                "predicted_per_token_ms": 25.559056603773588,
+                "predicted_per_second": 39.12507474365694
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should Maya send the testing plan?\",\"evidence\":\"Maya will send the testing plan Friday.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "relevant-tangent",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "ambiguous",
+          "elapsedMs": 2321,
+          "text": "What specific date or timeframe should we set for the launch, given the accessibility audit concerns?",
+          "failures": [
+            "Expected silent, got ambiguous"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 2197,
+              "usage": {
+                "completion_tokens": 80,
+                "prompt_tokens": 619,
+                "total_tokens": 699,
+                "prompt_tokens_details": {
+                  "cached_tokens": 552
+                }
+              },
+              "timings": {
+                "cache_n": 552,
+                "prompt_n": 67,
+                "prompt_ms": 177.415,
+                "prompt_per_token_ms": 2.6479850746268654,
+                "prompt_per_second": 377.6456331200857,
+                "predicted_n": 80,
+                "predicted_ms": 2012.115,
+                "predicted_per_token_ms": 25.469810126582278,
+                "predicted_per_second": 39.26216940880616
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What specific date or timeframe should we set for the launch, given the accessibility audit concerns?\",\"evidence\":\"We need to select a launch date.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"What specific date or timeframe should we set for the launch, given the accessibility audit concerns?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "brief-social-aside",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1121,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 991,
+              "usage": {
+                "completion_tokens": 32,
+                "prompt_tokens": 620,
+                "total_tokens": 652,
+                "prompt_tokens_details": {
+                  "cached_tokens": 552
+                }
+              },
+              "timings": {
+                "cache_n": 552,
+                "prompt_n": 68,
+                "prompt_ms": 186.06,
+                "prompt_per_token_ms": 2.7361764705882354,
+                "prompt_per_second": 365.47350317102007,
+                "predicted_n": 32,
+                "predicted_ms": 798.36,
+                "predicted_per_token_ms": 25.753548387096775,
+                "predicted_per_second": 38.82960068139686
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "answered-cost",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1128,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1004,
+              "usage": {
+                "completion_tokens": 32,
+                "prompt_tokens": 620,
+                "total_tokens": 652,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 109,
+                "prompt_ms": 228.296,
+                "prompt_per_token_ms": 2.09445871559633,
+                "prompt_per_second": 477.450327644812,
+                "predicted_n": 32,
+                "predicted_ms": 766.54,
+                "predicted_per_token_ms": 24.727096774193548,
+                "predicted_per_second": 40.44146424191823
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "answered-deadline",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1116,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 988,
+              "usage": {
+                "completion_tokens": 32,
+                "prompt_tokens": 620,
+                "total_tokens": 652,
+                "prompt_tokens_details": {
+                  "cached_tokens": 555
+                }
+              },
+              "timings": {
+                "cache_n": 555,
+                "prompt_n": 65,
+                "prompt_ms": 182.094,
+                "prompt_per_token_ms": 2.801446153846154,
+                "prompt_per_second": 356.95849396465564,
+                "predicted_n": 32,
+                "predicted_ms": 795.79,
+                "predicted_per_token_ms": 25.67064516129032,
+                "predicted_per_second": 38.955000691137116
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "assigned-followup",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1245,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1115,
+              "usage": {
+                "completion_tokens": 32,
+                "prompt_tokens": 616,
+                "total_tokens": 648,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 105,
+                "prompt_ms": 224.193,
+                "prompt_per_token_ms": 2.1351714285714287,
+                "prompt_per_second": 468.34646933668756,
+                "predicted_n": 32,
+                "predicted_ms": 884.962,
+                "predicted_per_token_ms": 28.54716129032258,
+                "predicted_per_second": 35.02975268994601
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "tentative-idea",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "ambiguous",
+          "elapsedMs": 1971,
+          "text": "Who will decide if alumni are invited to the launch?",
+          "failures": [
+            "Expected silent, got ambiguous"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1845,
+              "usage": {
+                "completion_tokens": 67,
+                "prompt_tokens": 602,
+                "total_tokens": 669,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 94,
+                "prompt_ms": 187.586,
+                "prompt_per_token_ms": 1.9955957446808512,
+                "prompt_per_second": 501.1034938641476,
+                "predicted_n": 67,
+                "predicted_ms": 1649.291,
+                "predicted_per_token_ms": 24.989257575757573,
+                "predicted_per_second": 40.017195267542235
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Who will decide if alumni are invited to the launch?\",\"evidence\":\"We could consider inviting alumni to the launch.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"Who will decide if alumni are invited to the launch?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "clear-first-person",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1122,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1000,
+              "usage": {
+                "completion_tokens": 32,
+                "prompt_tokens": 581,
+                "total_tokens": 613,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 75,
+                "prompt_ms": 179.023,
+                "prompt_per_token_ms": 2.386973333333333,
+                "prompt_per_second": 418.94058305357413,
+                "predicted_n": 32,
+                "predicted_ms": 814.69,
+                "predicted_per_token_ms": 26.280322580645162,
+                "predicted_per_second": 38.05128331021615
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "relevant-football",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "ambiguous",
+          "elapsedMs": 2062,
+          "text": "What specific launch date should we set based on the match schedule?",
+          "failures": [
+            "Expected silent, got ambiguous"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1931,
+              "usage": {
+                "completion_tokens": 72,
+                "prompt_tokens": 617,
+                "total_tokens": 689,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 111,
+                "prompt_ms": 215.038,
+                "prompt_per_token_ms": 1.9372792792792795,
+                "prompt_per_second": 516.1878365684204,
+                "predicted_n": 72,
+                "predicted_ms": 1707.926,
+                "predicted_per_token_ms": 24.055295774647885,
+                "predicted_per_second": 41.57088773166988
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What specific launch date should we set based on the match schedule?\",\"evidence\":\"The match schedule determines which launch date works.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"What specific launch date should we set based on the match schedule?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "drift-recipes",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1666,
+          "text": "Shall we return to choosing the launch date?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1536,
+              "usage": {
+                "completion_tokens": 56,
+                "prompt_tokens": 632,
+                "total_tokens": 688,
+                "prompt_tokens_details": {
+                  "cached_tokens": 553
+                }
+              },
+              "timings": {
+                "cache_n": 553,
+                "prompt_n": 79,
+                "prompt_ms": 174.291,
+                "prompt_per_token_ms": 2.2062151898734177,
+                "prompt_per_second": 453.2649419648748,
+                "predicted_n": 56,
+                "predicted_ms": 1355.666,
+                "predicted_per_token_ms": 24.648472727272726,
+                "predicted_per_second": 40.57046499654045
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"The agenda is choosing our launch date.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "drift-travel",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "silent",
+          "elapsedMs": 1688,
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1567,
+              "usage": {
+                "completion_tokens": 59,
+                "prompt_tokens": 633,
+                "total_tokens": 692,
+                "prompt_tokens_details": {
+                  "cached_tokens": 552
+                }
+              },
+              "timings": {
+                "cache_n": 552,
+                "prompt_n": 81,
+                "prompt_ms": 176.391,
+                "prompt_per_token_ms": 2.1776666666666666,
+                "prompt_per_second": 459.20710240318385,
+                "predicted_n": 59,
+                "predicted_ms": 1385.386,
+                "predicted_per_token_ms": 23.885965517241377,
+                "predicted_per_second": 41.8655883630988
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"Alex: My favorite beach is on the north shore.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "vague-deadline-copy",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1889,
+          "text": "When will Alex finish editing the launch email?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1763,
+              "usage": {
+                "completion_tokens": 63,
+                "prompt_tokens": 596,
+                "total_tokens": 659,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 88,
+                "prompt_ms": 176.829,
+                "prompt_per_token_ms": 2.0094204545454546,
+                "prompt_per_second": 497.6559274779589,
+                "predicted_n": 63,
+                "predicted_ms": 1577.472,
+                "predicted_per_token_ms": 25.44309677419355,
+                "predicted_per_second": 39.3033917559234
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"When will Alex finish editing the launch email?\",\"evidence\":\"I will finish editing the launch email sometime.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"When will Alex finish editing the launch email?\"],\"decisions\":[],\"actionItems\":[]}"
+            }
+          ]
+        },
+        {
+          "id": "notes-commitment",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 2985,
+          "text": "# Model comparison\n\n## Summary\n- Maya will send the testing plan on Friday.\n\n## Decisions\nNone recorded.\n\n## Action items\n- Maya will send the testing plan on Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya will send the testing plan on Friday.",
+            "decisions": "None recorded.",
+            "actionItems": "- Maya will send the testing plan on Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2984,
+              "usage": {
+                "completion_tokens": 118,
+                "prompt_tokens": 276,
+                "total_tokens": 394,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 21,
+                "prompt_ms": 75.643,
+                "prompt_per_token_ms": 3.602047619047619,
+                "prompt_per_second": 277.61987229485874,
+                "predicted_n": 118,
+                "predicted_ms": 2840.734,
+                "predicted_per_token_ms": 24.279777777777777,
+                "predicted_per_second": 41.18653840873521
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Maya will send the testing plan on Friday.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Maya will send the testing plan on Friday.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [\n    {\n      \"text\": \"Maya will send the testing plan on Friday.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Maya will send the testing plan on Friday.\"\n    }\n  ],\n  \"openQuestions\": []\n}"
+            }
+          ]
+        },
+        {
+          "id": "notes-explicit-decision",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 4964,
+          "text": "# Model comparison\n\n## Summary\n- The launch date has been agreed upon as November 18.\n- Alex will send the invitations by Monday.\n\n## Decisions\n- The launch date is confirmed as November 18.\n\n## Action items\n- Alex will send the invitations by Monday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The launch date has been agreed upon as November 18.\n- Alex will send the invitations by Monday.",
+            "decisions": "- The launch date is confirmed as November 18.",
+            "actionItems": "- Alex will send the invitations by Monday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 4964,
+              "usage": {
+                "completion_tokens": 208,
+                "prompt_tokens": 303,
+                "total_tokens": 511,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 48,
+                "prompt_ms": 120.022,
+                "prompt_per_token_ms": 2.5004583333333334,
+                "prompt_per_second": 399.92668010864674,
+                "predicted_n": 208,
+                "predicted_ms": 4839.714,
+                "predicted_per_token_ms": 23.380260869565216,
+                "predicted_per_second": 42.7711224258293
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"The launch date has been agreed upon as November 18.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"We agree that the launch date is November 18.\"\n    },\n    {\n      \"text\": \"Alex will send the invitations by Monday.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"Alex will send the invitations by Monday.\"\n    }\n  ],\n  \"decisions\": [\n    {\n      \"text\": \"The launch date is confirmed as November 18.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"We agree that the launch date is November 18.\"\n    }\n  ],\n  \"actionItems\": [\n    {\n      \"text\": \"Alex will send the invitations by Monday.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"Alex will send the invitations by Monday.\"\n    }\n  ],\n  \"openQuestions\": []\n}"
+            }
+          ]
+        },
+        {
+          "id": "notes-suggestion-only",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1888,
+          "text": "# Model comparison\n\n## Summary\n- Launching in December is proposed as a suggestion but not confirmed.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Launching in December is proposed as a suggestion but not confirmed.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1888,
+              "usage": {
+                "completion_tokens": 77,
+                "prompt_tokens": 307,
+                "total_tokens": 384,
+                "prompt_tokens_details": {
+                  "cached_tokens": 256
+                }
+              },
+              "timings": {
+                "cache_n": 256,
+                "prompt_n": 51,
+                "prompt_ms": 120.609,
+                "prompt_per_token_ms": 2.3648823529411764,
+                "prompt_per_second": 422.8540158694625,
+                "predicted_n": 77,
+                "predicted_ms": 1762.529,
+                "predicted_per_token_ms": 23.191171052631578,
+                "predicted_per_second": 43.119857886026274
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Launching in December is proposed as a suggestion but not confirmed.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"We could launch in December, but that is only a suggestion.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}"
+            }
+          ]
+        },
+        {
+          "id": "notes-resolved-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1627,
+          "text": "# Model comparison\n\n## Summary\n- The venue costs three hundred dollars.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The venue costs three hundred dollars.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1627,
+              "usage": {
+                "completion_tokens": 66,
+                "prompt_tokens": 297,
+                "total_tokens": 363,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 42,
+                "prompt_ms": 118.379,
+                "prompt_per_token_ms": 2.818547619047619,
+                "prompt_per_second": 354.792657481479,
+                "predicted_n": 66,
+                "predicted_ms": 1503.506,
+                "predicted_per_token_ms": 23.13086153846154,
+                "predicted_per_second": 43.23228507235754
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"The venue costs three hundred dollars.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"The venue costs three hundred dollars.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}"
+            }
+          ]
+        },
+        {
+          "id": "notes-open-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 3710,
+          "text": "# Model comparison\n\n## Summary\n- Maya asked who will approve the final poster.\n- Alex confirmed that approval of the final poster has not been assigned.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\n- Who will approve the final poster?",
+          "sections": {
+            "summary": "- Maya asked who will approve the final poster.\n- Alex confirmed that approval of the final poster has not been assigned.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "- Who will approve the final poster?"
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 3709,
+              "usage": {
+                "completion_tokens": 154,
+                "prompt_tokens": 299,
+                "total_tokens": 453,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 44,
+                "prompt_ms": 117.903,
+                "prompt_per_token_ms": 2.6796136363636367,
+                "prompt_per_second": 373.18812922487126,
+                "predicted_n": 154,
+                "predicted_ms": 3580.995,
+                "predicted_per_token_ms": 23.405196078431374,
+                "predicted_per_second": 42.72555532749976
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Maya asked who will approve the final poster.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Who will approve the final poster?\"\n    },\n    {\n      \"text\": \"Alex confirmed that approval of the final poster has not been assigned.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"We have not assigned that approval yet.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": [\n    {\n      \"text\": \"Who will approve the final poster?\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Who will approve the final poster?\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "id": "notes-moderator-not-assignment",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 3313,
+          "text": "# Model comparison\n\n## Summary\n- Maya was identified as a potential person to send the budget, but no one had been formally assigned the task.\n- Alex noted that no one had been assigned to send the budget.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya was identified as a potential person to send the budget, but no one had been formally assigned the task.\n- Alex noted that no one had been assigned to send the budget.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 3312,
+              "usage": {
+                "completion_tokens": 129,
+                "prompt_tokens": 300,
+                "total_tokens": 429,
+                "prompt_tokens_details": {
+                  "cached_tokens": 250
+                }
+              },
+              "timings": {
+                "cache_n": 250,
+                "prompt_n": 50,
+                "prompt_ms": 117.599,
+                "prompt_per_token_ms": 2.35198,
+                "prompt_per_second": 425.17368344968924,
+                "predicted_n": 129,
+                "predicted_ms": 3172.5,
+                "predicted_per_token_ms": 24.78515625,
+                "predicted_per_second": 40.34672970843184
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Maya was identified as a potential person to send the budget, but no one had been formally assigned the task.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Maya could send the budget tomorrow.\"\n    },\n    {\n      \"text\": \"Alex noted that no one had been assigned to send the budget.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"We have not assigned anyone to that task.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}"
+            }
+          ]
+        },
+        {
+          "id": "notes-corrected-facts",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 6677,
+          "text": "# Model comparison\n\n## Summary\n- The launch date was changed from November 12 to November 18.\n- Alex confirms that November 12 is no longer an option.\n- Maya and Alex agree to launch on November 18.\n\n## Decisions\n- The launch date is set to November 18.\n\n## Action items\n- Priya will reserve the room by Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The launch date was changed from November 12 to November 18.\n- Alex confirms that November 12 is no longer an option.\n- Maya and Alex agree to launch on November 18.",
+            "decisions": "- The launch date is set to November 18.",
+            "actionItems": "- Priya will reserve the room by Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 6675,
+              "usage": {
+                "completion_tokens": 261,
+                "prompt_tokens": 355,
+                "total_tokens": 616,
+                "prompt_tokens_details": {
+                  "cached_tokens": 250
+                }
+              },
+              "timings": {
+                "cache_n": 250,
+                "prompt_n": 105,
+                "prompt_ms": 215.978,
+                "prompt_per_token_ms": 2.0569333333333333,
+                "prompt_per_second": 486.1606274713165,
+                "predicted_n": 261,
+                "predicted_ms": 6441.006,
+                "predicted_per_token_ms": 24.7731,
+                "predicted_per_second": 40.366365129919146
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"The launch date was changed from November 12 to November 18.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"We initially considered launching on November 12.\"\n    },\n    {\n      \"text\": \"Alex confirms that November 12 is no longer an option.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"That date is no longer an option.\"\n    },\n    {\n      \"text\": \"Maya and Alex agree to launch on November 18.\",\n      \"sourceId\": \"0-2\",\n      \"quote\": \"We agree to launch on November 18.\"\n    }\n  ],\n  \"decisions\": [\n    {\n      \"text\": \"The launch date is set to November 18.\",\n      \"sourceId\": \"0-2\",\n      \"quote\": \"We agree to launch on November 18.\"\n    }\n  ],\n  \"actionItems\": [\n    {\n      \"text\": \"Priya will reserve the room by Friday.\",\n      \"sourceId\": \"0-3\",\n      \"quote\": \"Priya will reserve the room by Friday.\"\n    }\n  ],\n  \"openQuestions\": []\n}"
+            }
+          ]
+        },
+        {
+          "id": "notes-agenda-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1688,
+          "text": "# Model comparison\n\n## Summary\n- Maya: “Quicken, what is the first item on our agenda?”\n- Quicken: “The first item is to choose the launch date.”\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya: “Quicken, what is the first item on our agenda?”\n- Quicken: “The first item is to choose the launch date.”",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1687,
+              "usage": {
+                "completion_tokens": 70,
+                "prompt_tokens": 307,
+                "total_tokens": 377,
+                "prompt_tokens_details": {
+                  "cached_tokens": 306
+                }
+              },
+              "timings": {
+                "cache_n": 306,
+                "prompt_n": 1,
+                "prompt_ms": 25.962,
+                "prompt_per_token_ms": 25.962,
+                "prompt_per_second": 38.51783375702951,
+                "predicted_n": 70,
+                "predicted_ms": 1620.093,
+                "predicted_per_token_ms": 23.479608695652175,
+                "predicted_per_second": 42.59014760263762
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": [\n    {\n      \"text\": \"What is the first item on our agenda?\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"What is the first item on our agenda?\"\n    }\n  ]\n}"
+            }
+          ]
+        }
+      ],
+      "loadMs": 7798,
+      "warmupMs": 106,
+      "summary": {
+        "moderation": {
+          "passed": 42,
+          "total": 52,
+          "medianMs": 1678,
+          "p95Ms": 2096
+        },
+        "direct": {
+          "passed": 16,
+          "total": 16,
+          "medianMs": 710,
+          "p95Ms": 975
+        },
+        "notes": {
+          "passed": 15,
+          "total": 16,
+          "medianMs": 3186,
+          "p95Ms": 6677
+        },
+        "overall": 0.8690476190476191,
+        "unnecessaryInterjections": 6,
+        "unexpectedFactSections": 1
+      }
+    }
+  ]
+}

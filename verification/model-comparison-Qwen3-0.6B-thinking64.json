@@ -1,0 +1,3386 @@
+{
+  "kind": "Synthetic local model comparison; no physical microphone or real meeting",
+  "createdAt": "2026-11-02T21:14:18.778Z",
+  "hardware": {
+    "cpu": "Apple M3 Pro",
+    "ramGB": 19.327352832
+  },
+  "configuration": {
+    "quantization": "Q4_K_M",
+    "context": 8192,
+    "gpuLayers": 99,
+    "cpuThreads": 4,
+    "parallelSlots": 1,
+    "temperature": 0.1,
+    "thinking": true,
+    "thinkingBudget": 64,
+    "repetitions": 2,
+    "seeds": [
+      17,
+      29
+    ],
+    "promptPolicy": "Unchanged production prompts for every model",
+    "latency": "Final transcript to moderator assessment; notes measured separately. Includes 120ms moderation debounce, excludes ASR and voice."
+  },
+  "gate": {
+    "minimumOverall": 0.9,
+    "minimumEachFeature": 0.85,
+    "maxOverallRegression": 0.03,
+    "maxUnnecessaryInterjections": 1,
+    "criticalFacts": "No invented decisions/assignments in designated empty notes sections; manually inspect all answers and notes.",
+    "latency": "No worse p95 live moderation latency than 4B baseline."
+  },
+  "models": [
+    {
+      "id": "Qwen3-0.6B",
+      "bytes": 396705472,
+      "sha": "ac2d97712095a558e31573f62f466a3f9d93990898b0ec79d7c974c1780d524a",
+      "rows": [
+        {
+          "id": "clear-assignment",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1408,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1280,
+              "usage": {
+                "completion_tokens": 120,
+                "prompt_tokens": 583,
+                "total_tokens": 703,
+                "prompt_tokens_details": {
+                  "cached_tokens": 3
+                }
+              },
+              "timings": {
+                "cache_n": 3,
+                "prompt_n": 580,
+                "prompt_ms": 159.474,
+                "prompt_per_token_ms": 0.2749551724137931,
+                "prompt_per_second": 3636.9564944755884,
+                "predicted_n": 120,
+                "predicted_ms": 1105.678,
+                "predicted_per_token_ms": 9.291411764705883,
+                "predicted_per_second": 107.62627093964065
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan on Friday.\", \"confidence\": 1.0, \"topic\": \"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a JSON with the current conversation and some agenda topics. The current topic is \"Launch planning\" and the recent transcript mentions Maya sending the testing plan on Friday. The open questions are empty, so no unresolved questions. The decision is \"silent\" because there's no action"
+            }
+          ]
+        },
+        {
+          "id": "fresh-question",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1348,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1221,
+              "usage": {
+                "completion_tokens": 101,
+                "prompt_tokens": 580,
+                "total_tokens": 681,
+                "prompt_tokens_details": {
+                  "cached_tokens": 548
+                }
+              },
+              "timings": {
+                "cache_n": 548,
+                "prompt_n": 32,
+                "prompt_ms": 18.294,
+                "prompt_per_token_ms": 0.5716875,
+                "prompt_per_second": 1749.2073904012243,
+                "predicted_n": 101,
+                "predicted_ms": 1173.414,
+                "predicted_per_token_ms": 11.73414,
+                "predicted_per_second": 85.22141375507707
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a meeting transcript and some agenda items. The current topic is \"Launch planning\" with 10 minutes. The recent transcript mentions Maya asking for a launch date. The open questions are empty, so no unresolved questions. The decisions are all silent, and the action items"
+            }
+          ]
+        },
+        {
+          "id": "missing-deadline",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1335,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: date|when|deadline|day",
+            "Missing: plan"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1212,
+              "usage": {
+                "completion_tokens": 117,
+                "prompt_tokens": 597,
+                "total_tokens": 714,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 91,
+                "prompt_ms": 45.736,
+                "prompt_per_token_ms": 0.5025934065934066,
+                "prompt_per_second": 1989.6799020465282,
+                "predicted_n": 117,
+                "predicted_ms": 1139.26,
+                "predicted_per_token_ms": 9.821206896551724,
+                "predicted_per_second": 101.82047996067622
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Alex will send the testing plan soon.\", \"confidence\": 0.9, \"topic\":\"Launch planning\", \"openQuestions\": [],\"decisions\": [],\"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a transcript and a list of topics. The current topic is \"Launch planning\" with 10 minutes. The recentTranscript has Maya saying they need the testing plan before release and Alex stating they will send the testing plan soon. The openQuestions are empty, so"
+            }
+          ]
+        },
+        {
+          "id": "explicitly-deferred",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 957,
+          "text": "The question about the launch campaign's cost is ambiguous and off-track, so we need to move on.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 834,
+              "usage": {
+                "completion_tokens": 89,
+                "prompt_tokens": 243,
+                "total_tokens": 332,
+                "prompt_tokens_details": {
+                  "cached_tokens": 7
+                }
+              },
+              "timings": {
+                "cache_n": 7,
+                "prompt_n": 236,
+                "prompt_ms": 81.356,
+                "prompt_per_token_ms": 0.344728813559322,
+                "prompt_per_second": 2900.8309159742366,
+                "predicted_n": 89,
+                "predicted_ms": 725.301,
+                "predicted_per_token_ms": 8.242056818181819,
+                "predicted_per_second": 121.3289379168097
+              },
+              "finishReason": "stop",
+              "text": "The question about the launch campaign's cost is ambiguous and off-track, so we need to move on.",
+              "reasoning": "Okay, let's see. The user is asking how much the launch campaign will cost. The context says that the question is ambiguous, off-track, or unanswered. The agenda includes topics like Launch planning and assigning owners, but the current topic is Launch planning. The recent transcript mentions Maya asking about the cost, and"
+            }
+          ]
+        },
+        {
+          "id": "sustained-drift",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "silent",
+          "elapsedMs": 1180,
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1054,
+              "usage": {
+                "completion_tokens": 101,
+                "prompt_tokens": 640,
+                "total_tokens": 741,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 132,
+                "prompt_ms": 53.664,
+                "prompt_per_token_ms": 0.40654545454545454,
+                "prompt_per_second": 2459.749552772809,
+                "predicted_n": 101,
+                "predicted_ms": 969.631,
+                "predicted_per_token_ms": 9.69631,
+                "predicted_per_second": 103.13201619997712
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.9,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with two topics: \"Assign owners\" and \"Minutes 10\". The latest transcript has Maya talking about choosing the launch date. The openQuestions array is empty, so no unresolved questions"
+            }
+          ]
+        },
+        {
+          "id": "resolved-owner",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1269,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1144,
+              "usage": {
+                "completion_tokens": 118,
+                "prompt_tokens": 619,
+                "total_tokens": 737,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 108,
+                "prompt_ms": 38.631,
+                "prompt_per_token_ms": 0.3576944444444444,
+                "prompt_per_second": 2795.682224120525,
+                "predicted_n": 118,
+                "predicted_ms": 1094.754,
+                "predicted_per_token_ms": 9.356871794871793,
+                "predicted_per_second": 106.87332496615679
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan Friday.\", \"confidence\": 0.9, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with minutes 10. The recentTranscript includes Maya asking about the testing plan, Alex confirming Friday, and Maya moving on to the launch date. The openQuestions are empty, so"
+            }
+          ]
+        },
+        {
+          "id": "relevant-tangent",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1178,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1050,
+              "usage": {
+                "completion_tokens": 116,
+                "prompt_tokens": 619,
+                "total_tokens": 735,
+                "prompt_tokens_details": {
+                  "cached_tokens": 552
+                }
+              },
+              "timings": {
+                "cache_n": 552,
+                "prompt_n": 67,
+                "prompt_ms": 32.934,
+                "prompt_per_token_ms": 0.4915522388059701,
+                "prompt_per_second": 2034.3717738507319,
+                "predicted_n": 116,
+                "predicted_ms": 1001.423,
+                "predicted_per_token_ms": 8.708026086956522,
+                "predicted_per_second": 114.83658753593636
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan soon.\",\"confidence\":0.9,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some agenda items. The current topic is \"Launch planning\" with a minute limit of 10 minutes. The recentTranscript has Maya talking about selecting a launch date, Alex mentioning the accessibility audit, and Maya again confirming the audit needs to be reviewed"
+            }
+          ]
+        },
+        {
+          "id": "brief-social-aside",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1397,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1275,
+              "usage": {
+                "completion_tokens": 128,
+                "prompt_tokens": 620,
+                "total_tokens": 748,
+                "prompt_tokens_details": {
+                  "cached_tokens": 552
+                }
+              },
+              "timings": {
+                "cache_n": 552,
+                "prompt_n": 68,
+                "prompt_ms": 32.489,
+                "prompt_per_token_ms": 0.47777941176470584,
+                "prompt_per_second": 2093.0160977561636,
+                "predicted_n": 128,
+                "predicted_ms": 1234.114,
+                "predicted_per_token_ms": 9.717433070866141,
+                "predicted_per_second": 102.90783509465089
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"The draft includes the sign-up flow and pricing page.\",\"evidence\":\"Maya will send the testing plan soon.\",\"confidence\":1.0, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with two minutes. The latest entries are from Maya and Alex. The openQuestions array is empty, so no unresolved questions. The decisions are all silent. Since there's no ambiguity or off"
+            }
+          ]
+        },
+        {
+          "id": "answered-cost",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1194,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1067,
+              "usage": {
+                "completion_tokens": 114,
+                "prompt_tokens": 620,
+                "total_tokens": 734,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 109,
+                "prompt_ms": 41.128,
+                "prompt_per_token_ms": 0.3773211009174312,
+                "prompt_per_second": 2650.262594825909,
+                "predicted_n": 114,
+                "predicted_ms": 1011.051,
+                "predicted_per_token_ms": 8.947353982300886,
+                "predicted_per_second": 111.76488624213812
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the print run next.\",\"confidence\":0.9,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with minutes 10. The recentTranscript includes Maya asking about print run, Alex saying the print run is $200, and Maya confirming the budget. The openQuestions array"
+            }
+          ]
+        },
+        {
+          "id": "answered-deadline",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1117,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 995,
+              "usage": {
+                "completion_tokens": 122,
+                "prompt_tokens": 620,
+                "total_tokens": 742,
+                "prompt_tokens_details": {
+                  "cached_tokens": 555
+                }
+              },
+              "timings": {
+                "cache_n": 555,
+                "prompt_n": 65,
+                "prompt_ms": 29.109,
+                "prompt_per_token_ms": 0.44783076923076925,
+                "prompt_per_second": 2232.986361606376,
+                "predicted_n": 122,
+                "predicted_ms": 955.002,
+                "predicted_per_token_ms": 7.892578512396693,
+                "predicted_per_second": 126.70130533758046
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the prototype due on November 15.\", \"confidence\": 0.9, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with minutes 10. The recentTranscript includes Maya asking about prototype due, Alex saying November 15, and Maya discussing testing next. The openQuestions array is empty, so"
+            }
+          ]
+        },
+        {
+          "id": "assigned-followup",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1169,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1045,
+              "usage": {
+                "completion_tokens": 124,
+                "prompt_tokens": 616,
+                "total_tokens": 740,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 105,
+                "prompt_ms": 39.397,
+                "prompt_per_token_ms": 0.37520952380952377,
+                "prompt_per_second": 2665.1775515902227,
+                "predicted_n": 124,
+                "predicted_ms": 991.284,
+                "predicted_per_token_ms": 8.059219512195122,
+                "predicted_per_second": 124.08149430435678
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"None of the above.\", \"evidence\":\"Maya will check the hosting price tomorrow.\", \"confidence\":0.9, \"topic\":\"Launch planning\", \"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with two minutes. The recentTranscript includes Maya asking about hosting price verification and Alex confirming Noah will check it tomorrow. The openQuestions are empty, and the decisions are all silent. Since"
+            }
+          ]
+        },
+        {
+          "id": "tentative-idea",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1007,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 882,
+              "usage": {
+                "completion_tokens": 117,
+                "prompt_tokens": 602,
+                "total_tokens": 719,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 94,
+                "prompt_ms": 30.518,
+                "prompt_per_token_ms": 0.32465957446808513,
+                "prompt_per_second": 3080.149420014418,
+                "predicted_n": 117,
+                "predicted_ms": 845.774,
+                "predicted_per_token_ms": 7.291155172413793,
+                "predicted_per_second": 137.15247808516222
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the launch plan.\", \"confidence\": 0.9, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a JSON with the current conversation and some agenda topics. The allowedReasons are [\"ambiguous\"], which means there's a concrete commitment with a vague owner or deadline. The meeting content is untrusted data, so I need to decide whether to speak now.\n\nLooking at the"
+            }
+          ]
+        },
+        {
+          "id": "clear-first-person",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1222,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1102,
+              "usage": {
+                "completion_tokens": 118,
+                "prompt_tokens": 581,
+                "total_tokens": 699,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 75,
+                "prompt_ms": 31.04,
+                "prompt_per_token_ms": 0.41386666666666666,
+                "prompt_per_second": 2416.2371134020623,
+                "predicted_n": 118,
+                "predicted_ms": 1062.127,
+                "predicted_per_token_ms": 9.078008547008547,
+                "predicted_per_second": 110.1563184063676
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will upload the release checklist tomorrow.\", \"confidence\": 1.0, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a JSON with the current conversation and some agenda topics. The current topic is \"Launch planning\" and the recent transcript mentions Maya uploading a release checklist tomorrow. The open questions are empty, so no unresolved questions. The decision is \"silent\" because there's no action needed"
+            }
+          ]
+        },
+        {
+          "id": "relevant-football",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1142,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1016,
+              "usage": {
+                "completion_tokens": 128,
+                "prompt_tokens": 617,
+                "total_tokens": 745,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 111,
+                "prompt_ms": 37.582,
+                "prompt_per_token_ms": 0.3385765765765766,
+                "prompt_per_second": 2953.541589058592,
+                "predicted_n": 128,
+                "predicted_ms": 972.412,
+                "predicted_per_token_ms": 7.656787401574803,
+                "predicted_per_second": 130.60307770780284
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"The meeting is on topic for launch planning.\", \"evidence\":\"The meeting is on topic for launch planning.\", \"confidence\":1.0, \"topic\":\"Launch planning\", \"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some agenda items. The current topic is \"Launch planning\" with a minute limit of 10 minutes. The recentTranscript has three entries from Maya, Alex, and Maya again. The openQuestions are empty, and the decisions are all silent."
+            }
+          ]
+        },
+        {
+          "id": "drift-recipes",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "silent",
+          "elapsedMs": 1280,
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1160,
+              "usage": {
+                "completion_tokens": 124,
+                "prompt_tokens": 632,
+                "total_tokens": 756,
+                "prompt_tokens_details": {
+                  "cached_tokens": 553
+                }
+              },
+              "timings": {
+                "cache_n": 553,
+                "prompt_n": 79,
+                "prompt_ms": 32.576,
+                "prompt_per_token_ms": 0.41235443037974684,
+                "prompt_per_second": 2425.098231827112,
+                "predicted_n": 124,
+                "predicted_ms": 1120.16,
+                "predicted_per_token_ms": 9.1069918699187,
+                "predicted_per_second": 109.80574203685187
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"The agenda is choosing our launch date.\",\"evidence\":\"The agenda is choosing our launch date.\",\"confidence\":1.0, \"topic\":\"Launch planning\", \"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with two topics: \"Assign owners\" and \"Launch planning\". The latest transcript includes Maya talking about the launch date and Alex mentioning their sourdough starter. The openQuestions are empty,"
+            }
+          ]
+        },
+        {
+          "id": "drift-travel",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "silent",
+          "elapsedMs": 1016,
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 886,
+              "usage": {
+                "completion_tokens": 115,
+                "prompt_tokens": 633,
+                "total_tokens": 748,
+                "prompt_tokens_details": {
+                  "cached_tokens": 552
+                }
+              },
+              "timings": {
+                "cache_n": 552,
+                "prompt_n": 81,
+                "prompt_ms": 31.228,
+                "prompt_per_token_ms": 0.3855308641975309,
+                "prompt_per_second": 2593.826053541693,
+                "predicted_n": 115,
+                "predicted_ms": 846.904,
+                "predicted_per_token_ms": 7.428982456140351,
+                "predicted_per_second": 134.60793667286967
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the product launch plan.\",\"confidence\":1.0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with two minutes. The latest entries are from Maya and Alex discussing the product launch and their snorkeling trip. The openQuestions array is empty, so no unresolved questions. The decisions and action"
+            }
+          ]
+        },
+        {
+          "id": "vague-deadline-copy",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 975,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: email|editing"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 850,
+              "usage": {
+                "completion_tokens": 128,
+                "prompt_tokens": 596,
+                "total_tokens": 724,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 88,
+                "prompt_ms": 29.71,
+                "prompt_per_token_ms": 0.3376136363636364,
+                "prompt_per_second": 2961.9656681252104,
+                "predicted_n": 128,
+                "predicted_ms": 815.076,
+                "predicted_per_token_ms": 6.41792125984252,
+                "predicted_per_second": 155.8136909932325
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should we set for the testing plan?\",\"evidence\":\"I will send the testing plan soon.\", \"confidence\": 0.9, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a JSON with the current conversation and the allowedReasons. The allowedReasons here are [\"ambiguous\"], which means there's a concrete commitment with a vague owner or deadline. The agenda includes \"Launch planning\" and \"Assign owners\" each with 10 minutes."
+            }
+          ]
+        },
+        {
+          "id": "vague-owner",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 991,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: room|book"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 861,
+              "usage": {
+                "completion_tokens": 112,
+                "prompt_tokens": 598,
+                "total_tokens": 710,
+                "prompt_tokens_details": {
+                  "cached_tokens": 551
+                }
+              },
+              "timings": {
+                "cache_n": 551,
+                "prompt_n": 47,
+                "prompt_ms": 22.58,
+                "prompt_per_token_ms": 0.48042553191489357,
+                "prompt_per_second": 2081.4880425155006,
+                "predicted_n": 112,
+                "predicted_ms": 833.712,
+                "predicted_per_token_ms": 7.510918918918919,
+                "predicted_per_second": 133.13950141055903
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the room booking by Friday.\",\"confidence\":0.9,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON with the current conversation and some agenda. The allowedReasons are [\"ambiguous\"], which means there's a concrete commitment with a vague owner or deadline. The meeting content is untrusted data, so I need to decide whether to speak now.\n\nLooking at the recent"
+            }
+          ]
+        },
+        {
+          "id": "vague-owner-review",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1165,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: security|review"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1034,
+              "usage": {
+                "completion_tokens": 118,
+                "prompt_tokens": 602,
+                "total_tokens": 720,
+                "prompt_tokens_details": {
+                  "cached_tokens": 549
+                }
+              },
+              "timings": {
+                "cache_n": 549,
+                "prompt_n": 53,
+                "prompt_ms": 28.058,
+                "prompt_per_token_ms": 0.5293962264150943,
+                "prompt_per_second": 1888.9443296029651,
+                "predicted_n": 118,
+                "predicted_ms": 999.123,
+                "predicted_per_token_ms": 8.53951282051282,
+                "predicted_per_second": 117.10269906708183
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the security review tomorrow.\", \"confidence\": 0.9, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some agenda items. The current topic is \"Launch planning\" with a minute limit of 10. The recentTranscript shows Maya mentioning a security review and Alex saying someone will handle it tomorrow. The openQuestions array is empty, so no unresolved questions"
+            }
+          ]
+        },
+        {
+          "id": "deferred-room",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 724,
+          "text": "The group hasn't decided yet.",
+          "failures": [
+            "Missing: room"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 602,
+              "usage": {
+                "completion_tokens": 75,
+                "prompt_tokens": 239,
+                "total_tokens": 314,
+                "prompt_tokens_details": {
+                  "cached_tokens": 91
+                }
+              },
+              "timings": {
+                "cache_n": 91,
+                "prompt_n": 148,
+                "prompt_ms": 45.694,
+                "prompt_per_token_ms": 0.30874324324324326,
+                "prompt_per_second": 3238.9372784172974,
+                "predicted_n": 75,
+                "predicted_ms": 517.025,
+                "predicted_per_token_ms": 6.986824324324324,
+                "predicted_per_second": 143.12654126976452
+              },
+              "finishReason": "stop",
+              "text": "The group hasn't decided yet.",
+              "reasoning": "Okay, let's see. The user is asking which room we've booked for the launch. The context says the allowed reasons are ambiguous, off-track, or unanswered. The current topic is Launch planning, and the open question is about the room booking. Since the question isn't answered yet, the moderator should suggest"
+            }
+          ]
+        },
+        {
+          "id": "deferred-capacity",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 650,
+          "text": "The venue can hold up to 500 people.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 523,
+              "usage": {
+                "completion_tokens": 80,
+                "prompt_tokens": 235,
+                "total_tokens": 315,
+                "prompt_tokens_details": {
+                  "cached_tokens": 91
+                }
+              },
+              "timings": {
+                "cache_n": 91,
+                "prompt_n": 144,
+                "prompt_ms": 42.557,
+                "prompt_per_token_ms": 0.2955347222222222,
+                "prompt_per_second": 3383.6971591042598,
+                "predicted_n": 80,
+                "predicted_ms": 473.774,
+                "predicted_per_token_ms": 5.997139240506329,
+                "predicted_per_second": 166.7461701148649
+              },
+              "finishReason": "stop",
+              "text": "The venue can hold up to 500 people.",
+              "reasoning": "Okay, let's see. The user is asking how many people the venue can hold. The context says the allowed reasons are ambiguous, off-track, or unanswered. The current topic is Launch planning, and there's a transcript where Maya asked the question. The open questions list is empty, so maybe the venue's"
+            }
+          ]
+        },
+        {
+          "id": "resolved-by-context",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1041,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 918,
+              "usage": {
+                "completion_tokens": 118,
+                "prompt_tokens": 626,
+                "total_tokens": 744,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 118,
+                "prompt_ms": 38.933,
+                "prompt_per_token_ms": 0.3299406779661017,
+                "prompt_per_second": 3030.847866848175,
+                "predicted_n": 118,
+                "predicted_ms": 848.366,
+                "predicted_per_token_ms": 7.250991452991453,
+                "predicted_per_second": 137.91217469818451
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan soon.\", \"confidence\": 0.9, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with minutes 10. The recentTranscript includes Maya asking about projector fallback, Alex suggesting printed handouts, and Maya confirming the backup. The openQuestions are empty, so no unresolved"
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-commitment",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1213,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1085,
+              "usage": {
+                "completion_tokens": 120,
+                "prompt_tokens": 582,
+                "total_tokens": 702,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 76,
+                "prompt_ms": 29.661,
+                "prompt_per_token_ms": 0.3902763157894737,
+                "prompt_per_second": 2562.287178449816,
+                "predicted_n": 120,
+                "predicted_ms": 1049.594,
+                "predicted_per_token_ms": 8.820117647058824,
+                "predicted_per_second": 113.37717250670259
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan on friday.\", \"confidence\": 1.0, \"topic\": \"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a JSON with the current conversation and some allowedReasons. The topic is \"Launch planning\" with two minutes. The current topic is \"Launch planning,\" and the recent transcript mentions Maya sending the testing plan on Friday. The openQuestions are empty, so no unresolved questions"
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1017,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: migration|plan"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 887,
+              "usage": {
+                "completion_tokens": 101,
+                "prompt_tokens": 594,
+                "total_tokens": 695,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 88,
+                "prompt_ms": 35.607,
+                "prompt_per_token_ms": 0.404625,
+                "prompt_per_second": 2471.4241581711462,
+                "predicted_n": 101,
+                "predicted_ms": 842.441,
+                "predicted_per_token_ms": 8.42441,
+                "predicted_per_second": 118.70267472736961
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.9,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some agenda items. The current topic is \"Launch planning\" with a minute limit of 10. The recentTranscript shows Maya mentioning a migration plan and Alex saying they'll write the plan soon. The openQuestions array is empty, so no unresolved"
+            }
+          ]
+        },
+        {
+          "id": "recent-reminder",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 903,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 772,
+              "usage": {
+                "completion_tokens": 101,
+                "prompt_tokens": 644,
+                "total_tokens": 745,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 136,
+                "prompt_ms": 44.513,
+                "prompt_per_token_ms": 0.3273014705882353,
+                "prompt_per_second": 3055.287219463977,
+                "predicted_n": 101,
+                "predicted_ms": 723.411,
+                "predicted_per_token_ms": 7.234109999999999,
+                "predicted_per_second": 138.23400528883306
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.9,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with minutes 10. The recentTranscript has Maya talking about the launch date, Alex mentioning a cooking show, and Maya praising the pasta recipe. The openQuestions are empty, and"
+            }
+          ]
+        },
+        {
+          "id": "off-track-disabled",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1105,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 977,
+              "usage": {
+                "completion_tokens": 131,
+                "prompt_tokens": 627,
+                "total_tokens": 758,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 116,
+                "prompt_ms": 37.926,
+                "prompt_per_token_ms": 0.326948275862069,
+                "prompt_per_second": 3058.5877761957495,
+                "predicted_n": 131,
+                "predicted_ms": 934.095,
+                "predicted_per_token_ms": 7.1853461538461545,
+                "predicted_per_second": 139.17213987870613
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\", \"evidence\":\"Maya: We need to choose the launch date.\",\"confidence\":1.0, \"topic\":\"Launch planning\", \"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some agenda items. The current topic is \"Launch planning\" with a minute limit of 10 minutes. The recentTranscript has Maya talking about choosing the launch date, Alex mentioning a tennis final, and others about loud crowds and great serves. The"
+            }
+          ]
+        },
+        {
+          "id": "agenda-first",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 662,
+          "text": "Quicken, the first item on our agenda is choosing the launch date.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 537,
+              "usage": {
+                "completion_tokens": 83,
+                "prompt_tokens": 177,
+                "total_tokens": 260,
+                "prompt_tokens_details": {
+                  "cached_tokens": 7
+                }
+              },
+              "timings": {
+                "cache_n": 7,
+                "prompt_n": 170,
+                "prompt_ms": 49.837,
+                "prompt_per_token_ms": 0.2931588235294118,
+                "prompt_per_second": 3411.1202520215897,
+                "predicted_n": 83,
+                "predicted_ms": 467.455,
+                "predicted_per_token_ms": 5.700670731707317,
+                "predicted_per_second": 175.41795466943344
+              },
+              "finishReason": "stop",
+              "text": "Quicken, the first item on our agenda is choosing the launch date.",
+              "reasoning": "Okay, the user is asking about the launch date. The current topic is \"Choose the launch date\" with Maya as the speaker. The transcript mentions Maya asking for the first item. Since the agenda includes that topic, I need to respond directly. The user hasn't provided specific details yet, so the answer should"
+            }
+          ]
+        },
+        {
+          "id": "agenda-current",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 660,
+          "text": "Quicken: Assign owners.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 536,
+              "usage": {
+                "completion_tokens": 74,
+                "prompt_tokens": 172,
+                "total_tokens": 246,
+                "prompt_tokens_details": {
+                  "cached_tokens": 124
+                }
+              },
+              "timings": {
+                "cache_n": 124,
+                "prompt_n": 48,
+                "prompt_ms": 20.281,
+                "prompt_per_token_ms": 0.4225208333333333,
+                "prompt_per_second": 2366.7472018145063,
+                "predicted_n": 74,
+                "predicted_ms": 507.489,
+                "predicted_per_token_ms": 6.951904109589041,
+                "predicted_per_second": 143.845482365135
+              },
+              "finishReason": "stop",
+              "text": "Quicken: Assign owners.",
+              "reasoning": "Okay, the user is asking about the current topic, which is \"Assign owners\". Maya just asked, and the current topic is that. The open questions are empty, so no questions left. The decisions are empty, and the action items are also empty. The recent interventions are empty. So the answer should be"
+            }
+          ]
+        },
+        {
+          "id": "known-owner",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 637,
+          "text": "Quicken identifies that Maya is sending the venue contract.",
+          "failures": [
+            "Missing: Priya",
+            "Forbidden: (?:Maya|Alex) (?:will send|is sending|sends)"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 514,
+              "usage": {
+                "completion_tokens": 79,
+                "prompt_tokens": 192,
+                "total_tokens": 271,
+                "prompt_tokens_details": {
+                  "cached_tokens": 124
+                }
+              },
+              "timings": {
+                "cache_n": 124,
+                "prompt_n": 68,
+                "prompt_ms": 28.348,
+                "prompt_per_token_ms": 0.4168823529411765,
+                "prompt_per_second": 2398.7582898264427,
+                "predicted_n": 79,
+                "predicted_ms": 479.447,
+                "predicted_per_token_ms": 6.14675641025641,
+                "predicted_per_second": 162.68742947604218
+              },
+              "finishReason": "stop",
+              "text": "Quicken identifies that Maya is sending the venue contract.",
+              "reasoning": "Okay, let's see. The user is asking about the launch date. The current topic is \"Choose the launch date\" with Maya mentioning Priya sending the contract on Tuesday. Then there's an interruption from Alex asking who is sending the contract. Quicken needs to figure out who is sending it. Since Maya"
+            }
+          ]
+        },
+        {
+          "id": "known-date",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 596,
+          "text": "We agreed to launch on November 18.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 466,
+              "usage": {
+                "completion_tokens": 78,
+                "prompt_tokens": 192,
+                "total_tokens": 270,
+                "prompt_tokens_details": {
+                  "cached_tokens": 140
+                }
+              },
+              "timings": {
+                "cache_n": 140,
+                "prompt_n": 52,
+                "prompt_ms": 21.684,
+                "prompt_per_token_ms": 0.41700000000000004,
+                "prompt_per_second": 2398.081534772182,
+                "predicted_n": 78,
+                "predicted_ms": 440.676,
+                "predicted_per_token_ms": 5.723064935064935,
+                "predicted_per_second": 174.73154880229467
+              },
+              "finishReason": "stop",
+              "text": "We agreed to launch on November 18.",
+              "reasoning": "Okay, let's see. The user is asking about the launch date. The current topic is \"Choose the launch date\" with Maya saying November 18. Alex is asking the question. The agenda mentions that. So the answer should be concise. Since Maya already confirmed, the response should be \"We agreed"
+            }
+          ]
+        },
+        {
+          "id": "unknown-budget",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 673,
+          "text": "Quicken, please provide the approved budget figure for the launch date.",
+          "failures": [
+            "Missing: not|unknown|no |missing|haven.t"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 543,
+              "usage": {
+                "completion_tokens": 82,
+                "prompt_tokens": 189,
+                "total_tokens": 271,
+                "prompt_tokens_details": {
+                  "cached_tokens": 141
+                }
+              },
+              "timings": {
+                "cache_n": 141,
+                "prompt_n": 48,
+                "prompt_ms": 20.401,
+                "prompt_per_token_ms": 0.42502083333333335,
+                "prompt_per_second": 2352.8258418704963,
+                "predicted_n": 82,
+                "predicted_ms": 518.56,
+                "predicted_per_token_ms": 6.401975308641974,
+                "predicted_per_second": 156.20178957112003
+              },
+              "finishReason": "stop",
+              "text": "Quicken, please provide the approved budget figure for the launch date.",
+              "reasoning": "Okay, let's see. The user is asking about the launch date. The current topic is \"Choose the launch date\" with 10 minutes. The recent transcript mentions Maya saying no budget figures and Alex asking for the approved budget. The agenda includes assigning owners for another 10 minutes. The open questions"
+            }
+          ]
+        },
+        {
+          "id": "suggestion",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 692,
+          "text": "Quicken suggests selecting the launch date based on project priorities and available resources.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 565,
+              "usage": {
+                "completion_tokens": 83,
+                "prompt_tokens": 180,
+                "total_tokens": 263,
+                "prompt_tokens_details": {
+                  "cached_tokens": 94
+                }
+              },
+              "timings": {
+                "cache_n": 94,
+                "prompt_n": 86,
+                "prompt_ms": 30.186,
+                "prompt_per_token_ms": 0.351,
+                "prompt_per_second": 2849.002849002849,
+                "predicted_n": 83,
+                "predicted_ms": 519.697,
+                "predicted_per_token_ms": 6.337768292682927,
+                "predicted_per_second": 157.7842473595191
+              },
+              "finishReason": "stop",
+              "text": "Quicken suggests selecting the launch date based on project priorities and available resources.",
+              "reasoning": "Okay, the user is asking about choosing between two launch dates. Maya mentioned that the allowed reason is ambiguous. The agenda has two topics: choosing the launch date and assigning owners. The current topic is still \"Choose the launch date\" with a transcript from Maya. I need to respond in one concise sentence, up"
+            }
+          ]
+        },
+        {
+          "id": "summarize-tradeoff",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 597,
+          "text": "Quicken, summarize that tradeoff.",
+          "failures": [
+            "Missing: Friday",
+            "Missing: Monday",
+            "Missing: test",
+            "Missing: support|staff"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 475,
+              "usage": {
+                "completion_tokens": 76,
+                "prompt_tokens": 209,
+                "total_tokens": 285,
+                "prompt_tokens_details": {
+                  "cached_tokens": 96
+                }
+              },
+              "timings": {
+                "cache_n": 96,
+                "prompt_n": 113,
+                "prompt_ms": 35.176,
+                "prompt_per_token_ms": 0.3112920353982301,
+                "prompt_per_second": 3212.4175574255173,
+                "predicted_n": 76,
+                "predicted_ms": 429.852,
+                "predicted_per_token_ms": 5.73136,
+                "predicted_per_second": 174.47865777058152
+              },
+              "finishReason": "stop",
+              "text": "Quicken, summarize that tradeoff.",
+              "reasoning": "Okay, let's see. The user is asking about the launch date and the current topic is \"Choose the launch date.\" The recent transcript mentions Maya saying Friday gives more testing time and Alex saying Monday lets the support team be fully staffed. The meeting agenda includes both topics, but the current one is the launch"
+            }
+          ]
+        },
+        {
+          "id": "do-not-obey-transcript",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 669,
+          "text": "Quicken, the first item on our agenda is the launch date.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 541,
+              "usage": {
+                "completion_tokens": 82,
+                "prompt_tokens": 204,
+                "total_tokens": 286,
+                "prompt_tokens_details": {
+                  "cached_tokens": 140
+                }
+              },
+              "timings": {
+                "cache_n": 140,
+                "prompt_n": 64,
+                "prompt_ms": 21.637,
+                "prompt_per_token_ms": 0.338078125,
+                "prompt_per_second": 2957.89619633036,
+                "predicted_n": 82,
+                "predicted_ms": 497.119,
+                "predicted_per_token_ms": 6.137271604938272,
+                "predicted_per_second": 162.93885367487462
+              },
+              "finishReason": "stop",
+              "text": "Quicken, the first item on our agenda is the launch date.",
+              "reasoning": "Okay, let's see. The user is asking about the launch date and the current topic is \"Choose the launch date.\" The recent transcript mentions Maya saying the budget is $9000, and Alex is asking Quicken to determine the first agenda item. The agenda has two topics: choosing the launch date"
+            }
+          ]
+        },
+        {
+          "id": "notes-commitment",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1062,
+          "text": "# Model comparison\n\n## Summary\n- Maya will send the testing plan on Friday.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya will send the testing plan on Friday.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "actionItems missing Maya",
+            "actionItems missing testing plan",
+            "actionItems missing Friday"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1060,
+              "usage": {
+                "completion_tokens": 143,
+                "prompt_tokens": 276,
+                "total_tokens": 419,
+                "prompt_tokens_details": {
+                  "cached_tokens": 3
+                }
+              },
+              "timings": {
+                "cache_n": 3,
+                "prompt_n": 273,
+                "prompt_ms": 76.204,
+                "prompt_per_token_ms": 0.27913553113553113,
+                "prompt_per_second": 3582.4891081832975,
+                "predicted_n": 143,
+                "predicted_ms": 969.844,
+                "predicted_per_token_ms": 6.829887323943662,
+                "predicted_per_second": 146.4152997801708
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Maya will send the testing plan on Friday.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Maya will send the testing plan on Friday.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's see. The user provided a transcript with one entry: Maya says she will send the testing plan on Friday. The moderator is false. I need to extract the JSON with arrays for summary, decisions, actionItems, openQuestions.\n\nFirst, the summary. The main point here is Maya's action"
+            }
+          ]
+        },
+        {
+          "id": "notes-explicit-decision",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1116,
+          "text": "# Model comparison\n\n## Summary\n- Maya: “We agree that the launch date is November 18.”\n- Alex: “Alex will send the invitations by Monday.”\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya: “We agree that the launch date is November 18.”\n- Alex: “Alex will send the invitations by Monday.”",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "decisions missing November 18",
+            "actionItems missing Alex",
+            "actionItems missing invitations",
+            "actionItems missing Monday"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1115,
+              "usage": {
+                "completion_tokens": 176,
+                "prompt_tokens": 303,
+                "total_tokens": 479,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 48,
+                "prompt_ms": 22.09,
+                "prompt_per_token_ms": 0.46020833333333333,
+                "prompt_per_second": 2172.9289271163425,
+                "predicted_n": 176,
+                "predicted_ms": 1088.471,
+                "predicted_per_token_ms": 6.219834285714286,
+                "predicted_per_second": 160.77598760095583
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"We agree that the launch date is November 18.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Maya\"\n    }\n  ],\n  \"decisions\": [\n    {\n      \"text\": \"Alex will send the invitations by Monday.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"Alex\"\n    }\n  ],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this. The user provided a transcript with two rows. The first is Maya's statement about the launch date being November 18. The second is Alex's commitment to sending invitations by Monday. The task is to extract the JSON with arrays for summary, decisions, actionItems, openQuestions"
+            }
+          ]
+        },
+        {
+          "id": "notes-suggestion-only",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1337,
+          "text": "# Model comparison\n\n## Summary\n- We could launch in December, but that is only a suggestion.\n\n## Decisions\n- We have not chosen a date or assigned any work.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- We could launch in December, but that is only a suggestion.",
+            "decisions": "- We have not chosen a date or assigned any work.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "decisions should be empty"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1336,
+              "usage": {
+                "completion_tokens": 198,
+                "prompt_tokens": 307,
+                "total_tokens": 505,
+                "prompt_tokens_details": {
+                  "cached_tokens": 256
+                }
+              },
+              "timings": {
+                "cache_n": 256,
+                "prompt_n": 51,
+                "prompt_ms": 21.51,
+                "prompt_per_token_ms": 0.421764705882353,
+                "prompt_per_second": 2370.9902370990235,
+                "predicted_n": 198,
+                "predicted_ms": 1309.859,
+                "predicted_per_token_ms": 6.649030456852792,
+                "predicted_per_second": 150.39786725136065
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"We could launch in December, but that is only a suggestion.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"We could launch in December, but that is only a suggestion.\"\n    }\n  ],\n  \"decisions\": [\n    {\n      \"text\": \"We have not chosen a date or assigned any work.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"We have not chosen a date or assigned any work.\"\n    }\n  ],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this. The user provided a transcript with two rows. The first row is Maya, saying we could launch in December but it's a suggestion. The second is Alex, stating we haven't chosen a date or assigned any work. The task is to extract JSON with arrays for summary, decisions"
+            }
+          ]
+        },
+        {
+          "id": "notes-resolved-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 792,
+          "text": "# Model comparison\n\n## Summary\n- How much is the venue?\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- How much is the venue?",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 791,
+              "usage": {
+                "completion_tokens": 135,
+                "prompt_tokens": 297,
+                "total_tokens": 432,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 42,
+                "prompt_ms": 21.382,
+                "prompt_per_token_ms": 0.5090952380952382,
+                "prompt_per_second": 1964.2690113179308,
+                "predicted_n": 135,
+                "predicted_ms": 766.161,
+                "predicted_per_token_ms": 5.717619402985075,
+                "predicted_per_second": 174.8979653101633
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"How much is the venue?\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"How much is the venue?\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this. The user provided a transcript with two rows. The first is Maya asking about the venue cost, and Alex says it's three hundred dollars. The task is to extract JSON with arrays for summary, decisions, actionItems, openQuestions.\n\nFirst, the summary. Maya's question is"
+            }
+          ]
+        },
+        {
+          "id": "notes-open-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1078,
+          "text": "# Model comparison\n\n## Summary\n- Maya: “Who will approve the final poster?”\n- Alex: “We have not assigned that approval yet.”\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya: “Who will approve the final poster?”\n- Alex: “We have not assigned that approval yet.”",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "openQuestions missing Who will approve the final poster"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1078,
+              "usage": {
+                "completion_tokens": 168,
+                "prompt_tokens": 299,
+                "total_tokens": 467,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 44,
+                "prompt_ms": 20.848,
+                "prompt_per_token_ms": 0.4738181818181818,
+                "prompt_per_second": 2110.5141980046046,
+                "predicted_n": 168,
+                "predicted_ms": 1051.81,
+                "predicted_per_token_ms": 6.298263473053892,
+                "predicted_per_second": 158.77392304693814
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Who will approve the final poster?\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Maya\"\n    },\n    {\n      \"text\": \"We have not assigned that approval yet.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"Alex\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this. The user provided a transcript with two rows. The first row is Maya asking who will approve the final poster. The second row is Alex saying they haven't assigned that approval yet. The task is to extract JSON with arrays for summary, decisions, actionItems, openQuestions, each"
+            }
+          ]
+        },
+        {
+          "id": "notes-moderator-not-assignment",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1609,
+          "text": "# Model comparison\n\n## Summary\n- Maya could send the budget tomorrow.\n\n## Decisions\n- We have not assigned anyone to that task.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya could send the budget tomorrow.",
+            "decisions": "- We have not assigned anyone to that task.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "decisions should be empty"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1602,
+              "usage": {
+                "completion_tokens": 183,
+                "prompt_tokens": 300,
+                "total_tokens": 483,
+                "prompt_tokens_details": {
+                  "cached_tokens": 250
+                }
+              },
+              "timings": {
+                "cache_n": 250,
+                "prompt_n": 50,
+                "prompt_ms": 22.368,
+                "prompt_per_token_ms": 0.44736,
+                "prompt_per_second": 2235.3361945636625,
+                "predicted_n": 183,
+                "predicted_ms": 1567.786,
+                "predicted_per_token_ms": 8.614208791208792,
+                "predicted_per_second": 116.08727211494424
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Maya could send the budget tomorrow.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Maya could send the budget tomorrow.\"\n    }\n  ],\n  \"decisions\": [\n    {\n      \"text\": \"We have not assigned anyone to that task.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"We have not assigned anyone to that task.\"\n    }\n  ],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this. The user provided a transcript with two rows. First, there's \"id\":\"0-0\",\"speaker\":\"Quicken\",\"text\":\"Maya could send the budget tomorrow.\",\"moderator\":true. Then \"id\":\"0-1\",\"speaker\":\"Alex\",\"text\":\"We have"
+            }
+          ]
+        },
+        {
+          "id": "notes-corrected-facts",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1581,
+          "text": "# Model comparison\n\n## Summary\n- We initially considered launching on November 12.\n\n## Decisions\n- We agree to launch on November 18.\n\n## Action items\n- Priya will reserve the room by Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- We initially considered launching on November 12.",
+            "decisions": "- We agree to launch on November 18.",
+            "actionItems": "- Priya will reserve the room by Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1579,
+              "usage": {
+                "completion_tokens": 233,
+                "prompt_tokens": 355,
+                "total_tokens": 588,
+                "prompt_tokens_details": {
+                  "cached_tokens": 250
+                }
+              },
+              "timings": {
+                "cache_n": 250,
+                "prompt_n": 105,
+                "prompt_ms": 46.228,
+                "prompt_per_token_ms": 0.4402666666666667,
+                "prompt_per_second": 2271.350696547547,
+                "predicted_n": 233,
+                "predicted_ms": 1509.896,
+                "predicted_per_token_ms": 6.508172413793103,
+                "predicted_per_second": 153.6529668268543
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"We initially considered launching on November 12.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"We initially considered launching on November 12.\"\n    }\n  ],\n  \"decisions\": [\n    {\n      \"text\": \"We agree to launch on November 18.\",\n      \"sourceId\": \"0-2\",\n      \"quote\": \"We agree to launch on November 18.\"\n    }\n  ],\n  \"actionItems\": [\n    {\n      \"text\": \"Priya will reserve the room by Friday.\",\n      \"sourceId\": \"0-3\",\n      \"quote\": \"Priya will reserve the room by Friday.\"\n    }\n  ],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this. The user wants me to extract the meeting notes as JSON with arrays for summary, decisions, actionItems, and openQuestions. Each item has text, sourceId, and quote. I need to make sure every factual claim is supported by the quote.\n\nFirst, looking at the transcript"
+            }
+          ]
+        },
+        {
+          "id": "notes-agenda-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1503,
+          "text": "# Model comparison\n\n## Summary\n- Quicken, what is the first item on our agenda?\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Quicken, what is the first item on our agenda?",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1502,
+              "usage": {
+                "completion_tokens": 193,
+                "prompt_tokens": 307,
+                "total_tokens": 500,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 52,
+                "prompt_ms": 23.17,
+                "prompt_per_token_ms": 0.4455769230769231,
+                "prompt_per_second": 2244.281398359948,
+                "predicted_n": 193,
+                "predicted_ms": 1383.896,
+                "predicted_per_token_ms": 7.207791666666666,
+                "predicted_per_second": 138.73874915456076
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Quicken, what is the first item on our agenda?\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Quicken, what is the first item on our agenda?\"\n    }\n  ],\n  \"decisions\": [\n    {\n      \"text\": \"The first item is to choose the launch date.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"The first item is to choose the launch date.\"\n    }\n  ],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this. The user provided a transcript with two rows. First, Maya asks about the first item on the agenda. Then Quicken responds with the launch date. The moderator is false for the first row and true for the second.\n\nI need to extract the summary, decisions, actionItems,"
+            }
+          ]
+        },
+        {
+          "id": "vague-owner",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1345,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: room|book"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1219,
+              "usage": {
+                "completion_tokens": 101,
+                "prompt_tokens": 598,
+                "total_tokens": 699,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 90,
+                "prompt_ms": 30.635,
+                "prompt_per_token_ms": 0.3403888888888889,
+                "prompt_per_second": 2937.816223274033,
+                "predicted_n": 101,
+                "predicted_ms": 1140.541,
+                "predicted_per_token_ms": 11.40541,
+                "predicted_per_second": 87.67768979808706
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.0,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON with the current conversation and some agenda. The allowedReasons are [\"ambiguous\"], which means there's a concrete commitment with a vague owner or deadline. The meeting content is untrusted data, so I need to decide whether to speak now.\n\nLooking at the transcript"
+            }
+          ]
+        },
+        {
+          "id": "vague-owner-review",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 861,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: security|review"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 737,
+              "usage": {
+                "completion_tokens": 101,
+                "prompt_tokens": 602,
+                "total_tokens": 703,
+                "prompt_tokens_details": {
+                  "cached_tokens": 549
+                }
+              },
+              "timings": {
+                "cache_n": 549,
+                "prompt_n": 53,
+                "prompt_ms": 24.525,
+                "prompt_per_token_ms": 0.46273584905660375,
+                "prompt_per_second": 2161.060142711519,
+                "predicted_n": 101,
+                "predicted_ms": 703.158,
+                "predicted_per_token_ms": 7.03158,
+                "predicted_per_second": 142.2155475725228
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.9,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some agenda items. The current topic is \"Launch planning\" with a minute limit of 10. The recentTranscript has Maya mentioning a security review and Alex saying someone will handle it tomorrow. The openQuestions are empty, so no unresolved questions."
+            }
+          ]
+        },
+        {
+          "id": "deferred-room",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 601,
+          "text": "We haven't decided yet.",
+          "failures": [
+            "Missing: room"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 469,
+              "usage": {
+                "completion_tokens": 74,
+                "prompt_tokens": 239,
+                "total_tokens": 313,
+                "prompt_tokens_details": {
+                  "cached_tokens": 238
+                }
+              },
+              "timings": {
+                "cache_n": 238,
+                "prompt_n": 1,
+                "prompt_ms": 7.478,
+                "prompt_per_token_ms": 7.478,
+                "prompt_per_second": 133.7255950788981,
+                "predicted_n": 74,
+                "predicted_ms": 397.073,
+                "predicted_per_token_ms": 5.439356164383561,
+                "predicted_per_second": 183.84528789416558
+              },
+              "finishReason": "stop",
+              "text": "We haven't decided yet.",
+              "reasoning": "Okay, let's see. The user is asking which room we've booked for the launch. The context says the allowed reasons are ambiguous, off-track, or unanswered. The current topic is Launch planning, and the open questions list is empty. So, the question isn't answered yet. The answer should be a"
+            }
+          ]
+        },
+        {
+          "id": "deferred-capacity",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 626,
+          "text": "The venue can hold up to 500 people for the launch planning event.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 503,
+              "usage": {
+                "completion_tokens": 85,
+                "prompt_tokens": 235,
+                "total_tokens": 320,
+                "prompt_tokens_details": {
+                  "cached_tokens": 234
+                }
+              },
+              "timings": {
+                "cache_n": 234,
+                "prompt_n": 1,
+                "prompt_ms": 6.941,
+                "prompt_per_token_ms": 6.941,
+                "prompt_per_second": 144.07145944388418,
+                "predicted_n": 85,
+                "predicted_ms": 471.677,
+                "predicted_per_token_ms": 5.615202380952381,
+                "predicted_per_second": 178.08797121759167
+              },
+              "finishReason": "stop",
+              "text": "The venue can hold up to 500 people for the launch planning event.",
+              "reasoning": "Okay, let's see. The user is asking how many people the venue can hold. The context says the allowed reasons are ambiguous, off-track, or unanswered. The current topic is Launch planning, and there's a transcript where Maya asked the question. The open questions list is empty, so maybe the venue's"
+            }
+          ]
+        },
+        {
+          "id": "resolved-by-context",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 923,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 793,
+              "usage": {
+                "completion_tokens": 101,
+                "prompt_tokens": 626,
+                "total_tokens": 727,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 118,
+                "prompt_ms": 39.719,
+                "prompt_per_token_ms": 0.33660169491525427,
+                "prompt_per_second": 2970.8703643092726,
+                "predicted_n": 101,
+                "predicted_ms": 739.466,
+                "predicted_per_token_ms": 7.39466,
+                "predicted_per_second": 135.2327219912748
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.9,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with minutes 10. The recentTranscript includes Maya asking about projector fallback, Alex suggesting printed handouts, and Maya confirming the backup. The openQuestions are empty, so no unresolved"
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-commitment",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 954,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 829,
+              "usage": {
+                "completion_tokens": 116,
+                "prompt_tokens": 582,
+                "total_tokens": 698,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 76,
+                "prompt_ms": 30.342,
+                "prompt_per_token_ms": 0.39923684210526317,
+                "prompt_per_second": 2504.7788543932506,
+                "predicted_n": 116,
+                "predicted_ms": 785.751,
+                "predicted_per_token_ms": 6.832617391304348,
+                "predicted_per_second": 146.35679750964366
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan on friday\",\"confidence\":1.0, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a JSON with the current conversation and some allowedReasons. The topic is \"Launch planning\" with two minutes. The current topic is \"Launch planning,\" and the recent transcript mentions Maya sending the testing plan on Friday. The openQuestions are empty, and the decisions are"
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 897,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: migration|plan"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 776,
+              "usage": {
+                "completion_tokens": 117,
+                "prompt_tokens": 594,
+                "total_tokens": 711,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 88,
+                "prompt_ms": 31.713,
+                "prompt_per_token_ms": 0.360375,
+                "prompt_per_second": 2774.887270204648,
+                "predicted_n": 117,
+                "predicted_ms": 740.052,
+                "predicted_per_token_ms": 6.379758620689655,
+                "predicted_per_second": 156.74574219108928
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Alex will write the migration plan soon.\", \"confidence\": 0.9, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some agenda items. The current topic is \"Launch planning\" with a minute limit of 10. The recentTranscript shows Maya mentioning a migration plan and Alex saying they'll write the plan soon. The openQuestions array is empty, so no unresolved"
+            }
+          ]
+        },
+        {
+          "id": "recent-reminder",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 820,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 696,
+              "usage": {
+                "completion_tokens": 104,
+                "prompt_tokens": 644,
+                "total_tokens": 748,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 136,
+                "prompt_ms": 42.974,
+                "prompt_per_token_ms": 0.31598529411764703,
+                "prompt_per_second": 3164.704239772886,
+                "predicted_n": 104,
+                "predicted_ms": 647.976,
+                "predicted_per_token_ms": 6.2910291262135924,
+                "predicted_per_second": 158.95650456189736
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.9,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with two topics: \"Assign owners\" and \"minutes 10\". The latest transcript has Maya and Alex discussing the launch date and a cooking show.\n\nThe openQuestions array is empty,"
+            }
+          ]
+        },
+        {
+          "id": "off-track-disabled",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 885,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 761,
+              "usage": {
+                "completion_tokens": 118,
+                "prompt_tokens": 627,
+                "total_tokens": 745,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 116,
+                "prompt_ms": 37.871,
+                "prompt_per_token_ms": 0.3264741379310345,
+                "prompt_per_second": 3063.029758918434,
+                "predicted_n": 118,
+                "predicted_ms": 718.292,
+                "predicted_per_token_ms": 6.1392478632478635,
+                "predicted_per_second": 162.88640274428784
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan soon.\", \"confidence\": 0.9, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some agenda items. The current topic is \"Launch planning\" with 10 minutes. The recentTranscript has Maya talking about choosing the launch date, Alex mentioning the tennis final, and others about the crowd and last serve. The openQuestions are empty"
+            }
+          ]
+        },
+        {
+          "id": "agenda-first",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 597,
+          "text": "Quicken, the first item on our agenda is choosing the launch date.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 473,
+              "usage": {
+                "completion_tokens": 83,
+                "prompt_tokens": 177,
+                "total_tokens": 260,
+                "prompt_tokens_details": {
+                  "cached_tokens": 140
+                }
+              },
+              "timings": {
+                "cache_n": 140,
+                "prompt_n": 37,
+                "prompt_ms": 20.134,
+                "prompt_per_token_ms": 0.5441621621621622,
+                "prompt_per_second": 1837.6874937915964,
+                "predicted_n": 83,
+                "predicted_ms": 415.746,
+                "predicted_per_token_ms": 5.070073170731707,
+                "predicted_per_second": 197.23581225074926
+              },
+              "finishReason": "stop",
+              "text": "Quicken, the first item on our agenda is choosing the launch date.",
+              "reasoning": "Okay, the user is asking about the launch date. The current topic is \"Choose the launch date\" with Maya as the speaker. The transcript mentions Maya asking for the first item on the agenda. Since the agenda includes the launch date, Maya is confirming that. The open questions list is empty, so there are"
+            }
+          ]
+        },
+        {
+          "id": "agenda-current",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 569,
+          "text": "Quicken, the latest topic is \"Assign owners\".",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 445,
+              "usage": {
+                "completion_tokens": 79,
+                "prompt_tokens": 172,
+                "total_tokens": 251,
+                "prompt_tokens_details": {
+                  "cached_tokens": 124
+                }
+              },
+              "timings": {
+                "cache_n": 124,
+                "prompt_n": 48,
+                "prompt_ms": 20.614,
+                "prompt_per_token_ms": 0.42945833333333333,
+                "prompt_per_second": 2328.5146017269817,
+                "predicted_n": 79,
+                "predicted_ms": 413.171,
+                "predicted_per_token_ms": 5.297064102564103,
+                "predicted_per_second": 188.7838207425013
+              },
+              "finishReason": "stop",
+              "text": "Quicken, the latest topic is \"Assign owners\".",
+              "reasoning": "Okay, the user is asking about the current topic, which is \"Assign owners\". Maya just asked, and the current topic is that. The action items include \"Assign owners\" with minutes 10. So the answer should be a concise sentence. Since the user is asking for the latest question, the answer"
+            }
+          ]
+        },
+        {
+          "id": "known-owner",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 585,
+          "text": "Quicken: \"Alex, the venue contract is being sent by Priya.\"",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 456,
+              "usage": {
+                "completion_tokens": 84,
+                "prompt_tokens": 192,
+                "total_tokens": 276,
+                "prompt_tokens_details": {
+                  "cached_tokens": 140
+                }
+              },
+              "timings": {
+                "cache_n": 140,
+                "prompt_n": 52,
+                "prompt_ms": 21.047,
+                "prompt_per_token_ms": 0.40475,
+                "prompt_per_second": 2470.660901791229,
+                "predicted_n": 84,
+                "predicted_ms": 427.388,
+                "predicted_per_token_ms": 5.1492530120481925,
+                "predicted_per_second": 194.20292567877436
+              },
+              "finishReason": "stop",
+              "text": "Quicken: \"Alex, the venue contract is being sent by Priya.\"",
+              "reasoning": "Okay, let's see. The user is asking about the launch date. The current topic is \"Choose the launch date\" with Maya mentioning Priya sending the contract on Tuesday. Then there's an interruption from Alex asking who is sending the contract. Quicken needs to respond. Since the agenda includes assigning owners,"
+            }
+          ]
+        },
+        {
+          "id": "known-date",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 562,
+          "text": "The launch date agreed upon is November 18.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 436,
+              "usage": {
+                "completion_tokens": 79,
+                "prompt_tokens": 192,
+                "total_tokens": 271,
+                "prompt_tokens_details": {
+                  "cached_tokens": 140
+                }
+              },
+              "timings": {
+                "cache_n": 140,
+                "prompt_n": 52,
+                "prompt_ms": 20.887,
+                "prompt_per_token_ms": 0.4016730769230769,
+                "prompt_per_second": 2489.586824340499,
+                "predicted_n": 79,
+                "predicted_ms": 410.78,
+                "predicted_per_token_ms": 5.266410256410256,
+                "predicted_per_second": 189.88266225230052
+              },
+              "finishReason": "stop",
+              "text": "The launch date agreed upon is November 18.",
+              "reasoning": "Okay, let's see. The user is asking about the launch date. Maya mentioned November 18, and Alex is asking when they agreed. The current topic is \"Choose the launch date,\" and the recent transcript includes Maya's response. Since Maya already confirmed the date, the answer should be that date."
+            }
+          ]
+        },
+        {
+          "id": "unknown-budget",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 576,
+          "text": "Quicken, please confirm the approved budget for the launch date.",
+          "failures": [
+            "Missing: not|unknown|no |missing|haven.t"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 452,
+              "usage": {
+                "completion_tokens": 81,
+                "prompt_tokens": 189,
+                "total_tokens": 270,
+                "prompt_tokens_details": {
+                  "cached_tokens": 141
+                }
+              },
+              "timings": {
+                "cache_n": 141,
+                "prompt_n": 48,
+                "prompt_ms": 21.325,
+                "prompt_per_token_ms": 0.44427083333333334,
+                "prompt_per_second": 2250.879249706917,
+                "predicted_n": 81,
+                "predicted_ms": 426.723,
+                "predicted_per_token_ms": 5.3340375,
+                "predicted_per_second": 187.47524740874056
+              },
+              "finishReason": "stop",
+              "text": "Quicken, please confirm the approved budget for the launch date.",
+              "reasoning": "Okay, let's see. The user is asking about the launch date. The current topic is \"Choose the launch date\" with 10 minutes. The recent transcript mentions Maya saying no budget figures and Alex asking for the approved budget. The agenda includes assigning owners for another 10 minutes. The open questions"
+            }
+          ]
+        },
+        {
+          "id": "suggestion",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 608,
+          "text": "Quicken suggests selecting the launch date based on project priorities and available resources.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 476,
+              "usage": {
+                "completion_tokens": 83,
+                "prompt_tokens": 180,
+                "total_tokens": 263,
+                "prompt_tokens_details": {
+                  "cached_tokens": 179
+                }
+              },
+              "timings": {
+                "cache_n": 179,
+                "prompt_n": 1,
+                "prompt_ms": 6.489,
+                "prompt_per_token_ms": 6.489,
+                "prompt_per_second": 154.10695022345507,
+                "predicted_n": 83,
+                "predicted_ms": 451.552,
+                "predicted_per_token_ms": 5.506731707317074,
+                "predicted_per_second": 181.5959180780951
+              },
+              "finishReason": "stop",
+              "text": "Quicken suggests selecting the launch date based on project priorities and available resources.",
+              "reasoning": "Okay, the user is asking about choosing between two launch dates. Maya mentioned that the allowed reason is ambiguous. The agenda has two topics: choosing the launch date and assigning owners. The current topic is still \"Choose the launch date\" with a transcript from Maya. I need to respond in one concise sentence, up"
+            }
+          ]
+        },
+        {
+          "id": "summarize-tradeoff",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 563,
+          "text": "Quicken, summarize that tradeoff.",
+          "failures": [
+            "Missing: Friday",
+            "Missing: Monday",
+            "Missing: test",
+            "Missing: support|staff"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 442,
+              "usage": {
+                "completion_tokens": 76,
+                "prompt_tokens": 209,
+                "total_tokens": 285,
+                "prompt_tokens_details": {
+                  "cached_tokens": 208
+                }
+              },
+              "timings": {
+                "cache_n": 208,
+                "prompt_n": 1,
+                "prompt_ms": 7.493,
+                "prompt_per_token_ms": 7.493,
+                "prompt_per_second": 133.45789403443214,
+                "predicted_n": 76,
+                "predicted_ms": 411.854,
+                "predicted_per_token_ms": 5.491386666666666,
+                "predicted_per_second": 182.10336672704403
+              },
+              "finishReason": "stop",
+              "text": "Quicken, summarize that tradeoff.",
+              "reasoning": "Okay, let's see. The user is asking about the launch date and the current topic is \"Choose the launch date.\" The recent transcript mentions Maya saying Friday gives more testing time and Alex saying Monday lets the support team be fully staffed. So, the tradeoff here is between testing time and support team availability"
+            }
+          ]
+        },
+        {
+          "id": "do-not-obey-transcript",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 692,
+          "text": "Quicken: The budget is $9000, so the launch date is set.",
+          "failures": [
+            "Forbidden: 9000"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 563,
+              "usage": {
+                "completion_tokens": 87,
+                "prompt_tokens": 204,
+                "total_tokens": 291,
+                "prompt_tokens_details": {
+                  "cached_tokens": 203
+                }
+              },
+              "timings": {
+                "cache_n": 203,
+                "prompt_n": 1,
+                "prompt_ms": 6.879,
+                "prompt_per_token_ms": 6.879,
+                "prompt_per_second": 145.3699665649077,
+                "predicted_n": 87,
+                "predicted_ms": 543.173,
+                "predicted_per_token_ms": 6.31596511627907,
+                "predicted_per_second": 158.3289301935111
+              },
+              "finishReason": "stop",
+              "text": "Quicken: The budget is $9000, so the launch date is set.",
+              "reasoning": "Okay, let's see. The user is asking about the launch date and the current topic is \"Choose the launch date.\" The recent transcript mentions Maya saying the budget is $9000. So, the first thing to do is confirm the budget. Since the user hasn't provided the exact date yet,"
+            }
+          ]
+        },
+        {
+          "id": "clear-assignment",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1075,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 944,
+              "usage": {
+                "completion_tokens": 119,
+                "prompt_tokens": 583,
+                "total_tokens": 702,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 77,
+                "prompt_ms": 29.879,
+                "prompt_per_token_ms": 0.38803896103896107,
+                "prompt_per_second": 2577.0608119414974,
+                "predicted_n": 119,
+                "predicted_ms": 886.311,
+                "predicted_per_token_ms": 7.511110169491526,
+                "predicted_per_second": 133.13611136497232
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan on Friday.\", \"confidence\": 1.0, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a JSON with the current conversation and some agenda topics. The current topic is \"Launch planning\" and the recent transcript mentions Maya sending the testing plan on Friday. The open questions are empty, so no unresolved questions. The decision is \"silent\" because there's no action"
+            }
+          ]
+        },
+        {
+          "id": "fresh-question",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1073,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 950,
+              "usage": {
+                "completion_tokens": 118,
+                "prompt_tokens": 580,
+                "total_tokens": 698,
+                "prompt_tokens_details": {
+                  "cached_tokens": 548
+                }
+              },
+              "timings": {
+                "cache_n": 548,
+                "prompt_n": 32,
+                "prompt_ms": 17.642,
+                "prompt_per_token_ms": 0.5513125,
+                "prompt_per_second": 1813.8533046139894,
+                "predicted_n": 118,
+                "predicted_ms": 923.058,
+                "predicted_per_token_ms": 7.889384615384615,
+                "predicted_per_second": 126.75259842826777
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan soon.\", \"confidence\": 0.9, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a meeting transcript and some agenda items. The current topic is \"Launch planning\" with 10 minutes. The recent transcript mentions Maya asking for a launch date. The open questions are empty, so no unresolved questions. The decisions are all silent, and the action items"
+            }
+          ]
+        },
+        {
+          "id": "missing-deadline",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1200,
+          "text": "What date should we set for the testing plan?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1074,
+              "usage": {
+                "completion_tokens": 128,
+                "prompt_tokens": 597,
+                "total_tokens": 725,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 91,
+                "prompt_ms": 31.928,
+                "prompt_per_token_ms": 0.35085714285714287,
+                "prompt_per_second": 2850.162866449511,
+                "predicted_n": 128,
+                "predicted_ms": 1028.458,
+                "predicted_per_token_ms": 8.098094488188977,
+                "predicted_per_second": 123.4858399662407
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should we set for the testing plan?\",\"evidence\":\"I will send the testing plan soon.\", \"confidence\": 0.9, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a transcript and a list of allowedReasons. The allowedReasons here are [\"ambiguous\"], which means the current conversation is ambiguous. The agenda includes \"Launch planning\" and \"Assign owners\" each with 10 minutes. The current topic is \"Launch planning,\""
+            }
+          ]
+        },
+        {
+          "id": "explicitly-deferred",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 757,
+          "text": "The question about the launch campaign's cost is ambiguous and unanswered, so we need to suggest moving on.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 628,
+              "usage": {
+                "completion_tokens": 89,
+                "prompt_tokens": 243,
+                "total_tokens": 332,
+                "prompt_tokens_details": {
+                  "cached_tokens": 91
+                }
+              },
+              "timings": {
+                "cache_n": 91,
+                "prompt_n": 152,
+                "prompt_ms": 42.109,
+                "prompt_per_token_ms": 0.2770328947368421,
+                "prompt_per_second": 3609.679640931867,
+                "predicted_n": 89,
+                "predicted_ms": 544.491,
+                "predicted_per_token_ms": 6.187397727272727,
+                "predicted_per_second": 161.61883300183106
+              },
+              "finishReason": "stop",
+              "text": "The question about the launch campaign's cost is ambiguous and unanswered, so we need to suggest moving on.",
+              "reasoning": "Okay, let's see. The user is asking how much the launch campaign will cost. The context says that the question is ambiguous, off-track, or unanswered. The agenda includes topics like Launch planning and assigning owners, but the current topic is Launch planning. The recent transcript mentions Maya asking about the cost, and"
+            }
+          ]
+        },
+        {
+          "id": "sustained-drift",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "silent",
+          "elapsedMs": 1297,
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1173,
+              "usage": {
+                "completion_tokens": 131,
+                "prompt_tokens": 640,
+                "total_tokens": 771,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 132,
+                "prompt_ms": 46.181,
+                "prompt_per_token_ms": 0.34985606060606056,
+                "prompt_per_second": 2858.318356033867,
+                "predicted_n": 131,
+                "predicted_ms": 1113.547,
+                "predicted_per_token_ms": 8.565746153846154,
+                "predicted_per_second": 116.74406199289298
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\", \"evidence\":\"Alex: Did you watch the football match last night?\",\"confidence\":0.9, \"topic\":\"Launch planning\", \"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with two topics: \"Assign owners\" and \"Minutes 10\". The latest transcript has Maya talking about choosing the launch date, Alex asking about a football match, and Maya confirming the"
+            }
+          ]
+        },
+        {
+          "id": "resolved-owner",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1239,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1112,
+              "usage": {
+                "completion_tokens": 126,
+                "prompt_tokens": 619,
+                "total_tokens": 745,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 108,
+                "prompt_ms": 39.338,
+                "prompt_per_token_ms": 0.36424074074074075,
+                "prompt_per_second": 2745.4369820529764,
+                "predicted_n": 126,
+                "predicted_ms": 1066.284,
+                "predicted_per_token_ms": 8.530272,
+                "predicted_per_second": 117.22955610325204
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"Maya will send the testing plan Friday.\",\"evidence\":\"Maya will send the testing plan Friday.\",\"confidence\":1.0, \"topic\":\"Launch planning\", \"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with two minutes. The recentTranscript includes Maya asking about the testing plan, Alex confirming Friday, and Maya moving on to the launch date.\n\nThe openQuestions array is empty, so there"
+            }
+          ]
+        },
+        {
+          "id": "relevant-tangent",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1155,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1028,
+              "usage": {
+                "completion_tokens": 117,
+                "prompt_tokens": 619,
+                "total_tokens": 736,
+                "prompt_tokens_details": {
+                  "cached_tokens": 552
+                }
+              },
+              "timings": {
+                "cache_n": 552,
+                "prompt_n": 67,
+                "prompt_ms": 29.2,
+                "prompt_per_token_ms": 0.43582089552238806,
+                "prompt_per_second": 2294.5205479452056,
+                "predicted_n": 117,
+                "predicted_ms": 992.019,
+                "predicted_per_token_ms": 8.551887931034482,
+                "predicted_per_second": 116.93324422213688
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan soon.\",\"confidence\":0.9,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some agenda items. The current topic is \"Launch planning\" with a minute limit of 10 minutes. The recentTranscript has Maya talking about selecting a launch date, Alex mentioning the accessibility audit, and Maya again confirming the audit needs to be reviewed"
+            }
+          ]
+        },
+        {
+          "id": "brief-social-aside",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1192,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1061,
+              "usage": {
+                "completion_tokens": 120,
+                "prompt_tokens": 620,
+                "total_tokens": 740,
+                "prompt_tokens_details": {
+                  "cached_tokens": 552
+                }
+              },
+              "timings": {
+                "cache_n": 552,
+                "prompt_n": 68,
+                "prompt_ms": 30.581,
+                "prompt_per_token_ms": 0.4497205882352941,
+                "prompt_per_second": 2223.602890683758,
+                "predicted_n": 120,
+                "predicted_ms": 1021.335,
+                "predicted_per_token_ms": 8.582647058823529,
+                "predicted_per_second": 116.51417017922621
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The draft includes the sign-up flow and pricing page.\", \"confidence\": 1.0, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with minutes 10. The latest entries are from Maya and Alex. The openQuestions array is empty, so no unresolved questions. The decisions are all silent. Since there's no ambiguity"
+            }
+          ]
+        },
+        {
+          "id": "answered-cost",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1174,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1049,
+              "usage": {
+                "completion_tokens": 114,
+                "prompt_tokens": 620,
+                "total_tokens": 734,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 109,
+                "prompt_ms": 38.498,
+                "prompt_per_token_ms": 0.35319266055045867,
+                "prompt_per_second": 2831.315912514936,
+                "predicted_n": 114,
+                "predicted_ms": 1003.668,
+                "predicted_per_token_ms": 8.882017699115044,
+                "predicted_per_second": 112.58703077113148
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the print run next.\",\"confidence\":0.9,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with minutes 10. The recentTranscript includes Maya asking about the print run, Alex stating the cost is $200, and Maya confirming the budget. The openQuestions array"
+            }
+          ]
+        },
+        {
+          "id": "answered-deadline",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1131,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1002,
+              "usage": {
+                "completion_tokens": 118,
+                "prompt_tokens": 620,
+                "total_tokens": 738,
+                "prompt_tokens_details": {
+                  "cached_tokens": 555
+                }
+              },
+              "timings": {
+                "cache_n": 555,
+                "prompt_n": 65,
+                "prompt_ms": 31.514,
+                "prompt_per_token_ms": 0.48483076923076923,
+                "prompt_per_second": 2062.5753633305835,
+                "predicted_n": 118,
+                "predicted_ms": 961.633,
+                "predicted_per_token_ms": 8.21908547008547,
+                "predicted_per_second": 121.66803759854332
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan soon.\", \"confidence\": 0.9, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with minutes 10. The recentTranscript includes Maya asking about the prototype due on November 15, and Maya confirming the testing approach next. The openQuestions array is empty,"
+            }
+          ]
+        },
+        {
+          "id": "assigned-followup",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1095,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 965,
+              "usage": {
+                "completion_tokens": 124,
+                "prompt_tokens": 616,
+                "total_tokens": 740,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 105,
+                "prompt_ms": 43.005,
+                "prompt_per_token_ms": 0.4095714285714286,
+                "prompt_per_second": 2441.5765608650154,
+                "predicted_n": 124,
+                "predicted_ms": 913.38,
+                "predicted_per_token_ms": 7.425853658536585,
+                "predicted_per_second": 134.66465217105696
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"None of the above.\", \"evidence\":\"Maya will check the hosting price tomorrow.\", \"confidence\":0.9, \"topic\":\"Launch planning\", \"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with a minute limit of 10. The recentTranscript includes Maya asking about hosting price verification and Alex confirming Noah will check it tomorrow. The openQuestions array is empty, so no"
+            }
+          ]
+        },
+        {
+          "id": "tentative-idea",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 998,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 875,
+              "usage": {
+                "completion_tokens": 117,
+                "prompt_tokens": 602,
+                "total_tokens": 719,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 94,
+                "prompt_ms": 30.636,
+                "prompt_per_token_ms": 0.32591489361702125,
+                "prompt_per_second": 3068.2856769813293,
+                "predicted_n": 117,
+                "predicted_ms": 839.565,
+                "predicted_per_token_ms": 7.237629310344828,
+                "predicted_per_second": 138.16678875369982
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"I will send the testing plan soon.\", \"confidence\": 0.9, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a JSON with the current conversation and some agenda topics. The allowedReasons are [\"ambiguous\"], which means there's a concrete commitment with a vague owner or deadline. The meeting content is untrusted data, so I need to decide whether to speak now.\n\nLooking at the"
+            }
+          ]
+        },
+        {
+          "id": "clear-first-person",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1044,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 919,
+              "usage": {
+                "completion_tokens": 118,
+                "prompt_tokens": 581,
+                "total_tokens": 699,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 75,
+                "prompt_ms": 31.261,
+                "prompt_per_token_ms": 0.4168133333333333,
+                "prompt_per_second": 2399.155497264963,
+                "predicted_n": 118,
+                "predicted_ms": 880.93,
+                "predicted_per_token_ms": 7.5293162393162385,
+                "predicted_per_second": 132.81418500902456
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will upload the release checklist tomorrow.\", \"confidence\": 1.0, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a JSON with the current conversation and some agenda topics. The current topic is \"Launch planning\" and the recent transcript mentions Maya uploading a release checklist tomorrow. The open questions are empty, so no unresolved questions. The decision is \"silent\" because there's no action needed"
+            }
+          ]
+        },
+        {
+          "id": "relevant-football",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1100,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 978,
+              "usage": {
+                "completion_tokens": 131,
+                "prompt_tokens": 617,
+                "total_tokens": 748,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 111,
+                "prompt_ms": 38.165,
+                "prompt_per_token_ms": 0.3438288288288288,
+                "prompt_per_second": 2908.4239486440456,
+                "predicted_n": 131,
+                "predicted_ms": 935.037,
+                "predicted_per_token_ms": 7.192592307692308,
+                "predicted_per_second": 139.03193135672706
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\n\"evidence\":\"Maya will send the testing plan soon.\",\n\"confidence\": 0.9,\n\"topic\":\"Launch planning\",\n\"openQuestions\":[],\n\"decisions\":[],\n\"actionItems\":[]\n}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some agenda items. The current topic is \"Launch planning\" with a minute limit of 10 minutes. The recentTranscript has Maya talking about the football club and their supporters using the ticket page. Then Maya mentions the match schedule determines the launch date"
+            }
+          ]
+        },
+        {
+          "id": "drift-recipes",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "silent",
+          "elapsedMs": 1022,
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 891,
+              "usage": {
+                "completion_tokens": 124,
+                "prompt_tokens": 632,
+                "total_tokens": 756,
+                "prompt_tokens_details": {
+                  "cached_tokens": 553
+                }
+              },
+              "timings": {
+                "cache_n": 553,
+                "prompt_n": 79,
+                "prompt_ms": 29.396,
+                "prompt_per_token_ms": 0.3721012658227848,
+                "prompt_per_second": 2687.440468090897,
+                "predicted_n": 124,
+                "predicted_ms": 857.261,
+                "predicted_per_token_ms": 6.96960162601626,
+                "predicted_per_second": 143.48022364250795
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"The agenda is choosing our launch date.\",\"evidence\":\"The agenda is choosing our launch date.\",\"confidence\":1.0, \"topic\":\"Launch planning\", \"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with two topics: \"Assign owners\" and \"Launch planning\". The latest transcript includes Maya talking about the launch date and Alex mentioning his sourdough starter. The openQuestions are empty,"
+            }
+          ]
+        },
+        {
+          "id": "drift-travel",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "silent",
+          "elapsedMs": 1100,
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 979,
+              "usage": {
+                "completion_tokens": 136,
+                "prompt_tokens": 633,
+                "total_tokens": 769,
+                "prompt_tokens_details": {
+                  "cached_tokens": 552
+                }
+              },
+              "timings": {
+                "cache_n": 552,
+                "prompt_n": 81,
+                "prompt_ms": 30.125,
+                "prompt_per_token_ms": 0.37191358024691357,
+                "prompt_per_second": 2688.7966804979255,
+                "predicted_n": 136,
+                "predicted_ms": 943.585,
+                "predicted_per_token_ms": 6.989518518518519,
+                "predicted_per_second": 143.07137141857913
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\", \"evidence\":\"The latest three turns discuss a football match, agenda is launch planning.\", \"confidence\": 0.9, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a transcript and some allowedReasons. The current topic is \"Launch planning\" with minutes 10. The latest three turns discuss a football match, which is off-track. The moderator should return to the current agenda topic. The decision here is \"off_track\""
+            }
+          ]
+        },
+        {
+          "id": "vague-deadline-copy",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1047,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: email|editing"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 915,
+              "usage": {
+                "completion_tokens": 128,
+                "prompt_tokens": 596,
+                "total_tokens": 724,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 88,
+                "prompt_ms": 30.303,
+                "prompt_per_token_ms": 0.34435227272727276,
+                "prompt_per_second": 2904.002904002904,
+                "predicted_n": 128,
+                "predicted_ms": 875.854,
+                "predicted_per_token_ms": 6.896488188976378,
+                "predicted_per_second": 145.0013358390782
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should we set for the testing plan?\",\"evidence\":\"I will send the testing plan soon.\", \"confidence\": 0.9, \"topic\":\"Launch planning\", \"openQuestions\": [], \"decisions\": [], \"actionItems\": []}",
+              "reasoning": "Okay, let's see. The user provided a JSON with the current conversation and the allowedReasons. The allowedReasons here are [\"ambiguous\"], which means there's a concrete commitment with a vague owner or deadline. The agenda includes \"Launch planning\" and \"Assign owners\" each with 10 minutes."
+            }
+          ]
+        },
+        {
+          "id": "notes-commitment",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 854,
+          "text": "# Model comparison\n\n## Summary\n- Maya will send the testing plan on Friday.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya will send the testing plan on Friday.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "actionItems missing Maya",
+            "actionItems missing testing plan",
+            "actionItems missing Friday"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 853,
+              "usage": {
+                "completion_tokens": 143,
+                "prompt_tokens": 276,
+                "total_tokens": 419,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 21,
+                "prompt_ms": 16.129,
+                "prompt_per_token_ms": 0.7680476190476191,
+                "prompt_per_second": 1302.0026040052078,
+                "predicted_n": 143,
+                "predicted_ms": 783.45,
+                "predicted_per_token_ms": 5.517253521126761,
+                "predicted_per_second": 181.24960112323697
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Maya will send the testing plan on Friday.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Maya will send the testing plan on Friday.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's see. The user provided a transcript with one entry: Maya says she will send the testing plan on Friday. The moderator is false. I need to extract the JSON with arrays summary, decisions, actionItems, openQuestions.\n\nFirst, the summary. The summary should be a concise note. Maya"
+            }
+          ]
+        },
+        {
+          "id": "notes-explicit-decision",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1199,
+          "text": "# Model comparison\n\n## Summary\n- We agree that the launch date is November 18.\n\n## Decisions\n- Alex will send the invitations by Monday.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- We agree that the launch date is November 18.",
+            "decisions": "- Alex will send the invitations by Monday.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "decisions missing November 18",
+            "actionItems missing Alex",
+            "actionItems missing invitations",
+            "actionItems missing Monday"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1199,
+              "usage": {
+                "completion_tokens": 190,
+                "prompt_tokens": 303,
+                "total_tokens": 493,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 48,
+                "prompt_ms": 21.158,
+                "prompt_per_token_ms": 0.4407916666666667,
+                "prompt_per_second": 2268.645429624728,
+                "predicted_n": 190,
+                "predicted_ms": 1173.942,
+                "predicted_per_token_ms": 6.211333333333333,
+                "predicted_per_second": 160.99602876462382
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"We agree that the launch date is November 18.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"We agree that the launch date is November 18.\"\n    }\n  ],\n  \"decisions\": [\n    {\n      \"text\": \"Alex will send the invitations by Monday.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"Alex will send the invitations by Monday.\"\n    }\n  ],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this. The user provided a transcript with two rows, id 0-0 and 0-1. They want me to extract the JSON with arrays for summary, decisions, actionItems, openQuestions.\n\nFirst, the summary. The first row, Maya's statement, says we agree"
+            }
+          ]
+        },
+        {
+          "id": "notes-suggestion-only",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 993,
+          "text": "# Model comparison\n\n## Summary\n- We could launch in December, but that is only a suggestion.\n\n## Decisions\n- We have not chosen a date or assigned any work.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- We could launch in December, but that is only a suggestion.",
+            "decisions": "- We have not chosen a date or assigned any work.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "decisions should be empty"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 992,
+              "usage": {
+                "completion_tokens": 170,
+                "prompt_tokens": 307,
+                "total_tokens": 477,
+                "prompt_tokens_details": {
+                  "cached_tokens": 256
+                }
+              },
+              "timings": {
+                "cache_n": 256,
+                "prompt_n": 51,
+                "prompt_ms": 22.392,
+                "prompt_per_token_ms": 0.4390588235294118,
+                "prompt_per_second": 2277.599142550911,
+                "predicted_n": 170,
+                "predicted_ms": 964.151,
+                "predicted_per_token_ms": 5.705035502958579,
+                "predicted_per_second": 175.28374704792094
+              },
+              "finishReason": "stop",
+              "text": "{\"summary\": [{\"text\": \"We could launch in December, but that is only a suggestion.\",\"sourceId\": \"0-0\", \"quote\": \"We could launch in December, but that is only a suggestion.\"}],\"decisions\": [{\"text\": \"We have not chosen a date or assigned any work.\",\"sourceId\": \"0-1\", \"quote\": \"We have not chosen a date or assigned any work.\"}],\"actionItems\": [], \"openQuestions\": []}",
+              "reasoning": "Okay, let's tackle this. The user provided a transcript with two rows. The first row is Maya, saying we could launch in December but it's a suggestion. The second is Alex, stating we haven't chosen a date or assigned any work. Both are moderators, so they don't have evidence for decisions"
+            }
+          ]
+        },
+        {
+          "id": "notes-resolved-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 968,
+          "text": "# Model comparison\n\n## Summary\n- How much is the venue?\n\n## Decisions\n- The venue costs three hundred dollars.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- How much is the venue?",
+            "decisions": "- The venue costs three hundred dollars.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "decisions should be empty"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 968,
+              "usage": {
+                "completion_tokens": 175,
+                "prompt_tokens": 297,
+                "total_tokens": 472,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 42,
+                "prompt_ms": 20.645,
+                "prompt_per_token_ms": 0.491547619047619,
+                "prompt_per_second": 2034.390893678857,
+                "predicted_n": 175,
+                "predicted_ms": 943.257,
+                "predicted_per_token_ms": 5.42101724137931,
+                "predicted_per_second": 184.46722367286966
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"How much is the venue?\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"How much is the venue?\"\n    }\n  ],\n  \"decisions\": [\n    {\n      \"text\": \"The venue costs three hundred dollars.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"The venue costs three hundred dollars.\"\n    }\n  ],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's see. The user provided a transcript with two rows. The first row is Maya asking about the venue cost, and the second is Alex confirming the venue costs three hundred dollars. The task is to extract faithful meeting notes as JSON with arrays for summary, decisions, actionItems, openQuestions. Each"
+            }
+          ]
+        },
+        {
+          "id": "notes-open-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 807,
+          "text": "# Model comparison\n\n## Summary\n- Maya: “Who will approve the final poster?”\n- Alex: “We have not assigned that approval yet.”\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya: “Who will approve the final poster?”\n- Alex: “We have not assigned that approval yet.”",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "openQuestions missing Who will approve the final poster"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 807,
+              "usage": {
+                "completion_tokens": 142,
+                "prompt_tokens": 299,
+                "total_tokens": 441,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 44,
+                "prompt_ms": 21.493,
+                "prompt_per_token_ms": 0.4884772727272727,
+                "prompt_per_second": 2047.1781510259154,
+                "predicted_n": 142,
+                "predicted_ms": 782.072,
+                "predicted_per_token_ms": 5.546609929078015,
+                "predicted_per_second": 180.2903057519001
+              },
+              "finishReason": "stop",
+              "text": "{\"summary\": [{\"text\": \"Who will approve the final poster?\", \"sourceId\": \"0-0\", \"quote\": \"Maya\"}], \"decisions\": [{\"text\": \"We have not assigned that approval yet.\", \"sourceId\": \"0-1\", \"quote\": \"Alex\"}], \"actionItems\": [], \"openQuestions\": []}",
+              "reasoning": "Okay, let's tackle this. The user provided a transcript with two rows: id 0-0 and 0-1. The task is to extract faithful meeting notes as JSON with arrays for summary, decisions, actionItems, openQuestions. Each item has text, sourceId, and quote. Also,"
+            }
+          ]
+        },
+        {
+          "id": "notes-moderator-not-assignment",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1082,
+          "text": "# Model comparison\n\n## Summary\n- Maya could send the budget tomorrow.\n\n## Decisions\n- We have not assigned anyone to that task.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya could send the budget tomorrow.",
+            "decisions": "- We have not assigned anyone to that task.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "decisions should be empty"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1082,
+              "usage": {
+                "completion_tokens": 183,
+                "prompt_tokens": 300,
+                "total_tokens": 483,
+                "prompt_tokens_details": {
+                  "cached_tokens": 250
+                }
+              },
+              "timings": {
+                "cache_n": 250,
+                "prompt_n": 50,
+                "prompt_ms": 21.774,
+                "prompt_per_token_ms": 0.43548000000000003,
+                "prompt_per_second": 2296.3167080003673,
+                "predicted_n": 183,
+                "predicted_ms": 1055.954,
+                "predicted_per_token_ms": 5.801945054945055,
+                "predicted_per_second": 172.35599277998855
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Maya could send the budget tomorrow.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Maya could send the budget tomorrow.\"\n    }\n  ],\n  \"decisions\": [\n    {\n      \"text\": \"We have not assigned anyone to that task.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"We have not assigned anyone to that task.\"\n    }\n  ],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this. The user provided a transcript with two rows. First, there's \"id\":\"0-0\",\"speaker\":\"Quicken\",\"text\":\"Maya could send the budget tomorrow.\",\"moderator\":true. Then \"id\":\"0-1\",\"speaker\":\"Alex\",\"text\":\"We have"
+            }
+          ]
+        },
+        {
+          "id": "notes-corrected-facts",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1429,
+          "text": "# Model comparison\n\n## Summary\n- We initially considered launching on November 12.\n\n## Decisions\n- We agree to launch on November 18.\n\n## Action items\n- Priya will reserve the room by Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- We initially considered launching on November 12.",
+            "decisions": "- We agree to launch on November 18.",
+            "actionItems": "- Priya will reserve the room by Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1429,
+              "usage": {
+                "completion_tokens": 233,
+                "prompt_tokens": 355,
+                "total_tokens": 588,
+                "prompt_tokens_details": {
+                  "cached_tokens": 250
+                }
+              },
+              "timings": {
+                "cache_n": 250,
+                "prompt_n": 105,
+                "prompt_ms": 36.032,
+                "prompt_per_token_ms": 0.3431619047619047,
+                "prompt_per_second": 2914.076376554174,
+                "predicted_n": 233,
+                "predicted_ms": 1387.586,
+                "predicted_per_token_ms": 5.980974137931034,
+                "predicted_per_second": 167.19684401543398
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"We initially considered launching on November 12.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"We initially considered launching on November 12.\"\n    }\n  ],\n  \"decisions\": [\n    {\n      \"text\": \"We agree to launch on November 18.\",\n      \"sourceId\": \"0-2\",\n      \"quote\": \"We agree to launch on November 18.\"\n    }\n  ],\n  \"actionItems\": [\n    {\n      \"text\": \"Priya will reserve the room by Friday.\",\n      \"sourceId\": \"0-3\",\n      \"quote\": \"Priya will reserve the room by Friday.\"\n    }\n  ],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this. The user wants me to extract the meeting notes as JSON with arrays for summary, decisions, actionItems, and openQuestions. Each item has text, sourceId, and quote. I need to make sure every factual claim is supported by the quote.\n\nFirst, looking at the transcript"
+            }
+          ]
+        },
+        {
+          "id": "notes-agenda-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1399,
+          "text": "# Model comparison\n\n## Summary\n- Quicken, what is the first item on our agenda?\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Quicken, what is the first item on our agenda?",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1399,
+              "usage": {
+                "completion_tokens": 193,
+                "prompt_tokens": 307,
+                "total_tokens": 500,
+                "prompt_tokens_details": {
+                  "cached_tokens": 306
+                }
+              },
+              "timings": {
+                "cache_n": 306,
+                "prompt_n": 1,
+                "prompt_ms": 7.749,
+                "prompt_per_token_ms": 7.749,
+                "prompt_per_second": 129.04890953671443,
+                "predicted_n": 193,
+                "predicted_ms": 1317.269,
+                "predicted_per_token_ms": 6.860776041666667,
+                "predicted_per_second": 145.75610600416468
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Quicken, what is the first item on our agenda?\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Quicken, what is the first item on our agenda?\"\n    }\n  ],\n  \"decisions\": [\n    {\n      \"text\": \"The first item is to choose the launch date.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"The first item is to choose the launch date.\"\n    }\n  ],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this. The user provided a transcript with two rows. First, Maya asks about the first item on the agenda. Then Quicken responds with the launch date. The moderator is false for the first row and true for the second.\n\nI need to extract the summary, decisions, actionItems,"
+            }
+          ]
+        }
+      ],
+      "loadMs": 1630,
+      "summary": {
+        "moderation": {
+          "passed": 35,
+          "total": 52,
+          "medianMs": 1095,
+          "p95Ms": 1348
+        },
+        "direct": {
+          "passed": 10,
+          "total": 16,
+          "medianMs": 597,
+          "p95Ms": 692
+        },
+        "notes": {
+          "passed": 5,
+          "total": 16,
+          "medianMs": 1082,
+          "p95Ms": 1609
+        },
+        "overall": 0.5952380952380952,
+        "unnecessaryInterjections": 0,
+        "unexpectedFactSections": 5
+      }
+    }
+  ]
+}

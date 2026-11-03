@@ -1,0 +1,3035 @@
+{
+  "kind": "Synthetic cloud/local comparison; no real meeting data",
+  "createdAt": "2026-11-03T00:48:16.105Z",
+  "hardware": {
+    "cpu": "Apple M3 Pro",
+    "ramGB": 19.327352832
+  },
+  "configuration": {
+    "runtime": "OpenAI Responses API",
+    "model": "gpt-6-luna",
+    "reasoning": "none",
+    "serviceTier": "default",
+    "temperature": 0.1,
+    "repetitions": 2,
+    "seeds": null,
+    "promptPolicy": "Unchanged production text prompts and output caps; native strict JSON schema.",
+    "sessionPolicy": "Independent requests, store=false; one unscored warm-up; no retries; API prompt caching may occur.",
+    "comparisonLimits": "No seed control in Responses. Full response latency includes network, server, and download. Streaming first-token latency also recorded but not used as decision latency.",
+    "latency": "Final transcript to moderator assessment; notes measured separately. Includes 120ms moderation debounce, excludes ASR and voice."
+  },
+  "gate": {
+    "minimumOverall": 0.9,
+    "minimumEachFeature": 0.85,
+    "maxOverallRegression": 0.03,
+    "maxUnnecessaryInterjections": 1,
+    "criticalFacts": "No invented decisions/assignments in designated empty notes sections; manually inspect all answers and notes.",
+    "latency": "No worse p95 live moderation latency than 4B baseline."
+  },
+  "models": [
+    {
+      "id": "Cloud-gpt-6-luna",
+      "rows": [
+        {
+          "id": "clear-assignment",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1235,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 620,
+              "ms": 1105,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan on Friday.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya: send the testing plan on Friday.\",\"quote\":\"Maya will send the testing plan on Friday.\"}]}",
+              "usage": {
+                "input_tokens": 712,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 78,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 790
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "fresh-question",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1641,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 1132,
+              "ms": 1516,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Which launch date do you prefer?\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[\"Which launch date do you prefer?\"],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 709,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 57,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 766
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "missing-deadline",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1182,
+          "text": "What date should we set for the testing plan?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 530,
+              "ms": 1054,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should we set for the testing plan?\",\"evidence\":\"I will send the testing plan soon.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Alex: send the testing plan; deadline unspecified.\",\"quote\":\"I will send the testing plan soon.\"}]}",
+              "usage": {
+                "input_tokens": 728,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 86,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 814
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "explicitly-deferred",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 879,
+          "text": "Before we move on, let’s resolve how much the launch campaign will cost or assign someone to follow up.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 475,
+              "ms": 755,
+              "text": "Before we move on, let’s resolve how much the launch campaign will cost or assign someone to follow up.",
+              "usage": {
+                "input_tokens": 232,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 26,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 258
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "sustained-drift",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1262,
+          "text": "Shall we return to choosing the launch date?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 682,
+              "ms": 1135,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"I think the referee missed a penalty in the second half.\",\"confidence\":0.98,\"topic\":\"Launch planning; conversation has shifted to football.\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 771,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 72,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 843
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "resolved-owner",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1250,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 661,
+              "ms": 1123,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Great, let us move on to the launch date.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya: send the testing plan Friday.\",\"quote\":\"Maya will send the testing plan Friday.\"}]}",
+              "usage": {
+                "input_tokens": 750,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 77,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 827
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "relevant-tangent",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1145,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 644,
+              "ms": 1017,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.98,\"topic\":\"Launch planning; reviewing accessibility audit results before selecting a launch date.\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 750,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 52,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 802
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "brief-social-aside",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1032,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 561,
+              "ms": 907,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The draft includes the sign-up flow and pricing page.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 751,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 53,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 804
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "answered-cost",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1173,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 705,
+              "ms": 1053,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"That fits the approved budget; next is distribution.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 751,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 52,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 803
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "answered-deadline",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1182,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 648,
+              "ms": 1060,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.98,\"topic\":\"Launch planning; prototype due date was answered, and the group is moving to testing approach.\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 750,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 57,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 807
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "assigned-followup",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1343,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 754,
+              "ms": 1219,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Noah will check the hosting price tomorrow.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Noah: check the hosting price tomorrow.\",\"quote\":\"Noah will check the hosting price tomorrow.\"}]}",
+              "usage": {
+                "input_tokens": 747,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 75,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 822
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "tentative-idea",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1183,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 638,
+              "ms": 1057,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.98,\"topic\":\"Launch planning; comparing potential audiences, including alumni.\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 733,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 49,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 782
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "clear-first-person",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1137,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 543,
+              "ms": 1009,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"I will upload the release checklist tomorrow.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya: upload the release checklist tomorrow.\",\"quote\":\"I will upload the release checklist tomorrow.\"}]}",
+              "usage": {
+                "input_tokens": 710,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 73,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 783
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "relevant-football",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1110,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 696,
+              "ms": 982,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.98,\"topic\":\"Launch planning for a football club customer\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 748,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 47,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 795
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "drift-recipes",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1033,
+          "text": "Shall we return to choosing the launch date?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 508,
+              "ms": 909,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"Try using rye flour and a warmer kitchen.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 762,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 63,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 825
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "drift-travel",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1474,
+          "text": "Shall we return to planning the product launch?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 702,
+              "ms": 1352,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to planning the product launch?\",\"evidence\":\"My favorite beach is on the north shore.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 763,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 63,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 826
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "vague-deadline-copy",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1254,
+          "text": "What deadline should we set for finishing the launch email edits?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 622,
+              "ms": 1126,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What deadline should we set for finishing the launch email edits?\",\"evidence\":\"I will finish editing the launch email sometime.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Alex: finish editing the launch email.\",\"quote\":\"I will finish editing the launch email sometime.\"}]}",
+              "usage": {
+                "input_tokens": 727,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 88,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 815
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "vague-owner",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1039,
+          "text": "Who will book the room by Friday?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 569,
+              "ms": 915,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Who will book the room by Friday?\",\"evidence\":\"Someone will book the room by Friday.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 729,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 60,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 789
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "vague-owner-review",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1221,
+          "text": "Who will take ownership of the security review tomorrow?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 636,
+              "ms": 1095,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Who will take ownership of the security review tomorrow?\",\"evidence\":\"Somebody will take care of the security review tomorrow.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 733,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 65,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 798
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "deferred-room",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 1028,
+          "text": "Before we move on, let’s resolve which room we’ve booked for the launch or assign someone to follow up.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 590,
+              "ms": 898,
+              "text": "Before we move on, let’s resolve which room we’ve booked for the launch or assign someone to follow up.",
+              "usage": {
+                "input_tokens": 228,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 27,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 255
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "deferred-capacity",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 913,
+          "text": "Let’s resolve the venue’s capacity question or assign someone to follow up.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 595,
+              "ms": 790,
+              "text": "Let’s resolve the venue’s capacity question or assign someone to follow up.",
+              "usage": {
+                "input_tokens": 224,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 19,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 243
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "resolved-by-context",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1084,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 608,
+              "ms": 956,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Great, the backup is covered. Next is the arrival time.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 757,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 55,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 812
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-commitment",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1122,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 534,
+              "ms": 993,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"maya will send the testing plan on friday\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya: send the testing plan Friday.\",\"quote\":\"maya will send the testing plan on friday\"}]}",
+              "usage": {
+                "input_tokens": 710,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 74,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 784
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1191,
+          "text": "What date should we set for the migration plan?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 635,
+              "ms": 1067,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should we set for the migration plan?\",\"evidence\":\"i will write the migration plan soon\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 725,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 62,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 787
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "recent-reminder",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1823,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 1337,
+              "ms": 1701,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to discussing the launch date?\",\"evidence\":\"I loved the chef with the blue apron.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 775,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 63,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 838
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "off-track-disabled",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1232,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 681,
+              "ms": 1108,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"The last serve was incredible.\",\"confidence\":0.98,\"topic\":\"Launch planning; conversation has shifted to tennis.\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 758,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 66,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 824
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "agenda-first",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 847,
+          "text": "The first agenda item is to choose the launch date.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 545,
+              "ms": 723,
+              "text": "The first agenda item is to choose the launch date.",
+              "usage": {
+                "input_tokens": 171,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 15,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 186
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "agenda-current",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 821,
+          "text": "We’re discussing assigning owners.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 554,
+              "ms": 692,
+              "text": "We’re discussing assigning owners.",
+              "usage": {
+                "input_tokens": 166,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 10,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 176
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "known-owner",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 902,
+          "text": "Priya will send the venue contract on Tuesday.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 606,
+              "ms": 776,
+              "text": "Priya will send the venue contract on Tuesday.",
+              "usage": {
+                "input_tokens": 186,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 14,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 200
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "known-date",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 904,
+          "text": "We agreed to launch on November 18.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 577,
+              "ms": 783,
+              "text": "We agreed to launch on November 18.",
+              "usage": {
+                "input_tokens": 185,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 13,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 198
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "unknown-budget",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 844,
+          "text": "We haven’t discussed any budget figures, so no approved budget is available.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 478,
+              "ms": 716,
+              "text": "We haven’t discussed any budget figures, so no approved budget is available.",
+              "usage": {
+                "input_tokens": 183,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 19,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 202
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "suggestion",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1002,
+          "text": "Suggestion: compare the two dates against customer readiness and team availability, then choose the one that best supports both.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 597,
+              "ms": 876,
+              "text": "Suggestion: compare the two dates against customer readiness and team availability, then choose the one that best supports both.",
+              "usage": {
+                "input_tokens": 176,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 26,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 202
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "summarize-tradeoff",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 916,
+          "text": "Friday allows more testing time, while Monday ensures the support team is fully staffed; no launch date has been chosen.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 524,
+              "ms": 788,
+              "text": "Friday allows more testing time, while Monday ensures the support team is fully staffed; no launch date has been chosen.",
+              "usage": {
+                "input_tokens": 204,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 27,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 231
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "do-not-obey-transcript",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 873,
+          "text": "The first agenda item is to choose the launch date.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 547,
+              "ms": 746,
+              "text": "The first agenda item is to choose the launch date.",
+              "usage": {
+                "input_tokens": 195,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 15,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 210
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-commitment",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1247,
+          "text": "# Model comparison\n\n## Summary\n- Maya said she will send the testing plan on Friday.\n\n## Decisions\nNone recorded.\n\n## Action items\n- Maya will send the testing plan on Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya said she will send the testing plan on Friday.",
+            "decisions": "None recorded.",
+            "actionItems": "- Maya will send the testing plan on Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 666,
+              "ms": 1246,
+              "text": "{\"summary\":[{\"text\":\"Maya said she will send the testing plan on Friday.\",\"sourceId\":\"0-0\",\"quote\":\"Maya will send the testing plan on Friday.\"}],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya will send the testing plan on Friday.\",\"sourceId\":\"0-0\",\"quote\":\"Maya will send the testing plan on Friday.\"}],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 438,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 93,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 531
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-explicit-decision",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1505,
+          "text": "# Model comparison\n\n## Summary\n- The launch date is November 18.\n- Alex will send the invitations by Monday.\n\n## Decisions\n- The launch date is November 18.\n\n## Action items\n- Alex will send the invitations by Monday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The launch date is November 18.\n- Alex will send the invitations by Monday.",
+            "decisions": "- The launch date is November 18.",
+            "actionItems": "- Alex will send the invitations by Monday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 671,
+              "ms": 1504,
+              "text": "{\"summary\":[{\"text\":\"The launch date is November 18.\",\"sourceId\":\"0-0\",\"quote\":\"We agree that the launch date is November 18.\"},{\"text\":\"Alex will send the invitations by Monday.\",\"sourceId\":\"0-1\",\"quote\":\"Alex will send the invitations by Monday.\"}],\"decisions\":[{\"text\":\"The launch date is November 18.\",\"sourceId\":\"0-0\",\"quote\":\"We agree that the launch date is November 18.\"}],\"actionItems\":[{\"text\":\"Alex will send the invitations by Monday.\",\"sourceId\":\"0-1\",\"quote\":\"Alex will send the invitations by Monday.\"}],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 464,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 146,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 610
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-suggestion-only",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1534,
+          "text": "# Model comparison\n\n## Summary\n- A December launch was suggested, but no date has been chosen.\n- No work has been assigned.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- A December launch was suggested, but no date has been chosen.\n- No work has been assigned.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 948,
+              "ms": 1533,
+              "text": "{\"summary\":[{\"text\":\"A December launch was suggested, but no date has been chosen.\",\"sourceId\":\"0-0\",\"quote\":\"We could launch in December, but that is only a suggestion.\"},{\"text\":\"No work has been assigned.\",\"sourceId\":\"0-1\",\"quote\":\"We have not chosen a date or assigned any work.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 469,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 93,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 562
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-resolved-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1121,
+          "text": "# Model comparison\n\n## Summary\n- The venue costs $300.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The venue costs $300.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 734,
+              "ms": 1121,
+              "text": "{\"summary\":[{\"text\":\"The venue costs $300.\",\"sourceId\":\"0-1\",\"quote\":\"The venue costs three hundred dollars.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 459,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 51,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 510
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-open-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1086,
+          "text": "# Model comparison\n\n## Summary\n- Maya: “Who will approve the final poster?”\n- Alex: “We have not assigned that approval yet.”\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\n- Who will approve the final poster?",
+          "sections": {
+            "summary": "- Maya: “Who will approve the final poster?”\n- Alex: “We have not assigned that approval yet.”",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "- Who will approve the final poster?"
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 668,
+              "ms": 1085,
+              "text": "{\"summary\":[],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[{\"text\":\"Maya asked who will approve the final poster; this remains unanswered.\",\"sourceId\":\"0-0\",\"quote\":\"Who will approve the final poster?\"}]}",
+              "usage": {
+                "input_tokens": 461,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 59,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 520
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-moderator-not-assignment",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1082,
+          "text": "# Model comparison\n\n## Summary\n- No one has been assigned the budget task.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- No one has been assigned the budget task.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 689,
+              "ms": 1081,
+              "text": "{\"summary\":[{\"text\":\"No one has been assigned the budget task.\",\"sourceId\":\"0-1\",\"quote\":\"We have not assigned anyone to that task.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 462,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 56,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 518
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-corrected-facts",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1502,
+          "text": "# Model comparison\n\n## Summary\n- The team initially considered November 12 for launch, but that date is no longer an option.\n\n## Decisions\n- Maya stated agreement to launch on November 18.\n\n## Action items\n- Priya is to reserve the room by Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The team initially considered November 12 for launch, but that date is no longer an option.",
+            "decisions": "- Maya stated agreement to launch on November 18.",
+            "actionItems": "- Priya is to reserve the room by Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 634,
+              "ms": 1501,
+              "text": "{\"summary\":[{\"text\":\"The team initially considered November 12 for launch, but that date is no longer an option.\",\"sourceId\":\"0-1\",\"quote\":\"That date is no longer an option.\"}],\"decisions\":[{\"text\":\"Maya stated agreement to launch on November 18.\",\"sourceId\":\"0-2\",\"quote\":\"We agree to launch on November 18.\"}],\"actionItems\":[{\"text\":\"Priya is to reserve the room by Friday.\",\"sourceId\":\"0-3\",\"quote\":\"Priya will reserve the room by Friday.\"}],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 515,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 130,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 645
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-agenda-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1252,
+          "text": "# Model comparison\n\n## Summary\n- The first agenda item is choosing the launch date.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The first agenda item is choosing the launch date.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 870,
+              "ms": 1251,
+              "text": "{\"summary\":[{\"text\":\"The first agenda item is choosing the launch date.\",\"sourceId\":\"0-1\",\"quote\":\"The first item is to choose the launch date.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 469,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 58,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 527
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "vague-owner",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1360,
+          "text": "Who will book the room by Friday?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 835,
+              "ms": 1238,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Who will book the room by Friday?\",\"evidence\":\"Someone will book the room by Friday.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 729,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 60,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 789
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "vague-owner-review",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1222,
+          "text": "Who will take ownership of the security review tomorrow?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 723,
+              "ms": 1098,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Who will take ownership of the security review tomorrow?\",\"evidence\":\"Somebody will take care of the security review tomorrow.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 733,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 65,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 798
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "deferred-room",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 1017,
+          "text": "Let’s resolve which room we’ll book for the launch, or assign someone to follow up.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 646,
+              "ms": 896,
+              "text": "Let’s resolve which room we’ll book for the launch, or assign someone to follow up.",
+              "usage": {
+                "input_tokens": 228,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 23,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 251
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "deferred-capacity",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 893,
+          "text": "We don’t know the venue’s capacity yet; should we resolve that question now or assign someone to follow up?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 503,
+              "ms": 769,
+              "text": "We don’t know the venue’s capacity yet; should we resolve that question now or assign someone to follow up?",
+              "usage": {
+                "input_tokens": 224,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 27,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 251
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "resolved-by-context",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1112,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 607,
+              "ms": 990,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Great, the backup is covered. Next is the arrival time.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 757,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 55,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 812
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-commitment",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1455,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 795,
+              "ms": 1334,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"maya will send the testing plan on friday\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya: send the testing plan Friday.\",\"quote\":\"maya will send the testing plan on friday\"}]}",
+              "usage": {
+                "input_tokens": 710,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 74,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 784
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1474,
+          "text": "What date should we set for the migration plan?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 807,
+              "ms": 1348,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should we set for the migration plan?\",\"evidence\":\"i will write the migration plan soon\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Alex: write the migration plan; deadline unspecified.\",\"quote\":\"i will write the migration plan soon\"}]}",
+              "usage": {
+                "input_tokens": 725,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 85,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 810
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "recent-reminder",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1240,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 694,
+              "ms": 1110,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to discussing the launch date?\",\"evidence\":\"I loved the chef with the blue apron.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 775,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 63,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 838
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "off-track-disabled",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1030,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 548,
+              "ms": 900,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"The last serve was incredible.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 758,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 60,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 818
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "agenda-first",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 848,
+          "text": "The first agenda item is to choose the launch date.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 511,
+              "ms": 717,
+              "text": "The first agenda item is to choose the launch date.",
+              "usage": {
+                "input_tokens": 171,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 15,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 186
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "agenda-current",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 832,
+          "text": "We’re discussing assigning owners.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 520,
+              "ms": 710,
+              "text": "We’re discussing assigning owners.",
+              "usage": {
+                "input_tokens": 166,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 10,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 176
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "known-owner",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1122,
+          "text": "Priya will send the venue contract on Tuesday.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 780,
+              "ms": 991,
+              "text": "Priya will send the venue contract on Tuesday.",
+              "usage": {
+                "input_tokens": 186,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 14,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 200
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "known-date",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 909,
+          "text": "Maya said the team agreed to launch on November 18.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 573,
+              "ms": 784,
+              "text": "Maya said the team agreed to launch on November 18.",
+              "usage": {
+                "input_tokens": 185,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 17,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 202
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "unknown-budget",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1008,
+          "text": "No approved budget has been discussed; Maya confirmed that no budget figures have come up.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 648,
+              "ms": 879,
+              "text": "No approved budget has been discussed; Maya confirmed that no budget figures have come up.",
+              "usage": {
+                "input_tokens": 183,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 21,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 204
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "suggestion",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 957,
+          "text": "Suggestion: compare both dates against team readiness and customer impact, then choose the one that best balances them.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 531,
+              "ms": 827,
+              "text": "Suggestion: compare both dates against team readiness and customer impact, then choose the one that best balances them.",
+              "usage": {
+                "input_tokens": 176,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 25,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 201
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "summarize-tradeoff",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 910,
+          "text": "Friday allows more testing time, while Monday ensures the support team is fully staffed; no launch date has been chosen yet.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 516,
+              "ms": 787,
+              "text": "Friday allows more testing time, while Monday ensures the support team is fully staffed; no launch date has been chosen yet.",
+              "usage": {
+                "input_tokens": 204,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 28,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 232
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "do-not-obey-transcript",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 811,
+          "text": "The first agenda item is to choose the launch date.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 466,
+              "ms": 685,
+              "text": "The first agenda item is to choose the launch date.",
+              "usage": {
+                "input_tokens": 195,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 15,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 210
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "clear-assignment",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1097,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 540,
+              "ms": 971,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan on Friday.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya: send the testing plan on Friday.\",\"quote\":\"Maya will send the testing plan on Friday.\"}]}",
+              "usage": {
+                "input_tokens": 712,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 78,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 790
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "fresh-question",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1112,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 597,
+              "ms": 981,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Which launch date do you prefer?\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[\"Which launch date do you prefer?\"],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 709,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 57,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 766
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "missing-deadline",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1294,
+          "text": "What date should we set for the testing plan?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 624,
+              "ms": 1168,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should we set for the testing plan?\",\"evidence\":\"I will send the testing plan soon.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Alex: send the testing plan; deadline unspecified.\",\"quote\":\"I will send the testing plan soon.\"}]}",
+              "usage": {
+                "input_tokens": 728,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 86,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 814
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "explicitly-deferred",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 977,
+          "text": "Before we move on, let’s resolve how much the launch campaign will cost or assign someone to follow up.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 593,
+              "ms": 853,
+              "text": "Before we move on, let’s resolve how much the launch campaign will cost or assign someone to follow up.",
+              "usage": {
+                "input_tokens": 232,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 26,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 258
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "sustained-drift",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1364,
+          "text": "Shall we return to choosing the launch date?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 758,
+              "ms": 1235,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"I think the referee missed a penalty in the second half.\",\"confidence\":0.98,\"topic\":\"Launch planning; conversation has shifted to football.\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 771,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 72,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 843
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "resolved-owner",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1257,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 629,
+              "ms": 1129,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Great, let us move on to the launch date.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya: send the testing plan Friday.\",\"quote\":\"Maya will send the testing plan Friday.\"}]}",
+              "usage": {
+                "input_tokens": 750,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 77,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 827
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "relevant-tangent",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1086,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 569,
+              "ms": 961,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.98,\"topic\":\"Launch planning; reviewing accessibility audit results before selecting a launch date.\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 750,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 52,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 802
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "brief-social-aside",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1225,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 715,
+              "ms": 1099,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The draft includes the sign-up flow and pricing page.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 751,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 53,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 804
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "answered-cost",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 992,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 544,
+              "ms": 861,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"That fits the approved budget; next is distribution.\",\"confidence\":0.98,\"topic\":\"Launch planning and distribution\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 751,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 54,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 805
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "answered-deadline",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1331,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 725,
+              "ms": 1206,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.98,\"topic\":\"Launch planning; prototype due November 15, moving to testing approach.\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 750,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 53,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 803
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "assigned-followup",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1149,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 563,
+              "ms": 1017,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Noah will check the hosting price tomorrow.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Noah: check the hosting price tomorrow.\",\"quote\":\"Noah will check the hosting price tomorrow.\"}]}",
+              "usage": {
+                "input_tokens": 747,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 75,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 822
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "tentative-idea",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1169,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 631,
+              "ms": 1048,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.98,\"topic\":\"Launch planning; comparing potential audiences, including alumni.\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 733,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 49,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 782
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "clear-first-person",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1251,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 643,
+              "ms": 1124,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"I will upload the release checklist tomorrow.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya: upload the release checklist tomorrow.\",\"quote\":\"I will upload the release checklist tomorrow.\"}]}",
+              "usage": {
+                "input_tokens": 710,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 73,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 783
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "relevant-football",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1053,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 597,
+              "ms": 931,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.98,\"topic\":\"Launch planning for a football club ticket page\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 748,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 48,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 796
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "drift-recipes",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1137,
+          "text": "Shall we return to choosing the launch date?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 612,
+              "ms": 1016,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"Try using rye flour and a warmer kitchen.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 762,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 63,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 825
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "drift-travel",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1182,
+          "text": "Shall we return to planning the product launch?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 572,
+              "ms": 1059,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to planning the product launch?\",\"evidence\":\"My favorite beach is on the north shore.\",\"confidence\":0.98,\"topic\":\"Launch planning; conversation has shifted to a snorkeling trip and beaches.\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 763,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 73,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 836
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "vague-deadline-copy",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1165,
+          "text": "What deadline should we set for finishing the launch email edits?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 642,
+              "ms": 1044,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What deadline should we set for finishing the launch email edits?\",\"evidence\":\"I will finish editing the launch email sometime.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 727,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 65,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 792
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-commitment",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1377,
+          "text": "# Model comparison\n\n## Summary\n- Maya said she will send the testing plan on Friday.\n\n## Decisions\nNone recorded.\n\n## Action items\n- Maya will send the testing plan on Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya said she will send the testing plan on Friday.",
+            "decisions": "None recorded.",
+            "actionItems": "- Maya will send the testing plan on Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 774,
+              "ms": 1376,
+              "text": "{\"summary\":[{\"text\":\"Maya said she will send the testing plan on Friday.\",\"sourceId\":\"0-0\",\"quote\":\"Maya will send the testing plan on Friday.\"}],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya will send the testing plan on Friday.\",\"sourceId\":\"0-0\",\"quote\":\"Maya will send the testing plan on Friday.\"}],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 438,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 93,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 531
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-explicit-decision",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1329,
+          "text": "# Model comparison\n\n## Summary\n- Maya: “We agree that the launch date is November 18.”\n- Alex: “Alex will send the invitations by Monday.”\n\n## Decisions\n- The launch date is November 18.\n\n## Action items\n- Alex will send the invitations by Monday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya: “We agree that the launch date is November 18.”\n- Alex: “Alex will send the invitations by Monday.”",
+            "decisions": "- The launch date is November 18.",
+            "actionItems": "- Alex will send the invitations by Monday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 788,
+              "ms": 1328,
+              "text": "{\"summary\":[],\"decisions\":[{\"text\":\"The launch date is November 18.\",\"sourceId\":\"0-0\",\"quote\":\"We agree that the launch date is November 18.\"}],\"actionItems\":[{\"text\":\"Alex will send the invitations by Monday.\",\"sourceId\":\"0-1\",\"quote\":\"Alex will send the invitations by Monday.\"}],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 464,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 86,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 550
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-suggestion-only",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1363,
+          "text": "# Model comparison\n\n## Summary\n- A December launch was suggested, but no date has been chosen.\n- No work has been assigned.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- A December launch was suggested, but no date has been chosen.\n- No work has been assigned.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 776,
+              "ms": 1362,
+              "text": "{\"summary\":[{\"text\":\"A December launch was suggested, but no date has been chosen.\",\"sourceId\":\"0-0\",\"quote\":\"We could launch in December, but that is only a suggestion.\"},{\"text\":\"No work has been assigned.\",\"sourceId\":\"0-1\",\"quote\":\"We have not chosen a date or assigned any work.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 469,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 93,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 562
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-resolved-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1179,
+          "text": "# Model comparison\n\n## Summary\n- The venue costs $300.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The venue costs $300.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 802,
+              "ms": 1178,
+              "text": "{\"summary\":[{\"text\":\"The venue costs $300.\",\"sourceId\":\"0-1\",\"quote\":\"The venue costs three hundred dollars.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 459,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 51,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 510
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-open-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1148,
+          "text": "# Model comparison\n\n## Summary\n- Maya: “Who will approve the final poster?”\n- Alex: “We have not assigned that approval yet.”\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\n- Who will approve the final poster?",
+          "sections": {
+            "summary": "- Maya: “Who will approve the final poster?”\n- Alex: “We have not assigned that approval yet.”",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "- Who will approve the final poster?"
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 712,
+              "ms": 1148,
+              "text": "{\"summary\":[],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[{\"text\":\"Maya asked who will approve the final poster; this remains unanswered.\",\"sourceId\":\"0-0\",\"quote\":\"Who will approve the final poster?\"}]}",
+              "usage": {
+                "input_tokens": 461,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 59,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 520
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-moderator-not-assignment",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1019,
+          "text": "# Model comparison\n\n## Summary\n- No one has been assigned the budget task.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- No one has been assigned the budget task.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 635,
+              "ms": 1018,
+              "text": "{\"summary\":[{\"text\":\"No one has been assigned the budget task.\",\"sourceId\":\"0-1\",\"quote\":\"We have not assigned anyone to that task.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 462,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 56,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 518
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-corrected-facts",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1520,
+          "text": "# Model comparison\n\n## Summary\n- November 12 was initially considered, but is no longer an option.\n\n## Decisions\n- The participants agreed to launch on November 18.\n\n## Action items\n- Priya will reserve the room by Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- November 12 was initially considered, but is no longer an option.",
+            "decisions": "- The participants agreed to launch on November 18.",
+            "actionItems": "- Priya will reserve the room by Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 685,
+              "ms": 1519,
+              "text": "{\"summary\":[{\"text\":\"November 12 was initially considered, but is no longer an option.\",\"sourceId\":\"0-1\",\"quote\":\"That date is no longer an option.\"}],\"decisions\":[{\"text\":\"The participants agreed to launch on November 18.\",\"sourceId\":\"0-2\",\"quote\":\"We agree to launch on November 18.\"}],\"actionItems\":[{\"text\":\"Priya will reserve the room by Friday.\",\"sourceId\":\"0-3\",\"quote\":\"Priya will reserve the room by Friday.\"}],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 515,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 123,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 638
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-agenda-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1086,
+          "text": "# Model comparison\n\n## Summary\n- The first agenda item is choosing the launch date.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The first agenda item is choosing the launch date.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6-luna",
+              "firstTokenMs": 681,
+              "ms": 1086,
+              "text": "{\"summary\":[{\"text\":\"The first agenda item is choosing the launch date.\",\"sourceId\":\"0-1\",\"quote\":\"The first item is to choose the launch date.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 469,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 58,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 527
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6-luna",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        }
+      ],
+      "loadMs": 0,
+      "warmupMs": 737,
+      "summary": {
+        "moderation": {
+          "passed": 52,
+          "total": 52,
+          "medianMs": 1173,
+          "p95Ms": 1474
+        },
+        "direct": {
+          "passed": 16,
+          "total": 16,
+          "medianMs": 902,
+          "p95Ms": 1122
+        },
+        "notes": {
+          "passed": 16,
+          "total": 16,
+          "medianMs": 1247,
+          "p95Ms": 1534
+        },
+        "overall": 1,
+        "unnecessaryInterjections": 0,
+        "unexpectedFactSections": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,284 @@
+{
+  "mode": "real OpenAI API, synthetic audio; NOT a real meeting",
+  "at": "2026-10-28T02:46:56.740Z",
+  "meetingId": "d4bb5afc-f5f0-4243-9919-1a26a0559c80",
+  "status": "live",
+  "bridgeConnected": true,
+  "transcript": [
+    {
+      "id": "item_EdnyZ6EnZSXO141g3kq96",
+      "text": "Quicken, what is the first item on our agenda?",
+      "speaker": "You",
+      "source": "realtime",
+      "at": 1793155611564
+    },
+    {
+      "id": "moderator-dce7d9b8-5a0d-4af5-9d5b-2f9aebf2ea74",
+      "text": "The first agenda item is to decide launch scope.",
+      "speaker": "Quicken",
+      "source": "moderator",
+      "at": 1793155616431
+    }
+  ],
+  "interventions": [
+    {
+      "id": "dce7d9b8-5a0d-4af5-9d5b-2f9aebf2ea74",
+      "intervene": true,
+      "reason": "addressed",
+      "text": "The first agenda item is to decide launch scope.",
+      "evidence": "User asked Quicken, \"what is the first item on our agenda?\" in the current meeting state where agenda[0].title is \"Decide launch scope\".",
+      "confidence": 0.98,
+      "topic": "Decide launch scope",
+      "openQuestions": [],
+      "decisions": [],
+      "actionItems": [],
+      "proposedAt": 1793155612411,
+      "state": "spoken",
+      "spokenAt": 1793155613287,
+      "latencyMs": 2377
+    }
+  ],
+  "metrics": {
+    "responseMs": [
+      2377
+    ],
+    "assessments": 1,
+    "rejected": 0
+  },
+  "browserErrors": [],
+  "remoteAudioPeak": 0.4443494975566864,
+  "audioDiagnostics": {
+    "contextState": "running",
+    "connectionState": "connected",
+    "stats": [
+      {
+        "id": "IT01A573139260",
+        "timestamp": 1793155616742.501,
+        "type": "inbound-rtp",
+        "codecId": "CIT01_111_minptime=10;useinbandfec=1",
+        "kind": "audio",
+        "mediaType": "audio",
+        "ssrc": 573139260,
+        "transportId": "T01",
+        "jitter": 0.007,
+        "packetsLost": 0,
+        "packetsReceived": 763,
+        "packetsReceivedWithCe": 0,
+        "packetsReceivedWithEct1": 0,
+        "audioLevel": 0.00006103701895199438,
+        "bytesReceived": 27766,
+        "concealedSamples": 7080,
+        "concealmentEvents": 3,
+        "fecPacketsDiscarded": 0,
+        "fecPacketsReceived": 0,
+        "headerBytesReceived": 9156,
+        "insertedSamplesForDeceleration": 1080,
+        "jitterBufferDelay": 65865.6,
+        "jitterBufferEmittedCount": 732480,
+        "jitterBufferMinimumDelay": 72288,
+        "jitterBufferTargetDelay": 72288,
+        "lastPacketReceivedTimestamp": 1793155616556.74,
+        "mid": "0",
+        "packetsDiscarded": 0,
+        "playoutId": "AP",
+        "remoteId": "ROA573139260",
+        "removedSamplesForAcceleration": 0,
+        "silentConcealedSamples": 3480,
+        "totalAudioEnergy": 0.17721830427792898,
+        "totalProcessingDelay": 63408.78816,
+        "totalSamplesDuration": 15.749999999999709,
+        "totalSamplesReceived": 740640,
+        "trackIdentifier": "aa1599e4-0f1d-4fa6-ab5d-051682d01ffa"
+      },
+      {
+        "id": "OT01A2681796161",
+        "timestamp": 1793155616742.501,
+        "type": "outbound-rtp",
+        "codecId": "COT01_111_minptime=10;useinbandfec=1",
+        "kind": "audio",
+        "mediaType": "audio",
+        "ssrc": 2681796161,
+        "transportId": "T01",
+        "bytesSent": 32249,
+        "packetsSent": 783,
+        "active": true,
+        "headerBytesSent": 16110,
+        "mediaSourceId": "SA1",
+        "mid": "0",
+        "nackCount": 0,
+        "packetsSentWithEct1": 0,
+        "remoteId": "RIA2681796161",
+        "retransmittedBytesSent": 0,
+        "retransmittedPacketsSent": 0,
+        "targetBitrate": 32000,
+        "totalPacketSendDelay": 0.002057
+      }
+    ]
+  },
+  "events": [
+    {
+      "at": 1793155607942,
+      "type": "input_audio_buffer.speech_started",
+      "event_id": "event_EdnyZPmhFrBuaOtGSwxPx",
+      "audio_start_ms": 6292,
+      "item_id": "item_EdnyZ6EnZSXO141g3kq96"
+    },
+    {
+      "at": 1793155610909,
+      "type": "input_audio_buffer.speech_stopped",
+      "event_id": "event_EdnycOUawRWkQXuCAjahs",
+      "audio_end_ms": 9600,
+      "item_id": "item_EdnyZ6EnZSXO141g3kq96"
+    },
+    {
+      "at": 1793155612409,
+      "type": "response.done",
+      "event_id": "event_EdnyedNFRXUTHD4U3ukd6",
+      "response": {
+        "object": "realtime.response",
+        "id": "resp_EdnycBDodxRFxDsTvxT3U",
+        "status": "completed",
+        "status_details": null,
+        "output": [
+          {
+            "id": "item_Ednyd5fejsuRrfZsKwp3b",
+            "type": "message",
+            "status": "completed",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "output_text",
+                "text": "Let me check the current agenda item and then I’ll help with a quick answer."
+              }
+            ],
+            "phase": "commentary"
+          },
+          {
+            "id": "item_EdnyeqXnXY8u3vQ4bmkET",
+            "type": "function_call",
+            "status": "completed",
+            "name": "assess_meeting",
+            "call_id": "call_xvelngDU0yJua4vq",
+            "arguments": "{\"intervene\":true,\"reason\":\"addressed\",\"text\":\"The first agenda item is to decide launch scope.\",\"evidence\":\"User asked Quicken, \\\"what is the first item on our agenda?\\\" in the current meeting state where agenda[0].title is \\\"Decide launch scope\\\".\",\"confidence\":0.98,\"topic\":\"Decide launch scope\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}"
+          }
+        ],
+        "conversation_id": "conv_EdnySggFNnGyM0niFOTbZ",
+        "output_modalities": [
+          "text"
+        ],
+        "max_output_tokens": 1000,
+        "audio": {
+          "output": {
+            "format": {
+              "type": "audio/pcm",
+              "rate": 24000
+            },
+            "voice": "marin"
+          }
+        },
+        "usage": {
+          "total_tokens": 238,
+          "input_tokens": 1,
+          "output_tokens": 237,
+          "input_token_details": {
+            "text_tokens": 1,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "cached_tokens": 0,
+            "cached_tokens_details": {
+              "text_tokens": 0,
+              "audio_tokens": 0,
+              "image_tokens": 0
+            }
+          },
+          "output_token_details": {
+            "text_tokens": 237,
+            "audio_tokens": 0,
+            "reasoning_tokens": 112
+          }
+        },
+        "metadata": {
+          "kind": "assessment",
+          "revision": "1"
+        }
+      }
+    },
+    {
+      "at": 1793155613287,
+      "type": "output_audio_buffer.started",
+      "event_id": "event_3e821a434aa54c59",
+      "response_id": "resp_Ednye29zbTZYPQLEoYuUV"
+    },
+    {
+      "at": 1793155613577,
+      "type": "response.done",
+      "event_id": "event_EdnyfgOBJdnntsyZhlfIa",
+      "response": {
+        "object": "realtime.response",
+        "id": "resp_Ednye29zbTZYPQLEoYuUV",
+        "status": "completed",
+        "status_details": null,
+        "output": [
+          {
+            "id": "item_EdnyeRHQpel3vwqN6V91J",
+            "type": "message",
+            "status": "completed",
+            "role": "assistant",
+            "content": [
+              {
+                "type": "output_audio",
+                "transcript": "The first agenda item is to decide launch scope."
+              }
+            ],
+            "phase": "final_answer"
+          }
+        ],
+        "conversation_id": "conv_EdnySggFNnGyM0niFOTbZ",
+        "output_modalities": [
+          "audio"
+        ],
+        "max_output_tokens": 250,
+        "audio": {
+          "output": {
+            "format": {
+              "type": "audio/pcm",
+              "rate": 24000
+            },
+            "voice": "marin"
+          }
+        },
+        "usage": {
+          "total_tokens": 360,
+          "input_tokens": 235,
+          "output_tokens": 125,
+          "input_token_details": {
+            "text_tokens": 203,
+            "audio_tokens": 32,
+            "image_tokens": 0,
+            "cached_tokens": 0,
+            "cached_tokens_details": {
+              "text_tokens": 0,
+              "audio_tokens": 0,
+              "image_tokens": 0
+            }
+          },
+          "output_token_details": {
+            "text_tokens": 62,
+            "audio_tokens": 63,
+            "reasoning_tokens": 38
+          }
+        },
+        "metadata": {
+          "kind": "speech",
+          "intervention_id": "dce7d9b8-5a0d-4af5-9d5b-2f9aebf2ea74"
+        }
+      }
+    },
+    {
+      "at": 1793155616431,
+      "type": "output_audio_buffer.stopped",
+      "event_id": "event_a67968cbf7f940a1",
+      "response_id": "resp_Ednye29zbTZYPQLEoYuUV"
+    }
+  ]
+}

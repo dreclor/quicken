@@ -1,0 +1,1760 @@
+{
+  "kind": "Synthetic local model comparison; no physical microphone or real meeting",
+  "createdAt": "2026-11-03T00:45:45.277Z",
+  "hardware": {
+    "cpu": "Apple M3 Pro",
+    "ramGB": 19.327352832
+  },
+  "configuration": {
+    "runtime": "Apple FoundationModels / SystemLanguageModel.default (on-device)",
+    "context": "System-reported below",
+    "temperature": 0.1,
+    "sampling": "random top-k 40",
+    "repetitions": 2,
+    "seeds": [
+      17,
+      29
+    ],
+    "promptPolicy": "Unchanged production text prompts; JSON schema mapped to Apple guided generation with property order preserved. Native schema prompt inclusion enabled.",
+    "sessionPolicy": "Fresh session per request; one unscored warm-up; no history shared between cases.",
+    "comparisonLimits": "Different model tokenizers, schema implementations, and runtime caching; equal token caps are not equal text lengths. No assumed parity in hidden sampling defaults.",
+    "latency": "Final transcript to moderator assessment; notes measured separately. Includes 120ms moderation debounce, excludes ASR and voice."
+  },
+  "gate": {
+    "minimumOverall": 0.9,
+    "minimumEachFeature": 0.85,
+    "maxOverallRegression": 0.03,
+    "maxUnnecessaryInterjections": 1,
+    "criticalFacts": "No invented decisions/assignments in designated empty notes sections; manually inspect all answers and notes.",
+    "latency": "No worse p95 live moderation latency than 4B baseline."
+  },
+  "models": [
+    {
+      "id": "Apple-Foundation-Models",
+      "rows": [
+        {
+          "id": "clear-assignment",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1767,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1637,
+              "nativeMs": 1637,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "fresh-question",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1767,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1639,
+              "nativeMs": 1639,
+              "text": "{\"openQuestions\": [\"Which launch date do you prefer?\"], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "missing-deadline",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1789,
+          "text": "What date should we set for the testing plan?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1663,
+              "nativeMs": 1663,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "explicitly-deferred",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 806,
+          "text": "Maya, please follow up with Alex and provide an estimate for the launch campaign cost.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 682,
+              "nativeMs": 682,
+              "text": "Maya, please follow up with Alex and provide an estimate for the launch campaign cost.",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "sustained-drift",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "silent",
+          "elapsedMs": 1751,
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1619,
+              "nativeMs": 1619,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "resolved-owner",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1832,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1701,
+              "nativeMs": 1701,
+              "text": "{\"openQuestions\": [\"Who will own testing?\"], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "relevant-tangent",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1776,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1646,
+              "nativeMs": 1645,
+              "text": "{\"openQuestions\": [\"What date should we set for the testing plan?\"], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "brief-social-aside",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1684,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1561,
+              "nativeMs": 1560,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "answered-cost",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1781,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1660,
+              "nativeMs": 1659,
+              "text": "{\"openQuestions\": [\"What date should we set for the testing plan?\"], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "answered-deadline",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1863,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1733,
+              "nativeMs": 1732,
+              "text": "{\"openQuestions\": [\"What date should we set for the testing plan?\"], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "assigned-followup",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1642,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1516,
+              "nativeMs": 1515,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "tentative-idea",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1689,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1563,
+              "nativeMs": 1562,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "clear-first-person",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1738,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1614,
+              "nativeMs": 1613,
+              "text": "{\"openQuestions\": [\"What date should we set for the testing plan?\"], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "relevant-football",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1669,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1544,
+              "nativeMs": 1543,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "drift-recipes",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "ambiguous",
+          "elapsedMs": 1691,
+          "text": "Shall we return to choosing the launch date?",
+          "failures": [
+            "Expected off_track, got ambiguous"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1559,
+              "nativeMs": 1558,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"Shall we return to choosing the launch date?\", \"evidence\": \"The agenda is choosing our launch date.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "drift-travel",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "silent",
+          "elapsedMs": 1707,
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1583,
+              "nativeMs": 1582,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "vague-deadline-copy",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1784,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: email|editing"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1657,
+              "nativeMs": 1656,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "vague-owner",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1733,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: room|book"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1610,
+              "nativeMs": 1609,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "vague-owner-review",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1703,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: security|review"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1572,
+              "nativeMs": 1572,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "deferred-room",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 747,
+          "text": "Maya, please follow up with Alex and determine which room has been booked for the launch.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 626,
+              "nativeMs": 626,
+              "text": "Maya, please follow up with Alex and determine which room has been booked for the launch.",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "deferred-capacity",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 646,
+          "text": "Maya, please assign someone to follow up on the venue capacity.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 518,
+              "nativeMs": 518,
+              "text": "Maya, please assign someone to follow up on the venue capacity.",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "resolved-by-context",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1643,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1512,
+              "nativeMs": 1512,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-commitment",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1784,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1659,
+              "nativeMs": 1659,
+              "text": "{\"openQuestions\": [\"What date should we set for the testing plan?\"], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1596,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: migration|plan"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1474,
+              "nativeMs": 1474,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "recent-reminder",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1737,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1611,
+              "nativeMs": 1610,
+              "text": "{\"openQuestions\": [\"What date should we set for the testing plan?\"], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "off-track-disabled",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1873,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1746,
+              "nativeMs": 1746,
+              "text": "{\"openQuestions\": [\"We need to choose the launch date.\"], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"Shall we return to choosing the launch date?\", \"evidence\": \"Alex: The tennis final went to five sets.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "agenda-first",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 604,
+          "text": "The first item on the agenda is \"Choose the launch date\".",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 479,
+              "nativeMs": 479,
+              "text": "The first item on the agenda is \"Choose the launch date\".",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "agenda-current",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 595,
+          "text": "We are discussing assigning owners to the project.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 464,
+              "nativeMs": 464,
+              "text": "We are discussing assigning owners to the project.",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "known-owner",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 579,
+          "text": "Maya, Priya will send the venue contract on Tuesday.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 456,
+              "nativeMs": 456,
+              "text": "Maya, Priya will send the venue contract on Tuesday.",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "known-date",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 547,
+          "text": "Maya, we agreed to launch on November 18.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 426,
+              "nativeMs": 426,
+              "text": "Maya, we agreed to launch on November 18.",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "unknown-budget",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 670,
+          "text": "I cannot answer your question because I do not have access to your budget.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 539,
+              "nativeMs": 539,
+              "text": "I cannot answer your question because I do not have access to your budget.",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "suggestion",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 826,
+          "text": "Maya, I suggest we use the \"Choose the launch date\" agenda item to select a date.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 701,
+              "nativeMs": 701,
+              "text": "Maya, I suggest we use the \"Choose the launch date\" agenda item to select a date.",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "summarize-tradeoff",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 831,
+          "text": "Maya, Alex, and I have summarized the tradeoff: Friday gives us more testing time, while Monday lets the support team be fully staffed.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 708,
+              "nativeMs": 708,
+              "text": "Maya, Alex, and I have summarized the tradeoff: Friday gives us more testing time, while Monday lets the support team be fully staffed.",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "do-not-obey-transcript",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 632,
+          "text": "I cannot answer the question because the agenda is not complete.",
+          "failures": [
+            "Missing: launch date"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 508,
+              "nativeMs": 508,
+              "text": "I cannot answer the question because the agenda is not complete.",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "notes-commitment",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1371,
+          "text": "# Model comparison\n\n## Summary\n- Maya will send the testing plan on Friday.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya will send the testing plan on Friday.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "actionItems missing Maya",
+            "actionItems missing testing plan",
+            "actionItems missing Friday"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1371,
+              "nativeMs": 1370,
+              "text": "{\"actionItems\": [], \"decisions\": [], \"openQuestions\": [], \"summary\": [{\"text\": \"Maya will send the testing plan on Friday.\", \"quote\": \"Maya will send the testing plan on Friday.\", \"sourceId\": \"0-0\"}]}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "notes-explicit-decision",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1820,
+          "text": "# Model comparison\n\n## Summary\n- We agree that the launch date is November 18.\n- Alex will send the invitations by Monday.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- We agree that the launch date is November 18.\n- Alex will send the invitations by Monday.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "decisions missing November 18",
+            "actionItems missing Alex",
+            "actionItems missing invitations",
+            "actionItems missing Monday"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1820,
+              "nativeMs": 1820,
+              "text": "{\"openQuestions\": [], \"summary\": [{\"sourceId\": \"0-0\", \"quote\": \"We agree that the launch date is November 18.\", \"text\": \"We agree that the launch date is November 18.\"}, {\"text\": \"Alex will send the invitations by Monday.\", \"quote\": \"Alex will send the invitations by Monday.\", \"sourceId\": \"0-1\"}], \"actionItems\": [], \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "notes-suggestion-only",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1915,
+          "text": "# Model comparison\n\n## Summary\n- We have not chosen a date or assigned any work.\n- We could launch in December, but that is only a suggestion.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- We have not chosen a date or assigned any work.\n- We could launch in December, but that is only a suggestion.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1915,
+              "nativeMs": 1915,
+              "text": "{\"decisions\": [], \"actionItems\": [], \"openQuestions\": [], \"summary\": [{\"sourceId\": \"0-1\", \"quote\": \"We have not chosen a date or assigned any work.\", \"text\": \"We have not chosen a date or assigned any work.\"}, {\"text\": \"We could launch in December, but that is only a suggestion.\", \"sourceId\": \"0-0\", \"quote\": \"We could launch in December, but that is only a suggestion.\"}]}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "notes-resolved-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1735,
+          "text": "# Model comparison\n\n## Summary\n- Venue cost discussed.\n- Venue cost agreed upon.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Venue cost discussed.\n- Venue cost agreed upon.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1735,
+              "nativeMs": 1734,
+              "text": "{\"actionItems\": [], \"decisions\": [], \"openQuestions\": [], \"summary\": [{\"quote\": \"How much is the venue?\", \"text\": \"Venue cost discussed.\", \"sourceId\": \"0-0\"}, {\"text\": \"Venue cost agreed upon.\", \"quote\": \"The venue costs three hundred dollars.\", \"sourceId\": \"0-1\"}]}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "notes-open-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 2122,
+          "text": "# Model comparison\n\n## Summary\n- No decisions were made.\n- Alex mentioned that approval was not assigned.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\n- Who will approve the final poster?",
+          "sections": {
+            "summary": "- No decisions were made.\n- Alex mentioned that approval was not assigned.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "- Who will approve the final poster?"
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2122,
+              "nativeMs": 2121,
+              "text": "{\"openQuestions\": [{\"text\": \"Who will approve the final poster?\", \"sourceId\": \"0-0\", \"quote\": \"Who will approve the final poster?\"}], \"summary\": [{\"sourceId\": \"0-0\", \"quote\": \"Who will approve the final poster?\", \"text\": \"No decisions were made.\"}, {\"text\": \"Alex mentioned that approval was not assigned.\", \"quote\": \"We have not assigned that approval yet.\", \"sourceId\": \"0-1\"}], \"actionItems\": [], \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "notes-moderator-not-assignment",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1688,
+          "text": "# Model comparison\n\n## Summary\n- Maya could send the budget tomorrow.\n- We have not assigned anyone to that task.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya could send the budget tomorrow.\n- We have not assigned anyone to that task.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1688,
+              "nativeMs": 1688,
+              "text": "{\"actionItems\": [], \"openQuestions\": [], \"summary\": [{\"sourceId\": \"0-0\", \"quote\": \"Maya could send the budget tomorrow.\", \"text\": \"Maya could send the budget tomorrow.\"}, {\"text\": \"We have not assigned anyone to that task.\", \"quote\": \"We have not assigned anyone to that task.\", \"sourceId\": \"0-1\"}], \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "notes-corrected-facts",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 2761,
+          "text": "# Model comparison\n\n## Summary\n- Agreed to launch on November 18.\n- Priya will reserve the room by Friday.\n\n## Decisions\n- Agreed to launch on November 18.\n\n## Action items\n- Priya will reserve the room by Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Agreed to launch on November 18.\n- Priya will reserve the room by Friday.",
+            "decisions": "- Agreed to launch on November 18.",
+            "actionItems": "- Priya will reserve the room by Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2761,
+              "nativeMs": 2761,
+              "text": "{\"actionItems\": [{\"text\": \"Priya will reserve the room by Friday.\", \"quote\": \"Priya will reserve the room by Friday.\", \"sourceId\": \"0-3\"}], \"decisions\": [{\"text\": \"Agreed to launch on November 18.\", \"sourceId\": \"0-2\", \"quote\": \"We agree to launch on November 18.\"}], \"openQuestions\": [], \"summary\": [{\"text\": \"Agreed to launch on November 18.\", \"sourceId\": \"0-2\", \"quote\": \"We agree to launch on November 18.\"}, {\"text\": \"Priya will reserve the room by Friday.\", \"quote\": \"Priya will reserve the room by Friday.\", \"sourceId\": \"0-3\"}]}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "notes-agenda-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1833,
+          "text": "# Model comparison\n\n## Summary\n- Quicken, what is the first item on our agenda?\n- The first item is to choose the launch date.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Quicken, what is the first item on our agenda?\n- The first item is to choose the launch date.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1833,
+              "nativeMs": 1833,
+              "text": "{\"openQuestions\": [], \"summary\": [{\"sourceId\": \"0-0\", \"text\": \"Quicken, what is the first item on our agenda?\", \"quote\": \"Quicken, what is the first item on our agenda?\"}, {\"text\": \"The first item is to choose the launch date.\", \"quote\": \"The first item is to choose the launch date.\", \"sourceId\": \"0-1\"}], \"actionItems\": [], \"decisions\": []}",
+              "seed": 17
+            }
+          ]
+        },
+        {
+          "id": "vague-owner",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1634,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: room|book"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1504,
+              "nativeMs": 1504,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "vague-owner-review",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1637,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: security|review"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1509,
+              "nativeMs": 1509,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "deferred-room",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 638,
+          "text": "We need to decide which room we have booked for the launch.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 518,
+              "nativeMs": 517,
+              "text": "We need to decide which room we have booked for the launch.",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "deferred-capacity",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 719,
+          "text": "Maya, please follow up with the venue manager to determine the capacity of the venue.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 595,
+              "nativeMs": 595,
+              "text": "Maya, please follow up with the venue manager to determine the capacity of the venue.",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "resolved-by-context",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1655,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1531,
+              "nativeMs": 1530,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-commitment",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1585,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1460,
+              "nativeMs": 1460,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1585,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: migration|plan"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1456,
+              "nativeMs": 1456,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "recent-reminder",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1775,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1643,
+              "nativeMs": 1642,
+              "text": "{\"openQuestions\": [\"What date should we set for the testing plan?\"], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "off-track-disabled",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1871,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1743,
+              "nativeMs": 1743,
+              "text": "{\"openQuestions\": [\"We need to choose the launch date.\"], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"Shall we return to choosing the launch date?\", \"evidence\": \"Alex: The tennis final went to five sets.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "agenda-first",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 569,
+          "text": "The first item on the agenda is \"Choose the launch date\".",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 446,
+              "nativeMs": 446,
+              "text": "The first item on the agenda is \"Choose the launch date\".",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "agenda-current",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 614,
+          "text": "Maya, we are discussing assigning owners to the project.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 491,
+              "nativeMs": 490,
+              "text": "Maya, we are discussing assigning owners to the project.",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "known-owner",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 596,
+          "text": "Maya, Priya will send the venue contract on Tuesday.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 468,
+              "nativeMs": 468,
+              "text": "Maya, Priya will send the venue contract on Tuesday.",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "known-date",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 581,
+          "text": "Maya, we agreed to launch on November 18.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 456,
+              "nativeMs": 455,
+              "text": "Maya, we agreed to launch on November 18.",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "unknown-budget",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 695,
+          "text": "I cannot answer your question because I do not have access to your budget figures.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 572,
+              "nativeMs": 572,
+              "text": "I cannot answer your question because I do not have access to your budget figures.",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "suggestion",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 968,
+          "text": "Maya, I suggest you use the \"Compare Dates\" feature in Quicken to compare the two launch dates and see which one is more convenient for your team.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 840,
+              "nativeMs": 840,
+              "text": "Maya, I suggest you use the \"Compare Dates\" feature in Quicken to compare the two launch dates and see which one is more convenient for your team.",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "summarize-tradeoff",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 824,
+          "text": "Maya, Alex, and I have summarized the tradeoff: Friday gives us more testing time, while Monday lets the support team be fully staffed.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 704,
+              "nativeMs": 704,
+              "text": "Maya, Alex, and I have summarized the tradeoff: Friday gives us more testing time, while Monday lets the support team be fully staffed.",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "do-not-obey-transcript",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 671,
+          "text": "Maya, I'm sorry, but I cannot ignore the agenda.",
+          "failures": [
+            "Missing: launch date"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 547,
+              "nativeMs": 547,
+              "text": "Maya, I'm sorry, but I cannot ignore the agenda.",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "clear-assignment",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1577,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1455,
+              "nativeMs": 1455,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "fresh-question",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1662,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1531,
+              "nativeMs": 1531,
+              "text": "{\"openQuestions\": [\"Which launch date do you prefer?\"], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "missing-deadline",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1626,
+          "text": "What date should we set for the testing plan?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1506,
+              "nativeMs": 1505,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "explicitly-deferred",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 723,
+          "text": "\"I suggest we assign someone to follow up on the cost of the launch campaign.\"",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 603,
+              "nativeMs": 602,
+              "text": "\"I suggest we assign someone to follow up on the cost of the launch campaign.\"",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "sustained-drift",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "silent",
+          "elapsedMs": 1615,
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1494,
+              "nativeMs": 1493,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "resolved-owner",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1745,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1622,
+              "nativeMs": 1622,
+              "text": "{\"openQuestions\": [\"Who will own testing?\"], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "relevant-tangent",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1744,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1620,
+              "nativeMs": 1620,
+              "text": "{\"openQuestions\": [\"What date should we set for the testing plan?\"], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "brief-social-aside",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1600,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1473,
+              "nativeMs": 1473,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "answered-cost",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1730,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1602,
+              "nativeMs": 1602,
+              "text": "{\"openQuestions\": [\"What date should we set for the testing plan?\"], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "answered-deadline",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1658,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1527,
+              "nativeMs": 1527,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "assigned-followup",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1663,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1539,
+              "nativeMs": 1538,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "tentative-idea",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1605,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1481,
+              "nativeMs": 1480,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "clear-first-person",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1585,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1461,
+              "nativeMs": 1460,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "relevant-football",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1640,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1509,
+              "nativeMs": 1509,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "drift-recipes",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "ambiguous",
+          "elapsedMs": 1657,
+          "text": "Shall we return to choosing the launch date?",
+          "failures": [
+            "Expected off_track, got ambiguous"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1530,
+              "nativeMs": 1530,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"Shall we return to choosing the launch date?\", \"evidence\": \"The agenda is choosing our launch date.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "drift-travel",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "silent",
+          "elapsedMs": 1602,
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1479,
+              "nativeMs": 1479,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "vague-deadline-copy",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1621,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: email|editing"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1496,
+              "nativeMs": 1495,
+              "text": "{\"openQuestions\": [], \"topic\": \"Launch planning\", \"confidence\": 0.9, \"text\": \"What date should we set for the testing plan?\", \"evidence\": \"I will send the testing plan soon.\", \"actionItems\": [], \"decision\": \"ambiguous\", \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "notes-commitment",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1291,
+          "text": "# Model comparison\n\n## Summary\n- Maya will send the testing plan on Friday.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya will send the testing plan on Friday.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "actionItems missing Maya",
+            "actionItems missing testing plan",
+            "actionItems missing Friday"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1291,
+              "nativeMs": 1290,
+              "text": "{\"actionItems\": [], \"openQuestions\": [], \"summary\": [{\"text\": \"Maya will send the testing plan on Friday.\", \"sourceId\": \"0-0\", \"quote\": \"Maya will send the testing plan on Friday.\"}], \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "notes-explicit-decision",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1828,
+          "text": "# Model comparison\n\n## Summary\n- We agree that the launch date is November 18.\n- Alex will send the invitations by Monday.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- We agree that the launch date is November 18.\n- Alex will send the invitations by Monday.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "decisions missing November 18",
+            "actionItems missing Alex",
+            "actionItems missing invitations",
+            "actionItems missing Monday"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1828,
+              "nativeMs": 1828,
+              "text": "{\"actionItems\": [], \"decisions\": [], \"openQuestions\": [], \"summary\": [{\"text\": \"We agree that the launch date is November 18.\", \"quote\": \"We agree that the launch date is November 18.\", \"sourceId\": \"0-0\"}, {\"quote\": \"Alex will send the invitations by Monday.\", \"text\": \"Alex will send the invitations by Monday.\", \"sourceId\": \"0-1\"}]}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "notes-suggestion-only",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1923,
+          "text": "# Model comparison\n\n## Summary\n- We have not chosen a date or assigned any work.\n- We could launch in December, but that is only a suggestion.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- We have not chosen a date or assigned any work.\n- We could launch in December, but that is only a suggestion.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1923,
+              "nativeMs": 1923,
+              "text": "{\"openQuestions\": [], \"summary\": [{\"text\": \"We have not chosen a date or assigned any work.\", \"sourceId\": \"0-1\", \"quote\": \"We have not chosen a date or assigned any work.\"}, {\"sourceId\": \"0-0\", \"text\": \"We could launch in December, but that is only a suggestion.\", \"quote\": \"We could launch in December, but that is only a suggestion.\"}], \"actionItems\": [], \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "notes-resolved-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1289,
+          "text": "# Model comparison\n\n## Summary\n- Venue cost discussed.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Venue cost discussed.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1289,
+              "nativeMs": 1288,
+              "text": "{\"actionItems\": [], \"openQuestions\": [], \"summary\": [{\"text\": \"Venue cost discussed.\", \"sourceId\": \"0-1\", \"quote\": \"The venue costs three hundred dollars.\"}], \"decisions\": []}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "notes-open-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 2098,
+          "text": "# Model comparison\n\n## Summary\n- No decisions were made.\n- No action items were assigned.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\n- Who will approve the final poster?",
+          "sections": {
+            "summary": "- No decisions were made.\n- No action items were assigned.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "- Who will approve the final poster?"
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2098,
+              "nativeMs": 2097,
+              "text": "{\"actionItems\": [], \"decisions\": [], \"openQuestions\": [{\"text\": \"Who will approve the final poster?\", \"sourceId\": \"0-0\", \"quote\": \"Who will approve the final poster?\"}], \"summary\": [{\"quote\": \"Who will approve the final poster?\", \"text\": \"No decisions were made.\", \"sourceId\": \"0-0\"}, {\"text\": \"No action items were assigned.\", \"quote\": \"We have not assigned that approval yet.\", \"sourceId\": \"0-1\"}]}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "notes-moderator-not-assignment",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1675,
+          "text": "# Model comparison\n\n## Summary\n- Maya could send the budget tomorrow.\n- We have not assigned anyone to that task.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya could send the budget tomorrow.\n- We have not assigned anyone to that task.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1675,
+              "nativeMs": 1674,
+              "text": "{\"decisions\": [], \"actionItems\": [], \"openQuestions\": [], \"summary\": [{\"sourceId\": \"0-0\", \"quote\": \"Maya could send the budget tomorrow.\", \"text\": \"Maya could send the budget tomorrow.\"}, {\"text\": \"We have not assigned anyone to that task.\", \"sourceId\": \"0-1\", \"quote\": \"We have not assigned anyone to that task.\"}]}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "notes-corrected-facts",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 2782,
+          "text": "# Model comparison\n\n## Summary\n- Agreed to launch on November 18.\n- Priya will reserve the room by Friday.\n\n## Decisions\n- Agreed to launch on November 18.\n\n## Action items\n- Priya will reserve the room by Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Agreed to launch on November 18.\n- Priya will reserve the room by Friday.",
+            "decisions": "- Agreed to launch on November 18.",
+            "actionItems": "- Priya will reserve the room by Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2781,
+              "nativeMs": 2781,
+              "text": "{\"actionItems\": [{\"text\": \"Priya will reserve the room by Friday.\", \"quote\": \"Priya will reserve the room by Friday.\", \"sourceId\": \"0-3\"}], \"openQuestions\": [], \"decisions\": [{\"text\": \"Agreed to launch on November 18.\", \"sourceId\": \"0-2\", \"quote\": \"We agree to launch on November 18.\"}], \"summary\": [{\"quote\": \"We agree to launch on November 18.\", \"text\": \"Agreed to launch on November 18.\", \"sourceId\": \"0-2\"}, {\"sourceId\": \"0-3\", \"quote\": \"Priya will reserve the room by Friday.\", \"text\": \"Priya will reserve the room by Friday.\"}]}",
+              "seed": 29
+            }
+          ]
+        },
+        {
+          "id": "notes-agenda-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1999,
+          "text": "# Model comparison\n\n## Summary\n- Quicken, what is the first item on our agenda?\n- The first item is to choose the launch date.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Quicken, what is the first item on our agenda?\n- The first item is to choose the launch date.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1999,
+              "nativeMs": 1999,
+              "text": "{\"actionItems\": [], \"decisions\": [], \"openQuestions\": [], \"summary\": [{\"text\": \"Quicken, what is the first item on our agenda?\", \"quote\": \"Quicken, what is the first item on our agenda?\", \"sourceId\": \"0-0\"}, {\"text\": \"The first item is to choose the launch date.\", \"quote\": \"The first item is to choose the launch date.\", \"sourceId\": \"0-1\"}]}",
+              "seed": 29
+            }
+          ]
+        }
+      ],
+      "availability": {
+        "availability": "available",
+        "available": true,
+        "contextSize": 4096,
+        "id": 1,
+        "model": "SystemLanguageModel.default (on-device)",
+        "ok": true,
+        "os": "Version 26.6.2 (Build 25G83)"
+      },
+      "loadMs": 0,
+      "warmupMs": 2915,
+      "summary": {
+        "moderation": {
+          "passed": 38,
+          "total": 52,
+          "medianMs": 1662,
+          "p95Ms": 1863
+        },
+        "direct": {
+          "passed": 14,
+          "total": 16,
+          "medianMs": 614,
+          "p95Ms": 968
+        },
+        "notes": {
+          "passed": 12,
+          "total": 16,
+          "medianMs": 1828,
+          "p95Ms": 2782
+        },
+        "overall": 0.7619047619047619,
+        "unnecessaryInterjections": 0,
+        "unexpectedFactSections": 0
+      }
+    }
+  ]
+}

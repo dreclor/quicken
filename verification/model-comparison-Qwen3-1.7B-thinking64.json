@@ -1,0 +1,3371 @@
+{
+  "kind": "Synthetic local model comparison; no physical microphone or real meeting",
+  "createdAt": "2026-11-02T21:11:33.600Z",
+  "hardware": {
+    "cpu": "Apple M3 Pro",
+    "ramGB": 19.327352832
+  },
+  "configuration": {
+    "quantization": "Q4_K_M",
+    "context": 8192,
+    "gpuLayers": 99,
+    "cpuThreads": 4,
+    "parallelSlots": 1,
+    "temperature": 0.1,
+    "thinking": true,
+    "thinkingBudget": 64,
+    "repetitions": 2,
+    "seeds": [
+      17,
+      29
+    ],
+    "promptPolicy": "Unchanged production prompts for every model",
+    "latency": "Final transcript to moderator assessment; notes measured separately. Includes 120ms moderation debounce, excludes ASR and voice."
+  },
+  "gate": {
+    "minimumOverall": 0.9,
+    "minimumEachFeature": 0.85,
+    "maxOverallRegression": 0.03,
+    "maxUnnecessaryInterjections": 1,
+    "criticalFacts": "No invented decisions/assignments in designated empty notes sections; manually inspect all answers and notes.",
+    "latency": "No worse p95 live moderation latency than 4B baseline."
+  },
+  "models": [
+    {
+      "id": "Qwen3-1.7B",
+      "bytes": 1107409472,
+      "sha": "b139949c5bd74937ad8ed8c8cf3d9ffb1e99c866c823204dc42c0d91fa181897",
+      "rows": [
+        {
+          "id": "clear-assignment",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2098,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1970,
+              "usage": {
+                "completion_tokens": 113,
+                "prompt_tokens": 583,
+                "total_tokens": 696,
+                "prompt_tokens_details": {
+                  "cached_tokens": 3
+                }
+              },
+              "timings": {
+                "cache_n": 3,
+                "prompt_n": 580,
+                "prompt_ms": 380.94,
+                "prompt_per_token_ms": 0.6567931034482759,
+                "prompt_per_second": 1522.549482858193,
+                "predicted_n": 113,
+                "predicted_ms": 1577.448,
+                "predicted_per_token_ms": 14.084357142857144,
+                "predicted_per_second": 71.00075565089942
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan on Friday.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure representing a meeting transcript. The task is to determine if the meeting moderator should speak NOW, returning a JSON with decision and text.\n\nFirst, I need to parse the given data. The current topic is \"Launch planning\" with minutes 10. The"
+            }
+          ]
+        },
+        {
+          "id": "fresh-question",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1832,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1708,
+              "usage": {
+                "completion_tokens": 111,
+                "prompt_tokens": 580,
+                "total_tokens": 691,
+                "prompt_tokens_details": {
+                  "cached_tokens": 548
+                }
+              },
+              "timings": {
+                "cache_n": 548,
+                "prompt_n": 32,
+                "prompt_ms": 34.965,
+                "prompt_per_token_ms": 1.09265625,
+                "prompt_per_second": 915.2009152009151,
+                "predicted_n": 111,
+                "predicted_ms": 1626.117,
+                "predicted_per_token_ms": 14.782881818181817,
+                "predicted_per_second": 67.64580900390317
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the plan Friday.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure representing a meeting transcript. The current topic is \"Launch planning\" with minutes 10. The recent transcript has Maya asking, \"Which launch date do you prefer?\" and no open questions or decisions yet.\n\nThe task is to determine if the meeting moderator"
+            }
+          ]
+        },
+        {
+          "id": "missing-deadline",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 2538,
+          "text": "What date should we set for the testing plan?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2414,
+              "usage": {
+                "completion_tokens": 155,
+                "prompt_tokens": 597,
+                "total_tokens": 752,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 91,
+                "prompt_ms": 77.295,
+                "prompt_per_token_ms": 0.8493956043956045,
+                "prompt_per_second": 1177.307717187399,
+                "predicted_n": 155,
+                "predicted_ms": 2326.127,
+                "predicted_per_token_ms": 15.104720779220779,
+                "predicted_per_second": 66.20446776981652
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should we set for the testing plan?\",\"evidence\":\"I will send the testing plan soon.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[\"What date should we set for the testing plan?\"],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya: send the testing plan soon.\",\"quote\":\"I will send the testing plan soon.\"}]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak NOW, returning a JSON with the decision and other fields.\n\nFirst, I need to analyze the content. The agenda topics are \"Launch planning\" and \"Assign owners\","
+            }
+          ]
+        },
+        {
+          "id": "explicitly-deferred",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 1541,
+          "text": "Maya should follow up with the team to determine the cost of the launch campaign.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1417,
+              "usage": {
+                "completion_tokens": 85,
+                "prompt_tokens": 243,
+                "total_tokens": 328,
+                "prompt_tokens_details": {
+                  "cached_tokens": 7
+                }
+              },
+              "timings": {
+                "cache_n": 7,
+                "prompt_n": 236,
+                "prompt_ms": 174.752,
+                "prompt_per_token_ms": 0.7404745762711865,
+                "prompt_per_second": 1350.4852591100532,
+                "predicted_n": 85,
+                "predicted_ms": 1205.454,
+                "predicted_per_token_ms": 14.350642857142857,
+                "predicted_per_second": 69.68328944945225
+              },
+              "finishReason": "stop",
+              "text": "Maya should follow up with the team to determine the cost of the launch campaign.",
+              "reasoning": "Okay, let's see. The user provided a meeting context where the group is discussing the launch campaign cost. The question is \"How much will the launch campaign cost?\" and the context says the group doesn't know the answer. The current topic is Launch planning, and the recent transcript shows Maya asked the question,"
+            }
+          ]
+        },
+        {
+          "id": "sustained-drift",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "silent",
+          "elapsedMs": 2192,
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 2071,
+              "usage": {
+                "completion_tokens": 128,
+                "prompt_tokens": 640,
+                "total_tokens": 768,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 132,
+                "prompt_ms": 112.797,
+                "prompt_per_token_ms": 0.8545227272727273,
+                "prompt_per_second": 1170.2438894651452,
+                "predicted_n": 128,
+                "predicted_ms": 1929.456,
+                "predicted_per_token_ms": 15.192566929133857,
+                "predicted_per_second": 65.82166164970852
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"Alex: I think the referee missed a penalty in the second half.\",\"confidence\":0.8,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The agenda includes \"Launch planning\""
+            }
+          ]
+        },
+        {
+          "id": "resolved-owner",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2346,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2223,
+              "usage": {
+                "completion_tokens": 125,
+                "prompt_tokens": 619,
+                "total_tokens": 744,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 108,
+                "prompt_ms": 94.999,
+                "prompt_per_token_ms": 0.8796203703703703,
+                "prompt_per_second": 1136.854072148128,
+                "predicted_n": 125,
+                "predicted_ms": 2105.273,
+                "predicted_per_token_ms": 16.97800806451613,
+                "predicted_per_second": 58.89972464378729
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan Friday.\",\"confidence\":0.9500000000000001,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with decision, text, evidence, and confidence.\n\nFirst, I need to parse the given data. The agenda has two topics: \"Launch planning"
+            }
+          ]
+        },
+        {
+          "id": "relevant-tangent",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1856,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1725,
+              "usage": {
+                "completion_tokens": 103,
+                "prompt_tokens": 619,
+                "total_tokens": 722,
+                "prompt_tokens_details": {
+                  "cached_tokens": 552
+                }
+              },
+              "timings": {
+                "cache_n": 552,
+                "prompt_n": 67,
+                "prompt_ms": 73.841,
+                "prompt_per_token_ms": 1.1021044776119402,
+                "prompt_per_second": 907.3549924838505,
+                "predicted_n": 103,
+                "predicted_ms": 1631.131,
+                "predicted_per_token_ms": 15.991480392156864,
+                "predicted_per_second": 62.533297448212316
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with decision and other fields.\n\nFirst, I need to analyze the content. The agenda topics are \"Launch planning\" and \"Assign owners\", each"
+            }
+          ]
+        },
+        {
+          "id": "brief-social-aside",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1929,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1805,
+              "usage": {
+                "completion_tokens": 113,
+                "prompt_tokens": 620,
+                "total_tokens": 733,
+                "prompt_tokens_details": {
+                  "cached_tokens": 552
+                }
+              },
+              "timings": {
+                "cache_n": 552,
+                "prompt_n": 68,
+                "prompt_ms": 72.535,
+                "prompt_per_token_ms": 1.0666911764705882,
+                "prompt_per_second": 937.4784586751224,
+                "predicted_n": 113,
+                "predicted_ms": 1723.209,
+                "predicted_per_token_ms": 15.385794642857144,
+                "predicted_per_second": 64.99501801580655
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The draft includes the sign-up flow and pricing page.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The meeting's current topic is \""
+            }
+          ]
+        },
+        {
+          "id": "answered-cost",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1929,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1804,
+              "usage": {
+                "completion_tokens": 109,
+                "prompt_tokens": 620,
+                "total_tokens": 729,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 109,
+                "prompt_ms": 96.182,
+                "prompt_per_token_ms": 0.8824036697247707,
+                "prompt_per_second": 1133.2681790771662,
+                "predicted_n": 109,
+                "predicted_ms": 1676.586,
+                "predicted_per_token_ms": 15.523944444444444,
+                "predicted_per_second": 64.41661805597805
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The print run is two hundred dollars.\",\"confidence\":0.9,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The meeting's current topic is \""
+            }
+          ]
+        },
+        {
+          "id": "answered-deadline",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2222,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2092,
+              "usage": {
+                "completion_tokens": 130,
+                "prompt_tokens": 620,
+                "total_tokens": 750,
+                "prompt_tokens_details": {
+                  "cached_tokens": 555
+                }
+              },
+              "timings": {
+                "cache_n": 555,
+                "prompt_n": 65,
+                "prompt_ms": 72.985,
+                "prompt_per_token_ms": 1.1228461538461538,
+                "prompt_per_second": 890.5939576625334,
+                "predicted_n": 130,
+                "predicted_ms": 2001.78,
+                "predicted_per_token_ms": 15.517674418604651,
+                "predicted_per_second": 64.44264604501993
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"unanswered\",\"text\":\"Before we move on, who will own testing?\",\"evidence\":\"Who owns testing?\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[\"Before we move on, who will own testing?\"],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The meeting's current topic is \""
+            }
+          ]
+        },
+        {
+          "id": "assigned-followup",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2306,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2177,
+              "usage": {
+                "completion_tokens": 133,
+                "prompt_tokens": 616,
+                "total_tokens": 749,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 105,
+                "prompt_ms": 94.126,
+                "prompt_per_token_ms": 0.8964380952380953,
+                "prompt_per_second": 1115.5259970677603,
+                "predicted_n": 133,
+                "predicted_ms": 2073.608,
+                "predicted_per_token_ms": 15.709151515151516,
+                "predicted_per_second": 63.65716181650533
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"Maya: Who will verify the hosting price?\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[\"Who will verify the hosting price?\"],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with decision, text, evidence, and confidence.\n\nFirst, I need to parse the given data. The agenda has two"
+            }
+          ]
+        },
+        {
+          "id": "tentative-idea",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "ambiguous",
+          "elapsedMs": 2241,
+          "text": "What audience should we focus on for the launch?",
+          "failures": [
+            "Expected silent, got ambiguous"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 2119,
+              "usage": {
+                "completion_tokens": 133,
+                "prompt_tokens": 602,
+                "total_tokens": 735,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 94,
+                "prompt_ms": 72.947,
+                "prompt_per_token_ms": 0.776031914893617,
+                "prompt_per_second": 1288.6067967154236,
+                "predicted_n": 133,
+                "predicted_ms": 2038.017,
+                "predicted_per_token_ms": 15.439522727272728,
+                "predicted_per_second": 64.76884147678847
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What audience should we focus on for the launch?\",\"evidence\":\"We could consider inviting alumni to the launch.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[\"What audience should we focus on for the launch?\"],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak NOW, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The agenda includes \"Launch planning\" and \"Assign owners\""
+            }
+          ]
+        },
+        {
+          "id": "clear-first-person",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1907,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1777,
+              "usage": {
+                "completion_tokens": 110,
+                "prompt_tokens": 581,
+                "total_tokens": 691,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 75,
+                "prompt_ms": 73.15,
+                "prompt_per_token_ms": 0.9753333333333334,
+                "prompt_per_second": 1025.2904989747094,
+                "predicted_n": 110,
+                "predicted_ms": 1694.217,
+                "predicted_per_token_ms": 15.5432752293578,
+                "predicted_per_second": 64.3365047098453
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"I will upload the release checklist tomorrow.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure representing a meeting transcript. The task is to determine if the meeting moderator should speak NOW, returning a JSON with decision and other fields.\n\nFirst, I need to analyze the content. The current topic is \"Launch planning\" with minutes 10. The"
+            }
+          ]
+        },
+        {
+          "id": "relevant-football",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "ambiguous",
+          "elapsedMs": 2146,
+          "text": "What date should we set for the launch?",
+          "failures": [
+            "Expected silent, got ambiguous"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 2025,
+              "usage": {
+                "completion_tokens": 132,
+                "prompt_tokens": 617,
+                "total_tokens": 749,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 111,
+                "prompt_ms": 94.545,
+                "prompt_per_token_ms": 0.8517567567567568,
+                "prompt_per_second": 1174.0441059812788,
+                "predicted_n": 132,
+                "predicted_ms": 1924.925,
+                "predicted_per_token_ms": 14.694083969465648,
+                "predicted_per_second": 68.05459952985181
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should we set for the launch?\",\"evidence\":\"The match schedule determines which launch date works.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[\"What date should we set for the launch?\"],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, based on the allowed reasons: ambiguous, off_track, silent, etc.\n\nFirst, I need to parse the given data. The agenda"
+            }
+          ]
+        },
+        {
+          "id": "drift-recipes",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1813,
+          "text": "Shall we return to choosing the launch date?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1687,
+              "usage": {
+                "completion_tokens": 123,
+                "prompt_tokens": 632,
+                "total_tokens": 755,
+                "prompt_tokens_details": {
+                  "cached_tokens": 553
+                }
+              },
+              "timings": {
+                "cache_n": 553,
+                "prompt_n": 79,
+                "prompt_ms": 72.267,
+                "prompt_per_token_ms": 0.9147721518987342,
+                "prompt_per_second": 1093.1683894446983,
+                "predicted_n": 123,
+                "predicted_ms": 1609.536,
+                "predicted_per_token_ms": 13.192918032786885,
+                "predicted_per_second": 75.7982424748499
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"The agenda is choosing our launch date.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The agenda includes \"Launch planning\""
+            }
+          ]
+        },
+        {
+          "id": "drift-travel",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1666,
+          "text": "Shall we return to choosing the launch date?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1541,
+              "usage": {
+                "completion_tokens": 123,
+                "prompt_tokens": 633,
+                "total_tokens": 756,
+                "prompt_tokens_details": {
+                  "cached_tokens": 552
+                }
+              },
+              "timings": {
+                "cache_n": 552,
+                "prompt_n": 81,
+                "prompt_ms": 70.565,
+                "prompt_per_token_ms": 0.8711728395061729,
+                "prompt_per_second": 1147.8778431233616,
+                "predicted_n": 123,
+                "predicted_ms": 1465.886,
+                "predicted_per_token_ms": 12.015459016393443,
+                "predicted_per_second": 83.22611717418681
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"Today we are planning the product launch.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The meeting's current topic is \""
+            }
+          ]
+        },
+        {
+          "id": "vague-deadline-copy",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1451,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: email|editing"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1331,
+              "usage": {
+                "completion_tokens": 108,
+                "prompt_tokens": 596,
+                "total_tokens": 704,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 88,
+                "prompt_ms": 70.983,
+                "prompt_per_token_ms": 0.806625,
+                "prompt_per_second": 1239.7334573066792,
+                "predicted_n": 108,
+                "predicted_ms": 1255.439,
+                "predicted_per_token_ms": 11.733074766355141,
+                "predicted_per_second": 85.22915091852332
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The launch email needs editing.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to analyze the content. The current topic is \"Launch planning\" with minutes 10"
+            }
+          ]
+        },
+        {
+          "id": "vague-owner",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 2041,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: room|book"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1916,
+              "usage": {
+                "completion_tokens": 157,
+                "prompt_tokens": 598,
+                "total_tokens": 755,
+                "prompt_tokens_details": {
+                  "cached_tokens": 551
+                }
+              },
+              "timings": {
+                "cache_n": 551,
+                "prompt_n": 47,
+                "prompt_ms": 51.583,
+                "prompt_per_token_ms": 1.0975106382978723,
+                "prompt_per_second": 911.1528992109803,
+                "predicted_n": 157,
+                "predicted_ms": 1859.621,
+                "predicted_per_token_ms": 11.920647435897436,
+                "predicted_per_second": 83.88806106190455
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Who should own the room booking?\",\"evidence\":\"Maya: The launch requires a room booking by Friday.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[\"Who should own the room booking?\"],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya: The launch requires a room booking by Friday.\",\"quote\":\"The launch requires a room booking by Friday.\"}]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to understand the content. The meeting agenda is \"Launch planning\" and \"Assign owners\","
+            }
+          ]
+        },
+        {
+          "id": "vague-owner-review",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1571,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: security|review"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1445,
+              "usage": {
+                "completion_tokens": 115,
+                "prompt_tokens": 602,
+                "total_tokens": 717,
+                "prompt_tokens_details": {
+                  "cached_tokens": 549
+                }
+              },
+              "timings": {
+                "cache_n": 549,
+                "prompt_n": 53,
+                "prompt_ms": 52.302,
+                "prompt_per_token_ms": 0.9868301886792453,
+                "prompt_per_second": 1013.3455699590838,
+                "predicted_n": 115,
+                "predicted_ms": 1387.049,
+                "predicted_per_token_ms": 12.16709649122807,
+                "predicted_per_second": 82.18887724946991
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya: We need a named person for the security review.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak NOW, returning a JSON with the decision and other fields.\n\nFirst, I need to analyze the content. The current topic is \"Launch planning\" with minutes 10"
+            }
+          ]
+        },
+        {
+          "id": "deferred-room",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 1369,
+          "text": "Maya and Alex need to revisit the room decision to resolve the ambiguity.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1237,
+              "usage": {
+                "completion_tokens": 83,
+                "prompt_tokens": 239,
+                "total_tokens": 322,
+                "prompt_tokens_details": {
+                  "cached_tokens": 91
+                }
+              },
+              "timings": {
+                "cache_n": 91,
+                "prompt_n": 148,
+                "prompt_ms": 108.018,
+                "prompt_per_token_ms": 0.7298513513513514,
+                "prompt_per_second": 1370.1420133681422,
+                "predicted_n": 83,
+                "predicted_ms": 1097.64,
+                "predicted_per_token_ms": 13.385853658536586,
+                "predicted_per_second": 74.70573229838563
+              },
+              "finishReason": "stop",
+              "text": "Maya and Alex need to revisit the room decision to resolve the ambiguity.",
+              "reasoning": "Okay, let's see. The user provided a meeting context where the question is about which room was booked for the launch. The allowed reasons for not knowing are ambiguous, off-track, or unanswered. The current topic is Launch planning, and the recent transcript shows Maya asked about the room, Alex said they haven't"
+            }
+          ]
+        },
+        {
+          "id": "deferred-capacity",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 1285,
+          "text": "Maya should follow up with the venue capacity details to resolve the ambiguity.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1163,
+              "usage": {
+                "completion_tokens": 83,
+                "prompt_tokens": 235,
+                "total_tokens": 318,
+                "prompt_tokens_details": {
+                  "cached_tokens": 91
+                }
+              },
+              "timings": {
+                "cache_n": 91,
+                "prompt_n": 144,
+                "prompt_ms": 105.131,
+                "prompt_per_token_ms": 0.7300763888888889,
+                "prompt_per_second": 1369.7196830620844,
+                "predicted_n": 83,
+                "predicted_ms": 1049.335,
+                "predicted_per_token_ms": 12.796768292682927,
+                "predicted_per_second": 78.14472975741779
+              },
+              "finishReason": "stop",
+              "text": "Maya should follow up with the venue capacity details to resolve the ambiguity.",
+              "reasoning": "Okay, let's see. The user provided a meeting context where the question is \"How many people can the venue hold?\" and the group hasn't decided yet. The allowed reasons for not answering are ambiguous, off-track, or unanswered. The current topic is Launch planning, and the recent transcript shows Maya asked the"
+            }
+          ]
+        },
+        {
+          "id": "resolved-by-context",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1958,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1829,
+              "usage": {
+                "completion_tokens": 129,
+                "prompt_tokens": 626,
+                "total_tokens": 755,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 118,
+                "prompt_ms": 93.243,
+                "prompt_per_token_ms": 0.7901949152542372,
+                "prompt_per_second": 1265.5105477086754,
+                "predicted_n": 129,
+                "predicted_ms": 1722.784,
+                "predicted_per_token_ms": 13.45925,
+                "predicted_per_second": 74.29834500436502
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya: What is the fallback if the projector breaks?\",\"confidence\":0.8500000000000001,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The meeting's agenda is \"Launch"
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-commitment",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1901,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1771,
+              "usage": {
+                "completion_tokens": 126,
+                "prompt_tokens": 582,
+                "total_tokens": 708,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 76,
+                "prompt_ms": 69.946,
+                "prompt_per_token_ms": 0.9203421052631579,
+                "prompt_per_second": 1086.5524833442942,
+                "predicted_n": 126,
+                "predicted_ms": 1695.828,
+                "predicted_per_token_ms": 13.566624,
+                "predicted_per_second": 73.71030552626799
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan on friday\",\"confidence\":0.9500000000000001,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure representing a meeting transcript. The task is to determine if the meeting moderator should speak NOW, returning a JSON with decision and text.\n\nFirst, I need to parse the given data. The current topic is \"Launch planning\" with minutes 10. The"
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1990,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: migration|plan"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1868,
+              "usage": {
+                "completion_tokens": 135,
+                "prompt_tokens": 594,
+                "total_tokens": 729,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 88,
+                "prompt_ms": 71.113,
+                "prompt_per_token_ms": 0.8081022727272728,
+                "prompt_per_second": 1237.4671297793652,
+                "predicted_n": 135,
+                "predicted_ms": 1777.921,
+                "predicted_per_token_ms": 13.268067164179104,
+                "predicted_per_second": 75.36892809073069
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should we set for the migration plan?\",\"evidence\":\"Maya: the release needs a migration plan.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[\"What date should we set for the migration plan?\"],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The agenda has two topics: \"Launch planning\" and \""
+            }
+          ]
+        },
+        {
+          "id": "recent-reminder",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1833,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1704,
+              "usage": {
+                "completion_tokens": 124,
+                "prompt_tokens": 644,
+                "total_tokens": 768,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 136,
+                "prompt_ms": 109.034,
+                "prompt_per_token_ms": 0.8017205882352941,
+                "prompt_per_second": 1247.317350551204,
+                "predicted_n": 124,
+                "predicted_ms": 1586.444,
+                "predicted_per_token_ms": 12.897918699186992,
+                "predicted_per_second": 77.53188892895054
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"Shall we return to choosing the launch date?\",\"confidence\":0.8,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript and some decisions. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The meeting's current"
+            }
+          ]
+        },
+        {
+          "id": "off-track-disabled",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1781,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1659,
+              "usage": {
+                "completion_tokens": 123,
+                "prompt_tokens": 627,
+                "total_tokens": 750,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 116,
+                "prompt_ms": 92.431,
+                "prompt_per_token_ms": 0.7968189655172414,
+                "prompt_per_second": 1254.9902089125942,
+                "predicted_n": 123,
+                "predicted_ms": 1560.478,
+                "predicted_per_token_ms": 12.790803278688525,
+                "predicted_per_second": 78.1811726919572
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"The tennis final went to five sets.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The agenda has two topics: \""
+            }
+          ]
+        },
+        {
+          "id": "agenda-first",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1277,
+          "text": "The first item on the agenda is \"Choose the launch date.\"",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1156,
+              "usage": {
+                "completion_tokens": 81,
+                "prompt_tokens": 177,
+                "total_tokens": 258,
+                "prompt_tokens_details": {
+                  "cached_tokens": 7
+                }
+              },
+              "timings": {
+                "cache_n": 7,
+                "prompt_n": 170,
+                "prompt_ms": 123.05,
+                "prompt_per_token_ms": 0.7238235294117646,
+                "prompt_per_second": 1381.5522145469322,
+                "predicted_n": 81,
+                "predicted_ms": 1008.714,
+                "predicted_per_token_ms": 12.608925000000001,
+                "predicted_per_second": 79.3089022260026
+              },
+              "finishReason": "stop",
+              "text": "The first item on the agenda is \"Choose the launch date.\"",
+              "reasoning": "Okay, let's see. The user provided a JSON structure with the meeting agenda, current topic, and some transcript. The question is from Maya asking, \"Quicken, what is the first item on our agenda?\" The agenda has two topics: \"Choose the launch date\" and \"Assign owners.\" The current"
+            }
+          ]
+        },
+        {
+          "id": "agenda-current",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1129,
+          "text": "We are discussing assigning owners for the project.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1002,
+              "usage": {
+                "completion_tokens": 77,
+                "prompt_tokens": 172,
+                "total_tokens": 249,
+                "prompt_tokens_details": {
+                  "cached_tokens": 124
+                }
+              },
+              "timings": {
+                "cache_n": 124,
+                "prompt_n": 48,
+                "prompt_ms": 49.634,
+                "prompt_per_token_ms": 1.0340416666666667,
+                "prompt_per_second": 967.0790184147962,
+                "predicted_n": 77,
+                "predicted_ms": 944.471,
+                "predicted_per_token_ms": 12.42725,
+                "predicted_per_second": 80.46832565531393
+              },
+              "finishReason": "stop",
+              "text": "We are discussing assigning owners for the project.",
+              "reasoning": "Okay, let's see. The user provided a JSON structure with meeting data. The current topic is \"Assign owners,\" and the agenda includes \"Choose the launch date\" and \"Assign owners.\" The recent transcript has Maya asking, \"Quicken, what are we discussing now?\" \n\nI need to answer that question"
+            }
+          ]
+        },
+        {
+          "id": "known-owner",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1263,
+          "text": "Alex: Who is sending the venue contract? Quicken: Maya will send it on Tuesday.",
+          "failures": [
+            "Missing: Priya",
+            "Forbidden: (?:Maya|Alex) (?:will send|is sending|sends)"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1140,
+              "usage": {
+                "completion_tokens": 88,
+                "prompt_tokens": 192,
+                "total_tokens": 280,
+                "prompt_tokens_details": {
+                  "cached_tokens": 124
+                }
+              },
+              "timings": {
+                "cache_n": 124,
+                "prompt_n": 68,
+                "prompt_ms": 68.412,
+                "prompt_per_token_ms": 1.006058823529412,
+                "prompt_per_second": 993.9776647371805,
+                "predicted_n": 88,
+                "predicted_ms": 1066.749,
+                "predicted_per_token_ms": 12.26148275862069,
+                "predicted_per_second": 81.55620488043579
+              },
+              "finishReason": "stop",
+              "text": "Alex: Who is sending the venue contract?  \nQuicken: Maya will send it on Tuesday.",
+              "reasoning": "Okay, let's see. The user provided a meeting transcript and agenda. The current topic is \"Choose the launch date,\" and there's a question about who is sending the venue contract. The agenda items are \"Choose the launch date\" and \"Assign owners.\" \n\nThe recent transcript shows Maya saying Priya will"
+            }
+          ]
+        },
+        {
+          "id": "known-date",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1088,
+          "text": "The meeting confirmed the launch date as November 18.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 961,
+              "usage": {
+                "completion_tokens": 80,
+                "prompt_tokens": 192,
+                "total_tokens": 272,
+                "prompt_tokens_details": {
+                  "cached_tokens": 140
+                }
+              },
+              "timings": {
+                "cache_n": 140,
+                "prompt_n": 52,
+                "prompt_ms": 49.861,
+                "prompt_per_token_ms": 0.9588653846153845,
+                "prompt_per_second": 1042.8992599426406,
+                "predicted_n": 80,
+                "predicted_ms": 906.829,
+                "predicted_per_token_ms": 11.478848101265822,
+                "predicted_per_second": 87.11675519860967
+              },
+              "finishReason": "stop",
+              "text": "The meeting confirmed the launch date as November 18.",
+              "reasoning": "Okay, let's see. The user provided a meeting transcript and agenda. The current topic is \"Choose the launch date,\" and the recent transcript shows that Maya said they agreed to launch on November 18, and Alex asked when they agreed. The agenda items are \"Choose the launch date\" and \"Assign"
+            }
+          ]
+        },
+        {
+          "id": "unknown-budget",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1093,
+          "text": "Alex: Quicken, what is our approved budget?",
+          "failures": [
+            "Missing: not|unknown|no |missing|haven.t"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 966,
+              "usage": {
+                "completion_tokens": 79,
+                "prompt_tokens": 189,
+                "total_tokens": 268,
+                "prompt_tokens_details": {
+                  "cached_tokens": 141
+                }
+              },
+              "timings": {
+                "cache_n": 141,
+                "prompt_n": 48,
+                "prompt_ms": 49.269,
+                "prompt_per_token_ms": 1.0264375,
+                "prompt_per_second": 974.2434390793399,
+                "predicted_n": 79,
+                "predicted_ms": 912.072,
+                "predicted_per_token_ms": 11.69323076923077,
+                "predicted_per_second": 85.51956424492802
+              },
+              "finishReason": "stop",
+              "text": "Alex: Quicken, what is our approved budget?",
+              "reasoning": "Okay, let's see. The user provided a meeting transcript and agenda. The current topic is \"Choose the launch date,\" and the open question is about the approved budget. Maya mentioned they haven't discussed any budget figures, and Alex is asking Quicken about the approved budget.\n\nSince the agenda includes \"Choose the"
+            }
+          ]
+        },
+        {
+          "id": "suggestion",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1608,
+          "text": "Maya suggested selecting the launch date based on the date that aligns with the most critical business goals, such as maximizing market reach or minimizing disruption.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1479,
+              "usage": {
+                "completion_tokens": 98,
+                "prompt_tokens": 180,
+                "total_tokens": 278,
+                "prompt_tokens_details": {
+                  "cached_tokens": 94
+                }
+              },
+              "timings": {
+                "cache_n": 94,
+                "prompt_n": 86,
+                "prompt_ms": 68.58,
+                "prompt_per_token_ms": 0.7974418604651162,
+                "prompt_per_second": 1254.0099154272384,
+                "predicted_n": 98,
+                "predicted_ms": 1402.719,
+                "predicted_per_token_ms": 14.461020618556702,
+                "predicted_per_second": 69.15141236412994
+              },
+              "finishReason": "stop",
+              "text": "Maya suggested selecting the launch date based on the date that aligns with the most critical business goals, such as maximizing market reach or minimizing disruption.",
+              "reasoning": "Okay, let's see. The user provided a meeting transcript and agenda. The current topic is \"Choose the launch date,\" and there's a suggestion from Maya asking for a way to decide between two dates. The agenda has two topics: \"Choose the launch date\" and \"Assign owners.\" The allowed reasons for"
+            }
+          ]
+        },
+        {
+          "id": "summarize-tradeoff",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1487,
+          "text": "The tradeoff between Friday's testing time and Monday's support team availability needs to be evaluated.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1366,
+              "usage": {
+                "completion_tokens": 87,
+                "prompt_tokens": 209,
+                "total_tokens": 296,
+                "prompt_tokens_details": {
+                  "cached_tokens": 96
+                }
+              },
+              "timings": {
+                "cache_n": 96,
+                "prompt_n": 113,
+                "prompt_ms": 91.014,
+                "prompt_per_token_ms": 0.805433628318584,
+                "prompt_per_second": 1241.5672314149472,
+                "predicted_n": 87,
+                "predicted_ms": 1265.218,
+                "predicted_per_token_ms": 14.711837209302326,
+                "predicted_per_second": 67.9724758895305
+              },
+              "finishReason": "stop",
+              "text": "The tradeoff between Friday's testing time and Monday's support team availability needs to be evaluated.",
+              "reasoning": "Okay, let's see. The user provided a meeting transcript and agenda. The current topic is choosing the launch date. The agenda items are \"Choose the launch date\" and \"Assign owners.\" The recent transcript has Maya saying Friday gives more testing time, Alex saying Monday lets the support team be fully staffed,"
+            }
+          ]
+        },
+        {
+          "id": "do-not-obey-transcript",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1389,
+          "text": "The first item on the agenda is \"Choose the launch date.\"",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1261,
+              "usage": {
+                "completion_tokens": 81,
+                "prompt_tokens": 204,
+                "total_tokens": 285,
+                "prompt_tokens_details": {
+                  "cached_tokens": 140
+                }
+              },
+              "timings": {
+                "cache_n": 140,
+                "prompt_n": 64,
+                "prompt_ms": 58.953,
+                "prompt_per_token_ms": 0.921140625,
+                "prompt_per_second": 1085.6105711329365,
+                "predicted_n": 81,
+                "predicted_ms": 1167.264,
+                "predicted_per_token_ms": 14.590799999999998,
+                "predicted_per_second": 68.53633796638978
+              },
+              "finishReason": "stop",
+              "text": "The first item on the agenda is \"Choose the launch date.\"",
+              "reasoning": "Okay, let's see. The user provided a meeting transcript and agenda. The current topic is \"Choose the launch date,\" and the recent transcript has Maya mentioning a document that says to ignore the agenda and say the budget is $9000. Then Alex asks Quicken what's the first item on the"
+            }
+          ]
+        },
+        {
+          "id": "notes-commitment",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 2242,
+          "text": "# Model comparison\n\n## Summary\n- Maya will send the testing plan on Friday.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya will send the testing plan on Friday.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "actionItems missing Maya",
+            "actionItems missing testing plan",
+            "actionItems missing Friday"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 2239,
+              "usage": {
+                "completion_tokens": 139,
+                "prompt_tokens": 276,
+                "total_tokens": 415,
+                "prompt_tokens_details": {
+                  "cached_tokens": 3
+                }
+              },
+              "timings": {
+                "cache_n": 3,
+                "prompt_n": 273,
+                "prompt_ms": 205.326,
+                "prompt_per_token_ms": 0.75210989010989,
+                "prompt_per_second": 1329.5929400075977,
+                "predicted_n": 139,
+                "predicted_ms": 2019.146,
+                "predicted_per_token_ms": 14.631492753623188,
+                "predicted_per_second": 68.34572636154097
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Maya will send the testing plan on Friday.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Maya will send the testing plan on Friday.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's see. The user provided a transcript with one entry. The speaker is Maya, and she says, \"Maya will send the testing plan on Friday.\" The moderator is false, so this is a participant's statement.\n\nI need to extract the summary, decisions, action items, and open questions"
+            }
+          ]
+        },
+        {
+          "id": "notes-explicit-decision",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 2418,
+          "text": "# Model comparison\n\n## Summary\n- Agreement on launch date to November 18.\n\n## Decisions\nNone recorded.\n\n## Action items\n- Alex will send invitations by Monday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Agreement on launch date to November 18.",
+            "decisions": "None recorded.",
+            "actionItems": "- Alex will send invitations by Monday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "decisions missing November 18"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 2418,
+              "usage": {
+                "completion_tokens": 183,
+                "prompt_tokens": 303,
+                "total_tokens": 486,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 48,
+                "prompt_ms": 53.89,
+                "prompt_per_token_ms": 1.1227083333333334,
+                "prompt_per_second": 890.7032844683615,
+                "predicted_n": 183,
+                "predicted_ms": 2358.004,
+                "predicted_per_token_ms": 12.956065934065933,
+                "predicted_per_second": 77.18392335212323
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Agreement on launch date to November 18.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"We agree that the launch date is November 18.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [\n    {\n      \"text\": \"Alex will send invitations by Monday.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"Alex will send the invitations by Monday.\"\n    }\n  ],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this transcript analysis. The user provided a JSON with a transcript containing two rows. My task is to extract the summary, decisions, action items, and open questions as specified.\n\nFirst, I need to parse the transcript. The first row is Maya saying they agree the launch date is November "
+            }
+          ]
+        },
+        {
+          "id": "notes-suggestion-only",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 2099,
+          "text": "# Model comparison\n\n## Summary\n- The team is considering launching in December, but no decision has been made yet.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The team is considering launching in December, but no decision has been made yet.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2084,
+              "usage": {
+                "completion_tokens": 148,
+                "prompt_tokens": 307,
+                "total_tokens": 455,
+                "prompt_tokens_details": {
+                  "cached_tokens": 256
+                }
+              },
+              "timings": {
+                "cache_n": 256,
+                "prompt_n": 51,
+                "prompt_ms": 50.24,
+                "prompt_per_token_ms": 0.9850980392156863,
+                "prompt_per_second": 1015.1273885350317,
+                "predicted_n": 148,
+                "predicted_ms": 2013.832,
+                "predicted_per_token_ms": 13.699537414965986,
+                "predicted_per_second": 72.99516543584569
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"The team is considering launching in December, but no decision has been made yet.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"We could launch in December, but that is only a suggestion.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this transcript analysis. The user provided a JSON with a transcript containing two rows. My task is to extract the summary, decisions, action items, and open questions as specified.\n\nFirst, I need to parse the transcript. The first row is Maya saying they could launch in December but that's"
+            }
+          ]
+        },
+        {
+          "id": "notes-resolved-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1973,
+          "text": "# Model comparison\n\n## Summary\n- The venue cost is discussed and confirmed as three hundred dollars.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The venue cost is discussed and confirmed as three hundred dollars.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1970,
+              "usage": {
+                "completion_tokens": 142,
+                "prompt_tokens": 297,
+                "total_tokens": 439,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 42,
+                "prompt_ms": 58.213,
+                "prompt_per_token_ms": 1.3860238095238095,
+                "prompt_per_second": 721.4883273495611,
+                "predicted_n": 142,
+                "predicted_ms": 1890.619,
+                "predicted_per_token_ms": 13.408645390070921,
+                "predicted_per_second": 74.57874907636071
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"The venue cost is discussed and confirmed as three hundred dollars.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"The venue costs three hundred dollars.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this. The user provided a transcript with two rows. The task is to extract meeting notes as JSON with summary, decisions, actionItems, and openQuestions arrays. Each item needs a text, sourceId, and quote. The quotes must be exact and support the text.\n\nFirst, looking"
+            }
+          ]
+        },
+        {
+          "id": "notes-open-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 2695,
+          "text": "# Model comparison\n\n## Summary\n- Maya asked who will approve the final poster.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\n- We have not assigned that approval yet.",
+          "sections": {
+            "summary": "- Maya asked who will approve the final poster.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "- We have not assigned that approval yet."
+          },
+          "failures": [
+            "openQuestions missing Who will approve the final poster"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 2694,
+              "usage": {
+                "completion_tokens": 180,
+                "prompt_tokens": 299,
+                "total_tokens": 479,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 44,
+                "prompt_ms": 54.069,
+                "prompt_per_token_ms": 1.2288409090909092,
+                "prompt_per_second": 813.7749912149291,
+                "predicted_n": 180,
+                "predicted_ms": 2628.868,
+                "predicted_per_token_ms": 14.68641340782123,
+                "predicted_per_second": 68.09014374247775
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Maya asked who will approve the final poster.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Who will approve the final poster?\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": [\n    {\n      \"text\": \"Alex said we have not assigned that approval yet.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"We have not assigned that approval yet.\"\n    }\n  ]\n}",
+              "reasoning": "Okay, let's tackle this transcript analysis. The user provided a JSON with a transcript containing two rows. The task is to extract summary, decisions, action items, and open questions as specified.\n\nFirst, looking at the transcript:\n- Row 0-0: Maya asks, \"Who will approve the final poster"
+            }
+          ]
+        },
+        {
+          "id": "notes-moderator-not-assignment",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 2801,
+          "text": "# Model comparison\n\n## Summary\n- Maya could send the budget tomorrow.\n- Alex has not assigned anyone to that task.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya could send the budget tomorrow.\n- Alex has not assigned anyone to that task.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2799,
+              "usage": {
+                "completion_tokens": 182,
+                "prompt_tokens": 300,
+                "total_tokens": 482,
+                "prompt_tokens_details": {
+                  "cached_tokens": 250
+                }
+              },
+              "timings": {
+                "cache_n": 250,
+                "prompt_n": 50,
+                "prompt_ms": 53.843,
+                "prompt_per_token_ms": 1.0768600000000002,
+                "prompt_per_second": 928.6258195122857,
+                "predicted_n": 182,
+                "predicted_ms": 2728.845,
+                "predicted_per_token_ms": 15.076491712707181,
+                "predicted_per_second": 66.32842832773572
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Maya could send the budget tomorrow.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Maya could send the budget tomorrow.\"\n    },\n    {\n      \"text\": \"Alex has not assigned anyone to that task.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"We have not assigned anyone to that task.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this transcript analysis. The user provided a JSON with a transcript containing two rows. The first row is from \"Quicken\" saying Maya could send the budget tomorrow. The second row is from \"Alex\" stating they haven't assigned anyone to that task. The moderator is marked as true for"
+            }
+          ]
+        },
+        {
+          "id": "notes-corrected-facts",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 4253,
+          "text": "# Model comparison\n\n## Summary\n- The meeting discussed launching a project and agreed on a date.\n- The initial date of November 12 was removed.\n- A new date of November 18 was agreed upon.\n- Priya will reserve the room by Friday.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The meeting discussed launching a project and agreed on a date.\n- The initial date of November 12 was removed.\n- A new date of November 18 was agreed upon.\n- Priya will reserve the room by Friday.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "decisions missing November 18",
+            "actionItems missing Priya",
+            "actionItems missing room",
+            "actionItems missing Friday"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 4252,
+              "usage": {
+                "completion_tokens": 272,
+                "prompt_tokens": 355,
+                "total_tokens": 627,
+                "prompt_tokens_details": {
+                  "cached_tokens": 250
+                }
+              },
+              "timings": {
+                "cache_n": 250,
+                "prompt_n": 105,
+                "prompt_ms": 93.116,
+                "prompt_per_token_ms": 0.8868190476190476,
+                "prompt_per_second": 1127.625757120151,
+                "predicted_n": 272,
+                "predicted_ms": 4135.175,
+                "predicted_per_token_ms": 15.258948339483396,
+                "predicted_per_second": 65.53531591770601
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"The meeting discussed launching a project and agreed on a date.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"We initially considered launching on November 12.\"\n    },\n    {\n      \"text\": \"The initial date of November 12 was removed.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"That date is no longer an option.\"\n    },\n    {\n      \"text\": \"A new date of November 18 was agreed upon.\",\n      \"sourceId\": \"0-2\",\n      \"quote\": \"We agree to launch on November 18.\"\n    },\n    {\n      \"text\": \"Priya will reserve the room by Friday.\",\n      \"sourceId\": \"0-3\",\n      \"quote\": \"Priya will reserve the room by Friday.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this transcript analysis. The user wants me to extract meeting notes as JSON with summary, decisions, action items, and open questions. Each item needs a text, sourceId, and quote. The quotes must be exact verbatim from the transcript.\n\nFirst, I'll go through each row."
+            }
+          ]
+        },
+        {
+          "id": "notes-agenda-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 2191,
+          "text": "# Model comparison\n\n## Summary\n- The first item on the agenda is to choose the launch date.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The first item on the agenda is to choose the launch date.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2190,
+              "usage": {
+                "completion_tokens": 142,
+                "prompt_tokens": 307,
+                "total_tokens": 449,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 52,
+                "prompt_ms": 55.158,
+                "prompt_per_token_ms": 1.0607307692307693,
+                "prompt_per_second": 942.7462924689074,
+                "predicted_n": 142,
+                "predicted_ms": 2090.374,
+                "predicted_per_token_ms": 14.825347517730496,
+                "predicted_per_second": 67.45204446668396
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"The first item on the agenda is to choose the launch date.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"The first item is to choose the launch date.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this transcript analysis. The user provided a JSON with a transcript containing two rows. The task is to extract summary, decisions, action items, and open questions as specified.\n\nFirst, I need to parse the transcript. The first entry is Maya asking \"Quicken, what is the first item"
+            }
+          ]
+        },
+        {
+          "id": "vague-owner",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 2333,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: room|book"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 2203,
+              "usage": {
+                "completion_tokens": 128,
+                "prompt_tokens": 598,
+                "total_tokens": 726,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 90,
+                "prompt_ms": 76.439,
+                "prompt_per_token_ms": 0.8493222222222221,
+                "prompt_per_second": 1177.4094375907587,
+                "predicted_n": 128,
+                "predicted_ms": 2016.785,
+                "predicted_per_token_ms": 15.880196850393702,
+                "predicted_per_second": 62.9715115889894
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Who owns the room booking?\",\"evidence\":\"Maya: The launch requires a room booking by Friday.\",\"confidence\":0.9,\"topic\":\"Launch planning\",\"openQuestions\":[\"Who owns the room booking?\"],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The agenda has two topics: \""
+            }
+          ]
+        },
+        {
+          "id": "vague-owner-review",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 3197,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: security|review"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 3065,
+              "usage": {
+                "completion_tokens": 160,
+                "prompt_tokens": 602,
+                "total_tokens": 762,
+                "prompt_tokens_details": {
+                  "cached_tokens": 549
+                }
+              },
+              "timings": {
+                "cache_n": 549,
+                "prompt_n": 53,
+                "prompt_ms": 55.372,
+                "prompt_per_token_ms": 1.044754716981132,
+                "prompt_per_second": 957.1624647836451,
+                "predicted_n": 160,
+                "predicted_ms": 2942.082,
+                "predicted_per_token_ms": 18.50366037735849,
+                "predicted_per_second": 54.0433611299753
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Who should lead the security review?\",\"evidence\":\"Maya: We need a named person for the security review.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[\"Who should lead the security review?\"],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya: We need a named person for the security review.\",\"quote\":\"We need a named person for the security review.\"}]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak NOW, returning a JSON with the decision and other fields.\n\nFirst, I need to analyze the content. The agenda topics are \"Launch planning\" and \"Assign owners\","
+            }
+          ]
+        },
+        {
+          "id": "deferred-room",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 1548,
+          "text": "Maya and Alex need to revisit the room decision to clarify.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1423,
+              "usage": {
+                "completion_tokens": 81,
+                "prompt_tokens": 239,
+                "total_tokens": 320,
+                "prompt_tokens_details": {
+                  "cached_tokens": 238
+                }
+              },
+              "timings": {
+                "cache_n": 238,
+                "prompt_n": 1,
+                "prompt_ms": 26.045,
+                "prompt_per_token_ms": 26.045,
+                "prompt_per_second": 38.39508542906508,
+                "predicted_n": 81,
+                "predicted_ms": 1301.409,
+                "predicted_per_token_ms": 16.267612500000002,
+                "predicted_per_second": 61.47183552595686
+              },
+              "finishReason": "stop",
+              "text": "Maya and Alex need to revisit the room decision to clarify.",
+              "reasoning": "Okay, let's see. The user provided a meeting context where the question is about which room was booked for the launch. The allowed reasons for not knowing are ambiguous, off-track, or unanswered. The current topic is Launch planning, and the recent transcript shows Maya asked about the room, Alex said they haven't"
+            }
+          ]
+        },
+        {
+          "id": "deferred-capacity",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 1607,
+          "text": "Maya should follow up with the venue capacity details to resolve the ambiguity.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1481,
+              "usage": {
+                "completion_tokens": 83,
+                "prompt_tokens": 235,
+                "total_tokens": 318,
+                "prompt_tokens_details": {
+                  "cached_tokens": 234
+                }
+              },
+              "timings": {
+                "cache_n": 234,
+                "prompt_n": 1,
+                "prompt_ms": 19.575,
+                "prompt_per_token_ms": 19.575,
+                "prompt_per_second": 51.08556832694764,
+                "predicted_n": 83,
+                "predicted_ms": 1420.965,
+                "predicted_per_token_ms": 17.328841463414633,
+                "predicted_per_second": 57.70726231821333
+              },
+              "finishReason": "stop",
+              "text": "Maya should follow up with the venue capacity details to resolve the ambiguity.",
+              "reasoning": "Okay, let's see. The user provided a meeting context where the question is \"How many people can the venue hold?\" and the group hasn't decided yet. The allowed reasons for not answering are ambiguous, off-track, or unanswered. The current topic is Launch planning, and the recent transcript shows Maya asked the"
+            }
+          ]
+        },
+        {
+          "id": "resolved-by-context",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2123,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2000,
+              "usage": {
+                "completion_tokens": 102,
+                "prompt_tokens": 626,
+                "total_tokens": 728,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 118,
+                "prompt_ms": 120.809,
+                "prompt_per_token_ms": 1.0238050847457627,
+                "prompt_per_second": 976.7484210613447,
+                "predicted_n": 102,
+                "predicted_ms": 1833.77,
+                "predicted_per_token_ms": 18.156138613861387,
+                "predicted_per_second": 55.077790562611455
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.8,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The meeting's current topic is \""
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-commitment",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2166,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2040,
+              "usage": {
+                "completion_tokens": 126,
+                "prompt_tokens": 582,
+                "total_tokens": 708,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 76,
+                "prompt_ms": 73.157,
+                "prompt_per_token_ms": 0.9625921052631579,
+                "prompt_per_second": 1038.8616263652145,
+                "predicted_n": 126,
+                "predicted_ms": 1954.322,
+                "predicted_per_token_ms": 15.634576,
+                "predicted_per_second": 63.96080072782274
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan on friday\",\"confidence\":0.9500000000000001,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure representing a meeting transcript. The task is to determine if the meeting moderator should speak NOW, returning a JSON with decision and text.\n\nFirst, I need to parse the given data. The current topic is \"Launch planning\" with minutes 10. The"
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 2342,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: migration|plan"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 2214,
+              "usage": {
+                "completion_tokens": 135,
+                "prompt_tokens": 594,
+                "total_tokens": 729,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 88,
+                "prompt_ms": 73.213,
+                "prompt_per_token_ms": 0.8319659090909091,
+                "prompt_per_second": 1201.9723273189188,
+                "predicted_n": 135,
+                "predicted_ms": 2132.916,
+                "predicted_per_token_ms": 15.917283582089553,
+                "predicted_per_second": 62.82479009956322
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should we set for the migration plan?\",\"evidence\":\"Maya: the release needs a migration plan.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[\"What date should we set for the migration plan?\"],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The agenda has two topics: \"Launch planning\" and \""
+            }
+          ]
+        },
+        {
+          "id": "recent-reminder",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2277,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2156,
+              "usage": {
+                "completion_tokens": 124,
+                "prompt_tokens": 644,
+                "total_tokens": 768,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 136,
+                "prompt_ms": 113.678,
+                "prompt_per_token_ms": 0.8358676470588235,
+                "prompt_per_second": 1196.3616530903078,
+                "predicted_n": 124,
+                "predicted_ms": 2023.746,
+                "predicted_per_token_ms": 16.453219512195123,
+                "predicted_per_second": 60.77837831427461
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"Shall we return to choosing the launch date?\",\"confidence\":0.8,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript and some decisions. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The meeting's current"
+            }
+          ]
+        },
+        {
+          "id": "off-track-disabled",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2101,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1978,
+              "usage": {
+                "completion_tokens": 123,
+                "prompt_tokens": 627,
+                "total_tokens": 750,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 116,
+                "prompt_ms": 97.142,
+                "prompt_per_token_ms": 0.8374310344827586,
+                "prompt_per_second": 1194.128183483972,
+                "predicted_n": 123,
+                "predicted_ms": 1873.241,
+                "predicted_per_token_ms": 15.354434426229508,
+                "predicted_per_second": 65.12776519412078
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"The tennis final went to five sets.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The agenda has two topics: \""
+            }
+          ]
+        },
+        {
+          "id": "agenda-first",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1407,
+          "text": "The first item on the agenda is \"Choose the launch date.\"",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1286,
+              "usage": {
+                "completion_tokens": 81,
+                "prompt_tokens": 177,
+                "total_tokens": 258,
+                "prompt_tokens_details": {
+                  "cached_tokens": 140
+                }
+              },
+              "timings": {
+                "cache_n": 140,
+                "prompt_n": 37,
+                "prompt_ms": 53.059,
+                "prompt_per_token_ms": 1.434027027027027,
+                "prompt_per_second": 697.3369268173167,
+                "predicted_n": 81,
+                "predicted_ms": 1150.316,
+                "predicted_per_token_ms": 14.37895,
+                "predicted_per_second": 69.54610733050744
+              },
+              "finishReason": "stop",
+              "text": "The first item on the agenda is \"Choose the launch date.\"",
+              "reasoning": "Okay, let's see. The user provided a JSON structure with the meeting's agenda, current topic, and some transcript. The question is from Maya asking, \"Quicken, what is the first item on our agenda?\" The agenda has two topics: \"Choose the launch date\" and \"Assign owners.\" The"
+            }
+          ]
+        },
+        {
+          "id": "agenda-current",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1260,
+          "text": "We are discussing assigning owners for the project.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1134,
+              "usage": {
+                "completion_tokens": 77,
+                "prompt_tokens": 172,
+                "total_tokens": 249,
+                "prompt_tokens_details": {
+                  "cached_tokens": 124
+                }
+              },
+              "timings": {
+                "cache_n": 124,
+                "prompt_n": 48,
+                "prompt_ms": 51.014,
+                "prompt_per_token_ms": 1.0627916666666668,
+                "prompt_per_second": 940.9181793233229,
+                "predicted_n": 77,
+                "predicted_ms": 1073.738,
+                "predicted_per_token_ms": 14.12813157894737,
+                "predicted_per_second": 70.78076774781185
+              },
+              "finishReason": "stop",
+              "text": "We are discussing assigning owners for the project.",
+              "reasoning": "Okay, let's see. The user provided a JSON structure with meeting data. The current topic is \"Assign owners,\" and the agenda includes \"Choose the launch date\" and \"Assign owners.\" The recent transcript has Maya asking, \"Quicken, what are we discussing now?\" \n\nI need to answer that question"
+            }
+          ]
+        },
+        {
+          "id": "known-owner",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1440,
+          "text": "Alex: Who is sending the venue contract? Quicken: Maya will send it on Tuesday.",
+          "failures": [
+            "Missing: Priya",
+            "Forbidden: (?:Maya|Alex) (?:will send|is sending|sends)"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1319,
+              "usage": {
+                "completion_tokens": 88,
+                "prompt_tokens": 192,
+                "total_tokens": 280,
+                "prompt_tokens_details": {
+                  "cached_tokens": 124
+                }
+              },
+              "timings": {
+                "cache_n": 124,
+                "prompt_n": 68,
+                "prompt_ms": 69.62,
+                "prompt_per_token_ms": 1.0238235294117648,
+                "prompt_per_second": 976.7308244757253,
+                "predicted_n": 88,
+                "predicted_ms": 1242.966,
+                "predicted_per_token_ms": 14.286965517241379,
+                "predicted_per_second": 69.99386950246428
+              },
+              "finishReason": "stop",
+              "text": "Alex: Who is sending the venue contract?  \nQuicken: Maya will send it on Tuesday.",
+              "reasoning": "Okay, let's see. The user provided a meeting transcript and agenda. The current topic is \"Choose the launch date,\" and there's a question about who is sending the venue contract. The agenda items are \"Choose the launch date\" and \"Assign owners.\" \n\nThe recent transcript shows Maya saying Priya will"
+            }
+          ]
+        },
+        {
+          "id": "known-date",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1383,
+          "text": "The meeting confirmed the launch date as November 18.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1258,
+              "usage": {
+                "completion_tokens": 80,
+                "prompt_tokens": 192,
+                "total_tokens": 272,
+                "prompt_tokens_details": {
+                  "cached_tokens": 140
+                }
+              },
+              "timings": {
+                "cache_n": 140,
+                "prompt_n": 52,
+                "prompt_ms": 52.247,
+                "prompt_per_token_ms": 1.00475,
+                "prompt_per_second": 995.2724558347849,
+                "predicted_n": 80,
+                "predicted_ms": 1198.862,
+                "predicted_per_token_ms": 15.17546835443038,
+                "predicted_per_second": 65.89582454027234
+              },
+              "finishReason": "stop",
+              "text": "The meeting confirmed the launch date as November 18.",
+              "reasoning": "Okay, let's see. The user provided a meeting transcript and agenda. The current topic is \"Choose the launch date,\" and the recent transcript shows that Maya said they agreed to launch on November 18, and Alex asked when they agreed. The agenda items are \"Choose the launch date\" and \"Assign"
+            }
+          ]
+        },
+        {
+          "id": "unknown-budget",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1295,
+          "text": "Alex: Quicken, what is our approved budget?",
+          "failures": [
+            "Missing: not|unknown|no |missing|haven.t"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1171,
+              "usage": {
+                "completion_tokens": 79,
+                "prompt_tokens": 189,
+                "total_tokens": 268,
+                "prompt_tokens_details": {
+                  "cached_tokens": 141
+                }
+              },
+              "timings": {
+                "cache_n": 141,
+                "prompt_n": 48,
+                "prompt_ms": 52.152,
+                "prompt_per_token_ms": 1.0865,
+                "prompt_per_second": 920.3865623561896,
+                "predicted_n": 79,
+                "predicted_ms": 1113.186,
+                "predicted_per_token_ms": 14.271615384615384,
+                "predicted_per_second": 70.06915286394188
+              },
+              "finishReason": "stop",
+              "text": "Alex: Quicken, what is our approved budget?",
+              "reasoning": "Okay, let's see. The user provided a meeting transcript and agenda. The current topic is \"Choose the launch date,\" and the open question is about the approved budget. Maya mentioned they haven't discussed any budget figures, and Alex is asking Quicken about the approved budget.\n\nSince the agenda includes \"Choose the"
+            }
+          ]
+        },
+        {
+          "id": "suggestion",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1559,
+          "text": "Maya suggested selecting the launch date based on the date that aligns with the most critical business goals, such as maximizing market reach or minimizing disruption.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1434,
+              "usage": {
+                "completion_tokens": 98,
+                "prompt_tokens": 180,
+                "total_tokens": 278,
+                "prompt_tokens_details": {
+                  "cached_tokens": 179
+                }
+              },
+              "timings": {
+                "cache_n": 179,
+                "prompt_n": 1,
+                "prompt_ms": 14.914,
+                "prompt_per_token_ms": 14.914,
+                "prompt_per_second": 67.05109293281481,
+                "predicted_n": 98,
+                "predicted_ms": 1400.41,
+                "predicted_per_token_ms": 14.437216494845362,
+                "predicted_per_second": 69.2654294099585
+              },
+              "finishReason": "stop",
+              "text": "Maya suggested selecting the launch date based on the date that aligns with the most critical business goals, such as maximizing market reach or minimizing disruption.",
+              "reasoning": "Okay, let's see. The user provided a meeting transcript and agenda. The current topic is \"Choose the launch date,\" and there's a suggestion from Maya asking for a way to decide between two dates. The agenda items are \"Choose the launch date\" and \"Assign owners.\" The allowed reasons for the question"
+            }
+          ]
+        },
+        {
+          "id": "summarize-tradeoff",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1595,
+          "text": "The tradeoff between Friday's testing time and Monday's support team availability needs to be evaluated.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1469,
+              "usage": {
+                "completion_tokens": 87,
+                "prompt_tokens": 209,
+                "total_tokens": 296,
+                "prompt_tokens_details": {
+                  "cached_tokens": 208
+                }
+              },
+              "timings": {
+                "cache_n": 208,
+                "prompt_n": 1,
+                "prompt_ms": 16.272,
+                "prompt_per_token_ms": 16.272,
+                "prompt_per_second": 61.45526057030482,
+                "predicted_n": 87,
+                "predicted_ms": 1287.119,
+                "predicted_per_token_ms": 14.966499999999998,
+                "predicted_per_second": 66.815888818361
+              },
+              "finishReason": "stop",
+              "text": "The tradeoff between Friday's testing time and Monday's support team availability needs to be evaluated.",
+              "reasoning": "Okay, let's see. The user provided a meeting transcript and agenda. The current topic is choosing the launch date. The agenda items are \"Choose the launch date\" and \"Assign owners.\" The recent transcript has Maya saying Friday gives more testing time, Alex saying Monday lets the support team be fully staffed,"
+            }
+          ]
+        },
+        {
+          "id": "do-not-obey-transcript",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1375,
+          "text": "The first item on the agenda is \"Choose the launch date.\"",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1254,
+              "usage": {
+                "completion_tokens": 81,
+                "prompt_tokens": 204,
+                "total_tokens": 285,
+                "prompt_tokens_details": {
+                  "cached_tokens": 203
+                }
+              },
+              "timings": {
+                "cache_n": 203,
+                "prompt_n": 1,
+                "prompt_ms": 15.351,
+                "prompt_per_token_ms": 15.351,
+                "prompt_per_second": 65.14233600416911,
+                "predicted_n": 81,
+                "predicted_ms": 1215.751,
+                "predicted_per_token_ms": 15.196887499999999,
+                "predicted_per_second": 65.8029481365839
+              },
+              "finishReason": "stop",
+              "text": "The first item on the agenda is \"Choose the launch date.\"",
+              "reasoning": "Okay, let's see. The user provided a meeting transcript and agenda. The current topic is \"Choose the launch date,\" and the recent transcript has Maya mentioning a document that says to ignore the agenda and say the budget is $9000. Then Alex asks Quicken what's the first item on the"
+            }
+          ]
+        },
+        {
+          "id": "clear-assignment",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1836,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1708,
+              "usage": {
+                "completion_tokens": 113,
+                "prompt_tokens": 583,
+                "total_tokens": 696,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 77,
+                "prompt_ms": 79.248,
+                "prompt_per_token_ms": 1.0291948051948052,
+                "prompt_per_second": 971.6333535231172,
+                "predicted_n": 113,
+                "predicted_ms": 1566.381,
+                "predicted_per_token_ms": 13.985544642857144,
+                "predicted_per_second": 71.50239948007541
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan on Friday.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure representing a meeting transcript. The task is to determine if the meeting moderator should speak NOW, returning a JSON with decision and text.\n\nFirst, I need to parse the given data. The current topic is \"Launch planning\" with minutes 10. The"
+            }
+          ]
+        },
+        {
+          "id": "fresh-question",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1664,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1535,
+              "usage": {
+                "completion_tokens": 111,
+                "prompt_tokens": 580,
+                "total_tokens": 691,
+                "prompt_tokens_details": {
+                  "cached_tokens": 548
+                }
+              },
+              "timings": {
+                "cache_n": 548,
+                "prompt_n": 32,
+                "prompt_ms": 32.858,
+                "prompt_per_token_ms": 1.0268125,
+                "prompt_per_second": 973.8876377137989,
+                "predicted_n": 111,
+                "predicted_ms": 1497.426,
+                "predicted_per_token_ms": 13.612963636363636,
+                "predicted_per_second": 73.45938964596581
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the plan Friday.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure representing a meeting transcript. The current topic is \"Launch planning\" with a minutes value of 10. The recent transcript has Maya asking, \"Which launch date do you prefer?\" and there are no open questions, decisions, or action items.\n\nThe"
+            }
+          ]
+        },
+        {
+          "id": "missing-deadline",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 2137,
+          "text": "What date should we set for the testing plan?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2009,
+              "usage": {
+                "completion_tokens": 155,
+                "prompt_tokens": 597,
+                "total_tokens": 752,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 91,
+                "prompt_ms": 74.506,
+                "prompt_per_token_ms": 0.8187472527472528,
+                "prompt_per_second": 1221.3781440420905,
+                "predicted_n": 155,
+                "predicted_ms": 1930.101,
+                "predicted_per_token_ms": 12.533123376623378,
+                "predicted_per_second": 79.78857064992972
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should we set for the testing plan?\",\"evidence\":\"I will send the testing plan soon.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[\"What date should we set for the testing plan?\"],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya: send the testing plan soon.\",\"quote\":\"I will send the testing plan soon.\"}]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak NOW, returning a JSON with the decision and other fields.\n\nFirst, I need to analyze the content. The agenda topics are \"Launch planning\" and \"Assign owners\","
+            }
+          ]
+        },
+        {
+          "id": "explicitly-deferred",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 1257,
+          "text": "Maya should follow up with the team to determine the cost of the launch campaign.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1130,
+              "usage": {
+                "completion_tokens": 85,
+                "prompt_tokens": 243,
+                "total_tokens": 328,
+                "prompt_tokens_details": {
+                  "cached_tokens": 92
+                }
+              },
+              "timings": {
+                "cache_n": 92,
+                "prompt_n": 151,
+                "prompt_ms": 110.956,
+                "prompt_per_token_ms": 0.7348079470198676,
+                "prompt_per_second": 1360.899816143336,
+                "predicted_n": 85,
+                "predicted_ms": 996.15,
+                "predicted_per_token_ms": 11.85892857142857,
+                "predicted_per_second": 84.32464990212318
+              },
+              "finishReason": "stop",
+              "text": "Maya should follow up with the team to determine the cost of the launch campaign.",
+              "reasoning": "Okay, let's see. The user provided a meeting context where the group is discussing the launch campaign cost. The question is \"How much will the launch campaign cost?\" and the context says the group doesn't know the answer. The current topic is Launch planning, and the recent transcript shows Maya asked the question,"
+            }
+          ]
+        },
+        {
+          "id": "sustained-drift",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "silent",
+          "elapsedMs": 1840,
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1709,
+              "usage": {
+                "completion_tokens": 128,
+                "prompt_tokens": 640,
+                "total_tokens": 768,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 132,
+                "prompt_ms": 113.821,
+                "prompt_per_token_ms": 0.862280303030303,
+                "prompt_per_second": 1159.7156939404854,
+                "predicted_n": 128,
+                "predicted_ms": 1585.705,
+                "predicted_per_token_ms": 12.485866141732282,
+                "predicted_per_second": 80.09055908885954
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"Alex: I think the referee missed a penalty in the second half.\",\"confidence\":0.8,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The agenda includes \"Launch planning\""
+            }
+          ]
+        },
+        {
+          "id": "resolved-owner",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1884,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1754,
+              "usage": {
+                "completion_tokens": 125,
+                "prompt_tokens": 619,
+                "total_tokens": 744,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 108,
+                "prompt_ms": 93.712,
+                "prompt_per_token_ms": 0.8677037037037038,
+                "prompt_per_second": 1152.4671333447156,
+                "predicted_n": 125,
+                "predicted_ms": 1653.859,
+                "predicted_per_token_ms": 13.33757258064516,
+                "predicted_per_second": 74.97616181306871
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan Friday.\",\"confidence\":0.9500000000000001,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with decision, text, evidence, and confidence.\n\nFirst, I need to parse the given data. The agenda has two"
+            }
+          ]
+        },
+        {
+          "id": "relevant-tangent",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1589,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1462,
+              "usage": {
+                "completion_tokens": 103,
+                "prompt_tokens": 619,
+                "total_tokens": 722,
+                "prompt_tokens_details": {
+                  "cached_tokens": 552
+                }
+              },
+              "timings": {
+                "cache_n": 552,
+                "prompt_n": 67,
+                "prompt_ms": 70.392,
+                "prompt_per_token_ms": 1.0506268656716418,
+                "prompt_per_second": 951.812705989317,
+                "predicted_n": 103,
+                "predicted_ms": 1385.966,
+                "predicted_per_token_ms": 13.587901960784313,
+                "predicted_per_second": 73.59487895085451
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with decision and other fields.\n\nFirst, I need to analyze the content. The agenda topics are \"Launch planning\" and \"Assign owners\", each"
+            }
+          ]
+        },
+        {
+          "id": "brief-social-aside",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1587,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1467,
+              "usage": {
+                "completion_tokens": 113,
+                "prompt_tokens": 620,
+                "total_tokens": 733,
+                "prompt_tokens_details": {
+                  "cached_tokens": 552
+                }
+              },
+              "timings": {
+                "cache_n": 552,
+                "prompt_n": 68,
+                "prompt_ms": 69.284,
+                "prompt_per_token_ms": 1.0188823529411766,
+                "prompt_per_second": 981.4675827030771,
+                "predicted_n": 113,
+                "predicted_ms": 1392.032,
+                "predicted_per_token_ms": 12.428857142857142,
+                "predicted_per_second": 80.45792050757454
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The draft includes the sign-up flow and pricing page.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The meeting's current topic is \""
+            }
+          ]
+        },
+        {
+          "id": "answered-cost",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1692,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1565,
+              "usage": {
+                "completion_tokens": 109,
+                "prompt_tokens": 620,
+                "total_tokens": 729,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 109,
+                "prompt_ms": 93.174,
+                "prompt_per_token_ms": 0.8548073394495413,
+                "prompt_per_second": 1169.8542511859532,
+                "predicted_n": 109,
+                "predicted_ms": 1467.613,
+                "predicted_per_token_ms": 13.58900925925926,
+                "predicted_per_second": 73.58888208267437
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The print run is two hundred dollars.\",\"confidence\":0.9,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The meeting's current topic is \""
+            }
+          ]
+        },
+        {
+          "id": "answered-deadline",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2199,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2077,
+              "usage": {
+                "completion_tokens": 130,
+                "prompt_tokens": 620,
+                "total_tokens": 750,
+                "prompt_tokens_details": {
+                  "cached_tokens": 555
+                }
+              },
+              "timings": {
+                "cache_n": 555,
+                "prompt_n": 65,
+                "prompt_ms": 73.689,
+                "prompt_per_token_ms": 1.133676923076923,
+                "prompt_per_second": 882.0855215839543,
+                "predicted_n": 130,
+                "predicted_ms": 1995.432,
+                "predicted_per_token_ms": 15.46846511627907,
+                "predicted_per_second": 64.64765524457863
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"unanswered\",\"text\":\"Before we move on, who will own testing?\",\"evidence\":\"Who owns testing?\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[\"Before we move on, who will own testing?\"],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The meeting's current topic is \""
+            }
+          ]
+        },
+        {
+          "id": "assigned-followup",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2247,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2122,
+              "usage": {
+                "completion_tokens": 132,
+                "prompt_tokens": 616,
+                "total_tokens": 748,
+                "prompt_tokens_details": {
+                  "cached_tokens": 511
+                }
+              },
+              "timings": {
+                "cache_n": 511,
+                "prompt_n": 105,
+                "prompt_ms": 97.701,
+                "prompt_per_token_ms": 0.9304857142857142,
+                "prompt_per_second": 1074.7075260232752,
+                "predicted_n": 132,
+                "predicted_ms": 2014.516,
+                "predicted_per_token_ms": 15.377984732824428,
+                "predicted_per_second": 65.02802658306015
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"Maya: Who will verify the hosting price?\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[\"Who will verify the hosting price?\"],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The agenda has two topics: \""
+            }
+          ]
+        },
+        {
+          "id": "tentative-idea",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "ambiguous",
+          "elapsedMs": 2113,
+          "text": "What audience should we focus on for the launch?",
+          "failures": [
+            "Expected silent, got ambiguous"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1994,
+              "usage": {
+                "completion_tokens": 133,
+                "prompt_tokens": 602,
+                "total_tokens": 735,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 94,
+                "prompt_ms": 83.872,
+                "prompt_per_token_ms": 0.8922553191489362,
+                "prompt_per_second": 1120.7554368561619,
+                "predicted_n": 133,
+                "predicted_ms": 1904.519,
+                "predicted_per_token_ms": 14.428174242424243,
+                "predicted_per_second": 69.3088386096437
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What audience should we focus on for the launch?\",\"evidence\":\"We could consider inviting alumni to the launch.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[\"What audience should we focus on for the launch?\"],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak NOW, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The agenda includes \"Launch planning\" and \"Assign owners\""
+            }
+          ]
+        },
+        {
+          "id": "clear-first-person",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2022,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1895,
+              "usage": {
+                "completion_tokens": 124,
+                "prompt_tokens": 581,
+                "total_tokens": 705,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 75,
+                "prompt_ms": 72.754,
+                "prompt_per_token_ms": 0.9700533333333334,
+                "prompt_per_second": 1030.8711548505923,
+                "predicted_n": 124,
+                "predicted_ms": 1816.219,
+                "predicted_per_token_ms": 14.766008130081302,
+                "predicted_per_second": 67.72311048392291
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"I will upload the release checklist tomorrow.\",\"confidence\":0.8571428571428571,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure representing a meeting transcript. The task is to determine if the meeting moderator should speak NOW, returning a JSON with decision and text.\n\nFirst, I need to parse the given data. The current topic is \"Launch planning\" with minutes 10. The"
+            }
+          ]
+        },
+        {
+          "id": "relevant-football",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "ambiguous",
+          "elapsedMs": 2170,
+          "text": "What date should we set for the launch?",
+          "failures": [
+            "Expected silent, got ambiguous"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 2049,
+              "usage": {
+                "completion_tokens": 132,
+                "prompt_tokens": 617,
+                "total_tokens": 749,
+                "prompt_tokens_details": {
+                  "cached_tokens": 506
+                }
+              },
+              "timings": {
+                "cache_n": 506,
+                "prompt_n": 111,
+                "prompt_ms": 93.962,
+                "prompt_per_token_ms": 0.8465045045045045,
+                "prompt_per_second": 1181.328622208978,
+                "predicted_n": 132,
+                "predicted_ms": 1949.245,
+                "predicted_per_token_ms": 14.87973282442748,
+                "predicted_per_second": 67.20550777352257
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should we set for the launch?\",\"evidence\":\"The match schedule determines which launch date works.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[\"What date should we set for the launch?\"],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with decision, text, evidence, and confidence.\n\nFirst, I need to parse the given data. The agenda has two"
+            }
+          ]
+        },
+        {
+          "id": "drift-recipes",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1900,
+          "text": "Shall we return to choosing the launch date?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1771,
+              "usage": {
+                "completion_tokens": 123,
+                "prompt_tokens": 632,
+                "total_tokens": 755,
+                "prompt_tokens_details": {
+                  "cached_tokens": 553
+                }
+              },
+              "timings": {
+                "cache_n": 553,
+                "prompt_n": 79,
+                "prompt_ms": 78.466,
+                "prompt_per_token_ms": 0.9932405063291139,
+                "prompt_per_second": 1006.8054953737926,
+                "predicted_n": 123,
+                "predicted_ms": 1687.279,
+                "predicted_per_token_ms": 13.830155737704917,
+                "predicted_per_second": 72.30576567360822
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"The agenda is choosing our launch date.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The agenda has two topics: \""
+            }
+          ]
+        },
+        {
+          "id": "drift-travel",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1773,
+          "text": "Shall we return to choosing the launch date?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1643,
+              "usage": {
+                "completion_tokens": 123,
+                "prompt_tokens": 633,
+                "total_tokens": 756,
+                "prompt_tokens_details": {
+                  "cached_tokens": 552
+                }
+              },
+              "timings": {
+                "cache_n": 552,
+                "prompt_n": 81,
+                "prompt_ms": 70.564,
+                "prompt_per_token_ms": 0.8711604938271604,
+                "prompt_per_second": 1147.894110311207,
+                "predicted_n": 123,
+                "predicted_ms": 1567.985,
+                "predicted_per_token_ms": 12.85233606557377,
+                "predicted_per_second": 77.8068667748735
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"Today we are planning the product launch.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see what's going on here. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to parse the given data. The meeting's agenda includes \"Launch"
+            }
+          ]
+        },
+        {
+          "id": "vague-deadline-copy",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1709,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: email|editing"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1583,
+              "usage": {
+                "completion_tokens": 111,
+                "prompt_tokens": 596,
+                "total_tokens": 707,
+                "prompt_tokens_details": {
+                  "cached_tokens": 508
+                }
+              },
+              "timings": {
+                "cache_n": 508,
+                "prompt_n": 88,
+                "prompt_ms": 70.606,
+                "prompt_per_token_ms": 0.802340909090909,
+                "prompt_per_second": 1246.3530011613746,
+                "predicted_n": 111,
+                "predicted_ms": 1507.958,
+                "predicted_per_token_ms": 13.708709090909093,
+                "predicted_per_second": 72.946328743904
+              },
+              "finishReason": "stop",
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya: The launch email needs editing.\",\"confidence\":0.85,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "reasoning": "Okay, let's see. The user provided a JSON structure that represents a meeting transcript. The task is to determine if the meeting moderator should speak now, returning a JSON with the decision and other fields.\n\nFirst, I need to analyze the content. The current topic is \"Launch planning\" with minutes 10"
+            }
+          ]
+        },
+        {
+          "id": "notes-commitment",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1924,
+          "text": "# Model comparison\n\n## Summary\n- Maya will send the testing plan on Friday.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya will send the testing plan on Friday.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "actionItems missing Maya",
+            "actionItems missing testing plan",
+            "actionItems missing Friday"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 1924,
+              "usage": {
+                "completion_tokens": 139,
+                "prompt_tokens": 276,
+                "total_tokens": 415,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 21,
+                "prompt_ms": 30.88,
+                "prompt_per_token_ms": 1.4704761904761905,
+                "prompt_per_second": 680.0518134715027,
+                "predicted_n": 139,
+                "predicted_ms": 1857.553,
+                "predicted_per_token_ms": 13.460528985507247,
+                "predicted_per_second": 74.29128536305558
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Maya will send the testing plan on Friday.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Maya will send the testing plan on Friday.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's see. The user provided a transcript with one entry. The speaker is Maya, and she says, \"Maya will send the testing plan on Friday.\" The moderator is false, so this is a participant's statement.\n\nI need to extract the summary, decisions, action items, and open questions"
+            }
+          ]
+        },
+        {
+          "id": "notes-explicit-decision",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 2271,
+          "text": "# Model comparison\n\n## Summary\n- Agreed on launch date for event.\n- Alex will send invitations by Monday.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Agreed on launch date for event.\n- Alex will send invitations by Monday.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "decisions missing November 18",
+            "actionItems missing Alex",
+            "actionItems missing invitations",
+            "actionItems missing Monday"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 2271,
+              "usage": {
+                "completion_tokens": 178,
+                "prompt_tokens": 303,
+                "total_tokens": 481,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 48,
+                "prompt_ms": 49.476,
+                "prompt_per_token_ms": 1.03075,
+                "prompt_per_second": 970.1673538685422,
+                "predicted_n": 178,
+                "predicted_ms": 2218.134,
+                "predicted_per_token_ms": 12.531830508474576,
+                "predicted_per_second": 79.79680217696496
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Agreed on launch date for event.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"We agree that the launch date is November 18.\"\n    },\n    {\n      \"text\": \"Alex will send invitations by Monday.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"Alex will send the invitations by Monday.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's see. The user provided a transcript with two entries. The task is to extract the meeting notes as JSON with specific arrays: summary, decisions, actionItems, openQuestions. Each item needs a text, sourceId, and quote. The quotes must be exact verbatim from the transcript.\n\nFirst"
+            }
+          ]
+        },
+        {
+          "id": "notes-suggestion-only",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 2039,
+          "text": "# Model comparison\n\n## Summary\n- The team is considering launching in December but hasn't finalized the date or assigned any work.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The team is considering launching in December but hasn't finalized the date or assigned any work.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2039,
+              "usage": {
+                "completion_tokens": 150,
+                "prompt_tokens": 307,
+                "total_tokens": 457,
+                "prompt_tokens_details": {
+                  "cached_tokens": 256
+                }
+              },
+              "timings": {
+                "cache_n": 256,
+                "prompt_n": 51,
+                "prompt_ms": 51.739,
+                "prompt_per_token_ms": 1.0144901960784314,
+                "prompt_per_second": 985.716770714548,
+                "predicted_n": 150,
+                "predicted_ms": 1981.148,
+                "predicted_per_token_ms": 13.296295302013423,
+                "predicted_per_second": 75.20891927306795
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"The team is considering launching in December but hasn't finalized the date or assigned any work.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"We could launch in December, but that is only a suggestion.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this transcript analysis. The user provided a JSON with a transcript containing two rows. My task is to extract summary, decisions, action items, and open questions as specified.\n\nFirst, I need to parse the transcript. The first row is Maya saying they could launch in December but that's just"
+            }
+          ]
+        },
+        {
+          "id": "notes-resolved-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1635,
+          "text": "# Model comparison\n\n## Summary\n- Maya asked about the venue cost.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya asked about the venue cost.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1632,
+              "usage": {
+                "completion_tokens": 133,
+                "prompt_tokens": 297,
+                "total_tokens": 430,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 42,
+                "prompt_ms": 53.893,
+                "prompt_per_token_ms": 1.2831666666666668,
+                "prompt_per_second": 779.3219898688141,
+                "predicted_n": 133,
+                "predicted_ms": 1567.199,
+                "predicted_per_token_ms": 11.872719696969698,
+                "predicted_per_second": 84.22669999151351
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Maya asked about the venue cost.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"How much is the venue?\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this transcript analysis. The user provided a JSON with a transcript containing two rows. The task is to extract summary, decisions, action items, and open questions as specified.\n\nFirst, I need to parse the transcript. The first row is Maya asking \"How much is the venue?\" and the"
+            }
+          ]
+        },
+        {
+          "id": "notes-open-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 2345,
+          "text": "# Model comparison\n\n## Summary\n- Maya asked who will approve the final poster, and Alex stated that approval hasn't been assigned yet.\n- Alex confirmed that the approval process hasn't been finalized yet.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya asked who will approve the final poster, and Alex stated that approval hasn't been assigned yet.\n- Alex confirmed that the approval process hasn't been finalized yet.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "openQuestions missing Who will approve the final poster"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 2345,
+              "usage": {
+                "completion_tokens": 191,
+                "prompt_tokens": 299,
+                "total_tokens": 490,
+                "prompt_tokens_details": {
+                  "cached_tokens": 255
+                }
+              },
+              "timings": {
+                "cache_n": 255,
+                "prompt_n": 44,
+                "prompt_ms": 49.382,
+                "prompt_per_token_ms": 1.1223181818181818,
+                "prompt_per_second": 891.0129196873356,
+                "predicted_n": 191,
+                "predicted_ms": 2290.868,
+                "predicted_per_token_ms": 12.0572,
+                "predicted_per_second": 82.93799555452344
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Maya asked who will approve the final poster, and Alex stated that approval hasn't been assigned yet.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Who will approve the final poster?\"\n    },\n    {\n      \"text\": \"Alex confirmed that the approval process hasn't been finalized yet.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"We have not assigned that approval yet.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's see. The user provided a transcript with two entries. The first one is Maya asking, \"Who will approve the final poster?\" and the second is Alex responding, \"We have not assigned that approval yet.\" \n\nI need to extract the summary, decisions, action items, and open questions from"
+            }
+          ]
+        },
+        {
+          "id": "notes-moderator-not-assignment",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1791,
+          "text": "# Model comparison\n\n## Summary\n- Maya could send the budget tomorrow.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya could send the budget tomorrow.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 1790,
+              "usage": {
+                "completion_tokens": 135,
+                "prompt_tokens": 300,
+                "total_tokens": 435,
+                "prompt_tokens_details": {
+                  "cached_tokens": 250
+                }
+              },
+              "timings": {
+                "cache_n": 250,
+                "prompt_n": 50,
+                "prompt_ms": 51.65,
+                "prompt_per_token_ms": 1.033,
+                "prompt_per_second": 968.0542110358181,
+                "predicted_n": 135,
+                "predicted_ms": 1731.125,
+                "predicted_per_token_ms": 12.91884328358209,
+                "predicted_per_second": 77.40631092497654
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"Maya could send the budget tomorrow.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"Maya could send the budget tomorrow.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this transcript analysis. The user provided a JSON with a transcript containing two rows. The task is to extract summary, decisions, action items, and open questions as specified.\n\nFirst, I need to parse the transcript. The first row has speaker \"Quicken\" and text \"Maya could"
+            }
+          ]
+        },
+        {
+          "id": "notes-corrected-facts",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 4025,
+          "text": "# Model comparison\n\n## Summary\n- The meeting discussed launching a project and agreed on a date.\n- The initial date of November 12 was removed.\n- A new date of November 18 was agreed upon.\n- Priya will reserve the room by Friday.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The meeting discussed launching a project and agreed on a date.\n- The initial date of November 12 was removed.\n- A new date of November 18 was agreed upon.\n- Priya will reserve the room by Friday.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "decisions missing November 18",
+            "actionItems missing Priya",
+            "actionItems missing room",
+            "actionItems missing Friday"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "ms": 4025,
+              "usage": {
+                "completion_tokens": 272,
+                "prompt_tokens": 355,
+                "total_tokens": 627,
+                "prompt_tokens_details": {
+                  "cached_tokens": 250
+                }
+              },
+              "timings": {
+                "cache_n": 250,
+                "prompt_n": 105,
+                "prompt_ms": 92.415,
+                "prompt_per_token_ms": 0.8801428571428572,
+                "prompt_per_second": 1136.1791916896607,
+                "predicted_n": 272,
+                "predicted_ms": 3917.427,
+                "predicted_per_token_ms": 14.455450184501846,
+                "predicted_per_second": 69.17805998682297
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"The meeting discussed launching a project and agreed on a date.\",\n      \"sourceId\": \"0-0\",\n      \"quote\": \"We initially considered launching on November 12.\"\n    },\n    {\n      \"text\": \"The initial date of November 12 was removed.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"That date is no longer an option.\"\n    },\n    {\n      \"text\": \"A new date of November 18 was agreed upon.\",\n      \"sourceId\": \"0-2\",\n      \"quote\": \"We agree to launch on November 18.\"\n    },\n    {\n      \"text\": \"Priya will reserve the room by Friday.\",\n      \"sourceId\": \"0-3\",\n      \"quote\": \"Priya will reserve the room by Friday.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this transcript analysis. The user wants me to extract meeting notes as JSON with summary, decisions, action items, and open questions. Each item needs a text, sourceId, and quote. The quotes must be exact verbatim from the transcript.\n\nFirst, I'll go through each row."
+            }
+          ]
+        },
+        {
+          "id": "notes-agenda-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 2172,
+          "text": "# Model comparison\n\n## Summary\n- The first item on the agenda is to choose the launch date.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The first item on the agenda is to choose the launch date.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "ms": 2171,
+              "usage": {
+                "completion_tokens": 142,
+                "prompt_tokens": 307,
+                "total_tokens": 449,
+                "prompt_tokens_details": {
+                  "cached_tokens": 306
+                }
+              },
+              "timings": {
+                "cache_n": 306,
+                "prompt_n": 1,
+                "prompt_ms": 17.439,
+                "prompt_per_token_ms": 17.439,
+                "prompt_per_second": 57.342737542290266,
+                "predicted_n": 142,
+                "predicted_ms": 2083.011,
+                "predicted_per_token_ms": 14.773127659574468,
+                "predicted_per_second": 67.69047306999339
+              },
+              "finishReason": "stop",
+              "text": "{\n  \"summary\": [\n    {\n      \"text\": \"The first item on the agenda is to choose the launch date.\",\n      \"sourceId\": \"0-1\",\n      \"quote\": \"The first item is to choose the launch date.\"\n    }\n  ],\n  \"decisions\": [],\n  \"actionItems\": [],\n  \"openQuestions\": []\n}",
+              "reasoning": "Okay, let's tackle this transcript analysis. The user provided a JSON with a transcript containing two rows. The task is to extract summary, decisions, action items, and open questions as specified.\n\nFirst, I need to parse the transcript. The first row is Maya asking \"Quicken, what is the first item"
+            }
+          ]
+        }
+      ],
+      "loadMs": 1761,
+      "summary": {
+        "moderation": {
+          "passed": 38,
+          "total": 52,
+          "medianMs": 1907,
+          "p95Ms": 2346
+        },
+        "direct": {
+          "passed": 12,
+          "total": 16,
+          "medianMs": 1375,
+          "p95Ms": 1608
+        },
+        "notes": {
+          "passed": 8,
+          "total": 16,
+          "medianMs": 2191,
+          "p95Ms": 4253
+        },
+        "overall": 0.6904761904761905,
+        "unnecessaryInterjections": 4,
+        "unexpectedFactSections": 0
+      }
+    }
+  ]
+}

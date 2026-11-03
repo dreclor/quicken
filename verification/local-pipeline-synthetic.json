@@ -1,0 +1,40 @@
+{
+  "kind": "synthetic local audio, not a real meeting",
+  "externalRequests": [],
+  "startupMs": 2221,
+  "intervention": {
+    "id": "919deaec-f792-4d85-85f6-2ccd4c8804f8",
+    "intervene": true,
+    "reason": "addressed",
+    "text": "The first item on our agenda is to choose the launch date.",
+    "evidence": "quicken what is the first item on our agenda",
+    "confidence": 1,
+    "topic": "",
+    "openQuestions": [],
+    "decisions": [],
+    "actionItems": [],
+    "proposedAt": 1793598813333,
+    "state": "queued"
+  },
+  "speechStopToFirstAudioMs": 1729,
+  "voiceBytes": 128064,
+  "transcript": [
+    {
+      "id": "3b4b145e-3c4f-4a51-9d4d-02a3a9a2d374",
+      "text": "quicken what is the first item on our agenda",
+      "speaker": "You",
+      "source": "local",
+      "at": 1793598812586
+    },
+    {
+      "id": "moderator-919deaec-f792-4d85-85f6-2ccd4c8804f8",
+      "text": "The first item on our agenda is to choose the launch date.",
+      "speaker": "Quicken",
+      "source": "moderator",
+      "at": 1793598813812
+    }
+  ],
+  "notes": "# Local moderator verification\n\n# Meeting Notes\n\n## Summary  \nThe first item on the agenda was identified as choosing the launch date.\n\n## Decisions  \nNone recorded.\n\n## Action items  \nNone recorded.\n\n## Open questions  \n- What is the proposed launch date?  \n- Are there constraints or considerations for the launch date?  \n\n*Note: No participants were identified, and no decisions or actions were explicitly made.*",
+  "notesStatus": "ready",
+  "passed": true
+}

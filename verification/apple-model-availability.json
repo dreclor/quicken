@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-11-03T00:42:07.629Z",
+  "availability": "unavailable(FoundationModels.SystemLanguageModel.Availability.UnavailableReason.modelNotReady)",
+  "available": false,
+  "contextSize": 4096,
+  "id": 1,
+  "model": "SystemLanguageModel.default (on-device)",
+  "ok": true,
+  "os": "Version 26.6.2 (Build 25G83)",
+  "schemaConversion": {
+    "assessment": {
+      "id": 2,
+      "ok": true,
+      "schemaValidated": true
+    },
+    "notes": {
+      "id": 3,
+      "ok": true,
+      "schemaValidated": true
+    }
+  },
+  "status": "benchmarked",
+  "inferenceRun": true,
+  "latestAvailability": {
+    "availability": "available",
+    "available": true,
+    "contextSize": 4096,
+    "id": 1,
+    "model": "SystemLanguageModel.default (on-device)",
+    "ok": true,
+    "os": "Version 26.6.2 (Build 25G83)"
+  }
+}

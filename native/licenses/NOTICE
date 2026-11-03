@@ -1,0 +1,26 @@
+Quicken local AI components
+
+Parakeet Realtime EOU 120M, NVIDIA; Core ML conversion by Fluid Inference.
+Licensed by NVIDIA Corporation under the NVIDIA Open Model License
+Model source: https://huggingface.co/FluidInference/parakeet-realtime-eou-120m-coreml
+Revision: 40a23f4c0b333aa17ad8c0f2ea47ec2347f2f355 (160ms variant)
+See Parakeet-LICENSE.pdf (the original license), Parakeet-LICENSE (text), and Parakeet-model-card.md.
+
+Qwen3-4B-Instruct-2507, Qwen Team / Alibaba Cloud; GGUF quantization by Unsloth.
+Apache License 2.0. Quicken uses Q4_K_M without fine tuning.
+Source: https://huggingface.co/unsloth/Qwen3-4B-Instruct-2507-GGUF
+Revision: a06e946bb6b655725eafa393f4a9745d460374c9
+See Qwen3-LICENSE and Qwen3-model-card.md.
+
+FluidAudio v0.18.2: https://github.com/FluidInference/FluidAudio
+Revision: e396cf780c4abf8e395087467c0585d3b0d17f68
+Apache License 2.0. Quicken uses a reduced ASR-only package manifest;
+upstream source files are unchanged. Related fastcluster and VBx notices are included.
+
+llama.cpp v0.8.0: https://github.com/ggml-org/llama.cpp
+Revision: 8642541b255bfb5dc39cd351a178be09013a55d6
+MIT License. Built with Metal and static libraries. Its bundled third-party
+notices for JSON, HTTP and hash libraries accompany this file.
+
+Voice uses the user's installed macOS Samantha voice through AVSpeechSynthesizer.
+Apple voice assets are not redistributed by Quicken.

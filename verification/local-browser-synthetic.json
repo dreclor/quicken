@@ -1,0 +1,61 @@
+{
+  "kind": "Prerecorded input through real browser Web Audio and native AI; not a physical meeting",
+  "externalRequests": [],
+  "speechEndToFirstPlaybackMs": 2781,
+  "voicePeak": 0.81494140625,
+  "transcript": [
+    {
+      "id": "1f1dc551-246b-46d1-a9e2-aa3c96d91df9",
+      "text": "quicken what is the first item on our agenda",
+      "speaker": "You",
+      "source": "local",
+      "at": 1793600371289
+    },
+    {
+      "id": "moderator-b1547095-b42d-4c80-b3b8-0bc3164e1159",
+      "text": "The first item on our agenda is to choose the launch date.",
+      "speaker": "Quicken",
+      "source": "moderator",
+      "at": 1793600376065
+    }
+  ],
+  "notes": "# Local browser verification\n\n## Summary\n- The first item on the agenda is to choose the launch date.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+  "interventions": [
+    {
+      "id": "b1547095-b42d-4c80-b3b8-0bc3164e1159",
+      "intervene": true,
+      "reason": "addressed",
+      "text": "The first item on our agenda is to choose the launch date.",
+      "evidence": "quicken what is the first item on our agenda",
+      "confidence": 1,
+      "topic": "",
+      "openQuestions": [],
+      "decisions": [],
+      "actionItems": [],
+      "proposedAt": 1793600372054,
+      "state": "spoken",
+      "spokenAt": 1793600373137,
+      "latencyMs": 2221
+    }
+  ],
+  "timeline": [
+    {
+      "at": 1793600367878,
+      "type": "stop"
+    },
+    {
+      "at": 1793600372057,
+      "type": "speak"
+    },
+    {
+      "at": 1793600373168,
+      "type": "local-voice-done"
+    },
+    {
+      "at": 1793600376097,
+      "type": "stop"
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

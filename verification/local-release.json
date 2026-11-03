@@ -1,0 +1,37 @@
+{
+  "version": "0.2.0",
+  "unitTests": 34,
+  "browserTests": 11,
+  "semanticScenarios": 6,
+  "nativeVoiceRuns": 4,
+  "bundleSignature": "verified",
+  "nativeHelpers": {
+    "quicken-audio-activity": {
+      "signed": true,
+      "bytes": 101488
+    },
+    "quicken-llm": {
+      "signed": true,
+      "bytes": 22803536
+    },
+    "quicken-speech": {
+      "signed": true,
+      "bytes": 6008864
+    },
+    "quicken-voice": {
+      "signed": true,
+      "bytes": 107280
+    }
+  },
+  "nativeUI": [
+    "local AI ready",
+    "no-key setup panel",
+    "floating chicken visible"
+  ],
+  "realMeetingVerified": false,
+  "manualSetup": [
+    "BlackHole 2ch",
+    "meeting microphone routing",
+    "macOS microphone and system audio permissions"
+  ]
+}

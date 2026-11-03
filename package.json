@@ -1,0 +1,96 @@
+{
+  "name": "quicken-meeting-moderator",
+  "version": "0.2.0",
+  "private": true,
+  "description": "A low-latency AI meeting moderator for macOS",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "concurrently -k \"tsx watch server/index.ts\" \"vite\"",
+    "build": "npm run build:native && tsc --noEmit && vite build && tsc -p tsconfig.server.json",
+    "start": "node dist-server/server/index.js",
+    "open": "node scripts/open.mjs",
+    "desktop": "npm run build && electron .",
+    "package:mac": "npm run build && electron-builder --mac dir",
+    "test": "vitest run",
+    "test:browser": "playwright test",
+    "check": "npm run build && npm test",
+    "build:native": "node scripts/build-native.mjs"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "lucide-react": "^0.468.0",
+    "mammoth": "^1.10.0",
+    "multer": "^2.0.2",
+    "pdf-parse": "^2.4.5",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "ws": "^8.18.3",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/express": "^5.0.5",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@types/ws": "^8.18.1",
+    "@vitejs/plugin-react": "^5.1.0",
+    "concurrently": "^9.2.1",
+    "electron": "^45.1.0",
+    "electron-builder": "^26.0.12",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.2",
+    "vitest": "^5.0.5"
+  },
+  "build": {
+    "appId": "local.quicken.moderator",
+    "productName": "Quicken",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-server/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": "dir",
+      "extendInfo": {
+        "NSMicrophoneUsageDescription": "Quicken listens to your microphone during sessions you start.",
+        "NSAudioCaptureUsageDescription": "Quicken listens to meeting audio to follow your agenda."
+      },
+      "identity": "-",
+      "notarize": false,
+      "timestamp": "none",
+      "minimumSystemVersion": "14.2"
+    },
+    "extraResources": [
+      {
+        "from": "native/bin/quicken-audio-activity",
+        "to": "quicken-audio-activity"
+      },
+      {
+        "from": "native/bin/quicken-speech",
+        "to": "quicken-speech"
+      },
+      {
+        "from": "native/bin/quicken-llm",
+        "to": "quicken-llm"
+      },
+      {
+        "from": "native/licenses",
+        "to": "licenses"
+      },
+      {
+        "from": "native/bin/quicken-voice",
+        "to": "quicken-voice"
+      }
+    ]
+  }
+}

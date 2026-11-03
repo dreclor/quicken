@@ -1,0 +1,29 @@
+{
+  "measuredAt": "2026-11-02",
+  "units": "decimal bytes; app bundles only, excluding user data and downloaded models",
+  "apps": [
+    {
+      "app": "Granola",
+      "version": "7.668.3",
+      "bytes": 704385115,
+      "source": "Existing /Applications/Granola.app",
+      "architecture": "Intel + Apple Silicon universal"
+    },
+    {
+      "app": "Otter",
+      "version": "1.14.0",
+      "bytes": 669115386,
+      "source": "https://assets.otter.ai/desktop-app/mac/production/otter_latest.pkg",
+      "compressedInstallerBytes": 272626768,
+      "architecture": "Intel + Apple Silicon universal",
+      "method": "Expanded package read-only; did not install or execute app or installer scripts"
+    },
+    {
+      "app": "Quicken",
+      "version": "0.2.0",
+      "bytes": 425491228,
+      "additionalModelBytes": 2721328958,
+      "architecture": "Apple Silicon"
+    }
+  ]
+}

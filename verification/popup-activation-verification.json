@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-01",
+  "productionBuild": "passed",
+  "unitApiParserTests": { "passed": 24 },
+  "browserTests": { "passed": 9 },
+  "newBrowserCoverage": [
+    "Missing OpenAI, Recall, and bridge setup guidance",
+    "Direct navigation from popup to Connections",
+    "Agenda upload, rehearsal selection, duplicate-start prevention",
+    "Opening and recovering the audio window",
+    "End from popup and retaining the successful setup",
+    "Retry after start failure preserves the agenda"
+  ],
+  "nativeChecks": [
+    "Rebuilt Apple Silicon app launched",
+    "Activate Quicken expands native popup",
+    "Agenda and Start button visible in expanded setup",
+    "Missing Recall setup disables Start for meeting-link mode",
+    "Connect services brings main Connections dialog forward"
+  ],
+  "signature": "codesign --verify --deep --strict passed",
+  "repositoryCheck": "Private workspace and environment files excluded; no credential-pattern matches in eligible source files",
+  "audioCapturedDuringNativeCheck": false,
+  "realMeetingVerified": false,
+  "limitations": ["Provider account setup and an authorized test meeting are still required", "No automatic app updater", "No remote repository or release published"]
+}

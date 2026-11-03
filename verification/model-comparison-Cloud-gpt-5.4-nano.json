@@ -1,0 +1,3061 @@
+{
+  "kind": "Synthetic cloud/local comparison; no real meeting data",
+  "createdAt": "2026-11-03T03:09:31.059Z",
+  "hardware": {
+    "cpu": "Apple M3 Pro",
+    "ramGB": 19.327352832
+  },
+  "configuration": {
+    "runtime": "OpenAI Responses API",
+    "model": "gpt-5.4-nano",
+    "reasoning": "none",
+    "serviceTier": "default",
+    "temperature": 0.1,
+    "repetitions": 2,
+    "seeds": null,
+    "promptPolicy": "Unchanged production text prompts and output caps; native strict JSON schema.",
+    "sessionPolicy": "Independent requests, store=false; one unscored warm-up; no retries; API prompt caching may occur.",
+    "comparisonLimits": "No seed control in Responses. Full response latency includes network, server, and download. Streaming first-token latency also recorded but not used as decision latency.",
+    "latency": "Final transcript to moderator assessment; notes measured separately. Includes 120ms moderation debounce, excludes ASR and voice."
+  },
+  "gate": {
+    "minimumOverall": 0.9,
+    "minimumEachFeature": 0.85,
+    "maxOverallRegression": 0.03,
+    "maxUnnecessaryInterjections": 1,
+    "criticalFacts": "No invented decisions/assignments in designated empty notes sections; manually inspect all answers and notes.",
+    "latency": "No worse p95 live moderation latency than 4B baseline."
+  },
+  "models": [
+    {
+      "id": "Cloud-gpt-5.4-nano",
+      "rows": [
+        {
+          "id": "clear-assignment",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2464,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1651,
+              "ms": 2332,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan on Friday.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya: send the testing plan Friday.\",\"quote\":\"Maya will send the testing plan on Friday.\"}]}",
+              "usage": {
+                "input_tokens": 712,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 77,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 789
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "fresh-question",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1576,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1066,
+              "ms": 1449,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Which launch date do you prefer?\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"Which launch date do you prefer?\"],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 709,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 57,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 766
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "missing-deadline",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 2279,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: date|when|deadline|day",
+            "Missing: plan"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1609,
+              "ms": 2157,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"I will send the testing plan soon.\",\"confidence\":0.92,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 728,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 50,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 778
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "explicitly-deferred",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 847,
+          "text": "Since we don’t know the launch campaign cost yet, can we assign someone to find the estimate and report back, or revisit it in the next meeting?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 442,
+              "ms": 724,
+              "text": "Since we don’t know the launch campaign cost yet, can we assign someone to find the estimate and report back, or revisit it in the next meeting?",
+              "usage": {
+                "input_tokens": 232,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 35,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 267
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "sustained-drift",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1465,
+          "text": "Can we return to launch planning and decide on the launch date today?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 766,
+              "ms": 1336,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Can we return to launch planning and decide on the launch date today?\",\"evidence\":\"Did you watch the football match last night?\",\"confidence\":0.93,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 771,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 68,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 839
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "resolved-owner",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1344,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 730,
+              "ms": 1220,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Great, let us move on to the launch date.\",\"confidence\":0.93,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 750,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 53,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 803
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "relevant-tangent",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2092,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1402,
+              "ms": 1965,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"We need to select a launch date.\",\"confidence\":0.62,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 750,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 50,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 800
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "brief-social-aside",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2095,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1400,
+              "ms": 1965,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The launch draft is ready for review.\",\"confidence\":0.92,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 751,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 50,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 801
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "answered-cost",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1907,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1254,
+              "ms": 1779,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"That fits the approved budget; next is distribution.\",\"confidence\":0.93,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 751,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 52,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 803
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "answered-deadline",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1326,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 918,
+              "ms": 1200,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Okay, let us discuss the testing approach next.\",\"confidence\":0.93,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 750,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 52,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 802
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "assigned-followup",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1473,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 833,
+              "ms": 1352,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Good, next topic is the homepage.\",\"confidence\":0.93,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 747,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 50,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 797
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "tentative-idea",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1280,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 780,
+              "ms": 1151,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"We are comparing several audiences.\",\"confidence\":0.62,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 733,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 48,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 781
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "clear-first-person",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2209,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1370,
+              "ms": 2083,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"I will upload the release checklist tomorrow.\",\"confidence\":0.92,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya: upload the release checklist tomorrow.\",\"quote\":\"I will upload the release checklist tomorrow.\"}]}",
+              "usage": {
+                "input_tokens": 710,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 73,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 783
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "relevant-football",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2343,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1669,
+              "ms": 2218,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The match schedule determines which launch date works.\",\"confidence\":0.62,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 748,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 51,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 799
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "drift-recipes",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 2154,
+          "text": "Let’s return to launch planning—what launch date are we choosing?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1608,
+              "ms": 2033,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Let’s return to launch planning—what launch date are we choosing?\",\"evidence\":\"My sourdough starter doubled overnight.\",\"confidence\":0.93,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 762,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 66,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 828
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "drift-travel",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1437,
+          "text": "Can we return to launch planning and confirm the key launch details we’re deciding today?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 871,
+              "ms": 1311,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Can we return to launch planning and confirm the key launch details we’re deciding today?\",\"evidence\":\"I booked a snorkeling trip to Hawaii.\",\"confidence\":0.93,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 763,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 69,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 832
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "vague-deadline-copy",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1562,
+          "text": "What exact deadline should Alex use to finish editing the launch email?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 842,
+              "ms": 1436,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What exact deadline should Alex use to finish editing the launch email?\",\"evidence\":\"I will finish editing the launch email sometime.\",\"confidence\":0.93,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Alex: finish editing the launch email by the agreed deadline.\",\"quote\":\"I will finish editing the launch email sometime.\"}]}",
+              "usage": {
+                "input_tokens": 727,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 93,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 820
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "vague-owner",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1413,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: room|book"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 759,
+              "ms": 1283,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The launch requires a room booking by Friday.\",\"confidence\":0.92,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 729,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 51,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 780
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "vague-owner-review",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1561,
+          "text": "Who should be the named person responsible for the security review?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 767,
+              "ms": 1439,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Who should be the named person responsible for the security review?\",\"evidence\":\"We need a named person for the security review.\",\"confidence\":0.86,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 733,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 66,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 799
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "deferred-room",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 831,
+          "text": "Since we haven’t decided yet, can we confirm which room we’ll book for the launch, or assign someone to follow up and report back?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 492,
+              "ms": 708,
+              "text": "Since we haven’t decided yet, can we confirm which room we’ll book for the launch, or assign someone to follow up and report back?",
+              "usage": {
+                "input_tokens": 228,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 33,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 261
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "deferred-capacity",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 975,
+          "text": "Since we don’t know the venue capacity yet, can someone look up the venue’s maximum occupancy and report back, or assign a follow-up owner to confirm it?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 621,
+              "ms": 851,
+              "text": "Since we don’t know the venue capacity yet, can someone look up the venue’s maximum occupancy and report back, or assign a follow-up owner to confirm it?",
+              "usage": {
+                "input_tokens": 224,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 37,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 261
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "resolved-by-context",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1403,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 773,
+              "ms": 1277,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"What is the fallback if the projector breaks?\",\"confidence\":0.92,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 757,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 52,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 809
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-commitment",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1623,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 873,
+              "ms": 1494,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"maya will send the testing plan on friday\",\"confidence\":0.92,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya: send the testing plan on Friday.\",\"quote\":\"maya will send the testing plan on friday\"}]}",
+              "usage": {
+                "input_tokens": 710,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 75,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 785
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1780,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: migration|plan"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1337,
+              "ms": 1653,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"i will write the migration plan soon\",\"confidence\":0.92,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 725,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 50,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 775
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "recent-reminder",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2134,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1337,
+              "ms": 2012,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Can we return to launch planning and confirm the launch date we’re targeting?\",\"evidence\":\"We are still discussing the launch date.\",\"confidence\":0.74,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 775,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 67,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 842
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "off-track-disabled",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1919,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1194,
+              "ms": 1788,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Can we return to choosing the launch date for our launch planning agenda?\",\"evidence\":\"The tennis final went to five sets.\",\"confidence\":0.93,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 758,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 66,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 824
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "agenda-first",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 756,
+          "text": "The first item on our agenda is “Choose the launch date,” but the transcript doesn’t include any proposed dates or decisions yet.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 412,
+              "ms": 636,
+              "text": "The first item on our agenda is “Choose the launch date,” but the transcript doesn’t include any proposed dates or decisions yet.",
+              "usage": {
+                "input_tokens": 171,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 30,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 201
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "agenda-current",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 929,
+          "text": "We’re currently discussing “Assign owners,” but the transcript doesn’t include any owner names or proposals yet, so I can’t say who should be assigned.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 511,
+              "ms": 803,
+              "text": "We’re currently discussing “Assign owners,” but the transcript doesn’t include any owner names or proposals yet, so I can’t say who should be assigned.",
+              "usage": {
+                "input_tokens": 166,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 35,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 201
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "known-owner",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1436,
+          "text": "Maya said Priya will send the venue contract on Tuesday; the meeting transcript doesn’t mention any proposed launch dates, so I can’t confirm or choose one yet.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 998,
+              "ms": 1316,
+              "text": "Maya said Priya will send the venue contract on Tuesday; the meeting transcript doesn’t mention any proposed launch dates, so I can’t confirm or choose one yet.",
+              "usage": {
+                "input_tokens": 186,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 38,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 224
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "known-date",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 894,
+          "text": "You agreed to launch on November 18, as stated by Maya in the transcript.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 551,
+              "ms": 763,
+              "text": "You agreed to launch on November 18, as stated by Maya in the transcript.",
+              "usage": {
+                "input_tokens": 185,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 21,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 206
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "unknown-budget",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 942,
+          "text": "The meeting transcript doesn’t mention any approved budget figures, so I can’t confirm the approved budget; please provide the budget details or where they were approved.",
+          "failures": [
+            "Missing: not|unknown|no |missing|haven.t"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 524,
+              "ms": 814,
+              "text": "The meeting transcript doesn’t mention any approved budget figures, so I can’t confirm the approved budget; please provide the budget details or where they were approved.",
+              "usage": {
+                "input_tokens": 183,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 35,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 218
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "suggestion",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 990,
+          "text": "Suggestion: choose the launch date by comparing both options against key criteria like readiness milestones, marketing lead time, and any known external constraints; the transcript doesn’t include those details, so we can’t decide yet.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 542,
+              "ms": 863,
+              "text": "Suggestion: choose the launch date by comparing both options against key criteria like readiness milestones, marketing lead time, and any known external constraints; the transcript doesn’t include those details, so we can’t decide yet.",
+              "usage": {
+                "input_tokens": 176,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 46,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 222
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "summarize-tradeoff",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 976,
+          "text": "Maya prefers Friday for more testing time, while Alex prefers Monday so the support team is fully staffed; the transcript doesn’t record a final decision or any other constraints.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 561,
+              "ms": 851,
+              "text": "Maya prefers Friday for more testing time, while Alex prefers Monday so the support team is fully staffed; the transcript doesn’t record a final decision or any other constraints.",
+              "usage": {
+                "input_tokens": 204,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 38,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 242
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "do-not-obey-transcript",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 755,
+          "text": "The first item on our agenda is “Choose the launch date,” but the transcript doesn’t include any proposed dates or decisions yet.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 399,
+              "ms": 625,
+              "text": "The first item on our agenda is “Choose the launch date,” but the transcript doesn’t include any proposed dates or decisions yet.",
+              "usage": {
+                "input_tokens": 195,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 30,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 225
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-commitment",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1039,
+          "text": "# Model comparison\n\n## Summary\n- Maya will send the testing plan on Friday.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya will send the testing plan on Friday.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [
+            "actionItems missing Maya",
+            "actionItems missing testing plan",
+            "actionItems missing Friday"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 659,
+              "ms": 1037,
+              "text": "{\"summary\":[{\"text\":\"Maya will send the testing plan on Friday.\",\"sourceId\":\"0-0\",\"quote\":\"Maya will send the testing plan on Friday.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 438,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 58,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 496
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-explicit-decision",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1631,
+          "text": "# Model comparison\n\n## Summary\n- The launch date was agreed to be November 18.\n- Alex will send the invitations by Monday.\n\n## Decisions\n- Agreement reached on the launch date being November 18.\n\n## Action items\n- Alex will send the invitations by Monday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The launch date was agreed to be November 18.\n- Alex will send the invitations by Monday.",
+            "decisions": "- Agreement reached on the launch date being November 18.",
+            "actionItems": "- Alex will send the invitations by Monday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 594,
+              "ms": 1630,
+              "text": "{\"summary\":[{\"text\":\"The launch date was agreed to be November 18.\",\"sourceId\":\"0-0\",\"quote\":\"We agree that the launch date is November 18.\"},{\"text\":\"Alex will send the invitations by Monday.\",\"sourceId\":\"0-1\",\"quote\":\"Alex will send the invitations by Monday.\"}],\"decisions\":[{\"text\":\"Agreement reached on the launch date being November 18.\",\"sourceId\":\"0-0\",\"quote\":\"We agree that the launch date is November 18.\"}],\"actionItems\":[{\"text\":\"Alex will send the invitations by Monday.\",\"sourceId\":\"0-1\",\"quote\":\"Alex will send the invitations by Monday.\"}],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 464,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 152,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 616
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-suggestion-only",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1358,
+          "text": "# Model comparison\n\n## Summary\n- A possible launch in December was discussed as only a suggestion.\n- No launch date has been chosen and no work has been assigned.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- A possible launch in December was discussed as only a suggestion.\n- No launch date has been chosen and no work has been assigned.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 726,
+              "ms": 1358,
+              "text": "{\"summary\":[{\"text\":\"A possible launch in December was discussed as only a suggestion.\",\"sourceId\":\"0-0\",\"quote\":\"We could launch in December, but that is only a suggestion.\"},{\"text\":\"No launch date has been chosen and no work has been assigned.\",\"sourceId\":\"0-1\",\"quote\":\"We have not chosen a date or assigned any work.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 469,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 99,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 568
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-resolved-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1750,
+          "text": "# Model comparison\n\n## Summary\n- Participant asked how much the venue costs.\n- Participant stated the venue costs three hundred dollars.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Participant asked how much the venue costs.\n- Participant stated the venue costs three hundred dollars.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1282,
+              "ms": 1750,
+              "text": "{\"summary\":[{\"text\":\"Participant asked how much the venue costs.\",\"sourceId\":\"0-0\",\"quote\":\"How much is the venue?\"},{\"text\":\"Participant stated the venue costs three hundred dollars.\",\"sourceId\":\"0-1\",\"quote\":\"The venue costs three hundred dollars.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 459,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 80,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 539
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-open-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 2768,
+          "text": "# Model comparison\n\n## Summary\n- A participant asked who would approve the final poster.\n- Another participant said the approval has not been assigned yet.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\n- Who will approve the final poster?",
+          "sections": {
+            "summary": "- A participant asked who would approve the final poster.\n- Another participant said the approval has not been assigned yet.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "- Who will approve the final poster?"
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 2069,
+              "ms": 2767,
+              "text": "{\"summary\":[{\"text\":\"A participant asked who would approve the final poster.\",\"sourceId\":\"0-0\",\"quote\":\"Who will approve the final poster?\"},{\"text\":\"Another participant said the approval has not been assigned yet.\",\"sourceId\":\"0-1\",\"quote\":\"We have not assigned that approval yet.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[{\"text\":\"Who will approve the final poster?\",\"sourceId\":\"0-0\",\"quote\":\"Who will approve the final poster?\"}]}",
+              "usage": {
+                "input_tokens": 461,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 114,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 575
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-moderator-not-assignment",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 2187,
+          "text": "# Model comparison\n\n## Summary\n- Alex said no one has been assigned to the budget task.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Alex said no one has been assigned to the budget task.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1817,
+              "ms": 2186,
+              "text": "{\"summary\":[{\"text\":\"Alex said no one has been assigned to the budget task.\",\"sourceId\":\"0-1\",\"quote\":\"We have not assigned anyone to that task.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 462,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 59,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 521
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-corrected-facts",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 2471,
+          "text": "# Model comparison\n\n## Summary\n- They initially considered launching on November 12.\n- They discussed that the November 12 date is no longer an option.\n- They agreed to launch on November 18.\n\n## Decisions\n- Launch date set to November 18.\n\n## Action items\n- Priya will reserve the room by Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- They initially considered launching on November 12.\n- They discussed that the November 12 date is no longer an option.\n- They agreed to launch on November 18.",
+            "decisions": "- Launch date set to November 18.",
+            "actionItems": "- Priya will reserve the room by Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1306,
+              "ms": 2470,
+              "text": "{\"summary\":[{\"text\":\"They initially considered launching on November 12.\",\"sourceId\":\"0-0\",\"quote\":\"We initially considered launching on November 12.\"},{\"text\":\"They discussed that the November 12 date is no longer an option.\",\"sourceId\":\"0-1\",\"quote\":\"That date is no longer an option.\"},{\"text\":\"They agreed to launch on November 18.\",\"sourceId\":\"0-2\",\"quote\":\"We agree to launch on November 18.\"}],\"decisions\":[{\"text\":\"Launch date set to November 18.\",\"sourceId\":\"0-2\",\"quote\":\"We agree to launch on November 18.\"}],\"actionItems\":[{\"text\":\"Priya will reserve the room by Friday.\",\"sourceId\":\"0-3\",\"quote\":\"Priya will reserve the room by Friday.\"}],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 515,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 181,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 696
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-agenda-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1268,
+          "text": "# Model comparison\n\n## Summary\n- Quicken said the first agenda item is to choose the launch date.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Quicken said the first agenda item is to choose the launch date.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 822,
+              "ms": 1267,
+              "text": "{\"summary\":[{\"text\":\"Quicken said the first agenda item is to choose the launch date.\",\"sourceId\":\"0-1\",\"quote\":\"The first item is to choose the launch date.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 469,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 62,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 531
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "vague-owner",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1527,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: room|book"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 855,
+              "ms": 1403,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The launch requires a room booking by Friday.\",\"confidence\":0.92,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 729,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 51,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 780
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "vague-owner-review",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1283,
+          "text": "Who should be the named owner for the security review?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 692,
+              "ms": 1157,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Who should be the named owner for the security review?\",\"evidence\":\"We need a named person for the security review.\",\"confidence\":0.86,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 733,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 65,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 798
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "deferred-room",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 1134,
+          "text": "Since we haven’t decided yet, can someone confirm which room we’ll book for the launch, or assign a follow-up owner to resolve it before invitations go out?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 753,
+              "ms": 1006,
+              "text": "Since we haven’t decided yet, can someone confirm which room we’ll book for the launch, or assign a follow-up owner to resolve it before invitations go out?",
+              "usage": {
+                "input_tokens": 228,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 37,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 265
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "deferred-capacity",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 811,
+          "text": "Since we don’t know the venue capacity yet, can someone look up how many people it can hold and report back, or we can assign a follow-up owner to confirm it?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 424,
+              "ms": 690,
+              "text": "Since we don’t know the venue capacity yet, can someone look up how many people it can hold and report back, or we can assign a follow-up owner to confirm it?",
+              "usage": {
+                "input_tokens": 224,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 40,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 264
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "resolved-by-context",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1468,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 762,
+              "ms": 1342,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"What is the fallback if the projector breaks?\",\"confidence\":0.92,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 757,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 52,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 809
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-commitment",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1551,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 777,
+              "ms": 1429,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"maya will send the testing plan on friday\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya: send the testing plan on Friday.\",\"quote\":\"maya will send the testing plan on friday\"}]}",
+              "usage": {
+                "input_tokens": 710,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 75,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 785
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 1403,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: migration|plan"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 868,
+              "ms": 1273,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"i will write the migration plan soon\",\"confidence\":0.92,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 725,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 50,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 775
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "recent-reminder",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2014,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1373,
+              "ms": 1888,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Can we return to launch planning and confirm the launch date we’re targeting?\",\"evidence\":\"We are still discussing the launch date.\",\"confidence\":0.74,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 775,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 67,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 842
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "off-track-disabled",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 6516,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 5764,
+              "ms": 6394,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Can we return to choosing the launch date for our launch planning agenda?\",\"evidence\":\"The tennis final went to five sets.\",\"confidence\":0.93,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 758,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 66,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 824
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "agenda-first",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1463,
+          "text": "The first item on our agenda is “Choose the launch date,” but the transcript doesn’t include any proposed dates or decisions yet.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1217,
+              "ms": 1336,
+              "text": "The first item on our agenda is “Choose the launch date,” but the transcript doesn’t include any proposed dates or decisions yet.",
+              "usage": {
+                "input_tokens": 171,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 30,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 201
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "agenda-current",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1240,
+          "text": "We’re currently discussing “Assign owners,” but the transcript doesn’t include any proposed owners or decisions yet, so I can’t name who should be assigned.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 625,
+              "ms": 1110,
+              "text": "We’re currently discussing “Assign owners,” but the transcript doesn’t include any proposed owners or decisions yet, so I can’t name who should be assigned.",
+              "usage": {
+                "input_tokens": 166,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 35,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 201
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "known-owner",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 931,
+          "text": "Maya said Priya will send the venue contract on Tuesday; the meeting transcript doesn’t mention any proposed launch dates, so I can’t confirm or choose one yet.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 608,
+              "ms": 802,
+              "text": "Maya said Priya will send the venue contract on Tuesday; the meeting transcript doesn’t mention any proposed launch dates, so I can’t confirm or choose one yet.",
+              "usage": {
+                "input_tokens": 186,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 38,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 224
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "known-date",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 878,
+          "text": "You agreed to launch on November 18, as stated by Maya in the transcript.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 596,
+              "ms": 754,
+              "text": "You agreed to launch on November 18, as stated by Maya in the transcript.",
+              "usage": {
+                "input_tokens": 185,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 21,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 206
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "unknown-budget",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1021,
+          "text": "We don’t have any approved budget figures discussed in the provided transcript, so I can’t confirm the approved budget; please share the budget details if you want me to reference them.",
+          "failures": [
+            "Missing: not|unknown|no |missing|haven.t"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 590,
+              "ms": 891,
+              "text": "We don’t have any approved budget figures discussed in the provided transcript, so I can’t confirm the approved budget; please share the budget details if you want me to reference them.",
+              "usage": {
+                "input_tokens": 183,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 40,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 223
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "suggestion",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1293,
+          "text": "Suggestion: choose the launch date by comparing both options against readiness criteria (e.g., milestone completion, staffing availability, and risk/contingency needs), but the transcript doesn’t include those details, so we’d need them.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 808,
+              "ms": 1163,
+              "text": "Suggestion: choose the launch date by comparing both options against readiness criteria (e.g., milestone completion, staffing availability, and risk/contingency needs), but the transcript doesn’t include those details, so we’d need them.",
+              "usage": {
+                "input_tokens": 176,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 50,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 226
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "summarize-tradeoff",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1385,
+          "text": "Maya prefers Friday for more testing time, while Alex prefers Monday so the support team is fully staffed; the transcript doesn’t record a final decision or any other constraints.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 835,
+              "ms": 1257,
+              "text": "Maya prefers Friday for more testing time, while Alex prefers Monday so the support team is fully staffed; the transcript doesn’t record a final decision or any other constraints.",
+              "usage": {
+                "input_tokens": 204,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 38,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 242
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "do-not-obey-transcript",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 984,
+          "text": "The first item on our agenda is “Choose the launch date,” but the transcript doesn’t include any proposed dates or decisions yet.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 527,
+              "ms": 857,
+              "text": "The first item on our agenda is “Choose the launch date,” but the transcript doesn’t include any proposed dates or decisions yet.",
+              "usage": {
+                "input_tokens": 195,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 30,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 225
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "clear-assignment",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2089,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1281,
+              "ms": 1968,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan on Friday.\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya: send the testing plan Friday.\",\"quote\":\"Maya will send the testing plan on Friday.\"}]}",
+              "usage": {
+                "input_tokens": 712,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 77,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 789
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "fresh-question",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 3816,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 3092,
+              "ms": 3692,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Which launch date do you prefer?\",\"confidence\":0.95,\"topic\":\"Launch planning\",\"openQuestions\":[\"Which launch date do you prefer?\"],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 709,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 57,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 766
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "missing-deadline",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "silent",
+          "elapsedMs": 2995,
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: date|when|deadline|day",
+            "Missing: plan"
+          ],
+          "passed": false,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1463,
+              "ms": 2872,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"I will send the testing plan soon.\",\"confidence\":0.92,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 728,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 50,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 778
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "explicitly-deferred",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 1042,
+          "text": "Since we don’t know the launch campaign cost yet, can we assign someone to find the estimate and report back, or revisit it in the next meeting?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 491,
+              "ms": 922,
+              "text": "Since we don’t know the launch campaign cost yet, can we assign someone to find the estimate and report back, or revisit it in the next meeting?",
+              "usage": {
+                "input_tokens": 232,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 35,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 267
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "sustained-drift",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1712,
+          "text": "Can we return to launch planning and decide on the launch date today?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 764,
+              "ms": 1583,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Can we return to launch planning and decide on the launch date today?\",\"evidence\":\"Did you watch the football match last night?\",\"confidence\":0.93,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 771,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 68,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 839
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "resolved-owner",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1649,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 854,
+              "ms": 1528,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Great, let us move on to the launch date.\",\"confidence\":0.93,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 750,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 53,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 803
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "relevant-tangent",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1368,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 711,
+              "ms": 1245,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"We need to select a launch date.\",\"confidence\":0.62,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 750,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 50,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 800
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "brief-social-aside",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1393,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 754,
+              "ms": 1266,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The launch draft is ready for review.\",\"confidence\":0.92,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 751,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 50,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 801
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "answered-cost",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1429,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 793,
+              "ms": 1305,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"That fits the approved budget; next is distribution.\",\"confidence\":0.93,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 751,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 52,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 803
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "answered-deadline",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1723,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1058,
+              "ms": 1598,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"It is due on November 15.\",\"confidence\":0.92,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 750,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 50,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 800
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "assigned-followup",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1731,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1083,
+              "ms": 1607,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Good, next topic is the homepage.\",\"confidence\":0.93,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 747,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 50,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 797
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "tentative-idea",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1774,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1163,
+              "ms": 1652,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"We are comparing several audiences.\",\"confidence\":0.62,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 733,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 48,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 781
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "clear-first-person",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1919,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1242,
+              "ms": 1798,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"I will upload the release checklist tomorrow.\",\"confidence\":0.92,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya: upload the release checklist tomorrow.\",\"quote\":\"I will upload the release checklist tomorrow.\"}]}",
+              "usage": {
+                "input_tokens": 710,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 73,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 783
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "relevant-football",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1380,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 709,
+              "ms": 1252,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The match schedule determines which launch date works.\",\"confidence\":0.62,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 748,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 51,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 799
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "drift-recipes",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1503,
+          "text": "Let’s return to launch planning—what launch date are we targeting?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 789,
+              "ms": 1374,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Let’s return to launch planning—what launch date are we targeting?\",\"evidence\":\"My sourdough starter doubled overnight.\",\"confidence\":0.92,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 762,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 66,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 828
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "drift-travel",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1562,
+          "text": "Can we return to launch planning and confirm the key launch details we’re deciding today?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 840,
+              "ms": 1432,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Can we return to launch planning and confirm the key launch details we’re deciding today?\",\"evidence\":\"I booked a snorkeling trip to Hawaii.\",\"confidence\":0.93,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 763,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 69,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 832
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "vague-deadline-copy",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1368,
+          "text": "What exact deadline should Alex use to finish editing the launch email?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 781,
+              "ms": 1238,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What exact deadline should Alex use to finish editing the launch email?\",\"evidence\":\"I will finish editing the launch email sometime.\",\"confidence\":0.93,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 727,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 66,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 793
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-commitment",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1324,
+          "text": "# Model comparison\n\n## Summary\n- Maya will send the testing plan on Friday.\n\n## Decisions\nNone recorded.\n\n## Action items\n- Maya will send the testing plan on Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya will send the testing plan on Friday.",
+            "decisions": "None recorded.",
+            "actionItems": "- Maya will send the testing plan on Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 701,
+              "ms": 1324,
+              "text": "{\"summary\":[{\"text\":\"Maya will send the testing plan on Friday.\",\"sourceId\":\"0-0\",\"quote\":\"Maya will send the testing plan on Friday.\"}],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya will send the testing plan on Friday.\",\"sourceId\":\"0-0\",\"quote\":\"Maya will send the testing plan on Friday.\"}],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 438,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 91,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 529
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-explicit-decision",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1745,
+          "text": "# Model comparison\n\n## Summary\n- The launch date was agreed to be November 18.\n- Alex will send the invitations by Monday.\n\n## Decisions\n- Agreement reached on the launch date being November 18.\n\n## Action items\n- Alex to send the invitations by Monday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The launch date was agreed to be November 18.\n- Alex will send the invitations by Monday.",
+            "decisions": "- Agreement reached on the launch date being November 18.",
+            "actionItems": "- Alex to send the invitations by Monday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 687,
+              "ms": 1744,
+              "text": "{\"summary\":[{\"text\":\"The launch date was agreed to be November 18.\",\"sourceId\":\"0-0\",\"quote\":\"We agree that the launch date is November 18.\"},{\"text\":\"Alex will send the invitations by Monday.\",\"sourceId\":\"0-1\",\"quote\":\"Alex will send the invitations by Monday.\"}],\"decisions\":[{\"text\":\"Agreement reached on the launch date being November 18.\",\"sourceId\":\"0-0\",\"quote\":\"We agree that the launch date is November 18.\"}],\"actionItems\":[{\"text\":\"Alex to send the invitations by Monday.\",\"sourceId\":\"0-1\",\"quote\":\"Alex will send the invitations by Monday.\"}],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 464,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 152,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 616
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-suggestion-only",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1561,
+          "text": "# Model comparison\n\n## Summary\n- Maya suggested a possible December launch.\n- Alex said no launch date has been chosen and no work has been assigned.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya suggested a possible December launch.\n- Alex said no launch date has been chosen and no work has been assigned.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 684,
+              "ms": 1561,
+              "text": "{\"summary\":[{\"text\":\"Maya suggested a possible December launch.\",\"sourceId\":\"0-0\",\"quote\":\"We could launch in December, but that is only a suggestion.\"},{\"text\":\"Alex said no launch date has been chosen and no work has been assigned.\",\"sourceId\":\"0-1\",\"quote\":\"We have not chosen a date or assigned any work.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 469,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 97,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 566
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-resolved-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1821,
+          "text": "# Model comparison\n\n## Summary\n- Maya asked how much the venue costs.\n- Alex said the venue costs three hundred dollars.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya asked how much the venue costs.\n- Alex said the venue costs three hundred dollars.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1210,
+              "ms": 1820,
+              "text": "{\"summary\":[{\"text\":\"Maya asked how much the venue costs.\",\"sourceId\":\"0-0\",\"quote\":\"How much is the venue?\"},{\"text\":\"Alex said the venue costs three hundred dollars.\",\"sourceId\":\"0-1\",\"quote\":\"The venue costs three hundred dollars.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 459,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 81,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 540
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-open-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1962,
+          "text": "# Model comparison\n\n## Summary\n- A participant asked who will approve the final poster.\n- Another participant said the approval has not been assigned yet.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\n- Who will approve the final poster?",
+          "sections": {
+            "summary": "- A participant asked who will approve the final poster.\n- Another participant said the approval has not been assigned yet.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "- Who will approve the final poster?"
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1059,
+              "ms": 1961,
+              "text": "{\"summary\":[{\"text\":\"A participant asked who will approve the final poster.\",\"sourceId\":\"0-0\",\"quote\":\"Who will approve the final poster?\"},{\"text\":\"Another participant said the approval has not been assigned yet.\",\"sourceId\":\"0-1\",\"quote\":\"We have not assigned that approval yet.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[{\"text\":\"Who will approve the final poster?\",\"sourceId\":\"0-0\",\"quote\":\"Who will approve the final poster?\"}]}",
+              "usage": {
+                "input_tokens": 461,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 114,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 575
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-moderator-not-assignment",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1463,
+          "text": "# Model comparison\n\n## Summary\n- Alex said no one has been assigned to the budget task.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Alex said no one has been assigned to the budget task.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 1061,
+              "ms": 1462,
+              "text": "{\"summary\":[{\"text\":\"Alex said no one has been assigned to the budget task.\",\"sourceId\":\"0-1\",\"quote\":\"We have not assigned anyone to that task.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 462,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 59,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 521
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-corrected-facts",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1928,
+          "text": "# Model comparison\n\n## Summary\n- They discussed an initial launch date of November 12.\n- They stated that November 12 is no longer an option.\n- They agreed to launch on November 18.\n\n## Decisions\n- Launch date set to November 18.\n\n## Action items\n- Priya will reserve the room by Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- They discussed an initial launch date of November 12.\n- They stated that November 12 is no longer an option.\n- They agreed to launch on November 18.",
+            "decisions": "- Launch date set to November 18.",
+            "actionItems": "- Priya will reserve the room by Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 716,
+              "ms": 1928,
+              "text": "{\"summary\":[{\"text\":\"They discussed an initial launch date of November 12.\",\"sourceId\":\"0-0\",\"quote\":\"We initially considered launching on November 12.\"},{\"text\":\"They stated that November 12 is no longer an option.\",\"sourceId\":\"0-1\",\"quote\":\"That date is no longer an option.\"},{\"text\":\"They agreed to launch on November 18.\",\"sourceId\":\"0-2\",\"quote\":\"We agree to launch on November 18.\"}],\"decisions\":[{\"text\":\"Launch date set to November 18.\",\"sourceId\":\"0-2\",\"quote\":\"We agree to launch on November 18.\"}],\"actionItems\":[{\"text\":\"Priya will reserve the room by Friday.\",\"sourceId\":\"0-3\",\"quote\":\"Priya will reserve the room by Friday.\"}],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 515,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 181,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 696
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-agenda-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1272,
+          "text": "# Model comparison\n\n## Summary\n- Quicken said the first agenda item is to choose the launch date.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Quicken said the first agenda item is to choose the launch date.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-5.4-nano",
+              "firstTokenMs": 855,
+              "ms": 1272,
+              "text": "{\"summary\":[{\"text\":\"Quicken said the first agenda item is to choose the launch date.\",\"sourceId\":\"0-1\",\"quote\":\"The first item is to choose the launch date.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 469,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 62,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 531
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-5.4-nano-2026-03-17",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        }
+      ],
+      "loadMs": 0,
+      "warmupMs": 1256,
+      "summary": {
+        "moderation": {
+          "passed": 46,
+          "total": 52,
+          "medianMs": 1561,
+          "p95Ms": 2995
+        },
+        "direct": {
+          "passed": 14,
+          "total": 16,
+          "medianMs": 976,
+          "p95Ms": 1463
+        },
+        "notes": {
+          "passed": 15,
+          "total": 16,
+          "medianMs": 1631,
+          "p95Ms": 2768
+        },
+        "overall": 0.8928571428571429,
+        "unnecessaryInterjections": 0,
+        "unexpectedFactSections": 0
+      }
+    }
+  ]
+}

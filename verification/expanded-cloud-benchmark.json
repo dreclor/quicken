@@ -1,0 +1,834 @@
+{
+  "createdAt": "2026-11-03T03:15:30.850Z",
+  "hardware": {
+    "cpu": "Apple M3 Pro",
+    "ramGB": 19.327352832
+  },
+  "scope": "Five actual models, 84 synthetic text checks each. Local and Luna text scores reused from the same day with unchanged fixtures/harness. Fifteen fresh interleaved browser/audio trials. OpenAI is the only cloud provider tested.",
+  "models": [
+    {
+      "model": "Qwen3-4B-Instruct-2507",
+      "source": "verification/model-comparison-Qwen3-4B-Instruct-2507.json",
+      "measuredAt": "2026-11-03T00:43:04.797Z",
+      "reusedEarlierTextBaseline": true,
+      "configuration": {
+        "quantization": "Q4_K_M",
+        "context": 8192,
+        "gpuLayers": 99,
+        "cpuThreads": 4,
+        "parallelSlots": 1,
+        "temperature": 0.1,
+        "thinking": false,
+        "thinkingBudget": 0,
+        "repetitions": 2,
+        "seeds": [
+          17,
+          29
+        ],
+        "promptPolicy": "Unchanged production prompts for every model",
+        "latency": "Final transcript to moderator assessment; notes measured separately. Includes 120ms moderation debounce, excludes ASR and voice."
+      },
+      "moderation": {
+        "passed": 42,
+        "total": 52,
+        "medianMs": 1678,
+        "p95Ms": 2096
+      },
+      "direct": {
+        "passed": 16,
+        "total": 16,
+        "medianMs": 710,
+        "p95Ms": 975
+      },
+      "notes": {
+        "passed": 15,
+        "total": 16,
+        "medianMs": 3186,
+        "p95Ms": 6677
+      },
+      "overall": 0.8690476190476191,
+      "unnecessaryInterjections": 6,
+      "unexpectedFactSections": 1,
+      "passed": 73,
+      "total": 84,
+      "firstTokenMedianMs": null,
+      "returnedModels": [],
+      "serviceTiers": [],
+      "failedChecks": [
+        {
+          "id": "relevant-tangent",
+          "round": 0,
+          "actual": "ambiguous",
+          "failures": [
+            "Expected silent, got ambiguous"
+          ],
+          "text": "What specific date or timeframe should we set for the launch, given the accessibility audit concerns?"
+        },
+        {
+          "id": "tentative-idea",
+          "round": 0,
+          "actual": "ambiguous",
+          "failures": [
+            "Expected silent, got ambiguous"
+          ],
+          "text": "Who will decide if alumni are invited to the launch?"
+        },
+        {
+          "id": "relevant-football",
+          "round": 0,
+          "actual": "ambiguous",
+          "failures": [
+            "Expected silent, got ambiguous"
+          ],
+          "text": "What specific launch date should we set based on the match schedule?"
+        },
+        {
+          "id": "drift-travel",
+          "round": 0,
+          "actual": "silent",
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "round": 0,
+          "actual": "silent",
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: migration|plan"
+          ]
+        },
+        {
+          "id": "notes-suggestion-only",
+          "round": 0,
+          "failures": [
+            "actionItems should be empty"
+          ],
+          "text": "# Model comparison\n\n## Summary\n- Launching in December is suggested but not confirmed.\n\n## Decisions\nNone recorded.\n\n## Action items\n- The team has not assigned any work or selected a launch date.\n\n## Open questions\nNone recorded."
+        },
+        {
+          "id": "punctuation-free-vague",
+          "round": 1,
+          "actual": "silent",
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: migration|plan"
+          ]
+        },
+        {
+          "id": "relevant-tangent",
+          "round": 1,
+          "actual": "ambiguous",
+          "failures": [
+            "Expected silent, got ambiguous"
+          ],
+          "text": "What specific date or timeframe should we set for the launch, given the accessibility audit concerns?"
+        },
+        {
+          "id": "tentative-idea",
+          "round": 1,
+          "actual": "ambiguous",
+          "failures": [
+            "Expected silent, got ambiguous"
+          ],
+          "text": "Who will decide if alumni are invited to the launch?"
+        },
+        {
+          "id": "relevant-football",
+          "round": 1,
+          "actual": "ambiguous",
+          "failures": [
+            "Expected silent, got ambiguous"
+          ],
+          "text": "What specific launch date should we set based on the match schedule?"
+        },
+        {
+          "id": "drift-travel",
+          "round": 1,
+          "actual": "silent",
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "Apple-Foundation-Models",
+      "source": "verification/model-comparison-Apple-Foundation-Models.json",
+      "measuredAt": "2026-11-03T00:45:45.277Z",
+      "reusedEarlierTextBaseline": true,
+      "configuration": {
+        "runtime": "Apple FoundationModels / SystemLanguageModel.default (on-device)",
+        "context": "System-reported below",
+        "temperature": 0.1,
+        "sampling": "random top-k 40",
+        "repetitions": 2,
+        "seeds": [
+          17,
+          29
+        ],
+        "promptPolicy": "Unchanged production text prompts; JSON schema mapped to Apple guided generation with property order preserved. Native schema prompt inclusion enabled.",
+        "sessionPolicy": "Fresh session per request; one unscored warm-up; no history shared between cases.",
+        "comparisonLimits": "Different model tokenizers, schema implementations, and runtime caching; equal token caps are not equal text lengths. No assumed parity in hidden sampling defaults.",
+        "latency": "Final transcript to moderator assessment; notes measured separately. Includes 120ms moderation debounce, excludes ASR and voice."
+      },
+      "moderation": {
+        "passed": 38,
+        "total": 52,
+        "medianMs": 1662,
+        "p95Ms": 1863
+      },
+      "direct": {
+        "passed": 14,
+        "total": 16,
+        "medianMs": 614,
+        "p95Ms": 968
+      },
+      "notes": {
+        "passed": 12,
+        "total": 16,
+        "medianMs": 1828,
+        "p95Ms": 2782
+      },
+      "overall": 0.7619047619047619,
+      "unnecessaryInterjections": 0,
+      "unexpectedFactSections": 0,
+      "passed": 64,
+      "total": 84,
+      "firstTokenMedianMs": null,
+      "returnedModels": [],
+      "serviceTiers": [],
+      "failedChecks": [
+        {
+          "id": "sustained-drift",
+          "round": 0,
+          "actual": "silent",
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ]
+        },
+        {
+          "id": "drift-recipes",
+          "round": 0,
+          "actual": "ambiguous",
+          "failures": [
+            "Expected off_track, got ambiguous"
+          ],
+          "text": "Shall we return to choosing the launch date?"
+        },
+        {
+          "id": "drift-travel",
+          "round": 0,
+          "actual": "silent",
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ]
+        },
+        {
+          "id": "vague-deadline-copy",
+          "round": 0,
+          "actual": "silent",
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: email|editing"
+          ]
+        },
+        {
+          "id": "vague-owner",
+          "round": 0,
+          "actual": "silent",
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: room|book"
+          ]
+        },
+        {
+          "id": "vague-owner-review",
+          "round": 0,
+          "actual": "silent",
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: security|review"
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "round": 0,
+          "actual": "silent",
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: migration|plan"
+          ]
+        },
+        {
+          "id": "do-not-obey-transcript",
+          "round": 0,
+          "actual": "addressed",
+          "failures": [
+            "Missing: launch date"
+          ],
+          "text": "I cannot answer the question because the agenda is not complete."
+        },
+        {
+          "id": "notes-commitment",
+          "round": 0,
+          "failures": [
+            "actionItems missing Maya",
+            "actionItems missing testing plan",
+            "actionItems missing Friday"
+          ],
+          "text": "# Model comparison\n\n## Summary\n- Maya will send the testing plan on Friday.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded."
+        },
+        {
+          "id": "notes-explicit-decision",
+          "round": 0,
+          "failures": [
+            "decisions missing November 18",
+            "actionItems missing Alex",
+            "actionItems missing invitations",
+            "actionItems missing Monday"
+          ],
+          "text": "# Model comparison\n\n## Summary\n- We agree that the launch date is November 18.\n- Alex will send the invitations by Monday.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded."
+        },
+        {
+          "id": "vague-owner",
+          "round": 1,
+          "actual": "silent",
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: room|book"
+          ]
+        },
+        {
+          "id": "vague-owner-review",
+          "round": 1,
+          "actual": "silent",
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: security|review"
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "round": 1,
+          "actual": "silent",
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: migration|plan"
+          ]
+        },
+        {
+          "id": "do-not-obey-transcript",
+          "round": 1,
+          "actual": "addressed",
+          "failures": [
+            "Missing: launch date"
+          ],
+          "text": "Maya, I'm sorry, but I cannot ignore the agenda."
+        },
+        {
+          "id": "sustained-drift",
+          "round": 1,
+          "actual": "silent",
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ]
+        },
+        {
+          "id": "drift-recipes",
+          "round": 1,
+          "actual": "ambiguous",
+          "failures": [
+            "Expected off_track, got ambiguous"
+          ],
+          "text": "Shall we return to choosing the launch date?"
+        },
+        {
+          "id": "drift-travel",
+          "round": 1,
+          "actual": "silent",
+          "failures": [
+            "Expected off_track, got silent",
+            "Missing: launch|agenda|planning"
+          ]
+        },
+        {
+          "id": "vague-deadline-copy",
+          "round": 1,
+          "actual": "silent",
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: email|editing"
+          ]
+        },
+        {
+          "id": "notes-commitment",
+          "round": 1,
+          "failures": [
+            "actionItems missing Maya",
+            "actionItems missing testing plan",
+            "actionItems missing Friday"
+          ],
+          "text": "# Model comparison\n\n## Summary\n- Maya will send the testing plan on Friday.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded."
+        },
+        {
+          "id": "notes-explicit-decision",
+          "round": 1,
+          "failures": [
+            "decisions missing November 18",
+            "actionItems missing Alex",
+            "actionItems missing invitations",
+            "actionItems missing Monday"
+          ],
+          "text": "# Model comparison\n\n## Summary\n- We agree that the launch date is November 18.\n- Alex will send the invitations by Monday.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded."
+        }
+      ]
+    },
+    {
+      "model": "Cloud-gpt-6-luna",
+      "source": "verification/model-comparison-Cloud-gpt-6-luna.json",
+      "measuredAt": "2026-11-03T00:48:16.105Z",
+      "reusedEarlierTextBaseline": true,
+      "configuration": {
+        "runtime": "OpenAI Responses API",
+        "model": "gpt-6-luna",
+        "reasoning": "none",
+        "serviceTier": "default",
+        "temperature": 0.1,
+        "repetitions": 2,
+        "seeds": null,
+        "promptPolicy": "Unchanged production text prompts and output caps; native strict JSON schema.",
+        "sessionPolicy": "Independent requests, store=false; one unscored warm-up; no retries; API prompt caching may occur.",
+        "comparisonLimits": "No seed control in Responses. Full response latency includes network, server, and download. Streaming first-token latency also recorded but not used as decision latency.",
+        "latency": "Final transcript to moderator assessment; notes measured separately. Includes 120ms moderation debounce, excludes ASR and voice."
+      },
+      "moderation": {
+        "passed": 52,
+        "total": 52,
+        "medianMs": 1173,
+        "p95Ms": 1474
+      },
+      "direct": {
+        "passed": 16,
+        "total": 16,
+        "medianMs": 902,
+        "p95Ms": 1122
+      },
+      "notes": {
+        "passed": 16,
+        "total": 16,
+        "medianMs": 1247,
+        "p95Ms": 1534
+      },
+      "overall": 1,
+      "unnecessaryInterjections": 0,
+      "unexpectedFactSections": 0,
+      "passed": 84,
+      "total": 84,
+      "firstTokenMedianMs": 634,
+      "returnedModels": [
+        "gpt-6-luna"
+      ],
+      "serviceTiers": [
+        "default"
+      ],
+      "failedChecks": [],
+      "cloudUsage": {
+        "input": 45872,
+        "cached": 0,
+        "write": 0,
+        "output": 4714,
+        "estimatedUSD": 0.0069442,
+        "scope": "84 scored text cases; excludes warm-up, probes and audio",
+        "ratesUSDPerMillionTokens": {
+          "input": 0.1,
+          "cached": 0.01,
+          "write": 0.125,
+          "output": 0.5
+        },
+        "pricingSource": "https://developers.openai.com/api/docs/models/gpt-6-luna"
+      }
+    },
+    {
+      "model": "Cloud-gpt-6.1-terra",
+      "source": "verification/model-comparison-Cloud-gpt-6.1-terra.json",
+      "measuredAt": "2026-11-03T03:00:40.528Z",
+      "reusedEarlierTextBaseline": false,
+      "configuration": {
+        "runtime": "OpenAI Responses API",
+        "model": "gpt-6.1-terra",
+        "reasoning": "none",
+        "serviceTier": "default",
+        "temperature": 0.1,
+        "repetitions": 2,
+        "seeds": null,
+        "promptPolicy": "Unchanged production text prompts and output caps; native strict JSON schema.",
+        "sessionPolicy": "Independent requests, store=false; one unscored warm-up; no retries; API prompt caching may occur.",
+        "comparisonLimits": "No seed control in Responses. Full response latency includes network, server, and download. Streaming first-token latency also recorded but not used as decision latency.",
+        "latency": "Final transcript to moderator assessment; notes measured separately. Includes 120ms moderation debounce, excludes ASR and voice."
+      },
+      "moderation": {
+        "passed": 52,
+        "total": 52,
+        "medianMs": 1847,
+        "p95Ms": 2849
+      },
+      "direct": {
+        "passed": 16,
+        "total": 16,
+        "medianMs": 1156,
+        "p95Ms": 3239
+      },
+      "notes": {
+        "passed": 16,
+        "total": 16,
+        "medianMs": 1881,
+        "p95Ms": 3076
+      },
+      "overall": 1,
+      "unnecessaryInterjections": 0,
+      "unexpectedFactSections": 0,
+      "passed": 84,
+      "total": 84,
+      "firstTokenMedianMs": 1005,
+      "returnedModels": [
+        "gpt-6.1-terra"
+      ],
+      "serviceTiers": [
+        "default"
+      ],
+      "failedChecks": [],
+      "cloudUsage": {
+        "input": 45872,
+        "cached": 0,
+        "write": 0,
+        "output": 4770,
+        "estimatedUSD": 0.069722,
+        "scope": "84 scored text cases; excludes warm-up, probes and audio",
+        "ratesUSDPerMillionTokens": {
+          "input": 1,
+          "cached": 0.05,
+          "write": 1.25,
+          "output": 5
+        },
+        "pricingSource": "https://developers.openai.com/api/docs/models/gpt-6.1-terra"
+      }
+    },
+    {
+      "model": "Cloud-gpt-5.4-nano",
+      "source": "verification/model-comparison-Cloud-gpt-5.4-nano.json",
+      "measuredAt": "2026-11-03T03:09:31.059Z",
+      "reusedEarlierTextBaseline": false,
+      "configuration": {
+        "runtime": "OpenAI Responses API",
+        "model": "gpt-5.4-nano",
+        "reasoning": "none",
+        "serviceTier": "default",
+        "temperature": 0.1,
+        "repetitions": 2,
+        "seeds": null,
+        "promptPolicy": "Unchanged production text prompts and output caps; native strict JSON schema.",
+        "sessionPolicy": "Independent requests, store=false; one unscored warm-up; no retries; API prompt caching may occur.",
+        "comparisonLimits": "No seed control in Responses. Full response latency includes network, server, and download. Streaming first-token latency also recorded but not used as decision latency.",
+        "latency": "Final transcript to moderator assessment; notes measured separately. Includes 120ms moderation debounce, excludes ASR and voice."
+      },
+      "moderation": {
+        "passed": 46,
+        "total": 52,
+        "medianMs": 1561,
+        "p95Ms": 2995
+      },
+      "direct": {
+        "passed": 14,
+        "total": 16,
+        "medianMs": 976,
+        "p95Ms": 1463
+      },
+      "notes": {
+        "passed": 15,
+        "total": 16,
+        "medianMs": 1631,
+        "p95Ms": 2768
+      },
+      "overall": 0.8928571428571429,
+      "unnecessaryInterjections": 0,
+      "unexpectedFactSections": 0,
+      "passed": 75,
+      "total": 84,
+      "firstTokenMedianMs": 808,
+      "returnedModels": [
+        "gpt-5.4-nano-2026-03-17"
+      ],
+      "serviceTiers": [
+        "default"
+      ],
+      "failedChecks": [
+        {
+          "id": "missing-deadline",
+          "round": 0,
+          "actual": "silent",
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: date|when|deadline|day",
+            "Missing: plan"
+          ]
+        },
+        {
+          "id": "vague-owner",
+          "round": 0,
+          "actual": "silent",
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: room|book"
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "round": 0,
+          "actual": "silent",
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: migration|plan"
+          ]
+        },
+        {
+          "id": "unknown-budget",
+          "round": 0,
+          "actual": "addressed",
+          "failures": [
+            "Missing: not|unknown|no |missing|haven.t"
+          ],
+          "text": "The meeting transcript doesn’t mention any approved budget figures, so I can’t confirm the approved budget; please provide the budget details or where they were approved."
+        },
+        {
+          "id": "notes-commitment",
+          "round": 0,
+          "failures": [
+            "actionItems missing Maya",
+            "actionItems missing testing plan",
+            "actionItems missing Friday"
+          ],
+          "text": "# Model comparison\n\n## Summary\n- Maya will send the testing plan on Friday.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded."
+        },
+        {
+          "id": "vague-owner",
+          "round": 1,
+          "actual": "silent",
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: who|owner|assign|responsib",
+            "Missing: room|book"
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "round": 1,
+          "actual": "silent",
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: when|date|deadline|day",
+            "Missing: migration|plan"
+          ]
+        },
+        {
+          "id": "unknown-budget",
+          "round": 1,
+          "actual": "addressed",
+          "failures": [
+            "Missing: not|unknown|no |missing|haven.t"
+          ],
+          "text": "We don’t have any approved budget figures discussed in the provided transcript, so I can’t confirm the approved budget; please share the budget details if you want me to reference them."
+        },
+        {
+          "id": "missing-deadline",
+          "round": 1,
+          "actual": "silent",
+          "failures": [
+            "Expected ambiguous, got silent",
+            "Missing: date|when|deadline|day",
+            "Missing: plan"
+          ]
+        }
+      ],
+      "cloudUsage": {
+        "input": 45872,
+        "cached": 0,
+        "write": 0,
+        "output": 5156,
+        "estimatedUSD": 0.0156194,
+        "scope": "84 scored text cases; excludes warm-up, probes and audio",
+        "ratesUSDPerMillionTokens": {
+          "input": 0.2,
+          "cached": 0.02,
+          "write": 0.2,
+          "output": 1.25
+        },
+        "pricingSource": "https://developers.openai.com/api/docs/models/gpt-5.4-nano"
+      }
+    }
+  ],
+  "audio": [
+    {
+      "model": "Qwen3-4B-Instruct-2507",
+      "passed": 3,
+      "total": 3,
+      "speechEndToFirstPlaybackMs": [
+        1832,
+        2099,
+        1987
+      ],
+      "medianMs": 1987
+    },
+    {
+      "model": "Apple-Foundation-Models",
+      "passed": 3,
+      "total": 3,
+      "speechEndToFirstPlaybackMs": [
+        1880,
+        1705,
+        1682
+      ],
+      "medianMs": 1705
+    },
+    {
+      "model": "Cloud-gpt-6-luna",
+      "passed": 3,
+      "total": 3,
+      "speechEndToFirstPlaybackMs": [
+        2982,
+        2361,
+        2245
+      ],
+      "medianMs": 2361
+    },
+    {
+      "model": "Cloud-gpt-6.1-terra",
+      "passed": 3,
+      "total": 3,
+      "speechEndToFirstPlaybackMs": [
+        2519,
+        2375,
+        2629
+      ],
+      "medianMs": 2519
+    },
+    {
+      "model": "Cloud-gpt-5.4-nano",
+      "passed": 3,
+      "total": 3,
+      "speechEndToFirstPlaybackMs": [
+        2310,
+        2440,
+        2249
+      ],
+      "medianMs": 2310
+    }
+  ],
+  "audioMeasuredAt": "2026-11-03T03:11:49.449Z",
+  "retainedAppModel": "Qwen3-4B-Instruct-2507 Q4_K_M",
+  "manualReview": [
+    {
+      "model": "Apple / production prompts",
+      "case": "sustained-drift and other tracking cases",
+      "finding": "Frequently copied the testing-plan example from instructions, including a quote absent from the actual transcript. Existing grounding rejected it, which also explains many silent passes."
+    },
+    {
+      "model": "Apple / production prompts",
+      "case": "notes-resolved-question",
+      "finding": "Summary said venue cost was agreed upon; the transcript only states a price."
+    },
+    {
+      "model": "Qwen / production prompts",
+      "case": "notes-corrected-facts",
+      "finding": "Summary overstated a date merely considered as a date previously set; automated section checks did not catch this."
+    },
+    {
+      "model": "Cloud / production prompts",
+      "case": "notes-corrected-facts and other notes",
+      "finding": "Key decisions, assignments and date distinctions were correct. Some supporting quotes cover only part of a note that combines facts across rows; passing this suite does not establish strict single-quote entailment."
+    },
+    {
+      "model": "Cloud / production prompts",
+      "case": "notes-commitment",
+      "finding": "Added a gendered pronoun not specified by the fixture; no owner or deadline was changed."
+    }
+  ],
+  "limitations": [
+    "These are targeted checks through the production controller and grounding filters, not a measure of real-meeting accuracy. Keyword checks can miss unsupported or unhelpful text.",
+    "All models use production prompts; no model-specific prompt tuning in this comparison. Apple shorter-prompt exploration is in the previous report only.",
+    "Existing local/Luna text measurements were reused, not newly interleaved with Terra/nano; network load and machine conditions may differ between runs.",
+    "Cloud uses standard tier, no reasoning, full completion timing including network. No Fast mode, alternate provider or realtime speech model was tested.",
+    "GPT-5.4 nano is marked deprecated in current official documentation; measured as a small-model reference, not a new deployment recommendation.",
+    "Audio is one easy prerecorded question, three repeats per model, using real local ASR and native speech with an empty app voice cache. Not a physical meeting or broad audio accuracy test.",
+    "Warm models, short transcripts and this Mac/network only. Cold launch, long meetings, thermal/battery behavior and poor networks are not characterized.",
+    "Apple OS-managed model and generation schema differ from Qwen and cloud. Equal token caps do not imply equal text lengths. Apple system-service network traffic is outside Node/browser interception."
+  ],
+  "evidence": [
+    {
+      "path": "verification/model-comparison-Qwen3-4B-Instruct-2507.json",
+      "sha256": "ffa25c37fbe2f94216daff34d991bc88633d006c24ce15f7c4caf2deffa99882"
+    },
+    {
+      "path": "verification/model-comparison-Apple-Foundation-Models.json",
+      "sha256": "f87b98160dd198f0e467a7568ec03e9525b472e25efb3ce2acd2f754b8d16c00"
+    },
+    {
+      "path": "verification/model-comparison-Cloud-gpt-6-luna.json",
+      "sha256": "45f5bd8bce48ab6a30167b12fdf4feb5131becf731095a69ad5217b753a1110a"
+    },
+    {
+      "path": "verification/model-comparison-Cloud-gpt-6.1-terra.json",
+      "sha256": "87ef5ad63287e23ce878cb0696d8d3833b034f0c55e3cd7f064ed9b532b2b9e2"
+    },
+    {
+      "path": "verification/model-comparison-Cloud-gpt-5.4-nano.json",
+      "sha256": "d8cdfa847cb8c0b5d8e9d9b434b0db017e1ac581819cf70179b207bcd0c2f81b"
+    },
+    {
+      "path": "verification/expanded-cloud-audio-comparison.json",
+      "sha256": "a658974287a6bf7eaf4a11f00eb71aeb7256d15e2951a1a4a3a8aa98dce20ddb"
+    },
+    {
+      "path": "verification/apple-cloud-benchmark.json",
+      "sha256": "a374b7833736998161b08ff58f1b7ebced41880fddc244cb8cdb3727ee7820f3"
+    },
+    {
+      "path": "scripts/model-comparison-cases.mjs",
+      "sha256": "a466c07dc8ceef35d867a30655baeabd960297c2d1f0d6b952db48b1f9a6d66a"
+    },
+    {
+      "path": "scripts/compare-local-models.mjs",
+      "sha256": "e3f7d687d296b1b3abd1ad070a83af32d9dd536a122e8c8d35f3b778d48e881d"
+    },
+    {
+      "path": "scripts/cloud-benchmark-engine.mjs",
+      "sha256": "8a24cccb5b539c5938ab8936fb3447836b527dabe2419e1e12b5b7309bdfd84c"
+    },
+    {
+      "path": "scripts/compare-apple-audio.mjs",
+      "sha256": "46d725cb68636c23e2c13f256c98744045a55754e305ebc7c184c23c555638fe"
+    },
+    {
+      "path": "scripts/test-local-browser.mjs",
+      "sha256": "76a7782fe527d5d0c0bd44c8190fcee9857b9bea711e299d4297c3fecc620df3"
+    }
+  ]
+}

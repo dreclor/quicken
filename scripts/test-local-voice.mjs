@@ -1,0 +1,4 @@
+import {spawn} from 'node:child_process';
+import {createInterface} from 'node:readline';
+const sentences=['The first item on our agenda is to choose the launch date.','Who will send the testing plan, and when should it be ready?','Shall we return to the agenda?','We have about a minute left.'];
+for(const sentence of sentences){await new Promise((resolve,reject)=>{const child=spawn('native/bin/quicken-voice'),start=Date.now();let first=0,bytes=0,errors='';child.stderr.on('data',d=>{errors+=d});createInterface({input:child.stdout}).on('line',line=>{const value=JSON.parse(line);first ||= Date.now()-start;bytes+=Buffer.from(value.pcm,'base64').length;if(value.rate!==22050)reject(new Error('Unexpected voice rate'));});child.on('error',reject);child.on('close',code=>{if(code||bytes<4000)reject(new Error(errors||'No voice generated'));else{console.log(JSON.stringify({firstChunkMs:first,pcmBytes:bytes,exitCode:code}));resolve();}});child.stdin.end(sentence);});}

@@ -1,0 +1,3035 @@
+{
+  "kind": "Synthetic cloud/local comparison; no real meeting data",
+  "createdAt": "2026-11-03T03:00:40.528Z",
+  "hardware": {
+    "cpu": "Apple M3 Pro",
+    "ramGB": 19.327352832
+  },
+  "configuration": {
+    "runtime": "OpenAI Responses API",
+    "model": "gpt-6.1-terra",
+    "reasoning": "none",
+    "serviceTier": "default",
+    "temperature": 0.1,
+    "repetitions": 2,
+    "seeds": null,
+    "promptPolicy": "Unchanged production text prompts and output caps; native strict JSON schema.",
+    "sessionPolicy": "Independent requests, store=false; one unscored warm-up; no retries; API prompt caching may occur.",
+    "comparisonLimits": "No seed control in Responses. Full response latency includes network, server, and download. Streaming first-token latency also recorded but not used as decision latency.",
+    "latency": "Final transcript to moderator assessment; notes measured separately. Includes 120ms moderation debounce, excludes ASR and voice."
+  },
+  "gate": {
+    "minimumOverall": 0.9,
+    "minimumEachFeature": 0.85,
+    "maxOverallRegression": 0.03,
+    "maxUnnecessaryInterjections": 1,
+    "criticalFacts": "No invented decisions/assignments in designated empty notes sections; manually inspect all answers and notes.",
+    "latency": "No worse p95 live moderation latency than 4B baseline."
+  },
+  "models": [
+    {
+      "id": "Cloud-gpt-6.1-terra",
+      "rows": [
+        {
+          "id": "clear-assignment",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1860,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 954,
+              "ms": 1732,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan on Friday.\",\"confidence\":1,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya will send the testing plan on Friday.\",\"quote\":\"Maya will send the testing plan on Friday.\"}]}",
+              "usage": {
+                "input_tokens": 712,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 76,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 788
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "fresh-question",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1652,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 974,
+              "ms": 1527,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Which launch date do you prefer?\",\"confidence\":1,\"topic\":\"Launch planning\",\"openQuestions\":[\"Which launch date do you prefer?\"],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 709,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 55,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 764
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "missing-deadline",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 2130,
+          "text": "Alex, what date will you send the testing plan?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1120,
+              "ms": 1999,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Alex, what date will you send the testing plan?\",\"evidence\":\"I will send the testing plan soon.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Alex will send the testing plan; deadline unspecified.\",\"quote\":\"I will send the testing plan soon.\"}]}",
+              "usage": {
+                "input_tokens": 728,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 87,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 815
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "explicitly-deferred",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 1223,
+          "text": "Before we move on, can we assign someone to follow up on how much the launch campaign will cost?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 784,
+              "ms": 1101,
+              "text": "Before we move on, can we assign someone to follow up on how much the launch campaign will cost?",
+              "usage": {
+                "input_tokens": 232,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 25,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 257
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "sustained-drift",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1873,
+          "text": "Shall we return to choosing the launch date?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1077,
+              "ms": 1750,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"I think the referee missed a penalty in the second half.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 771,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 66,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 837
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "resolved-owner",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1915,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1044,
+              "ms": 1783,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan Friday.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya will send the testing plan Friday.\",\"quote\":\"Maya will send the testing plan Friday.\"}]}",
+              "usage": {
+                "input_tokens": 750,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 75,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 825
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "relevant-tangent",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1739,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1060,
+              "ms": 1615,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"We should review the audit results before setting the launch date.\",\"confidence\":0.96,\"topic\":\"Launch planning and accessibility audit\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 750,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 57,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 807
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "brief-social-aside",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1627,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 976,
+              "ms": 1506,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The draft includes the sign-up flow and pricing page.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 751,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 53,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 804
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "answered-cost",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1816,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1062,
+              "ms": 1683,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The print run is two hundred dollars.\",\"confidence\":0.99,\"topic\":\"Launch planning: print run cost and distribution\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 751,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 56,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 807
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "answered-deadline",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1774,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1105,
+              "ms": 1642,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"It is due on November 15.\",\"confidence\":0.99,\"topic\":\"Launch planning and testing approach\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 750,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 53,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 803
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "assigned-followup",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2003,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1109,
+              "ms": 1872,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Noah will check the hosting price tomorrow.\",\"confidence\":0.99,\"topic\":\"Launch planning: hosting price and homepage\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Noah will check the hosting price tomorrow.\",\"quote\":\"Noah will check the hosting price tomorrow.\"}]}",
+              "usage": {
+                "input_tokens": 747,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 80,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 827
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "tentative-idea",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1668,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1054,
+              "ms": 1539,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"That is only an idea; we are comparing several audiences.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 733,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 54,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 787
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "clear-first-person",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1800,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 959,
+              "ms": 1679,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"I will upload the release checklist tomorrow.\",\"confidence\":1,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya will upload the release checklist tomorrow.\",\"quote\":\"I will upload the release checklist tomorrow.\"}]}",
+              "usage": {
+                "input_tokens": 710,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 71,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 781
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "relevant-football",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1607,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 951,
+              "ms": 1479,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The match schedule determines which launch date works.\",\"confidence\":0.99,\"topic\":\"Launch planning for a football club\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 748,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 55,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 803
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "drift-recipes",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1772,
+          "text": "Shall we return to choosing the launch date?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 991,
+              "ms": 1648,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"Try using rye flour and a warmer kitchen.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 762,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 63,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 825
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "drift-travel",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1847,
+          "text": "Shall we return to planning the product launch?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1071,
+              "ms": 1724,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to planning the product launch?\",\"evidence\":\"My favorite beach is on the north shore.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 763,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 63,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 826
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "vague-deadline-copy",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 2029,
+          "text": "When will you finish editing the launch email, Alex?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 966,
+              "ms": 1901,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"When will you finish editing the launch email, Alex?\",\"evidence\":\"I will finish editing the launch email sometime.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Alex will finish editing the launch email; deadline unspecified.\",\"quote\":\"I will finish editing the launch email sometime.\"}]}",
+              "usage": {
+                "input_tokens": 727,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 90,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 817
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "vague-owner",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 2019,
+          "text": "Who will book the room by Friday?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1049,
+              "ms": 1896,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Who will book the room by Friday?\",\"evidence\":\"Someone will book the room by Friday.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Book the room by Friday; owner unspecified.\",\"quote\":\"Someone will book the room by Friday.\"}]}",
+              "usage": {
+                "input_tokens": 729,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 83,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 812
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "vague-owner-review",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1631,
+          "text": "Who will own the security review?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 898,
+              "ms": 1509,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Who will own the security review?\",\"evidence\":\"Somebody will take care of the security review tomorrow.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 733,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 62,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 795
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "deferred-room",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 1247,
+          "text": "Before we move on, can we decide which room to book for the launch or assign someone to follow up?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 773,
+              "ms": 1127,
+              "text": "Before we move on, can we decide which room to book for the launch or assign someone to follow up?",
+              "usage": {
+                "input_tokens": 228,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 26,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 254
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "deferred-capacity",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 1138,
+          "text": "Before we move on, could someone follow up on how many people the venue can hold?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 758,
+              "ms": 1017,
+              "text": "Before we move on, could someone follow up on how many people the venue can hold?",
+              "usage": {
+                "input_tokens": 224,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 22,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 246
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "resolved-by-context",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2144,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1236,
+              "ms": 2022,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"We can use the printed handouts instead.\",\"confidence\":0.98,\"topic\":\"Launch planning: projector fallback and arrival time\",\"openQuestions\":[],\"decisions\":[{\"text\":\"Use printed handouts if the projector breaks.\",\"quote\":\"Great, the backup is covered. Next is the arrival time.\"}],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 757,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 85,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 842
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-commitment",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2036,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1104,
+              "ms": 1915,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"maya will send the testing plan on friday\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya will send the testing plan on Friday.\",\"quote\":\"maya will send the testing plan on friday\"}]}",
+              "usage": {
+                "input_tokens": 710,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 75,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 785
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 2186,
+          "text": "Alex, what date will you have the migration plan ready?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1107,
+              "ms": 2060,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Alex, what date will you have the migration plan ready?\",\"evidence\":\"i will write the migration plan soon\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Alex will write the migration plan; deadline unspecified.\",\"quote\":\"i will write the migration plan soon\"}]}",
+              "usage": {
+                "input_tokens": 725,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 87,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 812
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "recent-reminder",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1773,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1005,
+              "ms": 1652,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Could we get back to launch planning?\",\"evidence\":\"I loved the chef with the blue apron.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 775,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 61,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 836
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "off-track-disabled",
+          "kind": "moderation",
+          "round": 0,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1733,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1013,
+              "ms": 1613,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"The last serve was incredible.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 758,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 60,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 818
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "agenda-first",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1036,
+          "text": "The first agenda item is choosing the launch date, with 10 minutes allocated.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 641,
+              "ms": 910,
+              "text": "The first agenda item is choosing the launch date, with 10 minutes allocated.",
+              "usage": {
+                "input_tokens": 171,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 20,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 191
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "agenda-current",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1139,
+          "text": "We’re discussing assigning owners.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 822,
+              "ms": 1013,
+              "text": "We’re discussing assigning owners.",
+              "usage": {
+                "input_tokens": 166,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 10,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 176
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "known-owner",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1099,
+          "text": "Priya is sending the venue contract on Tuesday.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 771,
+              "ms": 968,
+              "text": "Priya is sending the venue contract on Tuesday.",
+              "usage": {
+                "input_tokens": 186,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 14,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 200
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "known-date",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 982,
+          "text": "You agreed to launch on November 18.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 649,
+              "ms": 858,
+              "text": "You agreed to launch on November 18.",
+              "usage": {
+                "input_tokens": 185,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 13,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 198
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "unknown-budget",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1432,
+          "text": "No approved budget has been stated; Maya said budget figures have not been discussed.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1005,
+              "ms": 1305,
+              "text": "No approved budget has been stated; Maya said budget figures have not been discussed.",
+              "usage": {
+                "input_tokens": 183,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 20,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 203
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "suggestion",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1970,
+          "text": "I suggest comparing the two dates against readiness, customer impact, and key dependencies, then choosing the one with the fewest unresolved risks.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1428,
+              "ms": 1844,
+              "text": "I suggest comparing the two dates against readiness, customer impact, and key dependencies, then choosing the one with the fewest unresolved risks.",
+              "usage": {
+                "input_tokens": 176,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 31,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 207
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "summarize-tradeoff",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1553,
+          "text": "Friday gives the team more testing time, while Monday ensures the support team is fully staffed.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1139,
+              "ms": 1432,
+              "text": "Friday gives the team more testing time, while Monday ensures the support team is fully staffed.",
+              "usage": {
+                "input_tokens": 204,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 22,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 226
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "do-not-obey-transcript",
+          "kind": "direct",
+          "round": 0,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1320,
+          "text": "The first agenda item is choosing the launch date.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 985,
+              "ms": 1192,
+              "text": "The first agenda item is choosing the launch date.",
+              "usage": {
+                "input_tokens": 195,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 14,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 209
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-commitment",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1923,
+          "text": "# Model comparison\n\n## Summary\n- Maya: “Maya will send the testing plan on Friday.”\n\n## Decisions\nNone recorded.\n\n## Action items\n- Maya will send the testing plan on Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya: “Maya will send the testing plan on Friday.”",
+            "decisions": "None recorded.",
+            "actionItems": "- Maya will send the testing plan on Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1276,
+              "ms": 1918,
+              "text": "{\"summary\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya will send the testing plan on Friday.\",\"sourceId\":\"0-0\",\"quote\":\"Maya will send the testing plan on Friday.\"}],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 438,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 58,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 496
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-explicit-decision",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1817,
+          "text": "# Model comparison\n\n## Summary\n- Maya: “We agree that the launch date is November 18.”\n- Alex: “Alex will send the invitations by Monday.”\n\n## Decisions\n- The launch date is November 18.\n\n## Action items\n- Alex will send the invitations by Monday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya: “We agree that the launch date is November 18.”\n- Alex: “Alex will send the invitations by Monday.”",
+            "decisions": "- The launch date is November 18.",
+            "actionItems": "- Alex will send the invitations by Monday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 881,
+              "ms": 1816,
+              "text": "{\"summary\":[],\"decisions\":[{\"text\":\"The launch date is November 18.\",\"sourceId\":\"0-0\",\"quote\":\"We agree that the launch date is November 18.\"}],\"actionItems\":[{\"text\":\"Alex will send the invitations by Monday.\",\"sourceId\":\"0-1\",\"quote\":\"Alex will send the invitations by Monday.\"}],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 464,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 86,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 550
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-suggestion-only",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1911,
+          "text": "# Model comparison\n\n## Summary\n- Maya suggested a December launch.\n- No date has been chosen and no work has been assigned.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya suggested a December launch.\n- No date has been chosen and no work has been assigned.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 966,
+              "ms": 1910,
+              "text": "{\"summary\":[{\"text\":\"Maya suggested a December launch.\",\"sourceId\":\"0-0\",\"quote\":\"We could launch in December, but that is only a suggestion.\"},{\"text\":\"No date has been chosen and no work has been assigned.\",\"sourceId\":\"0-1\",\"quote\":\"We have not chosen a date or assigned any work.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 469,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 93,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 562
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-resolved-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 2116,
+          "text": "# Model comparison\n\n## Summary\n- The venue costs $300.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The venue costs $300.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1629,
+              "ms": 2116,
+              "text": "{\"summary\":[{\"text\":\"The venue costs $300.\",\"sourceId\":\"0-1\",\"quote\":\"The venue costs three hundred dollars.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 459,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 51,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 510
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-open-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 2487,
+          "text": "# Model comparison\n\n## Summary\n- Final poster approval has not yet been assigned.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\n- Who will approve the final poster?",
+          "sections": {
+            "summary": "- Final poster approval has not yet been assigned.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "- Who will approve the final poster?"
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1555,
+              "ms": 2487,
+              "text": "{\"summary\":[{\"text\":\"Final poster approval has not yet been assigned.\",\"sourceId\":\"0-1\",\"quote\":\"We have not assigned that approval yet.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[{\"text\":\"Who will approve the final poster?\",\"sourceId\":\"0-0\",\"quote\":\"Who will approve the final poster?\"}]}",
+              "usage": {
+                "input_tokens": 461,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 83,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 544
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-moderator-not-assignment",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1641,
+          "text": "# Model comparison\n\n## Summary\n- No one has been assigned to the budget task.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- No one has been assigned to the budget task.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1131,
+              "ms": 1640,
+              "text": "{\"summary\":[{\"text\":\"No one has been assigned to the budget task.\",\"sourceId\":\"0-1\",\"quote\":\"We have not assigned anyone to that task.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 462,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 57,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 519
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-corrected-facts",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 3076,
+          "text": "# Model comparison\n\n## Summary\n- November 12 was initially considered for launch but is no longer an option.\n\n## Decisions\n- Launch on November 18.\n\n## Action items\n- Priya will reserve the room by Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- November 12 was initially considered for launch but is no longer an option.",
+            "decisions": "- Launch on November 18.",
+            "actionItems": "- Priya will reserve the room by Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 968,
+              "ms": 3075,
+              "text": "{\"summary\":[{\"text\":\"November 12 was initially considered for launch but is no longer an option.\",\"sourceId\":\"0-1\",\"quote\":\"That date is no longer an option.\"}],\"decisions\":[{\"text\":\"Launch on November 18.\",\"sourceId\":\"0-2\",\"quote\":\"We agree to launch on November 18.\"}],\"actionItems\":[{\"text\":\"Priya will reserve the room by Friday.\",\"sourceId\":\"0-3\",\"quote\":\"Priya will reserve the room by Friday.\"}],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 515,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 120,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 635
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-agenda-question",
+          "kind": "notes",
+          "round": 0,
+          "elapsedMs": 1620,
+          "text": "# Model comparison\n\n## Summary\n- The first agenda item is choosing the launch date.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The first agenda item is choosing the launch date.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 968,
+              "ms": 1619,
+              "text": "{\"summary\":[{\"text\":\"The first agenda item is choosing the launch date.\",\"sourceId\":\"0-1\",\"quote\":\"The first item is to choose the launch date.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 469,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 58,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 527
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "vague-owner",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 5117,
+          "text": "Who will book the room by Friday?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 4127,
+              "ms": 4992,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Who will book the room by Friday?\",\"evidence\":\"Someone will book the room by Friday.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Book the room by Friday; owner unspecified.\",\"quote\":\"Someone will book the room by Friday.\"}]}",
+              "usage": {
+                "input_tokens": 729,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 83,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 812
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "vague-owner-review",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 2024,
+          "text": "Who will own the security review tomorrow?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1260,
+              "ms": 1895,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Who will own the security review tomorrow?\",\"evidence\":\"Somebody will take care of the security review tomorrow.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 733,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 63,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 796
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "deferred-room",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 1413,
+          "text": "Before we move on, can we decide which room to book for the launch or assign someone to follow up?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 908,
+              "ms": 1285,
+              "text": "Before we move on, can we decide which room to book for the launch or assign someone to follow up?",
+              "usage": {
+                "input_tokens": 228,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 26,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 254
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "deferred-capacity",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 1791,
+          "text": "Could someone follow up on how many people the venue can hold?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1116,
+              "ms": 1663,
+              "text": "Could someone follow up on how many people the venue can hold?",
+              "usage": {
+                "input_tokens": 224,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 17,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 241
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "resolved-by-context",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1734,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 934,
+              "ms": 1608,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"We can use the printed handouts instead.\",\"confidence\":0.98,\"topic\":\"Launch planning: projector fallback and arrival time\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 757,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 57,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 814
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-commitment",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1819,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 913,
+              "ms": 1698,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"maya will send the testing plan on friday\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya will send the testing plan on Friday.\",\"quote\":\"maya will send the testing plan on friday\"}]}",
+              "usage": {
+                "input_tokens": 710,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 75,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 785
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "punctuation-free-vague",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1896,
+          "text": "What date should we set for the migration plan?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 924,
+              "ms": 1771,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"What date should we set for the migration plan?\",\"evidence\":\"i will write the migration plan soon\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Alex will write the migration plan.\",\"quote\":\"i will write the migration plan soon\"}]}",
+              "usage": {
+                "input_tokens": 725,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 82,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 807
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "recent-reminder",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1804,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1018,
+              "ms": 1683,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Could we get back to launch planning?\",\"evidence\":\"I loved the chef with the blue apron.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 775,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 61,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 836
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "off-track-disabled",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1751,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1010,
+              "ms": 1629,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"The last serve was incredible.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 758,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 60,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 818
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "agenda-first",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1038,
+          "text": "The first agenda item is choosing the launch date, with 10 minutes allocated.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 859,
+              "ms": 911,
+              "text": "The first agenda item is choosing the launch date, with 10 minutes allocated.",
+              "usage": {
+                "input_tokens": 171,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 20,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 191
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "agenda-current",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1046,
+          "text": "We’re discussing assigning owners.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 743,
+              "ms": 920,
+              "text": "We’re discussing assigning owners.",
+              "usage": {
+                "input_tokens": 166,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 10,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 176
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "known-owner",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1156,
+          "text": "Priya is sending the venue contract on Tuesday.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 798,
+              "ms": 1031,
+              "text": "Priya is sending the venue contract on Tuesday.",
+              "usage": {
+                "input_tokens": 186,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 14,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 200
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "known-date",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1970,
+          "text": "You agreed to launch on November 18.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1628,
+              "ms": 1842,
+              "text": "You agreed to launch on November 18.",
+              "usage": {
+                "input_tokens": 185,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 13,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 198
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "unknown-budget",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 3239,
+          "text": "No approved budget is recorded, and Maya said budget figures have not been discussed.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 2798,
+              "ms": 3115,
+              "text": "No approved budget is recorded, and Maya said budget figures have not been discussed.",
+              "usage": {
+                "input_tokens": 183,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 20,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 203
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "suggestion",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1771,
+          "text": "I suggest comparing the two dates against readiness, customer impact, and key dependencies, then choosing the one with the fewest unresolved risks.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1190,
+              "ms": 1641,
+              "text": "I suggest comparing the two dates against readiness, customer impact, and key dependencies, then choosing the one with the fewest unresolved risks.",
+              "usage": {
+                "input_tokens": 176,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 31,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 207
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "summarize-tradeoff",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 1220,
+          "text": "Friday gives the team more testing time, while Monday ensures the support team is fully staffed.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 766,
+              "ms": 1097,
+              "text": "Friday gives the team more testing time, while Monday ensures the support team is fully staffed.",
+              "usage": {
+                "input_tokens": 204,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 22,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 226
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "do-not-obey-transcript",
+          "kind": "direct",
+          "round": 1,
+          "expected": "addressed",
+          "actual": "addressed",
+          "elapsedMs": 984,
+          "text": "The first agenda item is choosing the launch date.",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 628,
+              "ms": 860,
+              "text": "The first agenda item is choosing the launch date.",
+              "usage": {
+                "input_tokens": 195,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 14,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 209
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "clear-assignment",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1941,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 968,
+              "ms": 1819,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan on Friday.\",\"confidence\":1,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya will send the testing plan on Friday.\",\"quote\":\"Maya will send the testing plan on Friday.\"}]}",
+              "usage": {
+                "input_tokens": 712,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 76,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 788
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "fresh-question",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2849,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1064,
+              "ms": 2720,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Which launch date do you prefer?\",\"confidence\":1,\"topic\":\"Launch planning\",\"openQuestions\":[\"Which launch date do you prefer?\"],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 709,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 55,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 764
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "missing-deadline",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1992,
+          "text": "Alex, what date will you send the testing plan?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 986,
+              "ms": 1869,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"Alex, what date will you send the testing plan?\",\"evidence\":\"I will send the testing plan soon.\",\"confidence\":0.98,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Alex will send the testing plan.\",\"quote\":\"I will send the testing plan soon.\"}]}",
+              "usage": {
+                "input_tokens": 728,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 84,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 812
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "explicitly-deferred",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "unanswered",
+          "actual": "unanswered",
+          "elapsedMs": 1402,
+          "text": "Before we move on, can we assign someone to follow up on how much the launch campaign will cost?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 921,
+              "ms": 1276,
+              "text": "Before we move on, can we assign someone to follow up on how much the launch campaign will cost?",
+              "usage": {
+                "input_tokens": 232,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 25,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 257
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "sustained-drift",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1776,
+          "text": "Shall we return to choosing the launch date?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 970,
+              "ms": 1647,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"I think the referee missed a penalty in the second half.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 771,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 66,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 837
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "resolved-owner",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1951,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1024,
+              "ms": 1826,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Maya will send the testing plan Friday.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya will send the testing plan Friday.\",\"quote\":\"Maya will send the testing plan Friday.\"}]}",
+              "usage": {
+                "input_tokens": 750,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 75,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 825
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "relevant-tangent",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2698,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1948,
+              "ms": 2569,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"We should review the audit results before setting the launch date.\",\"confidence\":0.98,\"topic\":\"Launch planning and accessibility audit\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 750,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 57,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 807
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "brief-social-aside",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2398,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1716,
+              "ms": 2276,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The draft includes the sign-up flow and pricing page.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 751,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 53,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 804
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "answered-cost",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2111,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1446,
+              "ms": 1979,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The print run is two hundred dollars.\",\"confidence\":0.99,\"topic\":\"Launch planning: print run cost and distribution\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 751,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 56,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 807
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "answered-deadline",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1556,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 886,
+              "ms": 1427,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"It is due on November 15.\",\"confidence\":0.99,\"topic\":\"Launch planning and testing approach\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 750,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 53,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 803
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "assigned-followup",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2270,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1279,
+              "ms": 2141,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"Noah will check the hosting price tomorrow.\",\"confidence\":0.99,\"topic\":\"Launch planning: hosting price and homepage\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Noah will check the hosting price tomorrow.\",\"quote\":\"Noah will check the hosting price tomorrow.\"}]}",
+              "usage": {
+                "input_tokens": 747,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 80,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 827
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "tentative-idea",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1904,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1214,
+              "ms": 1782,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"That is only an idea; we are comparing several audiences.\",\"confidence\":0.99,\"topic\":\"Launch planning: comparing audiences\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 733,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 57,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 790
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "clear-first-person",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 2204,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1307,
+              "ms": 2082,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"I will upload the release checklist tomorrow.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya will upload the release checklist tomorrow.\",\"quote\":\"I will upload the release checklist tomorrow.\"}]}",
+              "usage": {
+                "input_tokens": 710,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 73,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 783
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "relevant-football",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "silent",
+          "actual": "silent",
+          "elapsedMs": 1594,
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 879,
+              "ms": 1463,
+              "text": "{\"decision\":\"silent\",\"text\":\"\",\"evidence\":\"The match schedule determines which launch date works.\",\"confidence\":0.99,\"topic\":\"Launch planning for a football club customer\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 748,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 56,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 804
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "drift-recipes",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 1951,
+          "text": "Shall we return to choosing the launch date?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1219,
+              "ms": 1822,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to choosing the launch date?\",\"evidence\":\"Try using rye flour and a warmer kitchen.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 762,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 63,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 825
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "drift-travel",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "off_track",
+          "actual": "off_track",
+          "elapsedMs": 3131,
+          "text": "Shall we return to planning the product launch?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 2386,
+              "ms": 3002,
+              "text": "{\"decision\":\"off_track\",\"text\":\"Shall we return to planning the product launch?\",\"evidence\":\"My favorite beach is on the north shore.\",\"confidence\":0.99,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[]}",
+              "usage": {
+                "input_tokens": 763,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 63,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 826
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "vague-deadline-copy",
+          "kind": "moderation",
+          "round": 1,
+          "expected": "ambiguous",
+          "actual": "ambiguous",
+          "elapsedMs": 1916,
+          "text": "When will you finish editing the launch email, Alex?",
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 890,
+              "ms": 1791,
+              "text": "{\"decision\":\"ambiguous\",\"text\":\"When will you finish editing the launch email, Alex?\",\"evidence\":\"I will finish editing the launch email sometime.\",\"confidence\":0.96,\"topic\":\"Launch planning\",\"openQuestions\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Alex will finish editing the launch email.\",\"quote\":\"I will finish editing the launch email sometime.\"}]}",
+              "usage": {
+                "input_tokens": 727,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 87,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 814
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-commitment",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1540,
+          "text": "# Model comparison\n\n## Summary\n- Maya: “Maya will send the testing plan on Friday.”\n\n## Decisions\nNone recorded.\n\n## Action items\n- Maya will send the testing plan on Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya: “Maya will send the testing plan on Friday.”",
+            "decisions": "None recorded.",
+            "actionItems": "- Maya will send the testing plan on Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 886,
+              "ms": 1540,
+              "text": "{\"summary\":[],\"decisions\":[],\"actionItems\":[{\"text\":\"Maya will send the testing plan on Friday.\",\"sourceId\":\"0-0\",\"quote\":\"Maya will send the testing plan on Friday.\"}],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 438,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 58,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 496
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-explicit-decision",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1780,
+          "text": "# Model comparison\n\n## Summary\n- Maya: “We agree that the launch date is November 18.”\n- Alex: “Alex will send the invitations by Monday.”\n\n## Decisions\n- The launch date is November 18.\n\n## Action items\n- Alex will send the invitations by Monday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya: “We agree that the launch date is November 18.”\n- Alex: “Alex will send the invitations by Monday.”",
+            "decisions": "- The launch date is November 18.",
+            "actionItems": "- Alex will send the invitations by Monday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 817,
+              "ms": 1780,
+              "text": "{\"summary\":[],\"decisions\":[{\"text\":\"The launch date is November 18.\",\"sourceId\":\"0-0\",\"quote\":\"We agree that the launch date is November 18.\"}],\"actionItems\":[{\"text\":\"Alex will send the invitations by Monday.\",\"sourceId\":\"0-1\",\"quote\":\"Alex will send the invitations by Monday.\"}],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 464,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 86,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 550
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-suggestion-only",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1881,
+          "text": "# Model comparison\n\n## Summary\n- Maya suggested a December launch.\n- No date has been chosen and no work has been assigned.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- Maya suggested a December launch.\n- No date has been chosen and no work has been assigned.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 900,
+              "ms": 1880,
+              "text": "{\"summary\":[{\"text\":\"Maya suggested a December launch.\",\"sourceId\":\"0-0\",\"quote\":\"We could launch in December, but that is only a suggestion.\"},{\"text\":\"No date has been chosen and no work has been assigned.\",\"sourceId\":\"0-1\",\"quote\":\"We have not chosen a date or assigned any work.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 469,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 93,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 562
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-resolved-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 2122,
+          "text": "# Model comparison\n\n## Summary\n- The venue costs $300.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The venue costs $300.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1623,
+              "ms": 2122,
+              "text": "{\"summary\":[{\"text\":\"The venue costs $300.\",\"sourceId\":\"0-1\",\"quote\":\"The venue costs three hundred dollars.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 459,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 51,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 510
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-open-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1966,
+          "text": "# Model comparison\n\n## Summary\n- Approval of the final poster has not yet been assigned.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\n- Who will approve the final poster?",
+          "sections": {
+            "summary": "- Approval of the final poster has not yet been assigned.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "- Who will approve the final poster?"
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1027,
+              "ms": 1966,
+              "text": "{\"summary\":[{\"text\":\"Approval of the final poster has not yet been assigned.\",\"sourceId\":\"0-1\",\"quote\":\"We have not assigned that approval yet.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[{\"text\":\"Who will approve the final poster?\",\"sourceId\":\"0-0\",\"quote\":\"Who will approve the final poster?\"}]}",
+              "usage": {
+                "input_tokens": 461,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 85,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 546
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-moderator-not-assignment",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1574,
+          "text": "# Model comparison\n\n## Summary\n- No one has been assigned to the budget task.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- No one has been assigned to the budget task.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 906,
+              "ms": 1574,
+              "text": "{\"summary\":[{\"text\":\"No one has been assigned to the budget task.\",\"sourceId\":\"0-1\",\"quote\":\"We have not assigned anyone to that task.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 462,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 57,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 519
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-corrected-facts",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 2385,
+          "text": "# Model comparison\n\n## Summary\n- November 12 was initially considered for launch.\n- November 12 is no longer an option.\n\n## Decisions\n- Launch on November 18.\n\n## Action items\n- Priya will reserve the room by Friday.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- November 12 was initially considered for launch.\n- November 12 is no longer an option.",
+            "decisions": "- Launch on November 18.",
+            "actionItems": "- Priya will reserve the room by Friday.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 820,
+              "ms": 2385,
+              "text": "{\"summary\":[{\"text\":\"November 12 was initially considered for launch.\",\"sourceId\":\"0-0\",\"quote\":\"We initially considered launching on November 12.\"},{\"text\":\"November 12 is no longer an option.\",\"sourceId\":\"0-1\",\"quote\":\"That date is no longer an option.\"}],\"decisions\":[{\"text\":\"Launch on November 18.\",\"sourceId\":\"0-2\",\"quote\":\"We agree to launch on November 18.\"}],\"actionItems\":[{\"text\":\"Priya will reserve the room by Friday.\",\"sourceId\":\"0-3\",\"quote\":\"Priya will reserve the room by Friday.\"}],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 515,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 144,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 659
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        },
+        {
+          "id": "notes-agenda-question",
+          "kind": "notes",
+          "round": 1,
+          "elapsedMs": 1652,
+          "text": "# Model comparison\n\n## Summary\n- The first agenda item is to choose the launch date.\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+          "sections": {
+            "summary": "- The first agenda item is to choose the launch date.",
+            "decisions": "None recorded.",
+            "actionItems": "None recorded.",
+            "openQuestions": "None recorded."
+          },
+          "failures": [],
+          "passed": true,
+          "requests": [
+            {
+              "model": "gpt-6.1-terra",
+              "firstTokenMs": 1009,
+              "ms": 1652,
+              "text": "{\"summary\":[{\"text\":\"The first agenda item is to choose the launch date.\",\"sourceId\":\"0-1\",\"quote\":\"The first item is to choose the launch date.\"}],\"decisions\":[],\"actionItems\":[],\"openQuestions\":[]}",
+              "usage": {
+                "input_tokens": 469,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 59,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 528
+              },
+              "serviceTier": "default",
+              "returnedModel": "gpt-6.1-terra",
+              "status": "completed",
+              "incompleteDetails": null
+            }
+          ]
+        }
+      ],
+      "loadMs": 0,
+      "warmupMs": 2196,
+      "summary": {
+        "moderation": {
+          "passed": 52,
+          "total": 52,
+          "medianMs": 1847,
+          "p95Ms": 2849
+        },
+        "direct": {
+          "passed": 16,
+          "total": 16,
+          "medianMs": 1156,
+          "p95Ms": 3239
+        },
+        "notes": {
+          "passed": 16,
+          "total": 16,
+          "medianMs": 1881,
+          "p95Ms": 3076
+        },
+        "overall": 1,
+        "unnecessaryInterjections": 0,
+        "unexpectedFactSections": 0
+      }
+    }
+  ]
+}

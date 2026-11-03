@@ -1,0 +1,25 @@
+{
+  "verifiedAt": "2026-10-28T16:16:01.010441+00:00",
+  "kind": "native packaged macOS app, scripted sample only",
+  "checks": [
+    "app launches",
+    "main window renders",
+    "sample transcript flows",
+    "pause works in main window",
+    "resume works from chicken popup",
+    "popup opens main window",
+    "End saves sample transcript and notes",
+    "Connections accessible"
+  ],
+  "notVerified": [
+    "real meeting admission",
+    "real attendee audio and speech",
+    "Recall transcription",
+    "physical system-audio routing"
+  ],
+  "screenshots": [
+    "native-home.png",
+    "native-chicken.png",
+    "native-notes.png"
+  ]
+}

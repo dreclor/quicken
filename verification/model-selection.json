@@ -1,0 +1,329 @@
+{
+  "createdAt": "2026-11-02T21:17:10.681Z",
+  "decision": "retain-current-model",
+  "selected": "Qwen3-4B-Instruct-2507",
+  "rationale": "Neither smaller model preserves custom responses, commitment tracking and structured notes. Retaining 4B is a no-regression decision, not a claim that it passes the stricter new quality gate.",
+  "configurationResults": [
+    {
+      "id": "Qwen3-4B-Instruct-2507",
+      "thinkingBudget": 0,
+      "bytes": 2497281120,
+      "checksPassed": 73,
+      "checksTotal": 84,
+      "summary": {
+        "moderation": {
+          "passed": 42,
+          "total": 52,
+          "medianMs": 1608,
+          "p95Ms": 2144
+        },
+        "direct": {
+          "passed": 16,
+          "total": 16,
+          "medianMs": 575,
+          "p95Ms": 915
+        },
+        "notes": {
+          "passed": 15,
+          "total": 16,
+          "medianMs": 2908,
+          "p95Ms": 6480
+        },
+        "overall": 0.8690476190476191,
+        "unnecessaryInterjections": 6,
+        "unexpectedFactSections": 1
+      },
+      "qualifies": false,
+      "reasons": [
+        "Below 90% overall check threshold",
+        "moderation below 85% check threshold",
+        "More than one unnecessary interjection across repetitions"
+      ]
+    },
+    {
+      "id": "Qwen3-1.7B",
+      "thinkingBudget": 0,
+      "bytes": 1107409472,
+      "checksPassed": 52,
+      "checksTotal": 84,
+      "summary": {
+        "moderation": {
+          "passed": 34,
+          "total": 52,
+          "medianMs": 825,
+          "p95Ms": 1080
+        },
+        "direct": {
+          "passed": 10,
+          "total": 16,
+          "medianMs": 316,
+          "p95Ms": 403
+        },
+        "notes": {
+          "passed": 8,
+          "total": 16,
+          "medianMs": 1246,
+          "p95Ms": 2192
+        },
+        "overall": 0.6190476190476191,
+        "unnecessaryInterjections": 4,
+        "unexpectedFactSections": 0
+      },
+      "qualifies": false,
+      "reasons": [
+        "Below 90% overall check threshold",
+        "moderation below 85% check threshold",
+        "direct below 85% check threshold",
+        "notes below 85% check threshold",
+        "More than 3 percentage points below baseline",
+        "More than one unnecessary interjection across repetitions"
+      ]
+    },
+    {
+      "id": "Qwen3-0.6B",
+      "thinkingBudget": 0,
+      "bytes": 396705472,
+      "checksPassed": 44,
+      "checksTotal": 84,
+      "summary": {
+        "moderation": {
+          "passed": 30,
+          "total": 52,
+          "medianMs": 544,
+          "p95Ms": 669
+        },
+        "direct": {
+          "passed": 6,
+          "total": 16,
+          "medianMs": 217,
+          "p95Ms": 262
+        },
+        "notes": {
+          "passed": 8,
+          "total": 16,
+          "medianMs": 608,
+          "p95Ms": 1107
+        },
+        "overall": 0.5238095238095238,
+        "unnecessaryInterjections": 2,
+        "unexpectedFactSections": 4
+      },
+      "qualifies": false,
+      "reasons": [
+        "Below 90% overall check threshold",
+        "moderation below 85% check threshold",
+        "direct below 85% check threshold",
+        "notes below 85% check threshold",
+        "More than 3 percentage points below baseline",
+        "More than one unnecessary interjection across repetitions"
+      ]
+    },
+    {
+      "id": "Qwen3-1.7B",
+      "thinkingBudget": 64,
+      "bytes": 1107409472,
+      "checksPassed": 58,
+      "checksTotal": 84,
+      "summary": {
+        "moderation": {
+          "passed": 38,
+          "total": 52,
+          "medianMs": 1907,
+          "p95Ms": 2346
+        },
+        "direct": {
+          "passed": 12,
+          "total": 16,
+          "medianMs": 1375,
+          "p95Ms": 1608
+        },
+        "notes": {
+          "passed": 8,
+          "total": 16,
+          "medianMs": 2191,
+          "p95Ms": 4253
+        },
+        "overall": 0.6904761904761905,
+        "unnecessaryInterjections": 4,
+        "unexpectedFactSections": 0
+      },
+      "qualifies": false,
+      "reasons": [
+        "Below 90% overall check threshold",
+        "moderation below 85% check threshold",
+        "direct below 85% check threshold",
+        "notes below 85% check threshold",
+        "More than 3 percentage points below baseline",
+        "More than one unnecessary interjection across repetitions",
+        "Worse p95 live-response latency than baseline"
+      ]
+    },
+    {
+      "id": "Qwen3-0.6B",
+      "thinkingBudget": 64,
+      "bytes": 396705472,
+      "checksPassed": 50,
+      "checksTotal": 84,
+      "summary": {
+        "moderation": {
+          "passed": 35,
+          "total": 52,
+          "medianMs": 1095,
+          "p95Ms": 1348
+        },
+        "direct": {
+          "passed": 10,
+          "total": 16,
+          "medianMs": 597,
+          "p95Ms": 692
+        },
+        "notes": {
+          "passed": 5,
+          "total": 16,
+          "medianMs": 1082,
+          "p95Ms": 1609
+        },
+        "overall": 0.5952380952380952,
+        "unnecessaryInterjections": 0,
+        "unexpectedFactSections": 5
+      },
+      "qualifies": false,
+      "reasons": [
+        "Below 90% overall check threshold",
+        "moderation below 85% check threshold",
+        "direct below 85% check threshold",
+        "notes below 85% check threshold",
+        "More than 3 percentage points below baseline"
+      ]
+    }
+  ],
+  "audioResults": [
+    {
+      "id": "Qwen3-4B-Instruct-2507",
+      "runs": [
+        2457,
+        2175,
+        2071
+      ],
+      "medianSpeechEndToFirstPlaybackMs": 2175,
+      "applicationVoiceCache": "Empty before each run",
+      "externalRequests": [],
+      "passedTransportChecks": true
+    },
+    {
+      "id": "Qwen3-1.7B",
+      "runs": [
+        1752,
+        1727,
+        1986
+      ],
+      "medianSpeechEndToFirstPlaybackMs": 1752,
+      "applicationVoiceCache": "Empty before each run",
+      "externalRequests": [],
+      "passedTransportChecks": true
+    },
+    {
+      "id": "Qwen3-0.6B",
+      "runs": [
+        1747,
+        1508,
+        1534
+      ],
+      "medianSpeechEndToFirstPlaybackMs": 1534,
+      "applicationVoiceCache": "Empty before each run",
+      "externalRequests": [],
+      "passedTransportChecks": true
+    }
+  ],
+  "manualReview": [
+    {
+      "model": "Qwen3-4B-Instruct-2507",
+      "case": "notes-corrected-facts",
+      "rounds": [
+        0,
+        1
+      ],
+      "finding": "Summary overstates a previously considered date as an established date that changed. The targeted date/action checks did not catch this."
+    },
+    {
+      "model": "Qwen3-4B-Instruct-2507",
+      "case": "notes-suggestion-only",
+      "rounds": [
+        0
+      ],
+      "finding": "A statement that no work was assigned appears under action items. It fails section classification, but is not an invented assignment."
+    },
+    {
+      "model": "Qwen3-1.7B",
+      "case": "suggestion",
+      "configurations": [
+        "non-thinking",
+        "thinking64"
+      ],
+      "rounds": [
+        0,
+        1
+      ],
+      "finding": "Invents a suggestion attributed to Maya instead of offering Quicken\u2019s own suggestion. The targeted keyword check did not catch this."
+    },
+    {
+      "model": "Qwen3-1.7B",
+      "case": "known-owner",
+      "configurations": [
+        "non-thinking",
+        "thinking64"
+      ],
+      "rounds": [
+        0,
+        1
+      ],
+      "finding": "Says Maya owns the venue-contract task, although the transcript explicitly names Priya. Caught by automated checks."
+    },
+    {
+      "model": "Qwen3-0.6B",
+      "case": "notes-resolved-question",
+      "configurations": [
+        "non-thinking"
+      ],
+      "rounds": [
+        0,
+        1
+      ],
+      "finding": "Summary repeats the venue question and omits the provided answer. The broad summary-topic check did not catch this."
+    },
+    {
+      "model": "Qwen3-0.6B",
+      "case": "notes-open-question",
+      "configurations": [
+        "non-thinking",
+        "thinking64"
+      ],
+      "finding": "Loses the actual unresolved question; some runs also classify the absence of an assignment as a decision."
+    }
+  ],
+  "limitations": [
+    "42 synthetic scenarios repeated with two seeds are not 84 independent meetings. No real meeting or physical microphone was used.",
+    "All production prompts, grounding and control logic were unchanged. Small models were tested with thinking off and with a 64-token thinking cap; no fine-tuning or model-specific prompt optimization was done.",
+    "Automated checks cover targeted facts and section placement. Manual review found additional inaccuracies; counts must not be presented as overall real-world accuracy.",
+    "Audio latency uses three repetitions of one prerecorded question per model, with warmed models and an empty application voice cache. These are not general latency guarantees.",
+    "The existing 4B model also misses interventions and produces unnecessary interjections; none of the tested configurations passed the new strict quality gate.",
+    "CPU/GPU tests ran sequentially. Thermal state and background macOS activity were not experimentally controlled."
+  ],
+  "sourceSHA256": {
+    "server/local/engine.ts": "9a29b2db281ed02359cea06608b7354e019ee96a3d33a08a3c8208cd0bb6396b",
+    "server/local/moderator.ts": "cfedc062f5fc940f80e37a01c39e039665affe2dca1427442e8c4435ae138c17",
+    "server/controller.ts": "ffe233461a24aa293a0ba0c4a78a115f2d81dfa9b41e1ab591f0f16722f7e980",
+    "scripts/model-comparison-cases.mjs": "a466c07dc8ceef35d867a30655baeabd960297c2d1f0d6b952db48b1f9a6d66a",
+    "tests/audio/agenda-question.wav": "d0b32050ffe9abab14f0f54ed126ab9efb32eea9866dffecfd9710a5760b9622"
+  },
+  "temporaryDownloadsRemoved": [
+    {
+      "file": "Qwen3-0.6B-Q4_K_M.gguf",
+      "bytes": 396705472
+    },
+    {
+      "file": "Qwen3-1.7B-Q4_K_M.gguf",
+      "bytes": 1107409472
+    }
+  ]
+}

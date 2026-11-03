@@ -1,0 +1,16 @@
+{
+  "palette": {
+    "background": "#ffffff",
+    "primaryRed": "#cf291d",
+    "logoRed": "#ff4436",
+    "yellow": "#ffcc33"
+  },
+  "checks": [
+    "production TypeScript/Vite/server build",
+    "six existing browser scenarios",
+    "representative text contrast at least 4.5:1",
+    "rebuilt native app launch and visual inspection"
+  ],
+  "screenshot": "white-red-yellow-native.png",
+  "scope": "visual theme only; real meeting validation remains outstanding"
+}

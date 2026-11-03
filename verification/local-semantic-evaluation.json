@@ -1,0 +1,91 @@
+{
+  "kind": "Synthetic text scenarios with the real local model",
+  "results": [
+    {
+      "scenario": "clear assignment",
+      "ms": 1754,
+      "actionItems": [
+        "Maya will send the testing plan on Friday."
+      ],
+      "passed": true
+    },
+    {
+      "scenario": "fresh question",
+      "ms": 1078,
+      "actionItems": [],
+      "passed": true
+    },
+    {
+      "scenario": "missing deadline",
+      "ms": 1711,
+      "intervention": {
+        "id": "75107299-937a-4e0d-b682-461ebfc46ac4",
+        "intervene": true,
+        "reason": "ambiguous",
+        "text": "What date should we set for the testing plan?",
+        "evidence": "I will send the testing plan soon.",
+        "confidence": 0.95,
+        "topic": "Launch planning",
+        "openQuestions": [],
+        "decisions": [],
+        "actionItems": [],
+        "proposedAt": 1793599979462,
+        "state": "queued"
+      },
+      "actionItems": [],
+      "passed": true
+    },
+    {
+      "scenario": "explicitly unanswered question",
+      "ms": 829,
+      "intervention": {
+        "id": "4d849a80-f372-4271-b6b8-699c4e982d47",
+        "intervene": true,
+        "reason": "unanswered",
+        "text": "Who will determine the launch campaign cost and when will that information be provided?",
+        "evidence": "How much will the launch campaign cost?",
+        "confidence": 0.95,
+        "topic": "",
+        "openQuestions": [
+          "How much will the launch campaign cost?"
+        ],
+        "decisions": [],
+        "actionItems": [],
+        "proposedAt": 1793599980286,
+        "state": "queued"
+      },
+      "actionItems": [],
+      "passed": true
+    },
+    {
+      "scenario": "sustained drift",
+      "ms": 1592,
+      "intervention": {
+        "id": "ea754a80-4d16-4bc1-ab11-9ec3fcfcaa8e",
+        "intervene": true,
+        "reason": "off_track",
+        "text": "Shall we return to choosing the launch date?",
+        "evidence": "We need to choose the launch date today.",
+        "confidence": 0.98,
+        "topic": "Launch planning",
+        "openQuestions": [],
+        "decisions": [],
+        "actionItems": [],
+        "proposedAt": 1793599981887,
+        "state": "queued"
+      },
+      "actionItems": [],
+      "passed": true
+    },
+    {
+      "scenario": "resolved question",
+      "ms": 1757,
+      "actionItems": [
+        "Maya will send the testing plan Friday."
+      ],
+      "passed": true
+    }
+  ],
+  "notes": "# Launch planning\n\n## Summary\n- The first item on the agenda is to choose the launch date.\n- Maya will send the testing plan on Friday.\n\n## Decisions\nNone recorded.\n\n## Action items\n- Maya will send the testing plan on Friday.\n\n## Open questions\nNone recorded.",
+  "passed": true
+}
