@@ -17,6 +17,12 @@ if(process.platform==='darwin'){
   execFileSync('swiftc',['-O','-target',`${process.arch==='arm64'?'arm64':'x86_64'}-apple-macos14.2`,'native/audio-activity.swift','-framework','CoreAudio','-o','native/bin/quicken-audio-activity'],{stdio:'inherit'});
   if(process.arch==='arm64'){
     run('swiftc',['-parse-as-library','-O','-target','arm64-apple-macos14.2','native/local-voice.swift','-framework','AVFoundation','-o','native/bin/quicken-voice']);
+    try {
+      run('swiftc', ['-parse-as-library', '-O', '-target', 'arm64-apple-macos26.0', 'native/apple-model.swift', '-o', 'native/bin/quicken-apple-model']);
+    } catch {
+      if (existsSync('native/bin/quicken-apple-model')) throw new Error('Apple helper build failed; remove the stale helper and retry with a macOS 26 SDK.');
+      console.warn('Apple AI helper unavailable with this SDK. Qwen remains supported.');
+    }
     const fluid=checkout('FluidAudio','https://github.com/FluidInference/FluidAudio.git','e396cf780c4abf8e395087467c0585d3b0d17f68');
     // Compile ASR only. Exclude unrelated speech/diarization and their binary dependencies.
     const manifest=readFileSync('native/fluid-asr-package.swift');

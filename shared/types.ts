@@ -7,7 +7,7 @@ export const agendaSchema = z.object({ id: z.string().max(80), title: z.string()
 export type AgendaItem = z.infer<typeof agendaSchema>;
 export const createMeetingSchema = z.object({
   title: z.string().min(1).max(120), meetingUrl: z.string().max(2000).default(''),
-  mode: z.enum(['meeting', 'rehearsal', 'local', 'demo']), agenda: z.array(agendaSchema).min(1).max(30),
+  mode: z.enum(['meeting', 'rehearsal', 'local', 'demo']), agenda: z.array(agendaSchema).max(30).default([]),
   processing: z.enum(['local', 'cloud']).default('local'),
   intensity: z.enum(['gentle', 'balanced', 'active']).default('balanced'),
   enabledReasons: z.array(reasonSchema).default(['off_track', 'unanswered', 'ambiguous', 'time', 'addressed'])
@@ -34,7 +34,9 @@ export type Meeting = MeetingInput & {
 };
 export type Settings = { recallApiKey: string; openaiApiKey: string; recallRegion: string; publicBaseUrl: string; realtimeModel: string; notesModel: string };
 export type PublicSettings = Omit<Settings, 'recallApiKey' | 'openaiApiKey'> & { hasOpenaiKey: boolean; hasRecallKey: boolean };
-export type LocalAIStatus = { status: 'unavailable' | 'missing' | 'installed' | 'downloading' | 'loading' | 'ready' | 'error'; detail: string; progress?: number; model: string; language: string };
+export type AppleAvailability = { available: boolean; reason: 'available' | 'disabled' | 'unsupported' | 'notReady' | 'helperMissing' | 'unavailable' };
+export type LocalModelPreference = 'auto' | 'qwen';
+export type LocalAIStatus = { provider?: 'apple' | 'qwen'; preference?: LocalModelPreference; apple?: AppleAvailability; qwenInstalled?: boolean; speechInstalled?: boolean; status: 'checking' | 'unavailable' | 'missing' | 'installed' | 'downloading' | 'loading' | 'ready' | 'error'; detail: string; progress?: number; model: string; language: string };
 export type AppState = { meetings: Meeting[]; settings: PublicSettings; localAI?: LocalAIStatus };
 export const usesLocalAI = (meeting: Pick<Meeting, 'processing' | 'mode'>) => meeting.processing === 'local' && meeting.mode !== 'demo';
 export type BridgeCommand = { type: 'speak'; intervention: Intervention } | { type: 'stop' } | { type: 'state'; meeting: Meeting } | { type: 'end'; drainMs: number };

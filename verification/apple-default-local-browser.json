@@ -1,0 +1,77 @@
+{
+  "kind": "Prerecorded input through real browser Web Audio and native AI; not a physical meeting",
+  "externalRequests": [],
+  "speechEndToFirstPlaybackMs": 1903,
+  "voicePeak": 0.81683349609375,
+  "localAI": {
+    "provider": "apple",
+    "preference": "auto",
+    "status": "ready",
+    "detail": "All AI runs on this Mac. No API keys needed.",
+    "model": "Apple AI · on-device",
+    "language": "English",
+    "apple": {
+      "available": true,
+      "reason": "available"
+    },
+    "qwenInstalled": false,
+    "speechInstalled": true
+  },
+  "transcript": [
+    {
+      "id": "7bd63439-1165-4372-98f9-e28751fac31c",
+      "text": "quicken what is the first item on our agenda",
+      "speaker": "You",
+      "source": "local",
+      "at": 1793682722198
+    },
+    {
+      "id": "moderator-a037db4d-9371-4f0b-8a82-bf7bd8080c67",
+      "text": "The first item on our agenda is \"Choose the launch date\".",
+      "speaker": "Quicken",
+      "source": "moderator",
+      "at": 1793682726117
+    }
+  ],
+  "notes": "# Local browser verification\n\n## Summary\n- Quicken asked what the first item on the agenda was.\n- Quicken answered that the first item on the agenda is \"Choose the launch date\".\n\n## Decisions\nNone recorded.\n\n## Action items\nNone recorded.\n\n## Open questions\nNone recorded.",
+  "interventions": [
+    {
+      "id": "a037db4d-9371-4f0b-8a82-bf7bd8080c67",
+      "intervene": true,
+      "reason": "addressed",
+      "text": "The first item on our agenda is \"Choose the launch date\".",
+      "evidence": "quicken what is the first item on our agenda",
+      "confidence": 1,
+      "topic": "",
+      "openQuestions": [],
+      "decisions": [],
+      "actionItems": [],
+      "proposedAt": 1793682722814,
+      "state": "spoken",
+      "spokenAt": 1793682723344,
+      "latencyMs": 1323
+    }
+  ],
+  "timeline": [
+    {
+      "at": 1793682719142,
+      "type": "stop"
+    },
+    {
+      "at": 1793682722816,
+      "type": "speak"
+    },
+    {
+      "at": 1793682723369,
+      "type": "local-voice-done"
+    },
+    {
+      "at": 1793682726211,
+      "type": "stop"
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "qwenWeightsPresent": false,
+  "voiceCache": "Empty before run"
+}

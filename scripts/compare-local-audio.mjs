@@ -1,3 +1,4 @@
+process.env.QUICKEN_LOCAL_MODEL = 'qwen';
 // Reuses the real browser/audio test with isolated caches for each model and repetition.
 // node --import tsx scripts/compare-local-audio.mjs /path/to/recorded-question.wav
 import {languageModel} from '../server/local/engine.ts';

@@ -42,7 +42,15 @@ export function createApplication(options: { dataDir: string; staticDir?: string
   const emit = (id: string, cmd: BridgeCommand) => { const ws = bridges.get(id); if (ws) send(ws, cmd); };
   const controller = (r: RecordData) => {
     let c = controllers.get(r.meeting.id);
-    if (!c) { c = new MeetingController(r.meeting, cmd => emit(r.meeting.id, cmd), () => changed(r.meeting.id)); controllers.set(r.meeting.id, c); }
+    if (!c) { c = new MeetingController(r.meeting, cmd => {
+      if (cmd.type === 'speak' && r.meeting.mode === 'local' && usesLocalAI(r.meeting)) {
+        if (!r.meeting.bridgeConnected) { c!.cancel('dismissed'); return; }
+        c!.playback(cmd.intervention.id, 'started');
+        c!.playback(cmd.intervention.id, 'finished');
+        return;
+      }
+      emit(r.meeting.id, cmd);
+    }, () => changed(r.meeting.id)); controllers.set(r.meeting.id, c); }
     return c;
   };
   const record = (id: string) => { const r = store.records.get(id); if (!r) throw new Error('Meeting not found.'); return r; };
@@ -95,6 +103,14 @@ export function createApplication(options: { dataDir: string; staticDir?: string
   app.use((req,res,next) => { res.setHeader('Referrer-Policy','no-referrer'); res.setHeader('X-Content-Type-Options','nosniff'); res.setHeader('Cache-Control','no-store'); next(); });
   app.use(express.json({ limit: '1mb' }));
   app.get('/health', (_req,res) => res.json({ ok: true, app: 'Quicken' }));
+  app.post('/api/bridge/:id/audio-error', (req, res) => {
+    const r = bridgeAuthorized(req.params.id, req.headers['x-bridge-token']);
+    if (!r || r.meeting.mode !== 'local') return res.sendStatus(403);
+    const { message } = z.object({message: z.string().min(1).max(500)}).parse(req.body);
+    r.meeting.error = message;
+    changed(r.meeting.id);
+    res.sendStatus(204);
+  });
   app.post('/api/bridge/:id/session', express.text({ type: 'application/sdp', limit: '64kb' }), async (req,res) => {
     const r = bridgeAuthorized(req.params.id, req.headers['x-bridge-token']);
     if (!r) return res.status(401).json({ error:'Meeting bridge authorization expired.' });
@@ -108,10 +124,21 @@ export function createApplication(options: { dataDir: string; staticDir?: string
   });
   app.use('/api', (req,res,next) => same(req.headers['x-quicken-token'], store.accessToken) ? next() : res.status(401).json({ error:'Open Quicken from the desktop app or use npm run open to sign in locally.' }));
   app.get('/api/state', (_req,res) => res.json({...store.state(), localAI: localEngine.status}));
+  const modelChangeBusy = () => [...store.records.values()].some(r => usesLocalAI(r.meeting) && (['live','joining','ending'].includes(r.meeting.status) || r.meeting.notesStatus === 'generating'));
   app.post('/api/local/setup', (_req,res) => {
-    if (localSession) return res.status(409).json({error:'End the local session before changing models.'});
+    if (modelChangeBusy()) return res.status(409).json({error:'End the meeting and wait for notes before changing models.'});
     if (localEngine.status.status === 'unavailable') return res.status(400).json({error:localEngine.status.detail});
     void localEngine.setup().catch(() => {}); res.status(202).json({ok:true});
+  });
+  app.post('/api/local/model', async (req,res) => {
+    if (modelChangeBusy()) return res.status(409).json({error:'End the meeting and wait for notes before changing models.'});
+    if (!localEngine.selectModel) return res.status(400).json({error:'Model selection unavailable.'});
+    const { preference } = z.object({preference:z.enum(['auto','qwen'])}).parse(req.body);
+    try { await localEngine.selectModel(preference); res.json(localEngine.status); } catch(error) { res.status(400).json({error:msg(error)}); }
+  });
+  app.post('/api/local/refresh', async (_req,res) => {
+    if (modelChangeBusy()) return res.status(409).json({error:'End the meeting before checking models.'});
+    try { await localEngine.refresh?.(); res.json(localEngine.status); } catch(error) { res.status(400).json({error:msg(error)}); }
   });
   app.post('/api/local/warm', async (_req,res) => {
     try { await localEngine.prepare(); res.json(localEngine.status); } catch(error) { res.status(400).json({error:msg(error)}); }
@@ -177,7 +204,8 @@ export function createApplication(options: { dataDir: string; staticDir?: string
     if(changes.intensity)r.meeting.intensity=changes.intensity;
     if(changes.enabledReasons)r.meeting.enabledReasons=changes.enabledReasons;
     if(changes.currentAgendaIndex!==undefined)c.advance(changes.currentAgendaIndex);
-    if(changes.extendMinutes)r.meeting.agenda[r.meeting.currentAgendaIndex].minutes+=changes.extendMinutes;
+    const currentTopic = r.meeting.agenda[r.meeting.currentAgendaIndex];
+    if(changes.extendMinutes && currentTopic) currentTopic.minutes+=changes.extendMinutes;
     emit(r.meeting.id,{type:'state',meeting:r.meeting});changed(r.meeting.id);res.json(r.meeting);
   });
   app.post('/api/meetings/:id/stop-speaking',(req,res)=>{controller(record(req.params.id)).cancel('interrupted');res.json({ok:true});});
@@ -236,7 +264,7 @@ export function createApplication(options: { dataDir: string; staticDir?: string
             r.meeting.bridgeConnected=true; r.meeting.status='live'; r.meeting.startedAt||=Date.now(); r.meeting.agendaStartedAt||=Date.now(); r.meeting.error=undefined; changed(sessionId);
             send(ws,{type:'local-ready'});
             const topic=r.meeting.agenda[r.meeting.currentAgendaIndex]?.title;
-            if(topic) for(const remaining of [60_000,0]) void localEngine.voice(timeReminderText(topic,remaining)).catch(()=>{});
+            if(topic && r.meeting.mode !== 'local') for(const remaining of [60_000,0]) void localEngine.voice(timeReminderText(topic,remaining)).catch(()=>{});
           } catch(error) { moderator.close(); if(localSession===current){localSession=undefined;localEngine.stopSpeech();} send(ws,{type:'error',message:msg(error)}); }
           return;
         }
@@ -296,5 +324,5 @@ export function createApplication(options: { dataDir: string; staticDir?: string
       const status=bot.status_changes?.at(-1)?.code;if(status){r.meeting.botStatus=status;changed(r.meeting.id);if(status==='done')void end(r,false);if(status==='fatal'){r.meeting.status='error';r.meeting.error='The meeting bot could not connect. Check admission settings and Recall bot diagnostics.';}}
     }).catch(()=>{}).finally(()=>polling.delete(r.meeting.id));
   }},5000);poll.unref();
-  return {app,server,store,controllers, warmLocal(){return localEngine.status.status==='installed'?localEngine.prepare():Promise.resolve();}, async endActive(){await Promise.allSettled([...store.records.values()].filter(r=>['live','joining','ending'].includes(r.meeting.status)).map(r=>end(r)));for(const r of store.records.values()){if(r.meeting.notesStatus==='generating'){r.meeting.notes=fallbackNotes(r.meeting);r.meeting.notesStatus='error';r.meeting.error='Quicken closed before AI notes finished. Your transcript is saved; retry AI notes when you reopen.';store.save(r);}}}, async close(){localSession?.moderator.close();localSession=undefined;localEngine.close();tunnel.stop();clearInterval(timer);clearInterval(poll);for(const done of drains.values())done();await Promise.allSettled(endings.values());if(broadcastTimer)clearTimeout(broadcastTimer);for(const t of saveTimers.values())clearTimeout(t);for(const r of store.records.values())store.save(r);for(const ws of wss.clients)ws.close();wss.close();await new Promise<void>(resolve=>server.close(()=>resolve()));}};
+  return {app,server,store,controllers, async warmLocal(){await localEngine.refresh?.();if(localEngine.status.status==='installed')await localEngine.prepare();}, async endActive(){await Promise.allSettled([...store.records.values()].filter(r=>['live','joining','ending'].includes(r.meeting.status)).map(r=>end(r)));for(const r of store.records.values()){if(r.meeting.notesStatus==='generating'){r.meeting.notes=fallbackNotes(r.meeting);r.meeting.notesStatus='error';r.meeting.error='Quicken closed before AI notes finished. Your transcript is saved; retry AI notes when you reopen.';store.save(r);}}}, async close(){localSession?.moderator.close();localSession=undefined;localEngine.close();tunnel.stop();clearInterval(timer);clearInterval(poll);for(const done of drains.values())done();await Promise.allSettled(endings.values());if(broadcastTimer)clearTimeout(broadcastTimer);for(const t of saveTimers.values())clearTimeout(t);for(const r of store.records.values())store.save(r);for(const ws of wss.clients)ws.close();wss.close();await new Promise<void>(resolve=>server.close(()=>resolve()));}};
 }

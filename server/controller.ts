@@ -93,7 +93,7 @@ export class MeetingController {
   }
   advance(index: number) {
     this.cancel('dismissed'); this.revision++;
-    this.meeting.currentAgendaIndex = Math.max(0, Math.min(index, this.meeting.agenda.length - 1));
+    this.meeting.currentAgendaIndex = Math.max(0, Math.min(index, Math.max(0, this.meeting.agenda.length - 1)));
     this.meeting.agendaStartedAt = this.now(); this.changed();
   }
 }

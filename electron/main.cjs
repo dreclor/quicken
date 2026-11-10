@@ -45,6 +45,19 @@ async function start() {
       callback(sources[0] ? { video: sources[0], audio: 'loopback' } : null);
     } catch { callback(null); }
   });
+  ipcMain.on('quicken:start-meeting-audio', event => {
+    const url = event.senderFrame?.url;
+    if (!url || !localPage(url, '/bridge')) return;
+    const params = new URLSearchParams(new URL(url).hash.slice(1));
+    const record = runtime.store.records.get(params.get('session'));
+    if (!params.has('autostart') || record?.bridgeToken !== params.get('token') ||
+        record?.meeting.mode !== 'local' || !['joining', 'live'].includes(record.meeting.status)) return;
+    // Continue the explicit Start action in the new audio window.
+    void event.sender.executeJavaScript("document.querySelector('[data-start-meeting]')?.click()", true).catch(() => {});
+  });
+  ipcMain.on('quicken:hide-meeting-audio', event => {
+    if (localPage(event.sender.getURL(), '/bridge')) BrowserWindow.fromWebContents(event.sender)?.hide();
+  });
   ipcMain.on('quicken:main', (event, target) => {
     if (!localPage(event.sender.getURL(), '/') && !localPage(event.sender.getURL(), '/popup')) return;
     if (mainWindow.isMinimized()) mainWindow.restore();
@@ -64,6 +77,7 @@ async function start() {
     const y = Math.max(area.y, Math.min(bounds.y + bounds.height - height, area.y + area.height - height));
     chickenWindow.setBounds({ x, y, width, height });
   });
+  ipcMain.on('quicken:apple-settings', event => { if (localPage(event.sender.getURL(), '/') || localPage(event.sender.getURL(), '/popup')) void shell.openExternal('x-apple.systempreferences:com.apple.Siri-Settings.extension'); });
   ipcMain.on('quicken:chicken', event => { if (localPage(event.sender.getURL())) void showChicken(); });
   ipcMain.on('quicken:hide-chicken', event => { if (event.sender === chickenWindow?.webContents) chickenWindow.hide(); });
   const detectorPreference = path.join(app.getPath('userData'),'meeting-hints.json');
@@ -84,7 +98,11 @@ async function start() {
   mainWindow = new BrowserWindow({ width: 1380, height: 960, minWidth: 760, minHeight: 640, title: 'Quicken', backgroundColor: '#ffffff', titleBarStyle: 'hiddenInset', trafficLightPosition: { x: 18, y: 15 }, webPreferences: webPreferences() });
   configureWindow(mainWindow);
   mainWindow.on('close', () => { if (!quitting) app.quit(); });
-  app.dock?.setIcon(path.join(base, 'dist/chicken.png'));
+  if (app.dock) {
+    app.setActivationPolicy('regular');
+    app.dock.setIcon(path.join(base, 'dist/chicken.png'));
+    await app.dock.show();
+  }
   Menu.setApplicationMenu(Menu.buildFromTemplate([
     { label: 'Quicken', submenu: [{ role: 'about' }, { label: 'Show chicken', click: () => void showChicken() }, { id:'detection',label:'Suggest meetings from microphone activity',type:'checkbox',checked:detectionEnabled,click:item=>setDetection(item.checked) }, { type: 'separator' }, { role: 'quit' }] },
     { role: 'editMenu' }, { role: 'viewMenu' }, { role: 'windowMenu' },

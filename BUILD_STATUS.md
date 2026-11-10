@@ -1,3 +1,15 @@
+## Current local AI setup — November 2
+
+Quicken now defaults to Apple Foundation Models when the on-device model is available (macOS 26+). Settings distinguishes Apple Intelligence disabled, model not ready, unsupported hardware/OS, and a missing helper. The compact setup offers Open Settings (when relevant), Check again, or an explicit Qwen download. Qwen selection persists per Mac and remains available under Model. Nothing enables Apple Intelligence automatically or sends a local session to cloud. Model changes/setup are blocked during local meetings and note generation.
+
+Apple mode downloads only the existing Parakeet speech model (~224 MB); Qwen plus speech remains ~2.7 GB. Existing Qwen weights are preserved. Apple uses fresh sessions, serial native requests, cancellation, guided JSON output, and smaller transcript/note sections for its context window. An Apple failure surfaces setup recovery instead of silently changing providers. Older Macs/SDKs can use Qwen; the Apple helper has a separate macOS 26 deployment target.
+
+This changes the default for convenience, not because Apple surpassed Qwen in the earlier checks. The earlier accuracy and real-meeting limitations below still apply. The chicken, controls, agenda, transcript, notes, export, and optional cloud bot remain.
+
+Verification: selection/setup tests, availability recovery, no Qwen download in Apple mode, active-meeting model-change guards, existing controller/API tests, and 15 browser scenarios including four compact setup states. Actual production Apple inference passed the prerecorded browser/audio path with only speech models symlinked into an isolated directory (no Qwen weights, empty voice cache). See `verification/apple-default-local-browser.json` and `verification/model-setup-*.png`. No physical microphone or real meeting was used. The rebuilt desktop app includes the Apple helper; signing remains ad hoc.
+
+The sections below document earlier builds and benchmark results.
+
 # Quicken 0.2.0 — local AI build status
 
 The Apple Silicon app is built at `release/mac-arm64/Quicken.app`. New Mac-audio and microphone-rehearsal sessions use local speech recognition, Qwen moderation, macOS voice, and local notes. No API keys or public bridge are required for these modes. The existing chicken, white/red/yellow interface, agenda uploads, controls, transcript, notes, Markdown export, sample replay, meeting hints, and explicitly optional cloud bot remain.

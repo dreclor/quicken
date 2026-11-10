@@ -26,6 +26,13 @@ describe('fully local session boundary',()=>{
     const error=await new Promise<NodeJS.ErrnoException>(resolve=>{other.server.once('error',resolve);other.server.listen(Number(new URL(base).port),'127.0.0.1');});
     expect(error.code).toBe('EADDRINUSE');await other.close();
   });
+  it('blocks model selection and refresh during a meeting and while notes are generating',async()=>{
+    const m=await create();await api(`/meetings/${m.id}/start`,{});
+    for(const path of ['/local/model','/local/refresh','/local/setup'])expect((await api(path,{preference:'qwen'})).status).toBe(409);
+    const saved=runtime.store.records.get(m.id)!.meeting;saved.status='ended';saved.notesStatus='generating';
+    for(const path of ['/local/model','/local/refresh','/local/setup'])expect((await api(path,{preference:'auto'})).status).toBe(409);
+    saved.notesStatus='ready';
+  });
   it('defaults to local, needs no provider credentials, and rejects the cloud audio endpoint',async()=>{
     runtime.store.settings.openaiApiKey='';runtime.store.settings.recallApiKey='';
     const m=await create();expect(m.processing).toBe('local');
@@ -51,6 +58,18 @@ describe('fully local session boundary',()=>{
     socket.send(JSON.stringify({type:'local-voice',id:intervention.id}));await expect.poll(()=>!!finish).toBe(true);
     await fetch(base+`/api/meetings/${m.id}`,{method:'PATCH',headers:{'x-quicken-token':runtime.store.accessToken,'Content-Type':'application/json'},body:JSON.stringify({paused:true})});
     finish(Buffer.from('voice'));await new Promise(r=>setTimeout(r,50));expect(events.some(e=>e.type==='local-voice')).toBe(false);
+  });
+  it('delivers private meeting suggestions as text without requesting voice', async () => {
+    const response = await api('/meetings', {title:'Private meeting', mode:'local', agenda:[{id:'a',title:'Launch',minutes:5}]});
+    const m = await response.json();
+    await api(`/meetings/${m.id}/start`, {});
+    const {events} = await bridge(m.id);
+    const text = 'Wrap up launch planning.';
+    runtime.controllers.get(m.id)!.propose({reason:'addressed',text,confidence:1,evidence:'Direct question'});
+    const saved = runtime.store.records.get(m.id)!.meeting;
+    await expect.poll(() => saved.interventions.at(-1)?.state).toBe('spoken');
+    expect(saved.interventions.at(-1)?.text).toBe(text);
+    expect(events.some(event => event.type === 'speak')).toBe(false);
   });
   it('fires time reminders without asking the LLM',async()=>{
     const m=await create();await api(`/meetings/${m.id}/start`,{});const {events}=await bridge(m.id);
