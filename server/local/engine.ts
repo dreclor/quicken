@@ -1,12 +1,13 @@
 import { spawn, type ChildProcessWithoutNullStreams } from 'node:child_process';
 import { createHash, randomBytes } from 'node:crypto';
-import { createReadStream, existsSync, mkdirSync, statSync, writeFileSync } from 'node:fs';
+import { createReadStream, existsSync, mkdirSync, statSync, writeFileSync, readFileSync } from 'node:fs';
 import { open, rename, rm, readFile, readdir, cp } from 'node:fs/promises';
 import { homedir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { createServer } from 'node:net';
 import { createInterface } from 'node:readline';
-import type { LocalAIStatus } from '../../shared/types.js';
+import { NativeAppleClient, type AppleClient } from './apple.js';
+import type { LocalAIStatus, LocalModelPreference } from '../../shared/types.js';
 
 export const languageModel = {
   name: 'Qwen3 4B · local', file: 'Qwen3-4B-Instruct-2507-Q4_K_M.gguf', bytes: 2497281120,
@@ -18,6 +19,10 @@ export type VoiceChunk = { pcm: Buffer; rate: number };
 export interface LocalEngine {
   status: LocalAIStatus;
   setup(): Promise<void>;
+  refresh?(): Promise<void>;
+  selectModel?(preference: LocalModelPreference): Promise<void>;
+  readonly contextChars?: number;
+  readonly notesChunkChars?: number;
   prepare(): Promise<void>;
   startSpeech(listener: (event: SpeechEvent) => void): Promise<void>;
   audio(pcm: string): Promise<void>;
@@ -33,6 +38,11 @@ export class OfflineEngine implements LocalEngine {
   status: LocalAIStatus;
   readonly directory: string;
   private nativeDir: string;
+  private apple: AppleClient;
+  private preference: LocalModelPreference;
+  private checking?: Promise<void>;
+  get contextChars() { return this.status.provider === 'apple' ? 4000 : undefined; }
+  get notesChunkChars() { return this.status.provider === 'apple' ? 3000 : undefined; }
   private speech?: ChildProcessWithoutNullStreams;
   private llm?: ChildProcessWithoutNullStreams;
   private rpcId = 0;
@@ -41,21 +51,54 @@ export class OfflineEngine implements LocalEngine {
   private initializing?: Promise<void>;
   private installing?: Promise<void>;
   private speechLoaded = false;
+  private appleWarmed = false;
   private closing = false;
   private address = '';
   private secret = randomBytes(32).toString('hex');
   private voiceTasks = new Map<string, Promise<Buffer>>();
   private voiceChildren = new Set<ChildProcessWithoutNullStreams>();
-  constructor(private changed: () => void, options: { directory?: string; nativeDir?: string } = {}) {
+  constructor(private changed: () => void, options: { directory?: string; nativeDir?: string; provider?: LocalModelPreference; appleClient?: AppleClient } = {}) {
     this.directory = options.directory || process.env.QUICKEN_MODELS_DIR || join(homedir(), 'Library/Application Support/Quicken/LocalModels');
     this.nativeDir = options.nativeDir || process.env.QUICKEN_NATIVE_DIR || resolve('native/bin');
-    this.status = { status: 'missing', detail: 'Download the local models once. Meetings then work without AI accounts or internet access.', model: languageModel.name, language: 'English' };
+    this.apple = options.appleClient || new NativeAppleClient(join(this.nativeDir, 'quicken-apple-model'));
+    this.preference = options.provider || (process.env.QUICKEN_LOCAL_MODEL === 'qwen' ? 'qwen' : 'auto');
+    if (!options.provider && !process.env.QUICKEN_LOCAL_MODEL) { try { const saved = JSON.parse(readFileSync(join(this.directory, 'model-preference.json'), 'utf8')); if (saved.preference === 'qwen') this.preference = 'qwen'; } catch {} }
+    this.status = { provider: 'qwen', preference: this.preference, status: 'missing', detail: 'Download the local models once. Meetings then work without AI accounts or internet access.', model: languageModel.name, language: 'English' };
     if (process.platform !== 'darwin' || process.arch !== 'arm64') this.set('unavailable', 'Local AI currently requires an Apple Silicon Mac.');
     else if (!existsSync(join(this.nativeDir, 'quicken-speech')) || !existsSync(join(this.nativeDir, 'quicken-llm')) || !existsSync(join(this.nativeDir, 'quicken-voice'))) this.set('unavailable', 'The local engine is not built. Build the native helpers or install the packaged Mac app.');
-    else if (this.installed()) this.set('installed', 'Local models installed. Ready to warm up.');
+    else { this.set('checking', 'Checking Apple AI…'); queueMicrotask(() => { if (!this.closing) void this.refresh(); }); }
+  }
+  refresh() {
+    if (this.checking) return this.checking;
+    if (this.status.status === 'unavailable' || this.installing || this.initializing) return Promise.resolve();
+    this.checking = (async () => {
+      const apple = await this.apple.availability();
+      if (this.closing) return;
+      const provider = this.preference === 'auto' && apple.available ? 'apple' : 'qwen';
+      const qwenInstalled = this.qwenInstalled(), speechInstalled = existsSync(join(this.directory, 'speech-ready.json'));
+      const wasReady = this.status.status === 'ready' && this.status.provider === provider;
+      if (this.status.provider !== provider) { const child = this.llm; this.llm = undefined; child?.kill(); }
+      this.status = { ...this.status, apple, provider, preference: this.preference, qwenInstalled, speechInstalled, model: provider === 'apple' ? 'Apple AI · on-device' : languageModel.name };
+      const usable = speechInstalled && (provider === 'apple' || qwenInstalled);
+      if (wasReady && usable) { this.changed(); return; }
+      this.set(usable ? 'installed' : 'missing', usable ? 'Ready to load.' : provider === 'apple' ? 'Download speech recognition · 224 MB.' : 'Choose Apple AI or download Qwen.');
+    })().finally(() => { this.checking = undefined; });
+    return this.checking;
+  }
+  private qwenInstalled() {
+    try { return statSync(join(this.directory, languageModel.file)).size === languageModel.bytes; } catch { return false; }
+  }
+  async selectModel(preference: LocalModelPreference) {
+    if (this.installing || this.initializing || this.checking) throw new Error('Wait for local AI setup to finish.');
+    mkdirSync(this.directory, { recursive: true, mode: 0o700 });
+    writeFileSync(join(this.directory, 'model-preference.json'), JSON.stringify({ preference }), { mode: 0o600 });
+    const child = this.llm; this.llm = undefined; child?.kill();
+    this.preference = preference;
+    this.set('checking', 'Checking local AI…');
+    await this.refresh();
   }
   private installed() {
-    try { return statSync(join(this.directory, languageModel.file)).size === languageModel.bytes && existsSync(join(this.directory, 'speech-ready.json')); } catch { return false; }
+    return (this.status.provider === 'apple' || this.qwenInstalled()) && existsSync(join(this.directory, 'speech-ready.json'));
   }
   private set(status: LocalAIStatus['status'], detail: string, progress?: number) {
     this.status = { ...this.status, status, detail, progress }; this.changed();
@@ -64,15 +107,17 @@ export class OfflineEngine implements LocalEngine {
     const hash = createHash('sha256'); for await (const part of createReadStream(file)) hash.update(part); return hash.digest('hex');
   }
   setup() {
+    if (this.status.status === 'checking' && !this.checking) void this.refresh();
     if (this.installing) return this.installing;
     if (this.status.status === 'unavailable') return Promise.reject(new Error(this.status.detail));
     this.installing = (async () => {
+      await this.checking;
       this.set('downloading', 'Preparing local models…');
       mkdirSync(this.directory, { recursive: true, mode: 0o700 });
       const licenses = existsSync(join(this.nativeDir, 'licenses')) ? join(this.nativeDir, 'licenses') : resolve(this.nativeDir, '../licenses');
       await cp(licenses, join(this.directory, 'licenses'), { recursive: true });
       const target = join(this.directory, languageModel.file);
-      if (!existsSync(target) || await this.hashFile(target) !== languageModel.sha) {
+      if (this.status.provider !== 'apple' && (!existsSync(target) || await this.hashFile(target) !== languageModel.sha)) {
         const partial = target + '.part';
         const response = await fetch(languageModel.url, { signal: AbortSignal.timeout(30 * 60_000) });
         if (!response.ok || !response.body) throw new Error(`Model download failed (${response.status}). Try again.`);
@@ -93,6 +138,7 @@ export class OfflineEngine implements LocalEngine {
       await this.callSpeech('install', { directory: join(this.directory, 'speech') }, 30 * 60_000);
       this.speechLoaded = true;
       writeFileSync(join(this.directory, 'speech-ready.json'), JSON.stringify({ engine: 'FluidAudio 0.18.2', model: 'Parakeet EOU 120M / 160ms' }), { mode: 0o600 });
+      this.status = { ...this.status, speechInstalled: true, qwenInstalled: this.qwenInstalled() };
       this.set('installed', 'Models installed. Warming up local AI…');
       await this.prepare();
     })().catch(error => { this.set('error', error.message); throw error; }).finally(() => { this.installing = undefined; });
@@ -130,13 +176,16 @@ export class OfflineEngine implements LocalEngine {
     });
   }
   prepare() {
-    if (this.status.status === 'ready' && this.llm && this.speechLoaded) return Promise.resolve();
+    if (this.status.status === 'checking' && !this.checking) void this.refresh();
+    if (this.status.status === 'ready' && (this.status.provider === 'apple' || this.llm) && this.speechLoaded) return Promise.resolve();
     if (this.initializing) return this.initializing;
     this.initializing = (async () => {
-      if (!this.installed()) throw new Error('Download local AI in Connections before starting a local session.');
+      await this.checking;
+      if (this.status.provider === 'apple') { const apple = await this.apple.availability(); this.status = { ...this.status, apple }; if (!apple.available) throw new Error('Apple AI is unavailable. Open Settings to enable it or choose Qwen.'); }
+      if (!this.installed()) throw new Error('Set up local AI in Settings before starting a session.');
       this.set('loading', 'Warming up speech recognition and the local moderator…');
       if (!this.speechLoaded) { await this.callSpeech('load', { directory: join(this.directory, 'speech') }, 120_000); this.speechLoaded = true; }
-      if (!this.llm) {
+      if (this.status.provider !== 'apple' && !this.llm) {
         const port = await new Promise<number>((resolve, reject) => {
           const server = createServer(); server.once('error', reject); server.listen(0, '127.0.0.1', () => { const port = (server.address() as any).port; server.close(() => resolve(port)); });
         });
@@ -153,6 +202,7 @@ export class OfflineEngine implements LocalEngine {
         }
         if (!ready) { child.kill(); throw new Error('The local language model could not start. Close memory-heavy apps and retry.'); }
       }
+      if (this.status.provider === 'apple' && !this.appleWarmed) { await this.apple.complete('Reply with OK only.', 'Ready', {maxTokens:8}); this.appleWarmed = true; }
       this.set('ready', 'All AI runs on this Mac. No API keys needed.');
     })().catch(error => { this.set('error', error.message); throw error; }).finally(() => { this.initializing = undefined; });
     return this.initializing;
@@ -169,6 +219,13 @@ export class OfflineEngine implements LocalEngine {
   stopSpeech() { this.listener = undefined; }
   async complete(system: string, input: string, options: { schema?: object; maxTokens?: number; signal?: AbortSignal } = {}) {
     await this.prepare();
+    if (this.status.provider === 'apple') {
+      try { return await this.apple.complete(system, input, options); }
+      catch (error) {
+        if (!options.signal?.aborted && !this.closing) { this.status = { ...this.status, apple: await this.apple.availability() }; this.set('error', 'Apple AI needs attention. Check again or use Qwen.'); }
+        throw error;
+      }
+    }
     const response = await fetch(this.address + '/v1/chat/completions', {
       method: 'POST', headers: { Authorization: `Bearer ${this.secret}`, 'Content-Type': 'application/json' },
       signal: options.signal ? AbortSignal.any([options.signal, AbortSignal.timeout(120_000)]) : AbortSignal.timeout(120_000),
@@ -216,6 +273,7 @@ export class OfflineEngine implements LocalEngine {
     this.voiceTasks.set(key, task); return task;
   }
   close() {
+    this.apple.close();
     this.closing = true; this.listener = undefined;
     for (const pending of this.pending.values()) { clearTimeout(pending.timer); pending.reject(new Error('Quicken closed.')); }
     this.pending.clear(); this.speech?.kill(); this.llm?.kill(); this.speech = undefined; this.llm = undefined;

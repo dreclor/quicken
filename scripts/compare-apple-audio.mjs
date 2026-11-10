@@ -1,3 +1,4 @@
+process.env.QUICKEN_LOCAL_MODEL = 'qwen';
 // Actual ASR -> model -> native voice -> browser playback; synthetic input only.
 // node --import tsx scripts/compare-apple-audio.mjs tests/audio/agenda-question.wav
 import { languageModel } from '../server/local/engine.ts';

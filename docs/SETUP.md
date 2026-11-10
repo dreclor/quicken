@@ -1,5 +1,11 @@
 # Detailed setup and reference
 
+## Choose local AI
+
+Quicken checks Apple Intelligence on startup and uses the on-device Apple model by default when available (macOS 26+, compatible hardware, Apple Intelligence enabled and downloaded). Otherwise Settings offers **Open Settings**, **Check again**, and **Download Qwen**. Apple mode still downloads English speech recognition (~224 MB); Qwen plus speech is ~2.7 GB. Choose a model under **Settings → Model**. An explicit Qwen choice is remembered. Switching is blocked during local meetings and note generation. Quicken never turns on Apple Intelligence itself or silently uses cloud processing.
+
+Apple scored lower than Qwen in the project’s synthetic checks; choose Qwen if its behavior works better for your meetings.
+
 A macOS meeting moderator for a school project. Upload an agenda, start a session, and let Quicken keep time, track open questions, clarify commitments, and gently bring the discussion back on topic. The floating chicken follows the session and gives you pause and stop controls.
 
 ## Run the app
@@ -28,7 +34,7 @@ npm run open
 
 ## First test: microphone rehearsal
 
-1. Open **Settings → Download · 3 GB**. The first setup downloads about 2.7 GB of model files; allow at least 4 GB free space. After setup, no internet connection or API key is needed for Quicken’s AI. Models are already installed on the development Mac. The app warms them when launched.
+1. Open **Settings → Download speech / Download Qwen**. The first setup downloads speech (~224 MB) for Apple mode, or Qwen plus speech (~2.7 GB); allow at least 4 GB free space. After setup, no internet connection or API key is needed for Quicken’s AI. Models are already installed on the development Mac. The app warms them when launched.
 2. Create a meeting, paste or upload an agenda, and choose **Rehearsal**.
 3. Use headphones. Click **Start microphone** in the audio window and grant microphone access.
 4. Say “Quicken, what is the first item on our agenda?”
@@ -98,9 +104,9 @@ Electron 45, React, TypeScript, Express and authenticated WebSockets, with bundl
 
 - **Speech:** Parakeet Realtime EOU 120M through FluidAudio/Core ML, using 160 ms chunks on the CPU/Apple Neural Engine. Input is 16 kHz mono PCM. Final utterances trigger moderation; the recognizer emits unpunctuated English.
 - **Simple rules:** time reminders, fresh-question protection, explicit unresolved-question handoffs, cooldowns, duplicate suppression, pause/quiet/end, and speech interruption. Clear assignments with recognizable owners and deadlines are protected from redundant clarification.
-- **Custom moderation:** quantized Qwen3-4B-Instruct-2507 through llama.cpp/Metal. Direct questions use a short answer path. Semantic assessment uses bounded recent context and supports topic drift and vague commitments. New speech cancels an in-flight response; stale responses are discarded.
+- **Custom moderation:** Apple Foundation Models by default when available, or quantized Qwen3-4B-Instruct-2507 through llama.cpp/Metal. Direct questions use a short answer path. Semantic assessment uses bounded recent context and supports topic drift and vague commitments. New speech cancels an in-flight response; stale responses are discarded.
 - **Voice:** the installed macOS Samantha voice, streamed into playback as the first audio becomes available. Common timer phrases are cached. If Samantha is missing, install it in macOS Accessibility voice settings.
-- **Notes:** the same local Qwen model, with bounded transcript sections and required verbatim evidence. Unsupported items are dropped, and moderator speech cannot become participant decisions. When a summary cannot be grounded, the app shows transcript excerpts. Long notes retain all sections; questions resolved in a later section can still appear in an earlier section.
+- **Notes:** the selected local language model, with bounded transcript sections and required verbatim evidence. Unsupported items are dropped, and moderator speech cannot become participant decisions. When a summary cannot be grounded, the app shows transcript excerpts. Long notes retain all sections; questions resolved in a later section can still appear in an earlier section.
 
 The model is intentionally small. It can miss subtle drift, misunderstand commitments, or produce a weak response. Evidence checks reduce invented notes but do not prove every interpretation correct. The full transcript remains available. No broad meeting accuracy benchmark, multi-language support, or local speaker diarization is claimed.
 

@@ -65,6 +65,8 @@
         "NSMicrophoneUsageDescription": "Quicken listens to your microphone during sessions you start.",
         "NSAudioCaptureUsageDescription": "Quicken listens to meeting audio to follow your agenda."
       },
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
       "identity": "-",
       "notarize": false,
       "timestamp": "none",
@@ -90,6 +92,13 @@
       {
         "from": "native/bin/quicken-voice",
         "to": "quicken-voice"
+      },
+      {
+        "from": "native/bin",
+        "to": ".",
+        "filter": [
+          "quicken-apple-model"
+        ]
       }
     ]
   }

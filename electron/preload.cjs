@@ -7,6 +7,9 @@ contextBridge.exposeInMainWorld('quickenDesktop', {
     return () => ipcRenderer.removeListener('quicken:navigate', handle);
   },
   setChickenExpanded: expanded => ipcRenderer.send('quicken:expand-chicken', expanded),
+  openAppleSettings: () => ipcRenderer.send('quicken:apple-settings'),
+  startMeetingAudio: () => ipcRenderer.send('quicken:start-meeting-audio'),
+  hideMeetingAudio: () => ipcRenderer.send('quicken:hide-meeting-audio'),
   showChicken: () => ipcRenderer.send('quicken:chicken'),
   closeChicken: () => ipcRenderer.send('quicken:hide-chicken'),
   getDetection: () => ipcRenderer.invoke('quicken:get-detection'),

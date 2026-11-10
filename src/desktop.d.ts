@@ -11,6 +11,9 @@ declare global {
       onNavigate(listener: (target: QuickenNavigation) => void): () => void;
       setChickenExpanded(expanded: boolean): void;
       showChicken(): void;
+      startMeetingAudio?(): void;
+      hideMeetingAudio?(): void;
+      openAppleSettings?(): void;
       closeChicken(): void;
       getDetection(): Promise<MeetingDetection>;
       setDetection(enabled: boolean): void;

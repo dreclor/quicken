@@ -41,11 +41,11 @@ npm run desktop
 | Activity | Required setup |
 | --- | --- |
 | Edit/build the app, unit tests, browser fixture tests, scripted sample | No provider key |
-| Local microphone rehearsal | Settings → Download · 3 GB, microphone permission, headphones; no API keys |
+| Local microphone rehearsal | Settings → download speech or Qwen, microphone permission, headphones; no API keys |
 | Local meeting audio captured on the Mac | Local models, BlackHole 2ch, headphones and macOS audio permissions; follow README device routing |
 | Quicken joins by meeting link as a separate participant | OpenAI key, Recall key and matching Recall region, public HTTPS bridge, meeting link and bot admission |
 
-Download models once per Mac in **Quicken → Settings**. Both source and packaged apps share `~/Library/Application Support/Quicken/LocalModels`. Models are ignored by Git and not part of source commits. Local sessions do not need keys or a public bridge.
+Quicken defaults to Apple AI when available on macOS 26+. Otherwise Settings offers enabling Apple Intelligence or downloading Qwen. Apple mode downloads only speech (~224 MB); Qwen plus speech is ~2.7 GB. Choose Qwen explicitly under **Settings → Model** to keep using it. Download models once per Mac in **Quicken → Settings**. Both source and packaged apps share `~/Library/Application Support/Quicken/LocalModels`. Models are ignored by Git and not part of source commits. Local sessions do not need keys or a public bridge.
 
 For the optional cloud bot only, add keys in **Quicken → Settings → Cloud bot**. OpenAI API billing is separate from a ChatGPT subscription. Recall has its own account and usage. Each teammate should use a separately managed key instead of copying someone else's personal key into the project. A team provider project with separate member credentials can be used if the team later wants shared billing; set that up in the provider account, not in this repository.
 

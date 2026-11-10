@@ -1,3 +1,4 @@
+process.env.QUICKEN_LOCAL_MODEL = 'qwen';
 // Reproducible comparison using actual production moderator, grounding, controller and notes.
 // Run: node --import tsx scripts/compare-local-models.mjs [model-id]
 import { OfflineEngine, languageModel } from '../server/local/engine.ts';

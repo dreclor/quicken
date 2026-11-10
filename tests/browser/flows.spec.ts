@@ -3,42 +3,44 @@ import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 const token=readFileSync(resolve(process.env.QUICKEN_DATA_DIR || '.quicken','access-token'),'utf8').trim();
 test.beforeEach(async({page})=>{await page.goto('/#access='+token);await expect(page.getByRole('heading',{name:/Meet with/})).toBeVisible();});
-test('sample meeting, controls, transcript, notes, and export',async({page})=>{
-  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.screenshot({path:'../../work/quicken-home.png',fullPage:true});
-  await page.getByRole('button',{name:'Try sample'}).click();
-  await expect(page.getByRole('heading',{name:'Launch planning · sample'})).toBeVisible();
-  await expect(page.getByText('Sample · scripted')).toBeVisible();
-  await page.getByRole('button',{name:'Pause',exact:true}).click();
-  await expect(page.getByText('Paused',{exact:true})).toBeVisible();
-  await page.getByRole('button',{name:'Resume',exact:true}).click();
-  await expect(page.getByText('Alex: share the migration plan Thursday.',{exact:true})).toHaveCount(0);
-  await expect(page.getByText('I’ll take migration too, and share the plan on Thursday.',{exact:true})).toBeVisible({timeout:25_000});
-  await expect(page.getByText('Who owns customer migration?',{exact:true})).toHaveCount(0);
-  await page.screenshot({path:'../../work/quicken-session.png',fullPage:true});
-  await page.getByRole('button',{name:'End meeting',exact:true}).click();
-  await expect(page.locator('.note-bullet').filter({hasText:'Alex: share the migration plan Thursday.'})).toBeVisible();
-  const download=page.waitForEvent('download');await page.getByRole('button',{name:'Export',exact:true}).click();expect((await download).suggestedFilename()).toBe('quicken-meeting.md');
-  expect(errors).toEqual([]);
+test('Start opens audio for a private meeting without an agenda', async ({page, context}) => {
+  await page.route('**/api/state', async route => {
+    const response = await route.fetch();
+    const state = await response.json();
+    await route.fulfill({json:{...state,localAI:{status:'ready'}}});
+  });
+  await page.routeWebSocket('**/socket', socket => {
+    socket.onMessage(() => {});
+  });
+  await context.route('**/bridge', route => route.fulfill({body:'Audio setup'}));
+  let created: unknown;
+  await page.route('**/api/meetings', async route => {
+    created = route.request().postDataJSON();
+    await route.fulfill({json:{id:'private-fixture'}});
+  });
+  await page.route('**/api/meetings/private-fixture/start', route =>
+    route.fulfill({json:{bridgeUrl:'/bridge#session=private-fixture&local=1&offline=1'}}));
+  await page.reload();
+  const opened = page.waitForEvent('popup');
+  await page.getByRole('button',{name:'Start',exact:true}).click();
+  await expect(await opened).toHaveURL(/autostart=1/);
+  expect(created).toMatchObject({mode:'local',agenda:[]});
 });
-test('agenda file import, mode selection, and connection settings',async({page})=>{
-  await page.getByRole('button',{name:'New meeting',exact:true}).click();
+test('agenda file import and local settings',async({page})=>{
+  await page.getByRole('button',{name:'Add agenda',exact:true}).click();
   await page.locator('input[type=file]').setInputFiles({name:'agenda.md',mimeType:'text/markdown',buffer:Buffer.from('Introductions (3 min)\nDecide a launch date (7 min)')});
   await expect(page.getByLabel('Agenda',{exact:true})).toHaveValue('Introductions (3 min)\nDecide a launch date (7 min)');
   await expect(page.getByText('10 min',{exact:true})).toBeVisible();
-  await page.getByRole('button',{name:/Microphone rehearsal/}).click();
   await expect(page.getByLabel('Meeting link')).toHaveCount(0);
   await page.getByRole('button',{name:'Settings',exact:true}).click();
   await expect(page.getByRole('dialog',{name:'Settings'})).toBeVisible();
-  await page.locator('summary').filter({hasText:'Cloud bot'}).click();
-  await expect(page.getByLabel(/OPENAI API KEY/)).toHaveAttribute('type','password');
-  await expect(page.getByLabel(/OPENAI API KEY/)).toHaveValue('');
+  await expect(page.getByRole('heading',{name:'Local AI'})).toBeVisible();
   await page.getByRole('button',{name:'Close dialog'}).click();
   await page.screenshot({path:'../../work/quicken-new.png',fullPage:true});
 });
 test('small viewport still exposes the primary workflow',async({page})=>{
   await page.setViewportSize({width:800,height:900});
-  await expect(page.getByRole('button',{name:'New meeting',exact:true})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Add agenda',exact:true})).toBeVisible();
   const width=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth}));expect(width.scroll).toBeLessThanOrEqual(width.client);
   await page.screenshot({path:'../../work/quicken-small.png',fullPage:true});
 });

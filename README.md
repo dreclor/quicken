@@ -1,6 +1,6 @@
 # Quicken 🐔
 
-A local AI meeting moderator for macOS. Upload an agenda, start listening, and Quicken can speak up with time reminders, clarifying questions, and nudges to stay on topic. Get your transcript and notes when you finish.
+A private meeting assistant for macOS. Quicken listens to your microphone and meeting audio, shows suggestions in the chicken overlay, and saves a transcript and notes.
 
 ## Get started
 
@@ -11,25 +11,15 @@ npm ci
 npm run desktop
 ```
 
-The first build compiles the native tools. In **Settings**, download the models once (about **2.7 GB**). Local transcription, moderation, voice, and notes then run without API keys.
+The first build compiles the native tools. Quicken uses **Apple AI** when available (macOS 26+ with Apple Intelligence enabled). Settings offers **Open Settings** or **Download Qwen** when it isn’t. Apple mode needs a **224 MB** speech download; Qwen plus speech is about **2.7 GB**. Both run locally without API keys.
 
-## Try it
+## Start a meeting
 
-1. Create a meeting and choose **Rehearsal**.
-2. Paste or upload an agenda.
-3. Use headphones, click **Start microphone**, and allow microphone access.
-4. Ask: “Quicken, what is the first item on our agenda?”
-5. End the meeting to generate and export notes.
+1. Open Quicken, click **Start**. Use **Add agenda** first if you want to include one.
+2. Allow microphone and system audio access if macOS asks. Quicken uses your default microphone and captures meeting audio from your Mac.
+3. Read suggestions in the chicken overlay. End the meeting to generate and export notes.
 
-The floating chicken gives you quick access to activation, pause, and stop controls. **Try sample** plays a scripted demo.
-
-## Use it in a meeting
-
-Choose **On this Mac** to listen locally. Sending Quicken’s voice into Zoom or Meet requires BlackHole 2ch and [audio setup](docs/SETUP.md#local-meeting-audio-no-provider-accounts).
-
-Meeting hints suggest when to activate Quicken; recording starts when you choose. English is supported. Real meeting audio routing still needs validation.
-
-An optional cloud bot can join by meeting link using Recall and OpenAI credentials. See the [setup guide](docs/SETUP.md#optional-cloud-bot-join-by-meeting-link).
+Use your regular microphone and speakers in Zoom or Meet. Suggestions are private text. Live meeting audio routing still needs validation.
 
 ## Work on it
 
