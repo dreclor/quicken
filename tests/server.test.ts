@@ -15,6 +15,26 @@ describe('local API',()=>{
   it('requires the owner credential and never serializes provider secrets',async()=>{expect((await request('/api/state','GET',undefined,'wrong')).status).toBe(401);runtime.store.settings.openaiApiKey='secret-must-not-leak';const state=await(await request('/api/state')).text();expect(state).not.toContain('secret-must-not-leak');expect(state).toContain('hasOpenaiKey');});
   it('runs the full demo flow, saves notes, and persists after restart',async()=>{const m=await create();expect((await request(`/api/meetings/${m.id}/start`,'POST')).ok).toBe(true);for(let step=0;step<6;step++)await request(`/api/meetings/${m.id}/demo-step`,'POST',{step});await request(`/api/meetings/${m.id}/end`,'POST');await new Promise(r=>setTimeout(r,250));const saved=new Store(dir).records.get(m.id)!.meeting;expect(saved.status).toBe('ended');expect(saved.transcript).toHaveLength(6);expect(saved.notes).toContain('share the migration plan Thursday');const exportText=await(await request(`/api/meetings/${m.id}/export`)).text();expect(exportText).toContain('Full transcript');expect(exportText).toContain('Maya');});
   it('rejects invalid uploads, invalid sessions, and duplicate starts',async()=>{expect((await request('/api/meetings','POST',{title:'bad'})).status).toBe(400);const m=await create();await request(`/api/meetings/${m.id}/start`,'POST');expect((await request(`/api/meetings/${m.id}/start`,'POST')).status).toBe(409);const r=await fetch(base+'/api/agenda/import',{method:'POST',headers:{'x-quicken-token':runtime.store.accessToken},body:new FormData()});expect(r.status).toBe(400);});
+  it('records thumbs up and down per interjection, toggles a repeat press, and reports the tally',async()=>{
+    const m=await create();await request(`/api/meetings/${m.id}/start`,'POST');
+    for(let step=0;step<4;step++)await request(`/api/meetings/${m.id}/demo-step`,'POST',{step});
+    // The controller holds a proposal until the room has been quiet for 450ms.
+    await new Promise(r=>setTimeout(r,700));
+    await request(`/api/meetings/${m.id}/demo-playback`,'POST');
+    const record=runtime.store.records.get(m.id)!;
+    const spoken=record.meeting.interventions.filter(x=>x.spokenAt);
+    expect(spoken).toHaveLength(1);
+    const id=spoken[0].id;
+    expect((await request(`/api/meetings/${m.id}/interventions/${id}/feedback`,'POST',{feedback:'sideways'})).status).toBe(400);
+    expect((await request(`/api/meetings/${m.id}/interventions/missing/feedback`,'POST',{feedback:'up'})).status).toBe(404);
+    expect(await(await request(`/api/meetings/${m.id}/interventions/${id}/feedback`,'POST',{feedback:'up'})).json()).toEqual({feedback:'up',up:1,down:0});
+    expect(await(await request(`/api/meetings/${m.id}/interventions/${id}/feedback`,'POST',{feedback:'down'})).json()).toEqual({feedback:'down',up:0,down:1});
+    expect(await(await request(`/api/meetings/${m.id}/interventions/${id}/feedback`,'POST',{feedback:null})).json()).toEqual({feedback:null,up:0,down:0});
+    await request(`/api/meetings/${m.id}/interventions/${id}/feedback`,'POST',{feedback:'up'});
+    await request(`/api/meetings/${m.id}/end`,'POST');await new Promise(r=>setTimeout(r,250));
+    expect(new Store(dir).records.get(m.id)!.meeting.interventions.find(x=>x.id===id)?.feedback).toBe('up');
+    expect(await(await request(`/api/meetings/${m.id}/export`)).text()).toContain('- Helpful: 1');
+  });
   it('revokes the bridge capability when a meeting ends',async()=>{const m=await create(),token=runtime.store.records.get(m.id)!.bridgeToken;await request(`/api/meetings/${m.id}/end`,'POST');const r=await fetch(base+`/api/bridge/${m.id}/session`,{method:'POST',headers:{'x-bridge-token':token,'Content-Type':'application/sdp'},body:'v=0\r\n'});expect(r.status).toBe(401);});
   it('includes final words delivered during End, blocks new work, and ends only once',async()=>{
     const m=await create(),record=runtime.store.records.get(m.id)!,token=record.bridgeToken;

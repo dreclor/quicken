@@ -3,6 +3,8 @@ import { z } from 'zod';
 export const reasonSchema = z.enum(['off_track', 'unanswered', 'ambiguous', 'time', 'addressed']);
 export type Reason = z.infer<typeof reasonSchema>;
 export const reasonLabels: Record<Reason, string> = { off_track: 'Topic drift', unanswered: 'Open questions', ambiguous: 'Clear commitments', time: 'Time reminders', addressed: 'Direct questions' };
+export const feedbackSchema = z.enum(['up', 'down']);
+export type Feedback = z.infer<typeof feedbackSchema>;
 export const agendaSchema = z.object({ id: z.string().max(80), title: z.string().min(1).max(240), minutes: z.number().min(1).max(120) });
 export type AgendaItem = z.infer<typeof agendaSchema>;
 export const createMeetingSchema = z.object({
@@ -22,7 +24,7 @@ export const assessmentSchema = z.object({
 });
 export type Assessment = z.infer<typeof assessmentSchema>;
 export type TranscriptEntry = { id: string; speaker: string; text: string; at: number; source: 'recall' | 'realtime' | 'moderator' | 'demo' | 'local' };
-export type Intervention = { id: string; reason: Reason; text: string; evidence: string; confidence: number; proposedAt: number; spokenAt?: number; state: 'queued' | 'speaking' | 'spoken' | 'interrupted' | 'dismissed'; latencyMs?: number };
+export type Intervention = { id: string; reason: Reason; text: string; evidence: string; confidence: number; proposedAt: number; spokenAt?: number; state: 'queued' | 'speaking' | 'spoken' | 'interrupted' | 'dismissed'; latencyMs?: number; feedback?: Feedback };
 export type Meeting = MeetingInput & {
   id: string; createdAt: number; startedAt?: number; endedAt?: number;
   status: 'draft' | 'joining' | 'live' | 'ending' | 'ended' | 'error'; paused: boolean;
@@ -36,6 +38,11 @@ export type Settings = { recallApiKey: string; openaiApiKey: string; recallRegio
 export type PublicSettings = Omit<Settings, 'recallApiKey' | 'openaiApiKey'> & { hasOpenaiKey: boolean; hasRecallKey: boolean };
 export type LocalAIStatus = { status: 'unavailable' | 'missing' | 'installed' | 'downloading' | 'loading' | 'ready' | 'error'; detail: string; progress?: number; model: string; language: string };
 export type AppState = { meetings: Meeting[]; settings: PublicSettings; localAI?: LocalAIStatus };
+// Ratings live on the interventions themselves so a per-meeting tally can never
+// drift from the individual interjections a participant actually rated.
+export function feedbackCounts(meeting: Pick<Meeting, 'interventions'>) {
+  return { up: meeting.interventions.filter(i => i.feedback === 'up').length, down: meeting.interventions.filter(i => i.feedback === 'down').length };
+}
 export const usesLocalAI = (meeting: Pick<Meeting, 'processing' | 'mode'>) => meeting.processing === 'local' && meeting.mode !== 'demo';
 export type BridgeCommand = { type: 'speak'; intervention: Intervention } | { type: 'stop' } | { type: 'state'; meeting: Meeting } | { type: 'end'; drainMs: number };
 

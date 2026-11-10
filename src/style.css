@@ -160,6 +160,13 @@ h3{font-size:15px;font-weight:650}
 .intervention p{font-size:11px;line-height:1.8;margin:12px 0;color:var(--body)}
 .intervention small{font-size:9px;line-height:1.6;color:var(--muted);display:block}
 .intervention.dismissed{opacity:.6}
+.rating-summary{display:flex;align-items:center;gap:9px}
+.rating-summary em{display:flex;align-items:center;gap:3px;font-style:normal}
+.intervention-rating{display:flex;align-items:center;gap:4px;margin-top:11px}
+.intervention-rating>span{font-size:9px;color:var(--muted);margin-right:3px}
+button.rating-button{padding:5px;border-radius:6px;min-width:0;min-height:0}
+button.rating-button.rated-up{background:var(--yellow-soft);color:var(--yellow-ink)}
+button.rating-button.rated-down{background:var(--red-soft);color:var(--primary)}
 .quiet-note{padding:14px 18px 23px;font-size:11px;color:var(--muted)}
 .quiet-note .tiny-dot{margin-right:6px}
 .quiet-note p{font-size:10px;color:var(--muted);margin:9px 0 0 13px}
@@ -339,6 +346,9 @@ h3{font-size:15px;font-weight:650}
 .chicken-bubble header strong{font-family:Manrope,sans-serif;letter-spacing:-.5px;font-size:17px}
 .chicken-status{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);margin:2px 0 9px}
 .chicken-topic{font-size:13px;line-height:1.45;max-height:76px;overflow:auto}
+.chicken-rating{display:flex;align-items:center;gap:5px;margin-top:9px}
+.chicken-rating>span{font-size:10px;color:var(--muted)}
+.chicken-rating .rating-tally{font-size:9px;color:var(--muted);margin-left:auto}
 .chicken-controls{display:flex;align-items:center;gap:7px;margin-top:13px}
 .chicken-controls button{padding:7px 10px;font-size:11px}
 .chicken-controls .icon-button{margin-left:auto}

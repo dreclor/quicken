@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight, Headphones, ShieldCheck, Cloud, Pause, Play, Square, Upload, VolumeX, X } from 'lucide-react';
+import { ArrowUpRight, Headphones, ShieldCheck, Cloud, Pause, Play, Square, ThumbsDown, ThumbsUp, Upload, VolumeX, X } from 'lucide-react';
 import { accessToken, api } from './api';
-import { parseAgenda, type AppState, type Meeting } from '../shared/types';
+import { feedbackCounts, parseAgenda, type AppState, type Feedback, type Meeting } from '../shared/types';
 
+// A rating only has meaning while the interjection is still fresh in mind, so
+// the bubble holds the last one on screen briefly instead of indefinitely.
+const RATING_WINDOW_MS = 45_000;
 type QuickSetup = { mode: 'local' | 'rehearsal' | 'meeting'; agenda: string; meetingUrl: string };
 function savedSetup(): QuickSetup {
   const defaults: QuickSetup = { mode: 'local', agenda: 'Goals (5 min)\nDiscussion (15 min)\nNext steps (5 min)', meetingUrl: '' };
@@ -29,6 +32,7 @@ export function ChickenPopup() {
   const [configuring, setConfiguring] = useState(false);
   const [setup, setSetup] = useState(savedSetup);
   const [busy, setBusy] = useState(false);
+  const [now, setNow] = useState(() => Date.now());
   const [importing, setImporting] = useState(false);
   const starting = useRef(false);
   const upload = useRef<HTMLInputElement>(null);
@@ -54,9 +58,12 @@ export function ChickenPopup() {
     connect();
     return () => { disposed = true; socket.close(); clearTimeout(retry); document.documentElement.classList.remove('popup-document'); };
   }, []);
+  useEffect(() => { if (!meeting) return; const timer = setInterval(() => setNow(Date.now()), 1000); return () => clearInterval(timer); }, [!meeting]);
   const speaking = meeting?.interventions.some(i => i.state === 'speaking');
   const status = !connected ? 'Connecting…' : !meeting ? detection?.apps.length ? 'Mic active' : 'Ready' : meeting.status === 'ending' ? 'Finishing transcript…' : meeting.paused ? 'Paused' : speaking ? 'Speaking…' : meeting.bridgeConnected || meeting.mode === 'demo' ? 'Listening' : 'Waiting for audio…';
   const latest = meeting?.interventions.filter(i => i.state === 'speaking' || i.state === 'spoken').at(-1);
+  const rating = latest && (speaking || now - (latest.spokenAt ?? 0) < RATING_WINDOW_MS) ? latest : undefined;
+  const tally = meeting ? feedbackCounts(meeting) : { up: 0, down: 0 };
   const prerequisites = setup.mode !== 'meeting' ? (['ready','installed'].includes(state?.localAI?.status || '') ? '' : state?.localAI?.status === 'missing' ? 'Download local AI first.' : state?.localAI?.detail || 'Set up local AI first.') : !state?.settings.hasOpenaiKey ? 'Add an OpenAI key in Settings.' : !state.settings.hasRecallKey ? 'Add a Recall key in Settings.' : !state.settings.publicBaseUrl ? 'Start a test bridge in Settings.' : '';
   async function importAgenda(file?: File) {
     if (!file) return;
@@ -98,6 +105,13 @@ export function ChickenPopup() {
       else setError('Allow popups to open the audio setup window.');
     } catch (e) { audio?.close(); setError(e instanceof Error ? e.message : 'Could not open audio.'); }
   }
+  async function rate(interventionId: string, feedback: Feedback) {
+    if (!meeting) return;
+    setError('');
+    const current = meeting.interventions.find(i => i.id === interventionId)?.feedback;
+    try { await api(`/meetings/${meeting.id}/interventions/${interventionId}/feedback`, { method: 'POST', body: JSON.stringify({ feedback: current === feedback ? null : feedback }) }); }
+    catch (e) { setError(e instanceof Error ? e.message : 'Could not save that rating.'); }
+  }
   async function control(path: string, body?: unknown) {
     if (!meeting) return;
     setError('');
@@ -109,7 +123,13 @@ export function ChickenPopup() {
     <section className="chicken-bubble">
       <header><strong>Quicken</strong><button className="icon-button" aria-label="Hide chicken" onClick={() => { if (window.quickenDesktop) window.quickenDesktop.closeChicken(); else window.close(); }}><X size={15}/></button></header>
       <p className="chicken-status" role="status"><span className={`tiny-dot ${meeting && !meeting.paused && connected ? 'active' : ''}`}/>{status}</p>
-      {!expanded && (meeting || !!detection?.apps.length) && <p className="chicken-topic">{speaking && latest ? latest.text : meeting ? meeting.agenda[meeting.currentAgendaIndex]?.title : detection?.apps.join(', ')}</p>}
+      {!expanded && (meeting || !!detection?.apps.length) && <p className="chicken-topic">{rating ? rating.text : meeting ? meeting.agenda[meeting.currentAgendaIndex]?.title : detection?.apps.join(', ')}</p>}
+      {!expanded && rating && <div className="chicken-rating">
+        <span>Helpful?</span>
+        <button className={`icon-button rating-button ${rating.feedback === 'up' ? 'rated-up' : ''}`} aria-label="Helpful interjection" aria-pressed={rating.feedback === 'up'} onClick={() => void rate(rating.id, 'up')}><ThumbsUp size={14}/></button>
+        <button className={`icon-button rating-button ${rating.feedback === 'down' ? 'rated-down' : ''}`} aria-label="Unhelpful interjection" aria-pressed={rating.feedback === 'down'} onClick={() => void rate(rating.id, 'down')}><ThumbsDown size={14}/></button>
+        {!!(tally.up || tally.down) && <small className="rating-tally">{tally.up} up · {tally.down} down</small>}
+      </div>}
       {expanded && <form className="chicken-setup" onSubmit={event => { event.preventDefault(); void start(); }}>
         <label htmlFor="quick-mode">Listen through</label>
         <select id="quick-mode" value={setup.mode} disabled={busy} onChange={e => setSetup({ ...setup, mode: e.target.value as QuickSetup['mode'] })}>

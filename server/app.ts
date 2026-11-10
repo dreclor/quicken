@@ -8,7 +8,7 @@ import { z } from 'zod';
 import { TestTunnel } from './tunnel.js';
 import { Store, type RecordData } from './store.js';
 import { MeetingController, timeReminderText } from './controller.js';
-import { assessmentSchema, createMeetingSchema, parseAgenda, reasonSchema, usesLocalAI, type BridgeCommand, type Meeting, type TranscriptEntry } from '../shared/types.js';
+import { assessmentSchema, createMeetingSchema, feedbackCounts, feedbackSchema, parseAgenda, reasonSchema, usesLocalAI, type BridgeCommand, type Meeting, type TranscriptEntry } from '../shared/types.js';
 import { OfflineEngine, type LocalEngine } from './local/engine.js';
 import { LocalModerator, localNotes } from './local/moderator.js';
 import { createBot, createRealtimeCall, fallbackNotes, generateNotes, getBot, leaveBot, providerFetch, publicUrl } from './providers.js';
@@ -180,10 +180,20 @@ export function createApplication(options: { dataDir: string; staticDir?: string
     if(changes.extendMinutes)r.meeting.agenda[r.meeting.currentAgendaIndex].minutes+=changes.extendMinutes;
     emit(r.meeting.id,{type:'state',meeting:r.meeting});changed(r.meeting.id);res.json(r.meeting);
   });
+  // Ratings stay available after a meeting ends so a host can review and rate
+  // the interjection log once the conversation is over.
+  app.post('/api/meetings/:id/interventions/:intervention/feedback',(req,res)=>{
+    const r=record(req.params.id);
+    const item=r.meeting.interventions.find(x=>x.id===req.params.intervention);
+    if(!item)return res.status(404).json({error:'That interjection is no longer available.'});
+    const {feedback}=z.object({feedback:feedbackSchema.nullable()}).parse(req.body);
+    if(feedback)item.feedback=feedback;else delete item.feedback;
+    changed(r.meeting.id);res.json({feedback:item.feedback??null,...feedbackCounts(r.meeting)});
+  });
   app.post('/api/meetings/:id/stop-speaking',(req,res)=>{controller(record(req.params.id)).cancel('interrupted');res.json({ok:true});});
   app.post('/api/meetings/:id/end',async(req,res)=>{const r=record(req.params.id);await end(r);res.json(r.meeting);});
   app.post('/api/meetings/:id/notes',async(req,res)=>{const r=record(req.params.id);if(r.meeting.status!=='ended')return res.status(400).json({error:'End the meeting before generating final notes.'});void finishNotes(r);res.json({ok:true});});
-  app.get('/api/meetings/:id/export',(req,res)=>{const r=record(req.params.id);res.type('text/markdown').attachment('quicken-meeting.md').send((r.meeting.notes||fallbackNotes(r.meeting))+'\n\n---\n\n# Full transcript\n\n'+r.meeting.transcript.map(x=>`**${x.speaker}:** ${x.text}`).join('\n\n'));});
+  app.get('/api/meetings/:id/export',(req,res)=>{const r=record(req.params.id);const rated=feedbackCounts(r.meeting);res.type('text/markdown').attachment('quicken-meeting.md').send((r.meeting.notes||fallbackNotes(r.meeting))+`\n\n---\n\n# Interjection ratings\n\n- Helpful: ${rated.up}\n- Not helpful: ${rated.down}\n- Unrated: ${r.meeting.interventions.filter(x=>x.spokenAt&&!x.feedback).length}\n`+'\n---\n\n# Full transcript\n\n'+r.meeting.transcript.map(x=>`**${x.speaker}:** ${x.text}`).join('\n\n'));});
   app.post('/api/meetings/:id/demo-step',(req,res)=>{
     const r=record(req.params.id);if(r.meeting.mode!=='demo'||r.meeting.status!=='live')return res.status(400).json({error:'Start a demo session first.'});
     const step=z.number().int().min(0).max(5).parse(req.body.step), c=controller(r);
